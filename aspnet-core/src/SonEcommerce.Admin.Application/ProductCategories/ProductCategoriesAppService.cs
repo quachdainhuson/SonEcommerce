@@ -1,5 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
-using SonEcommerce.Products;
+using SonEcommerce.ProductCategories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +10,17 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Uow;
 
-namespace SonEcommerce.Admin.Products
+namespace SonEcommerce.Admin.ProductCategories
 {
-    public class ProductsAppService : CrudAppService<
-        Product,
-        ProductDto,
+    public class ProductCategoriesAppService : CrudAppService<
+        ProductCategory,
+        ProductCategoryDto,
         Guid,
         PagedResultRequestDto,
-        CreateUpdateProductDto,
-        CreateUpdateProductDto>, IProductsAppService
+        CreateUpdateProductCategoryDto,
+        CreateUpdateProductCategoryDto>, IProductCategoriesAppService
     {
-        public ProductsAppService(IRepository<Product, Guid> repository)
+        public ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository)
             : base(repository)
         {
         }
@@ -31,25 +31,25 @@ namespace SonEcommerce.Admin.Products
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        public async Task<List<ProductInListDto>> GetListAllAsync()
+        public async Task<List<ProductCategoryInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
             query = query.Where(x => x.IsActive == true);
             var data = await AsyncExecuter.ToListAsync(query);
 
-            return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data);
+            return ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryInListDto>>(data);
+
         }
 
-        public async Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
+        public async Task<PagedResultDto<ProductCategoryInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
-            query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
 
             var totalCount = await AsyncExecuter.LongCountAsync(query);
             var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
-            return new PagedResultDto<ProductInListDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data));
+            return new PagedResultDto<ProductCategoryInListDto>(totalCount, ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryInListDto>>(data));
         }
     }
 }

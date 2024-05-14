@@ -1,7 +1,7 @@
 import { PagedResultDto } from '@abp/ng.core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ManufacturerInListDto, ManufacturerService } from '@proxy/manufacturers';
+import { ManufacturerInListDto, ManufacturersService } from '@proxy/manufacturers';
 import { ProductCategoriesService, ProductCategoryInListDto } from '@proxy/product-categories';
 import { ProductDto, ProductInListDto, ProductsService } from '@proxy/products';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -28,7 +28,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductsService,
     private productCategoryService: ProductCategoriesService,
-    private manufacturerService: ManufacturerService,
+    private manufacturerService: ManufacturersService,
     private fb: FormBuilder,
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,

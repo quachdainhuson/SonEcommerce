@@ -61,10 +61,10 @@ export class ProductsService {
     { apiName: this.apiName,...config });
   
 
-  getListWithFilter = (input: ProductListFilterDto, config?: Partial<Rest.Config>) =>
+  getListFilter = (input: ProductListFilterDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, PagedResultDto<ProductInListDto>>({
       method: 'GET',
-      url: '/api/app/products/with-filter',
+      url: '/api/app/products/filter',
       params: { categoryId: input.categoryId, keyword: input.keyword, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });

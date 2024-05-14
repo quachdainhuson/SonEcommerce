@@ -24,8 +24,9 @@ export interface ManufacturerDto {
 export interface ManufacturerInListDto extends EntityDto<string> {
   name?: string;
   code?: string;
-  sortOrder: number;
+  slug?: string;
   coverPicture?: string;
   visibility: boolean;
   isActive: boolean;
+  country?: string;
 }

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Application.Dtos;
 
-namespace SonEcommerce.ProductCategories
+namespace SonEcommerce.Admin.ProductCategories
 {
-    public class ProductCategory : CreationAuditedAggregateRoot<Guid>
+    public class ProductCategoryDto : IEntityDto<Guid>
     {
         public string Name { get; set; }
         public string Code { get; set; }
@@ -17,6 +15,7 @@ namespace SonEcommerce.ProductCategories
         public bool Visibility { get; set; }
         public bool IsActive { get; set; }
         public Guid? ParentId { get; set; }
-        public string? SeoMetaDescription { get; set; }
+        public string SeoMetaDescription { get; set; }
+        public Guid Id { get; set; }
     }
 }

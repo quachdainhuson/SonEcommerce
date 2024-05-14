@@ -45,7 +45,7 @@ export class ProductComponent implements OnInit, OnDestroy{
     this.productCategoryService.getListAll().subscribe((response: ProductCategoryInListDto[]) => {
       response.forEach(element => {
         this.productCategories.push({
-          name: element.name, 
+          label: element.name, 
           value: element.id
         });
       })
@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit, OnDestroy{
   };
   loadData(){
     this.toggleBlockUI(true);
-    this.prodcutService.getListWithFilter({
+    this.prodcutService.getListFilter({
       keyword: this.keyword,
       categoryId: this.categoryId,
       maxResultCount: this.maxResultCount,

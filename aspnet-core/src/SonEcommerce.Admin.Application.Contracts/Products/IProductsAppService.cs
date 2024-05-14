@@ -8,14 +8,13 @@ using Volo.Abp.Application.Services;
 namespace SonEcommerce.Admin.Products
 {
     public interface IProductsAppService : ICrudAppService
-        <ProductDto, 
-        Guid, 
-        PagedResultRequestDto, 
+        <ProductDto,
+        Guid,
+        PagedResultRequestDto,
         CreateUpdateProductDto,
-        CreateUpdateProductDto
-        >
+        CreateUpdateProductDto>
     {
-        Task<PagedResultDto<ProductInListDto>> GetListWithFilterAsync(ProductListFilterDto input);
+        Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input);
         Task<List<ProductInListDto>> GetListAllAsync();
         Task DeleteMultipleAsync(IEnumerable<Guid> ids);
     }

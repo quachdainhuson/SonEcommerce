@@ -773,20 +773,20 @@
       "rootPath": "app",
       "remoteServiceName": "Default",
       "controllers": {
-        "SonEcommerce.Admin.Manufacturers.ManufacturerAppService": {
-          "controllerName": "Manufacturer",
-          "controllerGroupName": "Manufacturer",
+        "SonEcommerce.Admin.Manufacturers.ManufacturersAppService": {
+          "controllerName": "Manufacturers",
+          "controllerGroupName": "Manufacturers",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "SonEcommerce.Admin.Manufacturers.ManufacturerAppService",
+          "type": "SonEcommerce.Admin.Manufacturers.ManufacturersAppService",
           "interfaces": [
             {
               "type": "SonEcommerce.Admin.Manufacturers.IManufacturersAppService",
               "name": "IManufacturersAppService",
               "methods": [
                 {
-                  "name": "GetListWithFilterAsync",
+                  "name": "GetListFilterAsync",
                   "parametersOnMethod": [
                     {
                       "name": "input",
@@ -928,7 +928,7 @@
               "uniqueName": "DeleteMultipleAsyncByIds",
               "name": "DeleteMultipleAsync",
               "httpMethod": "DELETE",
-              "url": "api/app/manufacturer/multiple",
+              "url": "api/app/manufacturers/multiple",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -965,7 +965,7 @@
               "uniqueName": "GetListAllAsync",
               "name": "GetListAllAsync",
               "httpMethod": "GET",
-              "url": "api/app/manufacturer/all",
+              "url": "api/app/manufacturers/all",
               "supportedVersions": [],
               "parametersOnMethod": [],
               "parameters": [],
@@ -976,11 +976,11 @@
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.Manufacturers.IManufacturersAppService"
             },
-            "GetListWithFilterAsyncByInput": {
-              "uniqueName": "GetListWithFilterAsyncByInput",
-              "name": "GetListWithFilterAsync",
+            "GetListFilterAsyncByInput": {
+              "uniqueName": "GetListFilterAsyncByInput",
+              "name": "GetListFilterAsync",
               "httpMethod": "GET",
-              "url": "api/app/manufacturer/with-filter",
+              "url": "api/app/manufacturers/filter",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1041,7 +1041,7 @@
               "uniqueName": "CreateAsyncByInput",
               "name": "CreateAsync",
               "httpMethod": "POST",
-              "url": "api/app/manufacturer",
+              "url": "api/app/manufacturers",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1078,7 +1078,7 @@
               "uniqueName": "UpdateAsyncByIdAndInput",
               "name": "UpdateAsync",
               "httpMethod": "PUT",
-              "url": "api/app/manufacturer/{id}",
+              "url": "api/app/manufacturers/{id}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1135,7 +1135,7 @@
               "uniqueName": "DeleteAsyncById",
               "name": "DeleteAsync",
               "httpMethod": "DELETE",
-              "url": "api/app/manufacturer/{id}",
+              "url": "api/app/manufacturers/{id}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1172,7 +1172,7 @@
               "uniqueName": "GetAsyncById",
               "name": "GetAsync",
               "httpMethod": "GET",
-              "url": "api/app/manufacturer/{id}",
+              "url": "api/app/manufacturers/{id}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1209,7 +1209,7 @@
               "uniqueName": "GetListAsyncByInput",
               "name": "GetListAsync",
               "httpMethod": "GET",
-              "url": "api/app/manufacturer",
+              "url": "api/app/manufacturers",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1269,7 +1269,7 @@
               "name": "IProductCategoriesAppService",
               "methods": [
                 {
-                  "name": "GetListWithFilterAsync",
+                  "name": "GetListFilterAsync",
                   "parametersOnMethod": [
                     {
                       "name": "input",
@@ -1459,11 +1459,11 @@
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.ProductCategories.IProductCategoriesAppService"
             },
-            "GetListWithFilterAsyncByInput": {
-              "uniqueName": "GetListWithFilterAsyncByInput",
-              "name": "GetListWithFilterAsync",
+            "GetListFilterAsyncByInput": {
+              "uniqueName": "GetListFilterAsyncByInput",
+              "name": "GetListFilterAsync",
               "httpMethod": "GET",
-              "url": "api/app/product-categories/with-filter",
+              "url": "api/app/product-categories/filter",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -1752,7 +1752,7 @@
               "name": "IProductsAppService",
               "methods": [
                 {
-                  "name": "GetListWithFilterAsync",
+                  "name": "GetListFilterAsync",
                   "parametersOnMethod": [
                     {
                       "name": "input",
@@ -1942,11 +1942,11 @@
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.Products.IProductsAppService"
             },
-            "GetListWithFilterAsyncByInput": {
-              "uniqueName": "GetListWithFilterAsyncByInput",
-              "name": "GetListWithFilterAsync",
+            "GetListFilterAsyncByInput": {
+              "uniqueName": "GetListFilterAsyncByInput",
+              "name": "GetListFilterAsync",
               "httpMethod": "GET",
-              "url": "api/app/products/with-filter",
+              "url": "api/app/products/filter",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -5094,10 +5094,10 @@
           "regex": null
         },
         {
-          "name": "SortOrder",
+          "name": "Slug",
           "jsonName": null,
-          "type": "System.Int32",
-          "typeSimple": "number",
+          "type": "System.String",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -5134,6 +5134,18 @@
           "jsonName": null,
           "type": "System.Boolean",
           "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Country",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -5514,6 +5526,18 @@
           "regex": null
         },
         {
+          "name": "Slug",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "ProductType",
           "jsonName": null,
           "type": "SonEcommerce.Products.ProductType",
@@ -5527,18 +5551,6 @@
         },
         {
           "name": "SKU",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Slug",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -5691,6 +5703,18 @@
           "regex": null
         },
         {
+          "name": "Slug",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "ProductType",
           "jsonName": null,
           "type": "SonEcommerce.Products.ProductType",
@@ -5704,18 +5728,6 @@
         },
         {
           "name": "SKU",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Slug",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -5755,18 +5767,6 @@
           "jsonName": null,
           "type": "System.Boolean",
           "typeSimple": "boolean",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SellPrice",
-          "jsonName": null,
-          "type": "System.Double",
-          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -5823,6 +5823,18 @@
           "regex": null
         },
         {
+          "name": "SellPrice",
+          "jsonName": null,
+          "type": "System.Double",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "Id",
           "jsonName": null,
           "type": "System.Guid",
@@ -5843,6 +5855,18 @@
       "enumValues": null,
       "genericArguments": null,
       "properties": [
+        {
+          "name": "ManufacturerId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
         {
           "name": "Name",
           "jsonName": null,
@@ -5868,6 +5892,42 @@
           "regex": null
         },
         {
+          "name": "Slug",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ProductType",
+          "jsonName": null,
+          "type": "SonEcommerce.Products.ProductType",
+          "typeSimple": "SonEcommerce.Products.ProductType",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "SKU",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "SortOrder",
           "jsonName": null,
           "type": "System.Int32",
@@ -5880,19 +5940,7 @@
           "regex": null
         },
         {
-          "name": "CoverPicture",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Visibility",
+          "name": "Visiblity",
           "jsonName": null,
           "type": "System.Boolean",
           "typeSimple": "boolean",
@@ -5908,6 +5956,30 @@
           "jsonName": null,
           "type": "System.Boolean",
           "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "CategoryId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ThumbnailPicture",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
