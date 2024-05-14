@@ -38,6 +38,16 @@
           [validationMessages]="validationMessages"
         ></app-validation-message>
       </div>
+
+      <div class="field col-12"> 
+        <label for="thumbnailPicture" class="block">thumbnailPicture <span class="required">*</span></label> 
+        <input id="thumbnailPicture" pInputText type="text" class="w-full" formControlName="thumbnailPicture" /> 
+        <app-validation-message 
+          [entityForm]="form" 
+          fieldName="thumbnailPicture" 
+          [validationMessages]="validationMessages" >
+      </app-validation-message> 
+    </div>
       <div class="field col-12">
         <label for="manufacturerId" class="block"
           >Nhà sản xuất <span class="required">*</span></label

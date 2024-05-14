@@ -1,13 +1,13 @@
-import { PagedResultDto } from '@abp/ng.core';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ManufacturerInListDto, ManufacturersService } from '@proxy/manufacturers';
 import { ProductCategoriesService, ProductCategoryInListDto } from '@proxy/product-categories';
-import { ProductDto, ProductInListDto, ProductsService } from '@proxy/products';
+import { ProductDto, ProductsService } from '@proxy/products';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { UtilityService } from '../shared/services/utility.service';
-import { productTypeOptions } from '@proxy/son-ecommerce/products';
+import { ProductType, productTypeOptions } from '@proxy/son-ecommerce/products';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,6 +24,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   manufacturers: any[] = [];
   productTypes: any[] = [];
   selectedEntity = {} as ProductDto;
+  thumbnailPicture: any;
 
   constructor(
     private productService: ProductsService,
@@ -48,6 +49,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     productType: [{ type: 'required', message: 'Bạn phải chọn loại sản phẩm' }],
     sortOrder: [{ type: 'required', message: 'Bạn phải nhập thứ tự' }],
     sellPrice: [{ type: 'required', message: 'Bạn phải nhập giá bán' }],
+    thumbnailPicture: [{ type: 'required', message: 'Bạn phải chọn ảnh' }],
   };
 
   ngOnDestroy(): void {}
@@ -55,8 +57,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.buildForm();
     this.loadProductTypes();
+    this.initFormData();
     //Load data to form
-    var productCategories = this.productCategoryService.getListAll();
+    
+  }
+  generateSlug(){
+    this.form.controls['slug'].setValue(this.utilService.MakeSeoTitle(this.form.get('name').value));
+  }
+initFormData(){
+  var productCategories = this.productCategoryService.getListAll();
     var manufacturers = this.manufacturerService.getListAll();
     this.toggleBlockUI(true);
     forkJoin({
@@ -93,10 +102,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           this.toggleBlockUI(false);
         },
       });
-  }
-  generateSlug(){
-    this.form.controls['slug'].setValue(this.utilService.MakeSeoTitle(this.form.get('name').value));
-  }
+};
+
   loadFormDetails(id: string) {
     this.toggleBlockUI(true);
     this.productService
@@ -113,7 +120,37 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         },
       });
   }
-  saveChange() {}
+  saveChange() {
+    console.log(this.form.value);
+    console.log(this.config.data);
+    this.toggleBlockUI(true);
+    if(this.utilService.isEmpty(this.config.data?.id) == true){
+      this.productService.create(this.form.value)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: () => {
+          this.toggleBlockUI(false);
+          this.ref.close(this.form.value);
+        },
+        error: () => {
+          this.toggleBlockUI(false);
+        },
+      });
+    }else{
+      this.productService
+      .update(this.config.data?.id ,this.form.value)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: () => {
+          this.toggleBlockUI(false);
+          this.ref.close(this.form.value);
+        },
+        error: () => {
+          this.toggleBlockUI(false);
+        },
+      });
+    }
+  }
   loadProductTypes() {
     productTypeOptions.forEach(element => {
       this.productTypes.push({
@@ -139,13 +176,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       productType: new FormControl(this.selectedEntity.productType || null, Validators.required),
       sortOrder: new FormControl(this.selectedEntity.sortOrder || null, Validators.required),
       sellPrice: new FormControl(this.selectedEntity.sellPrice || null, Validators.required),
-      visibility: new FormControl(this.selectedEntity.visiblity || true),
+      visibility: new FormControl(this.selectedEntity.visibility || true),
       isActive: new FormControl(this.selectedEntity.isActive || true),
       seoMetaDescription: new FormControl(this.selectedEntity.seoMetaDescription || null),
       description: new FormControl(this.selectedEntity.description || null),
+      thumbnailPicture: new FormControl(this.selectedEntity.thumbnailPicture || null),
     });
   }
-
+  
   private toggleBlockUI(enabled: boolean) {
     if (enabled == true) {
       this.blockedPanel = true;

@@ -24,7 +24,7 @@ namespace SonEcommerce.Admin.Products
             : base(repository)
         {
         }
-
+        
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);

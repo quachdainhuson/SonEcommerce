@@ -20,8 +20,8 @@ INSERT INTO [dbo].[AppManufacturers]
            ,1
            ,1
            ,'US'
-           ,'test'
-           ,'test'
+           ,'{"exampleKey": "exampleValue"}'
+           ,'fb43bd5b4c1d4fcd99b43ab38df2220e'
            ,GETDATE()
            ,null)
 INSERT INTO [dbo].[AppManufacturers]
@@ -46,7 +46,7 @@ INSERT INTO [dbo].[AppManufacturers]
            ,1
            ,1
            ,'US'
-           ,'test'
-           ,'test'
+           ,'{"exampleKey": "exampleValue"}'
+           ,'fb43bd5b4c1d4fcd99b43ab38df2220e'
            ,GETDATE()
            ,null)
