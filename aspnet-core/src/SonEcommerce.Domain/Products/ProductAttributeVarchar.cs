@@ -9,8 +9,8 @@ namespace SonEcommerce.Products
 {
     public class ProductAttributeVarchar : Entity<Guid>
     {
-        public Guid AttributeId { get; set; }
-        public Guid ProductId { get; set; }
-        public string Value { get; set; }
+        public Guid? AttributeId { get; set; }
+        public Guid? ProductId { get; set; }
+        public string? Value { get; set; }
     }
 }

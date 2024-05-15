@@ -9,8 +9,8 @@ namespace SonEcommerce.Promotions
 {
     public class PromotionManufacturer : Entity<Guid>
     {
-        public Guid ManufactureId { get; set; }
-        public Guid PromotionId { get; set; }
+        public Guid? ManufactureId { get; set; }
+        public Guid? PromotionId { get; set; }
 
     }
 }

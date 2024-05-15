@@ -58,13 +58,13 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsRequired")
+                    b.Property<bool?>("IsRequired")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsUnique")
+                    b.Property<bool?>("IsUnique")
                         .HasColumnType("bit");
 
                     b.Property<string>("Label")
@@ -73,13 +73,12 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SortOrder")
+                    b.Property<int?>("SortOrder")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Visibility")
+                    b.Property<bool?>("Visibility")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -120,7 +119,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SKU")
@@ -129,7 +128,8 @@ namespace SonEcommerce.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("StockQuantity")
+                    b.Property<int?>("StockQuantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -174,7 +174,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<bool>("IsApproved")
+                    b.Property<bool?>("IsApproved")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -206,10 +206,10 @@ namespace SonEcommerce.Migrations
                     b.Property<DateTime?>("ExpiredDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("SKU")
@@ -218,7 +218,7 @@ namespace SonEcommerce.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("TicketId")
+                    b.Property<Guid?>("TicketId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -245,7 +245,6 @@ namespace SonEcommerce.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CoverPicture")
@@ -265,7 +264,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -279,7 +278,7 @@ namespace SonEcommerce.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<bool>("Visibility")
+                    b.Property<bool?>("Visibility")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -339,7 +338,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<double>("Discount")
+                    b.Property<double?>("Discount")
                         .HasColumnType("float");
 
                     b.Property<string>("ExtraProperties")
@@ -347,7 +346,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<double>("GrandTotal")
+                    b.Property<double?>("GrandTotal")
                         .HasColumnType("float");
 
                     b.Property<bool>("IsDeleted")
@@ -367,19 +366,19 @@ namespace SonEcommerce.Migrations
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
-                    b.Property<double>("ShippingFee")
+                    b.Property<double?>("ShippingFee")
                         .HasColumnType("float");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<double>("Subtotal")
+                    b.Property<double?>("Subtotal")
                         .HasColumnType("float");
 
-                    b.Property<double>("Tax")
+                    b.Property<double?>("Tax")
                         .HasColumnType("float");
 
-                    b.Property<double>("Total")
+                    b.Property<double?>("Total")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -389,16 +388,16 @@ namespace SonEcommerce.Migrations
 
             modelBuilder.Entity("SonEcommerce.Orders.OrderItem", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Price")
+                    b.Property<double?>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("SKU")
@@ -432,10 +431,9 @@ namespace SonEcommerce.Migrations
                         .HasColumnName("CreatorId");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("TransactionType")
@@ -468,7 +466,6 @@ namespace SonEcommerce.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<string>("CoverPicture")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -485,7 +482,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -506,10 +503,10 @@ namespace SonEcommerce.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("SortOrder")
+                    b.Property<int?>("SortOrder")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Visibility")
+                    b.Property<bool?>("Visibility")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -522,16 +519,14 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CategoryName")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("CategorySlug")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -564,7 +559,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -575,7 +570,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid>("ManufacturerId")
+                    b.Property<Guid?>("ManufacturerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -612,7 +607,7 @@ namespace SonEcommerce.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<bool>("Visibility")
+                    b.Property<bool?>("Visibility")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -625,13 +620,13 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AttributeId")
+                    b.Property<Guid?>("AttributeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Value")
+                    b.Property<DateTime?>("Value")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -644,13 +639,13 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AttributeId")
+                    b.Property<Guid?>("AttributeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Value")
+                    b.Property<decimal?>("Value")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -663,13 +658,13 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AttributeId")
+                    b.Property<Guid?>("AttributeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Value")
+                    b.Property<int?>("Value")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -682,14 +677,13 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AttributeId")
+                    b.Property<Guid?>("AttributeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -702,14 +696,13 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AttributeId")
+                    b.Property<Guid?>("AttributeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -720,10 +713,10 @@ namespace SonEcommerce.Migrations
 
             modelBuilder.Entity("SonEcommerce.Products.ProductLink", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("LinkedProductId")
+                    b.Property<Guid?>("LinkedProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProductId", "LinkedProductId");
@@ -737,7 +730,6 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
@@ -748,19 +740,19 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("PublishedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Rating")
+                    b.Property<double?>("Rating")
                         .HasColumnType("float");
 
                     b.Property<string>("Title")
@@ -775,7 +767,7 @@ namespace SonEcommerce.Migrations
 
             modelBuilder.Entity("SonEcommerce.Products.ProductTag", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TagId")
@@ -828,7 +820,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
 
-                    b.Property<double>("DiscountAmount")
+                    b.Property<double?>("DiscountAmount")
                         .HasColumnType("float");
 
                     b.Property<int>("DiscountUnit")
@@ -842,7 +834,7 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -853,10 +845,10 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<bool>("LimitedUsageTimes")
+                    b.Property<bool?>("LimitedUsageTimes")
                         .HasColumnType("bit");
 
-                    b.Property<long>("MaximumDiscountAmount")
+                    b.Property<long?>("MaximumDiscountAmount")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
@@ -864,10 +856,10 @@ namespace SonEcommerce.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("RequireUseCouponCode")
+                    b.Property<bool?>("RequireUseCouponCode")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("ValidDate")
+                    b.Property<DateTime?>("ValidDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -880,10 +872,10 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PromotionId")
+                    b.Property<Guid?>("PromotionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -896,10 +888,10 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ManufactureId")
+                    b.Property<Guid?>("ManufactureId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PromotionId")
+                    b.Property<Guid?>("PromotionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -912,10 +904,10 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PromotionId")
+                    b.Property<Guid?>("PromotionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -928,10 +920,10 @@ namespace SonEcommerce.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PromotionId")
+                    b.Property<Guid?>("PromotionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");

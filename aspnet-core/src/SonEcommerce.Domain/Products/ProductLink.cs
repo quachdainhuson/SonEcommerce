@@ -9,8 +9,8 @@ namespace SonEcommerce.Products
 {
     public class ProductLink : Entity
     {
-        public Guid ProductId { get; set; }
-        public Guid LinkedProductId { get; set; }
+        public Guid? ProductId { get; set; }
+        public Guid? LinkedProductId { get; set; }
         public override object[] GetKeys()
         {
             return new object[] { ProductId, LinkedProductId };
