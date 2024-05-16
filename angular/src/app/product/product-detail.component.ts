@@ -8,6 +8,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { UtilityService } from '../shared/services/utility.service';
 import { ProductType, productTypeOptions } from '@proxy/son-ecommerce/products';
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,7 +34,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
-    private utilService: UtilityService
+    private utilService: UtilityService,
+    private notificationService: NotificationService
   ) {}
 
   validationMessages = {
@@ -132,7 +134,8 @@ initFormData(){
           this.toggleBlockUI(false);
           this.ref.close(this.form.value);
         },
-        error: () => {
+        error: (error) => {
+          this.notificationService.showError(error.error.error.message);
           this.toggleBlockUI(false);
         },
       });
@@ -145,7 +148,8 @@ initFormData(){
           this.toggleBlockUI(false);
           this.ref.close(this.form.value);
         },
-        error: () => {
+        error: (error) => {
+          this.notificationService.showError(error.error.error.message);
           this.toggleBlockUI(false);
         },
       });
