@@ -2,11 +2,12 @@ import { PagedResultDto } from '@abp/ng.core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductCategoriesService, ProductCategoryInListDto } from '@proxy/product-categories';
 import { ProductDto, ProductInListDto, ProductsService } from '@proxy/products';
+import { ProductType } from '@proxy/son-ecommerce/products';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { NotificationService } from '../shared/services/notification.service';
 import { ProductDetailComponent } from './product-detail.component';
-import { ProductType } from '@proxy/son-ecommerce/products';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-product',
@@ -33,7 +34,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productService: ProductsService,
     private productCategoryService: ProductCategoriesService,
     private dialogService: DialogService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnDestroy(): void {
@@ -117,7 +119,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       if (data) {
         this.loadData();
         this.selectedItems = [];
-        this.notificationService.showSuccess('Thêm sản phẩm thành công');
+        this.notificationService.showSuccess('Cập Nhật sản phẩm thành công');
       }
     });
   }
@@ -135,5 +137,40 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.blockedPanel = false;
       }, 1000);
     }
+  }
+
+  deleteItems(){
+    if(this.selectedItems.length == 0){
+      this.notificationService.showError('Bạn phải chọn ít nhất một bản ghi');
+      return;
+    }
+    var ids = [];
+    this.selectedItems.forEach(element =>{
+      ids.push(element.id);
+    });
+    this.confirmationService.confirm({
+      message: 'Bạn có chắc chắn muốn xóa bản ghi này không?',
+      accept: () => {
+        this.deleteItemsConfirm(ids);
+      }
+    })
+
+  }
+
+  deleteItemsConfirm(ids: string[]){
+    this.toggleBlockUI(true);
+    this.productService.deleteMultiple(ids).pipe(takeUntil(this.ngUnsubscribe)).subscribe({
+      next: () => {
+        this.notificationService.showSuccess('Xóa bản ghi thành công');
+        this.loadData();
+        this.selectedItems = [];
+        this.toggleBlockUI(false);
+      },
+      error: () => {
+        this.notificationService.showError('Xóa bản ghi thất bại');
+        this.toggleBlockUI(false);
+      }
+      
+    })
   }
 }

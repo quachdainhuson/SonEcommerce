@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using SonEcommerce.ProductCategories;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using Volo.Abp.Uow;
 
 namespace SonEcommerce.Admin.ProductCategories
 {
+    [Authorize]
     public class ProductCategoriesAppService : CrudAppService<
         ProductCategory,
         ProductCategoryDto,

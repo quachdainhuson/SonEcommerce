@@ -1,14 +1,14 @@
-
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ManufacturerInListDto, ManufacturersService } from '@proxy/manufacturers';
 import { ProductCategoriesService, ProductCategoryInListDto } from '@proxy/product-categories';
 import { ProductDto, ProductsService } from '@proxy/products';
+import { ProductType, productTypeOptions } from '@proxy/son-ecommerce/products';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
-import { UtilityService } from '../shared/services/utility.service';
-import { ProductType, productTypeOptions } from '@proxy/son-ecommerce/products';
 import { NotificationService } from '../shared/services/notification.service';
+import { UtilityService } from '../shared/services/utility.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,13 +19,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   blockedPanel: boolean = false;
   btnDisabled = false;
   public form: FormGroup;
+  public thumbnailImage: any;
 
   //Dropdown
   productCategories: any[] = [];
   manufacturers: any[] = [];
   productTypes: any[] = [];
   selectedEntity = {} as ProductDto;
-  thumbnailPicture: any;
 
   constructor(
     private productService: ProductsService,
@@ -35,7 +35,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
     private utilService: UtilityService,
-    private notificationService: NotificationService
+    private notificationSerivce: NotificationService,
+    private cd: ChangeDetectorRef,
+    private sanitizer: DomSanitizer
   ) {}
 
   validationMessages = {
@@ -51,23 +53,30 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     productType: [{ type: 'required', message: 'Bạn phải chọn loại sản phẩm' }],
     sortOrder: [{ type: 'required', message: 'Bạn phải nhập thứ tự' }],
     sellPrice: [{ type: 'required', message: 'Bạn phải nhập giá bán' }],
-    thumbnailPicture: [{ type: 'required', message: 'Bạn phải chọn ảnh' }],
   };
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this.ref) {
+        this.ref.close();
+      }
+      this.ngUnsubscribe.next();
+      this.ngUnsubscribe.complete();
+    
+  }
 
   ngOnInit(): void {
     this.buildForm();
     this.loadProductTypes();
     this.initFormData();
-    //Load data to form
-    
   }
-  generateSlug(){
+
+  generateSlug() {
     this.form.controls['slug'].setValue(this.utilService.MakeSeoTitle(this.form.get('name').value));
   }
-initFormData(){
-  var productCategories = this.productCategoryService.getListAll();
+
+  initFormData() {
+    //Load data to form
+    var productCategories = this.productCategoryService.getListAll();
     var manufacturers = this.manufacturerService.getListAll();
     this.toggleBlockUI(true);
     forkJoin({
@@ -95,6 +104,7 @@ initFormData(){
           });
           //Load edit data to form
           if (this.utilService.isEmpty(this.config.data?.id) == true) {
+            this.getNewSuggestionCode();
             this.toggleBlockUI(false);
           } else {
             this.loadFormDetails(this.config.data?.id);
@@ -104,8 +114,19 @@ initFormData(){
           this.toggleBlockUI(false);
         },
       });
-};
-
+  }
+  getNewSuggestionCode() {
+    this.productService.getSuggestNewCode()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response : string) => {
+        this.form.patchValue({
+          code: response
+        
+        });
+      }
+    });
+  }
   loadFormDetails(id: string) {
     this.toggleBlockUI(true);
     this.productService
@@ -114,6 +135,7 @@ initFormData(){
       .subscribe({
         next: (response: ProductDto) => {
           this.selectedEntity = response;
+          this.loadThumbnail(this.selectedEntity.thumbnailPicture);
           this.buildForm();
           this.toggleBlockUI(false);
         },
@@ -122,39 +144,43 @@ initFormData(){
         },
       });
   }
+
   saveChange() {
-    console.log(this.form.value);
-    console.log(this.config.data);
     this.toggleBlockUI(true);
-    if(this.utilService.isEmpty(this.config.data?.id) == true){
-      this.productService.create(this.form.value)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe({
-        next: () => {
-          this.toggleBlockUI(false);
-          this.ref.close(this.form.value);
-        },
-        error: (error) => {
-          this.notificationService.showError(error.error.error.message);
-          this.toggleBlockUI(false);
-        },
-      });
-    }else{
+
+    if (this.utilService.isEmpty(this.config.data?.id) == true) {
       this.productService
-      .update(this.config.data?.id ,this.form.value)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe({
-        next: () => {
-          this.toggleBlockUI(false);
-          this.ref.close(this.form.value);
-        },
-        error: (error) => {
-          this.notificationService.showError(error.error.error.message);
-          this.toggleBlockUI(false);
-        },
-      });
+        .create(this.form.value)
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe({
+          next: () => {
+            this.toggleBlockUI(false);
+
+            this.ref.close(this.form.value);
+          },
+          error: err => {
+            this.notificationSerivce.showError(err.error.error.message);
+
+            this.toggleBlockUI(false);
+          },
+        });
+    } else {
+      this.productService
+        .update(this.config.data?.id, this.form.value)
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe({
+          next: () => {
+            this.toggleBlockUI(false);
+            this.ref.close(this.form.value);
+          },
+          error: err => {
+            this.notificationSerivce.showError(err.error.error.message);
+            this.toggleBlockUI(false);
+          },
+        });
     }
   }
+
   loadProductTypes() {
     productTypeOptions.forEach(element => {
       this.productTypes.push({
@@ -163,6 +189,7 @@ initFormData(){
       });
     });
   }
+
   private buildForm() {
     this.form = this.fb.group({
       name: new FormControl(
@@ -184,10 +211,24 @@ initFormData(){
       isActive: new FormControl(this.selectedEntity.isActive || true),
       seoMetaDescription: new FormControl(this.selectedEntity.seoMetaDescription || null),
       description: new FormControl(this.selectedEntity.description || null),
-      thumbnailPicture: new FormControl(this.selectedEntity.thumbnailPicture || null),
+      thumbnailPictureName:new FormControl(this.selectedEntity.description || null),
+      thumbnailPictureContent: new FormControl(null)
     });
   }
-  
+
+  loadThumbnail(fileName: string){
+    this.productService.getThumbnailImage(fileName)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response: string) => {
+        var fileExt = this.selectedEntity.thumbnailPicture?.split('.').pop();
+        this.thumbnailImage = this.sanitizer.bypassSecurityTrustResourceUrl(
+          `data:image/${fileExt};base64, ${response}`
+        );
+      },
+    });
+  }
+
   private toggleBlockUI(enabled: boolean) {
     if (enabled == true) {
       this.blockedPanel = true;
@@ -197,6 +238,24 @@ initFormData(){
         this.blockedPanel = false;
         this.btnDisabled = false;
       }, 1000);
+    }
+  }
+
+  onFileChange(event){
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.form.patchValue({
+          thumbnailPictureName: file.name,
+          thumbnailPictureContent: reader.result,
+        });
+
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+      };
     }
   }
 }

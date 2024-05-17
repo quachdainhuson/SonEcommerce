@@ -19,9 +19,15 @@ import { SideMenuLayoutModule } from '@abp/ng.theme.lepton-x/layouts';
 import { AccountLayoutModule } from '@abp/ng.theme.lepton-x/account';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { DialogService } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { NotificationService } from './shared/services/notification.service';
 import { UtilityService } from './shared/services/utility.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GlobalHttpInterceptorService } from './shared/interceptors/error-handler.interceptor';
+
 
 @NgModule({
   imports: [
@@ -46,10 +52,29 @@ import { UtilityService } from './shared/services/utility.service';
     InternetConnectionStatusComponent,
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
-    AccountLayoutModule.forRoot()
+    AccountLayoutModule.forRoot(),
+    ConfirmDialogModule,
+    ToastModule
   ],
   declarations: [AppComponent],
-  providers: [APP_ROUTE_PROVIDER, DialogService, MessageService, NotificationService, UtilityService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpInterceptorService,
+      multi: true
+    },
+    APP_ROUTE_PROVIDER, 
+    DialogService,
+     MessageService, 
+     NotificationService, 
+     UtilityService, 
+     ConfirmationService
+    ],
   bootstrap: [AppComponent],
   
 })

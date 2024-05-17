@@ -4,7 +4,14 @@
     <div class="formgrid grid">
       <div class="field col-12">
         <label for="name" class="block">Tên <span class="required">*</span></label>
-        <input id="name" pInputText (keyup)="generateSlug()" type="text" class="w-full" formControlName="name" />
+        <input
+          id="name"
+          pInputText
+          (keyup)="generateSlug()"
+          type="text"
+          class="w-full"
+          formControlName="name"
+        />
         <app-validation-message
           [entityForm]="form"
           fieldName="name"
@@ -38,16 +45,6 @@
           [validationMessages]="validationMessages"
         ></app-validation-message>
       </div>
-
-      <div class="field col-12"> 
-        <label for="thumbnailPicture" class="block">thumbnailPicture <span class="required">*</span></label> 
-        <input id="thumbnailPicture" pInputText type="text" class="w-full" formControlName="thumbnailPicture" /> 
-        <app-validation-message 
-          [entityForm]="form" 
-          fieldName="thumbnailPicture" 
-          [validationMessages]="validationMessages" >
-      </app-validation-message> 
-    </div>
       <div class="field col-12">
         <label for="manufacturerId" class="block"
           >Nhà sản xuất <span class="required">*</span></label
@@ -116,6 +113,21 @@
           [validationMessages]="validationMessages"
         ></app-validation-message>
       </div>
+
+      <div class="field col-12 md:col-6">
+        <label for="thumbnailImage" class="block">Hình ảnh</label>
+        <input type="file" id="thumbnailImage" (change)="onFileChange($event)" class="w-full"> 
+      </div>
+      
+      <div class="field col-12 md:col-6">
+        <p-image
+          [src]="thumbnailImage"
+          [alt]="selectedEntity.name"
+          width="250"
+          [preview]="true"
+        ></p-image>
+      </div>
+
       <div class="field-checkbox col-12 md:col-3">
         <p-checkbox formControlName="visibility" binary="true" id="visibility"></p-checkbox>
         <label for="visibility">Hiển thị</label>

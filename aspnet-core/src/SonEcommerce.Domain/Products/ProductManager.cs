@@ -14,10 +14,9 @@ namespace SonEcommerce.Products
     {
         private readonly IRepository<Product, Guid> _productRepository;
         private readonly IRepository<ProductCategory, Guid> _productCategoryRepository;
-        public ProductManager(
-            IRepository<Product, Guid> productRepository,
-            IRepository<ProductCategory, Guid> productCategoryRepository
-            ) { 
+        public ProductManager(IRepository<Product, Guid> productRepository,
+             IRepository<ProductCategory, Guid> productCategoryRepository)
+        {
             _productCategoryRepository = productCategoryRepository;
             _productRepository = productRepository;
         }
@@ -27,23 +26,19 @@ namespace SonEcommerce.Products
             ProductType productType, string sKU,
             int sortOrder, bool visibility,
             bool isActive, Guid categoryId,
-            string seoMetaDescription, string description
-            , double sellPrice
-            ) 
+            string seoMetaDescription, string description, double sellPrice)
         {
-            if (await _productRepository.AnyAsync(x => x.Name == name)) {
+            if (await _productRepository.AnyAsync(x => x.Name == name))
                 throw new UserFriendlyException("Tên sản phẩm đã tồn tại", SonEcommerceDomainErrorCodes.ProductNameAlreadyExists);
-            }
             if (await _productRepository.AnyAsync(x => x.Code == code))
-            {
                 throw new UserFriendlyException("Mã sản phẩm đã tồn tại", SonEcommerceDomainErrorCodes.ProductCodeAlreadyExists);
-            }
             if (await _productRepository.AnyAsync(x => x.SKU == sKU))
-            {
-                throw new UserFriendlyException("Mã SKU của sản phẩm đã tồn tại", SonEcommerceDomainErrorCodes.ProductSKUAlreadyExists);
-            }
+                throw new UserFriendlyException("Mã SKU sản phẩm đã tồn tại", SonEcommerceDomainErrorCodes.ProductSKUAlreadyExists);
+
             var category = await _productCategoryRepository.GetAsync(categoryId);
-            return new Product(Guid.NewGuid(), manufacturerId, name, code, slug, productType, sKU, sortOrder, visibility, isActive, categoryId, seoMetaDescription, description, null, sellPrice, category?.Name, category?.Slug);
+
+            return new Product(Guid.NewGuid(), manufacturerId, name, code, slug, productType, sKU, sortOrder,
+                visibility, isActive, categoryId, seoMetaDescription, description, null, sellPrice, category?.Name, category?.Slug);
         }
     }
 }

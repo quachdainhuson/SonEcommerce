@@ -18,6 +18,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditorModule } from 'primeng/editor';
 import { SonSharedModule } from '../shared/modules/son-shared.module';
 import {BadgeModule} from 'primeng/badge';
+import {ImageModule} from 'primeng/image';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AttributeComponent } from '../attributes/attribute.component';
 
 
 @NgModule({
@@ -39,7 +43,10 @@ import {BadgeModule} from 'primeng/badge';
     InputTextareaModule,
     EditorModule,
     SonSharedModule,
-    BadgeModule
+    BadgeModule,
+    ImageModule,
+    FileUploadModule,
+    ConfirmDialogModule
   ]
 
 })

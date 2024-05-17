@@ -9,6 +9,8 @@ import { LOGIN_URL } from './shared/constants/url.const';
   template: `
     <abp-loader-bar></abp-loader-bar>
     <router-outlet></router-outlet>
+    <p-confirmDialog header="xác nhận" acceptLabel="Có" rejectLabel="Không" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <p-toast position="top-right"></p-toast>
     
   `,
 })

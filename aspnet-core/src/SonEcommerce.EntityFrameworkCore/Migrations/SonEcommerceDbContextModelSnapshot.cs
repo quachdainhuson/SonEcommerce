@@ -86,6 +86,31 @@ namespace SonEcommerce.Migrations
                     b.ToTable("AppProductAttributes", (string)null);
                 });
 
+            modelBuilder.Entity("SonEcommerce.IdentitySettings.IdentitySetting", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CurrentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Prefix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StepNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppIdentitySettings", (string)null);
+                });
+
             modelBuilder.Entity("SonEcommerce.Inventories.Inventory", b =>
                 {
                     b.Property<Guid>("Id")

@@ -17,5 +17,7 @@ namespace SonEcommerce.Admin.Products
         Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input);
         Task<List<ProductInListDto>> GetListAllAsync();
         Task DeleteMultipleAsync(IEnumerable<Guid> ids);
+        Task<string> GetThumbnailImageAsync(string fileName);
+        Task<string> GetSuggestNewCodeAsync();
     }
 }

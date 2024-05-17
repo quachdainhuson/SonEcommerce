@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using SonEcommerce.Admin.Manufacturers;
+using SonEcommerce.Admin.ProductAttributes;
 using SonEcommerce.Admin.ProductCategories;
 using SonEcommerce.Admin.Products;
+using SonEcommerce.Attributes;
 using SonEcommerce.Manufacturers;
 using SonEcommerce.ProductCategories;
 using SonEcommerce.Products;
@@ -24,5 +26,9 @@ public class SonEcommerceAdminApplicationAutoMapperProfile : Profile
         CreateMap<Manufacturer, ManufacturerDto>();
         CreateMap<Manufacturer, ManufacturerInListDto>();
         CreateMap<CreateUpdateManufacturerDto, Manufacturer>();
+
+        CreateMap<ProductAttribute, ProductAttributeDto>();
+        CreateMap<ProductAttribute, ProductAttributeInListDto>();
+        CreateMap<CreateUpdateProductAttributeDto, ProductAttribute>();
     }
 }

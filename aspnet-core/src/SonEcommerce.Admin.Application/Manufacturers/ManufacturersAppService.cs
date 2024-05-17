@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using SonEcommerce.Manufacturers;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using Volo.Abp.Uow;
 
 namespace SonEcommerce.Admin.Manufacturers
 {
+    [Authorize]
     public class ManufacturersAppService : CrudAppService<
         Manufacturer,
         ManufacturerDto,
