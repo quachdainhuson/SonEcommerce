@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SonEcommerce.Admin.ProductAttributes
 {
-    public class CreateUpdateProductAttributeDtoValidator : AbstractValidator<CreateUpdateProductAttributeDto>
+    public class AddUpdateProductAttributeDtoValidator : AbstractValidator<CreateUpdateProductAttributeDto>
     {
-        public CreateUpdateProductAttributeDtoValidator()
+        public AddUpdateProductAttributeDtoValidator()
         {
             RuleFor(x => x.Label).NotEmpty().MaximumLength(50);
             RuleFor(x => x.Code).NotEmpty().MaximumLength(50);

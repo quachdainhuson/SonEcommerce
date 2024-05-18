@@ -21,11 +21,12 @@ import {BadgeModule} from 'primeng/badge';
 import {ImageModule} from 'primeng/image';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { AttributeComponent } from '../attributes/attribute.component';
+import { ProductAttributeComponent } from './product-attribute.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
-  declarations: [ProductComponent, ProductDetailComponent],
+  declarations: [ProductComponent, ProductDetailComponent, ProductAttributeComponent],
 
   imports: [
     SharedModule,
@@ -46,8 +47,10 @@ import { AttributeComponent } from '../attributes/attribute.component';
     BadgeModule,
     ImageModule,
     FileUploadModule,
-    ConfirmDialogModule
-  ]
+    ConfirmDialogModule,
+    CalendarModule
+  ],
+  
 
 })
 export class ProductModule {}
