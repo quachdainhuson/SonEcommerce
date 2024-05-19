@@ -17,11 +17,7 @@
       <div class="field">
         <p-calendar formControlName="dateTimeValue" [hidden]="!showDateTimeControl"></p-calendar>
         <p-inputNumber formControlName="intValue" [hidden]="!showIntControl"></p-inputNumber>
-        <p-inputNumber
-          formControlName="decimalValue"
-          mode="decimal"
-          [hidden]="!showDecimalControl"
-        ></p-inputNumber>
+        <p-inputNumber formControlName="decimalValue" mode="decimal" [hidden]="!showDecimalControl"></p-inputNumber>
         <input type="text" pInputText formControlName="varcharValue"  [hidden]="!showVarcharControl" class="w-full" />
         <input type="text" pInputText formControlName="textValue"  [hidden]="!showTextControl" class="w-full" />
       </div>

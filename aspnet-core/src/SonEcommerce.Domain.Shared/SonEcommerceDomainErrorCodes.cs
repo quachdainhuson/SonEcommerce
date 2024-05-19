@@ -8,6 +8,7 @@ public static class SonEcommerceDomainErrorCodes
     public const string ProductSKUAlreadyExists = "SonEcommerce:ProductSKUAlreadyExists";
     public const string ProductIsNotExists = "SonEcommerce:ProductIsNotExists";
     public const string ProductAttributeIdIsNotExists = "SonEcommerce:ProductAttributeIdIsNotExists"; 
-    public const string ProductAttributeValueIsNotValid = "SonEcommerce:ProductAttributeValueIsNotValid"; 
+    public const string ProductAttributeValueIsNotValid = "SonEcommerce:ProductAttributeValueIsNotValid";
+    public const string RoleNameAlreadyExists = "SonEcommerce:RoleNameAlreadyExists";
 
 }

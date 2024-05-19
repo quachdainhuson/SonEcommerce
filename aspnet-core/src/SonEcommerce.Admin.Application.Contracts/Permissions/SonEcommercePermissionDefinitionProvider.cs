@@ -8,9 +8,21 @@ public class SonEcommercePermissionDefinitionProvider : PermissionDefinitionProv
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(SonEcommercePermissions.GroupName);
-        //Define your own permissions here. Example:
-        //myGroup.AddPermission(SonEcommercePermissions.MyPermission1, L("Permission:MyPermission1"));
+        //System
+        var catalogGroup = context.AddGroup(SonEcommercePermissions.CatalogGroupName);
+
+        //Add product
+        var productPermission = catalogGroup.AddPermission(SonEcommercePermissions.Product.Default, L("Permission:Catalog.Product"));
+        productPermission.AddChild(SonEcommercePermissions.Product.Create, L("Permission:Catalog.Product.Create"));
+        productPermission.AddChild(SonEcommercePermissions.Product.Update, L("Permission:Catalog.Product.Update"));
+        productPermission.AddChild(SonEcommercePermissions.Product.Delete, L("Permission:Catalog.Product.Delete"));
+        productPermission.AddChild(SonEcommercePermissions.Product.AttributeManage, L("Permission:Catalog.Product.AttributeManage"));
+
+        //Add attribute
+        var attributePermission = catalogGroup.AddPermission(SonEcommercePermissions.Attribute.Default, L("Permission:Catalog.Attribute"));
+        attributePermission.AddChild(SonEcommercePermissions.Attribute.Create, L("Permission:Catalog.Attribute.Create"));
+        attributePermission.AddChild(SonEcommercePermissions.Attribute.Update, L("Permission:Catalog.Attribute.Update"));
+        attributePermission.AddChild(SonEcommercePermissions.Attribute.Delete, L("Permission:Catalog.Attribute.Delete"));
     }
 
     private static LocalizableString L(string name)

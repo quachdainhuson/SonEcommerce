@@ -25,6 +25,12 @@ const routes: Routes = [
     loadChildren: () => import('./attributes/attribute.module').then(m => m.AttributeModule),
     component: AppLayoutComponent
   },
+  {
+    path: 'role',
+    loadChildren: () => import('./role/role.module').then(m => m.RoleModule),
+    component: AppLayoutComponent
+  },
+  
   // {
   //   path: 'account',
   //   loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),

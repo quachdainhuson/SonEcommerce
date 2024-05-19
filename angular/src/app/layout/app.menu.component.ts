@@ -28,6 +28,14 @@ export class AppMenuComponent implements OnInit {
                     
                 ]
             },
+            {
+                label: 'Hệ Thống',
+                items: [
+                    { label: 'Danh Sách Quyền', icon: 'pi pi-fw pi-id-card', routerLink: ['/role'] },
+                    { label: 'Danh Sách Người Dùng', icon: 'pi pi-fw pi-id-card', routerLink: ['/user'] },
+                    
+                ]
+            },
             
         ];
     }
