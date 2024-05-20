@@ -11,6 +11,17 @@ public class SonEcommercePermissionDefinitionProvider : PermissionDefinitionProv
         //System
         var catalogGroup = context.AddGroup(SonEcommercePermissions.CatalogGroupName, L("Permission:Catalog"));
 
+        // Manufacturer
+        var manufacturerPermission = catalogGroup.AddPermission(SonEcommercePermissions.Manufacturer.Default, L("Permission:Catalog.Manufacturer"));
+        manufacturerPermission.AddChild(SonEcommercePermissions.Manufacturer.Create, L("Permission:Catalog.Manufacturer.Create"));
+        manufacturerPermission.AddChild(SonEcommercePermissions.Manufacturer.Update, L("Permission:Catalog.Manufacturer.Update"));
+        manufacturerPermission.AddChild(SonEcommercePermissions.Manufacturer.Delete, L("Permission:Catalog.Manufacturer.Delete"));
+
+        // productCategory
+        var productCategoryPermission = catalogGroup.AddPermission(SonEcommercePermissions.ProductCategory.Default, L("Permission:Catalog.ProductCategory"));
+        productCategoryPermission.AddChild(SonEcommercePermissions.ProductCategory.Create, L("Permission:Catalog.ProductCategory.Create"));
+        productCategoryPermission.AddChild(SonEcommercePermissions.ProductCategory.Update, L("Permission:Catalog.ProductCategory.Update"));
+        productCategoryPermission.AddChild(SonEcommercePermissions.ProductCategory.Delete, L("Permission:Catalog.ProductCategory.Delete"));
         //Add product
         var productPermission = catalogGroup.AddPermission(SonEcommercePermissions.Product.Default, L("Permission:Catalog.Product"));
         productPermission.AddChild(SonEcommercePermissions.Product.Create, L("Permission:Catalog.Product.Create"));

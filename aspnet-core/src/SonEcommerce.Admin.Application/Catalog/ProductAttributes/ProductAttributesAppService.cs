@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.ProductAttributes;
 using SonEcommerce.Attributes;
 using System;
@@ -11,7 +12,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace SonEcommerce.Admin.ProductAttributes
 {
-    [Authorize]
+    [Authorize(SonEcommercePermissions.Attribute.Default, Policy = "AdminOnly")]
     public class ProductAttributesAppService : CrudAppService<
         ProductAttribute,
         ProductAttributeDto,
@@ -23,14 +24,20 @@ namespace SonEcommerce.Admin.ProductAttributes
         public ProductAttributesAppService(IRepository<ProductAttribute, Guid> repository)
             : base(repository)
         {
+            GetPolicyName = SonEcommercePermissions.Attribute.Default;
+            GetListPolicyName = SonEcommercePermissions.Attribute.Default;
+            CreatePolicyName = SonEcommercePermissions.Attribute.Create;
+            UpdatePolicyName = SonEcommercePermissions.Attribute.Update;
+            DeletePolicyName = SonEcommercePermissions.Attribute.Delete;
         }
-
+        [Authorize(SonEcommercePermissions.Attribute.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(SonEcommercePermissions.Attribute.Default)]
         public async Task<List<ProductAttributeInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -41,6 +48,7 @@ namespace SonEcommerce.Admin.ProductAttributes
 
         }
 
+        [Authorize(SonEcommercePermissions.Attribute.Default)]
         public async Task<PagedResultDto<ProductAttributeInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();

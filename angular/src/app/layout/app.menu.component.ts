@@ -23,16 +23,16 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Sản Phẩm',
                 items: [
-                    { label: 'Danh Sách Sản Phẩm', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/product'] },
-                    { label: 'Danh Sách Thuộc Tính', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/attribute'] },
+                    { label: 'Danh Sách Sản Phẩm', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/product'] , permission: 'SonEcomAdminCatalog.Product' },
+                    { label: 'Danh Sách Thuộc Tính', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/attribute'] , permission: 'SonEcomAdminCatalog.Attribute' },
                     
                 ]
             },
             {
                 label: 'Hệ Thống',
                 items: [
-                    { label: 'Danh Sách Quyền', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/role'] },
-                    { label: 'Danh Sách Người Dùng', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/user'] },
+                    { label: 'Danh Sách Quyền', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/role'] , permission: 'SonEcomAdminCatalog.Attribute'},
+                    { label: 'Danh Sách Người Dùng', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/user'] , permission: 'SonEcomAdminCatalog.Attribute'},
                     
                 ]
             },

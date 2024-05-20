@@ -3399,7 +3399,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Roles.IRolesAppService"
             },
             "GetListAllAsync": {
@@ -3414,7 +3414,7 @@
                 "type": "System.Collections.Generic.List<SonEcommerce.Admin.Roles.RoleInListDto>",
                 "typeSimple": "[SonEcommerce.Admin.Roles.RoleInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Roles.IRolesAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -3475,7 +3475,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.Roles.RoleInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.Roles.RoleInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Roles.IRolesAppService"
             },
             "CreateAsyncByInput": {
@@ -3512,7 +3512,7 @@
                 "type": "SonEcommerce.Admin.Roles.RoleDto",
                 "typeSimple": "SonEcommerce.Admin.Roles.RoleDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SonEcommerce.Admin.Roles.RoleDto,SonEcommerce.Admin.Roles.CreateUpdateRoleDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -3569,7 +3569,7 @@
                 "type": "SonEcommerce.Admin.Roles.RoleDto",
                 "typeSimple": "SonEcommerce.Admin.Roles.RoleDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<SonEcommerce.Admin.Roles.RoleDto,System.Guid,SonEcommerce.Admin.Roles.CreateUpdateRoleDto>"
             },
             "GetPermissionsAsyncByProviderNameAndProviderKey": {
@@ -3626,7 +3626,7 @@
                 "type": "Volo.Abp.PermissionManagement.GetPermissionListResultDto",
                 "typeSimple": "Volo.Abp.PermissionManagement.GetPermissionListResultDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Roles.IRolesAppService"
             },
             "UpdatePermissionsAsyncByProviderNameAndProviderKeyAndInput": {
@@ -3703,7 +3703,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Roles.IRolesAppService"
             },
             "DeleteAsyncById": {
@@ -3740,7 +3740,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -3777,7 +3777,7 @@
                 "type": "SonEcommerce.Admin.Roles.RoleDto",
                 "typeSimple": "SonEcommerce.Admin.Roles.RoleDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SonEcommerce.Admin.Roles.RoleDto,SonEcommerce.Admin.Roles.RoleDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -3826,7 +3826,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.Roles.RoleDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.Roles.RoleDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SonEcommerce.Admin.Roles.RoleDto,SonEcommerce.Admin.Roles.RoleDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -3910,6 +3910,31 @@
                       "typeAsString": "System.String[], System.Private.CoreLib",
                       "type": "System.String[]",
                       "typeSimple": "[string]",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                },
+                {
+                  "name": "SetPasswordAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "userId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "SonEcommerce.Admin.System.Users.SetPasswordDto, SonEcommerce.Admin.Application.Contracts",
+                      "type": "SonEcommerce.Admin.System.Users.SetPasswordDto",
+                      "typeSimple": "SonEcommerce.Admin.System.Users.SetPasswordDto",
                       "isOptional": false,
                       "defaultValue": null
                     }
@@ -4050,7 +4075,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
             },
             "GetListAllAsyncByFilterKeyword": {
@@ -4087,7 +4112,7 @@
                 "type": "System.Collections.Generic.List<SonEcommerce.Admin.System.Users.UserInListDto>",
                 "typeSimple": "[SonEcommerce.Admin.System.Users.UserInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
             },
             "GetListWithFilterAsyncByInput": {
@@ -4148,7 +4173,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
             },
             "CreateAsyncByInput": {
@@ -4185,7 +4210,7 @@
                 "type": "SonEcommerce.Admin.System.Users.UserDto",
                 "typeSimple": "SonEcommerce.Admin.System.Users.UserDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SonEcommerce.Admin.System.Users.UserDto,SonEcommerce.Admin.System.Users.CreateUserDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -4242,7 +4267,7 @@
                 "type": "SonEcommerce.Admin.System.Users.UserDto",
                 "typeSimple": "SonEcommerce.Admin.System.Users.UserDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<SonEcommerce.Admin.System.Users.UserDto,System.Guid,SonEcommerce.Admin.System.Users.UpdateUserDto>"
             },
             "GetAsyncById": {
@@ -4279,7 +4304,7 @@
                 "type": "SonEcommerce.Admin.System.Users.UserDto",
                 "typeSimple": "SonEcommerce.Admin.System.Users.UserDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SonEcommerce.Admin.System.Users.UserDto,SonEcommerce.Admin.System.Users.UserDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "AssignRolesAsyncByUserIdAndRoleNames": {
@@ -4336,7 +4361,64 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
+              "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
+            },
+            "SetPasswordAsyncByUserIdAndInput": {
+              "uniqueName": "SetPasswordAsyncByUserIdAndInput",
+              "name": "SetPasswordAsync",
+              "httpMethod": "POST",
+              "url": "api/app/users/set-password/{userId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "userId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.System.Users.SetPasswordDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.System.Users.SetPasswordDto",
+                  "typeSimple": "SonEcommerce.Admin.System.Users.SetPasswordDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "userId",
+                  "name": "userId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SonEcommerce.Admin.System.Users.SetPasswordDto",
+                  "typeSimple": "SonEcommerce.Admin.System.Users.SetPasswordDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
             },
             "DeleteAsyncById": {
@@ -4373,7 +4455,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetListAsyncByInput": {
@@ -4422,7 +4504,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SonEcommerce.Admin.System.Users.UserDto,SonEcommerce.Admin.System.Users.UserDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -9109,6 +9191,39 @@
         },
         {
           "name": "PhoneNumber",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "SonEcommerce.Admin.System.Users.SetPasswordDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "NewPassword",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ConfirmNewPassword",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",

@@ -33,6 +33,7 @@ using Volo.Abp.VirtualFileSystem;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 
 namespace SonEcommerce.Admin;
 
@@ -49,6 +50,13 @@ namespace SonEcommerce.Admin;
 )]
 public class SonEcommerceAdminHttpApiHostModule : AbpModule
 {
+    public override void PreConfigureServices(ServiceConfigurationContext context)
+    {
+        PreConfigure<IdentityBuilder>(builder =>
+        {
+            builder.AddDefaultTokenProviders();
+        });
+    }
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
@@ -120,6 +128,10 @@ public class SonEcommerceAdminHttpApiHostModule : AbpModule
         context.Services.Configure<AbpClaimsPrincipalFactoryOptions>(options =>
         {
             options.IsDynamicClaimsEnabled = true;
+        });
+        context.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
         });
     }
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper.Internal.Mappers;
 using Microsoft.AspNetCore.Authorization;
+using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.ProductAttributes;
 using SonEcommerce.Admin.Products;
 using SonEcommerce.Attributes;
@@ -20,7 +21,7 @@ using Volo.Abp.Uow;
 
 namespace SonEcommerce.Admin.Products
 {
-    [Authorize]
+    [Authorize(SonEcommercePermissions.Product.Default, Policy = "AdminOnly")]
     public class ProductsAppService : CrudAppService<
        Product,
        ProductDto,
@@ -65,8 +66,15 @@ namespace SonEcommerce.Admin.Products
             _productAttributeDecimalRepository = productAttributeDecimalRepository;
             _productAttributeVarcharRepository = productAttributeVarcharRepository;
             _productAttributeTextRepository = productAttributeTextRepository;
+
+            GetPolicyName = SonEcommercePermissions.Product.Default;
+            GetListPolicyName = SonEcommercePermissions.Product.Default;
+            CreatePolicyName = SonEcommercePermissions.Product.Create;
+            UpdatePolicyName = SonEcommercePermissions.Product.Update;
+            DeletePolicyName = SonEcommercePermissions.Product.Delete;
         }
 
+        [Authorize(SonEcommercePermissions.Product.Create)]
         public override async Task<ProductDto> CreateAsync(CreateUpdateProductDto input)
         {
             var product = await _productManager.CreateAsync(
@@ -95,6 +103,7 @@ namespace SonEcommerce.Admin.Products
             return ObjectMapper.Map<Product, ProductDto>(result);
         }
 
+        [Authorize(SonEcommercePermissions.Product.Update)]
         public override async Task<ProductDto> UpdateAsync(Guid id, CreateUpdateProductDto input)
         {
             var product = await Repository.GetAsync(id);
@@ -132,12 +141,14 @@ namespace SonEcommerce.Admin.Products
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
+        [Authorize(SonEcommercePermissions.Product.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(SonEcommercePermissions.Product.Default)]
         public async Task<List<ProductInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -147,6 +158,7 @@ namespace SonEcommerce.Admin.Products
             return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data);
         }
 
+        [Authorize(SonEcommercePermissions.Product.Default)]
         public async Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
@@ -163,6 +175,7 @@ namespace SonEcommerce.Admin.Products
             return new PagedResultDto<ProductInListDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data));
         }
 
+        [Authorize(SonEcommercePermissions.Product.Update)]
         private async Task SaveThumbnailImageAsync(string fileName, string base64)
         {
             Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
@@ -170,6 +183,7 @@ namespace SonEcommerce.Admin.Products
             byte[] bytes = Convert.FromBase64String(base64);
             await _fileContainer.SaveAsync(fileName, bytes, overrideExisting: true);
         }
+        [Authorize(SonEcommercePermissions.Product.Default)]
 
         public async Task<string> GetThumbnailImageAsync(string fileName)
         {
@@ -192,6 +206,7 @@ namespace SonEcommerce.Admin.Products
             return await _productCodeGenerator.GenerateAsync();
         }
 
+        [Authorize(SonEcommercePermissions.Product.Update)]
         public async Task<ProductAttributeValueDto> AddProductAttributeAsync(AddUpdateProductAttributeDto input)
         {
             var product = await Repository.GetAsync(input.ProductId);
@@ -261,6 +276,7 @@ namespace SonEcommerce.Admin.Products
             };
         }
 
+        [Authorize(SonEcommercePermissions.Product.Update)]
         public async Task RemoveProductAttributeAsync(Guid attributeId, Guid id)
         {
             var attribute = await _productAttributeRepository.GetAsync(x => x.Id == attributeId);
@@ -313,6 +329,7 @@ namespace SonEcommerce.Admin.Products
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(SonEcommercePermissions.Product.Default)]
         public async Task<List<ProductAttributeValueDto>> GetListProductAttributeAllAsync(Guid productId)
         {
             var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
@@ -365,6 +382,7 @@ namespace SonEcommerce.Admin.Products
             return await AsyncExecuter.ToListAsync(query);
         }
 
+        [Authorize(SonEcommercePermissions.Product.Default)]
         public async Task<PagedResultDto<ProductAttributeValueDto>> GetListProductAttributesAsync(ProductAttributeListFilterDto input)
         {
             var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
@@ -423,6 +441,7 @@ namespace SonEcommerce.Admin.Products
             return new PagedResultDto<ProductAttributeValueDto>(totalCount, data);
         }
 
+        [Authorize(SonEcommercePermissions.Product.Update)]
         public async Task<ProductAttributeValueDto> UpdateProductAttributeAsync(Guid id, AddUpdateProductAttributeDto input)
         {
             var product = await Repository.GetAsync(input.ProductId);
