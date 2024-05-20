@@ -9,7 +9,7 @@ public class SonEcommercePermissionDefinitionProvider : PermissionDefinitionProv
     public override void Define(IPermissionDefinitionContext context)
     {
         //System
-        var catalogGroup = context.AddGroup(SonEcommercePermissions.CatalogGroupName);
+        var catalogGroup = context.AddGroup(SonEcommercePermissions.CatalogGroupName, L("Permission:Catalog"));
 
         //Add product
         var productPermission = catalogGroup.AddPermission(SonEcommercePermissions.Product.Default, L("Permission:Catalog.Product"));

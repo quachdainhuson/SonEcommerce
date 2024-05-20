@@ -4,6 +4,8 @@ using SonEcommerce.Admin.ProductAttributes;
 using SonEcommerce.Admin.ProductCategories;
 using SonEcommerce.Admin.Products;
 using SonEcommerce.Admin.Roles;
+using SonEcommerce.Admin.System.Users;
+using SonEcommerce.Admin.Users;
 using SonEcommerce.Attributes;
 using SonEcommerce.Manufacturers;
 using SonEcommerce.ProductCategories;
@@ -43,5 +45,9 @@ public class SonEcommerceAdminApplicationAutoMapperProfile : Profile
             ?
             x.ExtraProperties[RoleConsts.DescriptionFieldName] : null));
         CreateMap<CreateUpdateRoleDto, IdentityRole>();
+
+        //User
+        CreateMap<IdentityUser, UserDto>();
+        CreateMap<IdentityUser, UserInListDto>();
     }
 }
