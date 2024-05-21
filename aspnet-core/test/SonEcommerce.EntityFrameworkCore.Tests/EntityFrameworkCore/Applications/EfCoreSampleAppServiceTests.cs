@@ -1,3 +1,4 @@
+using SonEcommerce.Admin.Samples;
 using SonEcommerce.Samples;
 using Xunit;
 

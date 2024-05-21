@@ -36,7 +36,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Autofac" Version="8.1.1" />
     <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="8.1.1" />
-    <ProjectReference Include="..\SonEcommerce.Application.Contracts\SonEcommerce.Application.Contracts.csproj" />
+    <ProjectReference Include="..\SonEcommerce.Admin.Application.Contracts\SonEcommerce.Admin.Application.Contracts.csproj" />
     <ProjectReference Include="..\SonEcommerce.EntityFrameworkCore\SonEcommerce.EntityFrameworkCore.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using SonEcommerce.EntityFrameworkCore;
+﻿using SonEcommerce.Admin;
+using SonEcommerce.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
