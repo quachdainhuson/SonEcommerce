@@ -5,7 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace SonEcommerce.Public
 {
-    public class BaseListFilterDto : PagedResultRequestDto
+    public class BaseListFilterDto : PagedResultRequestBase
     {
         public string ?Keyword { get; set; }
     }

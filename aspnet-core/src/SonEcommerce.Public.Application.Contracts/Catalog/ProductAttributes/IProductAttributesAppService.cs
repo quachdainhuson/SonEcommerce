@@ -12,7 +12,7 @@ namespace SonEcommerce.Public.ProductAttributes
         Guid,
         PagedResultRequestDto>
     {
-        Task<PagedResultDto<ProductAttributeInListDto>> GetListFilterAsync(BaseListFilterDto input);
+        Task<PagedResult<ProductAttributeInListDto>> GetListFilterAsync(BaseListFilterDto input);
         Task<List<ProductAttributeInListDto>> GetListAllAsync();
     }
 }
