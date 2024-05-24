@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductComponent } from './product/product.component';
 import { AttributeComponent } from './attributes/attribute.component';
 import { permissionGuard } from '@abp/ng.core';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   { path: 'product', 
@@ -19,6 +20,14 @@ const routes: Routes = [
   data: 
   {
     requirePolicy: 'SonEcomAdminCatalog.Attribute',
+  } 
+},
+{ path: 'category', 
+  component: CategoryComponent, 
+  canActivate: [permissionGuard], 
+  data: 
+  {
+    requirePolicy: 'SonEcomAdminCatalog.Category',
   } 
 },
 

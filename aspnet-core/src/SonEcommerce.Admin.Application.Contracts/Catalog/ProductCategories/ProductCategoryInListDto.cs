@@ -13,5 +13,9 @@ namespace SonEcommerce.Admin.ProductCategories
         public string CoverPicture { get; set; }
         public bool Visibility { get; set; }
         public bool IsActive { get; set; }
+        public string? SeoMetaDescription { get; set; }
+        public string Slug { get; set; }
+
+
     }
 }
