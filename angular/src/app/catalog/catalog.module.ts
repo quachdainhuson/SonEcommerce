@@ -27,6 +27,8 @@ import { AttributeComponent } from './attributes/attribute.component';
 import { AttributeDetailComponent } from './attributes/attribute-detail.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
+import { ManufacturerComponent } from './manufacturer/manufacturer.component';
+import { ManufacturerDetailComponent } from './manufacturer/manufacturer-detail.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { CategoryDetailComponent } from './category/category-detail.component';
     AttributeDetailComponent,
     AttributeComponent,
     CategoryComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    ManufacturerComponent,
+    ManufacturerDetailComponent
   ],
 
   imports: [

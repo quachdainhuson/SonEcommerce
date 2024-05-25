@@ -4,6 +4,7 @@ import { ProductComponent } from './product/product.component';
 import { AttributeComponent } from './attributes/attribute.component';
 import { permissionGuard } from '@abp/ng.core';
 import { CategoryComponent } from './category/category.component';
+import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 
 const routes: Routes = [
   { path: 'product', 
@@ -22,12 +23,20 @@ const routes: Routes = [
     requirePolicy: 'SonEcomAdminCatalog.Attribute',
   } 
 },
+{ path: 'manufacturer', 
+  component: ManufacturerComponent, 
+  canActivate: [permissionGuard], 
+  data: 
+  {
+    requirePolicy: 'SonEcomAdminCatalog.Manufacturer',
+  } 
+},
 { path: 'category', 
   component: CategoryComponent, 
   canActivate: [permissionGuard], 
   data: 
   {
-    requirePolicy: 'SonEcomAdminCatalog.Category',
+    requirePolicy: 'SonEcomAdminCatalog.ProductCategory',
   } 
 },
 

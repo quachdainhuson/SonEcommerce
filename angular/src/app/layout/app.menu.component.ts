@@ -31,8 +31,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Danh Mục Và Nhà Sản Xuất',
                 items: [
-                    { label: 'Danh Sách Danh Mục', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/category'] , permission: 'SonEcomAdminCatalog.Product' },
-                    { label: 'Danh Sách Nhà Sản Xuất', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/attribute'] , permission: 'SonEcomAdminCatalog.Attribute' },
+                    { label: 'Danh Sách Danh Mục', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/category'] , permission: 'SonEcomAdminCatalog.ProductCategory' },
+                    { label: 'Danh Sách Nhà Sản Xuất', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/manufacturer'] , permission: 'SonEcomAdminCatalog.Manufacturer' },
                     
                 ]
             },
