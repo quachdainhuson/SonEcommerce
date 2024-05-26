@@ -15,5 +15,6 @@ namespace SonEcommerce.Public.ProductCategories
         Task<PagedResult<ProductCategoryInListDto>> GetListFilterAsync(BaseListFilterDto input);
         Task<List<ProductCategoryInListDto>> GetListAllAsync();
         Task<ProductCategoryDto> GetByCodeAsync(string code);
+        Task<ProductCategoryDto> GetBySlugAsync(string slug);
     }
 }
