@@ -7,6 +7,8 @@ using SonEcommerce.Public.Manufacturers;
 using SonEcommerce.Public.ProductAttributes;
 using SonEcommerce.Manufacturers;
 using SonEcommerce.Attributes;
+using SonEcommerce.Orders;
+using SonEcommerce.Public.Orders;
 
 namespace SonEcommerce.Public;
 
@@ -26,5 +28,8 @@ public class SonEcommercePublicApplicationAutoMapperProfile : Profile
 
         CreateMap<ProductAttribute, ProductAttributeDto>();
         CreateMap<ProductAttribute, ProductAttributeInListDto>();
+
+        //Order
+        CreateMap<Order, OrderDto>();
     }
 }

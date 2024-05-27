@@ -9,6 +9,13 @@ namespace SonEcommerce.Orders
 {
     public class Order : FullAuditedAggregateRoot<Guid>
     {
+        public Order()
+        {
+        }
+        public Order(Guid id)
+        {
+            Id = id;
+        }
         public string? Code { get; set; }
         public OrderStatus Status { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
