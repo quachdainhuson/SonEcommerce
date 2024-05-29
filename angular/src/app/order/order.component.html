@@ -1,0 +1,66 @@
+<p-panel header="Quản lý đơn hàng">
+    <!--Filter (search panel)-->
+    <div class="grid">
+        <div class="pr-6 pl-3">
+            <button pButton type="button" (click)="showAddModal()" icon="fa fa-plus" class="p-button-success"></button>
+            <button pButton type="button" (click)="showEditModal()" *ngIf="selectedItems.length == 1" icon="fa fa-pencil " class="ml-1 p-button-warning"></button>
+            <button pButton type="button" (click)="deleteItems()" *ngIf="selectedItems.length > 0" icon="fa fa-trash " class="ml-1 p-button-danger"></button>
+        </div>
+        <div>
+            <div class="formgroup-inline">
+                <div class="field">
+                  <label for="txt-keyword" class="p-sr-only">Từ khóa</label>
+                  <input id="txt-keyword" [(ngModel)]="keyword" pInputText type="text" placeholder="Gõ từ khóa" />
+                </div>
+                <button
+                  type="button"
+                  pButton
+                  (click)="loadData()"
+                  icon="fa fa-search"
+                  iconPos="left"
+                  label="Tìm"
+                ></button>
+              </div>
+        </div>
+    </div>
+  
+    <!--Table-->
+    <p-table #pnl [value]="items" >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Mã</th>
+          <th>Tên khách hàng</th>
+          <th>Số điện thoại</th>
+          <th>Tổng tiền</th>
+          <th>Tình trạng</th>
+          <th>Phương thức thanh toán</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>{{ row.code }}</td>
+          <td>{{ row.customerName }}</td>
+          <td>{{ row.customerPhoneNumber }}</td>
+          <td>{{ row.total }}</td>
+          <td>{{ getStatusTypeName(row.status) }}</td>
+          <td>{{ getPaymentTypeName(row.paymentMethod) }}</td>
+          <td><p-button (click)="showDetailOrder()" label="Chi tiết" severity="help"></p-button></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div style="text-align: left">Tổng số bản ghi: {{ totalCount | number }}</div>
+      </ng-template>
+    </p-table>
+    <!--Paginator-->
+    <p-paginator
+      [rows]="maxResultCount"
+      [totalRecords]="totalCount"
+      (onPageChange)="pageChanged($event)"
+      [rowsPerPageOptions]="[10, 20, 30, 50, 100]"
+    ></p-paginator>
+    <!--Block UI-->
+    <p-blockUI [blocked]="blockedPanel" [target]="pnl">
+      <p-progressSpinner></p-progressSpinner>
+    </p-blockUI>
+  </p-panel>

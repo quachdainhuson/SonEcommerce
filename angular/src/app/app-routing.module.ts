@@ -24,7 +24,11 @@ const routes: Routes = [
     loadChildren: () => import('./system/system.module').then(m => m.SystemModule),
     component: AppLayoutComponent
   },
-  
+  {
+    path: 'order',
+    loadChildren: () => import('./order/order.module').then(m => m.OrderModule),
+    component: AppLayoutComponent
+  },
   // {
   //   path: 'account',
   //   loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),

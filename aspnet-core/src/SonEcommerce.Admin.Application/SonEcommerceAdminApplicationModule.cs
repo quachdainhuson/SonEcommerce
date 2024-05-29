@@ -37,7 +37,7 @@ public class SonEcommerceAdminApplicationModule : AbpModule
             {
                 container.UseFileSystem(fileSystem =>
                 {
-                    fileSystem.BasePath = "D:\\SonEcommerce";
+                    fileSystem.BasePath = "C:\\SonEcommerce\\angular\\src\\assets\\images\\SonEcommerce";
                 });
             });
         });

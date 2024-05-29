@@ -23,28 +23,68 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Sản Phẩm',
                 items: [
-                    { label: 'Danh Sách Sản Phẩm', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/product'] , permission: 'SonEcomAdminCatalog.Product' },
-                    { label: 'Danh Sách Thuộc Tính', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/attribute'] , permission: 'SonEcomAdminCatalog.Attribute' },
+                    { 
+                        label: 'Danh Sách Sản Phẩm', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/catalog/product'] , 
+                        permission: 'SonEcomAdminCatalog.Product' 
+                    },
+                    { 
+                        label: 'Danh Sách Thuộc Tính', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/catalog/attribute'], 
+                        permission: 'SonEcomAdminCatalog.Attribute' 
+                    },
                     
                 ]
             },
             {
                 label: 'Danh Mục Và Nhà Sản Xuất',
                 items: [
-                    { label: 'Danh Sách Danh Mục', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/category'] , permission: 'SonEcomAdminCatalog.ProductCategory' },
-                    { label: 'Danh Sách Nhà Sản Xuất', icon: 'pi pi-fw pi-id-card', routerLink: ['/catalog/manufacturer'] , permission: 'SonEcomAdminCatalog.Manufacturer' },
+                    { 
+                        label: 'Danh Sách Danh Mục', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/catalog/category'] , 
+                        permission: 'SonEcomAdminCatalog.ProductCategory' 
+                    },
+                    { 
+                        label: 'Danh Sách Nhà Sản Xuất', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/catalog/manufacturer'] , 
+                        permission: 'SonEcomAdminCatalog.Manufacturer' 
+                    },
                     
                 ]
             },
             {
                 label: 'Hệ Thống',
                 items: [
-                    { label: 'Danh Sách Quyền', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/role'] , permission: 'SonEcomAdminCatalog.Attribute'},
-                    { label: 'Danh Sách Người Dùng', icon: 'pi pi-fw pi-id-card', routerLink: ['/system/user'] , permission: 'SonEcomAdminCatalog.Attribute'},
+                    { 
+                        label: 'Danh Sách Quyền', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/system/role'] , 
+                        permission: 'SonEcomAdminCatalog.Attribute'
+                    },
+                    { 
+                        label: 'Danh Sách Người Dùng', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/system/user'] , 
+                        permission: 'SonEcomAdminCatalog.Attribute'
+                    },
                     
                 ]
             },
-            
+            {
+                label: 'Đơn hàng',
+                items: [
+                    { 
+                        label: 'Quản lý đơn hàng', 
+                        icon: 'pi pi-fw pi-users', 
+                        routerLink: ['/order/order'],
+                    },
+
+                ]
+            },
         ];
     }
 }

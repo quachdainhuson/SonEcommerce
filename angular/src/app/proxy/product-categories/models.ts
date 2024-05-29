@@ -17,8 +17,8 @@ export interface ProductCategoryDto {
   code?: string;
   slug?: string;
   sortOrder: number;
-  coverPicture?: string;
   visibility: boolean;
+  coverPicture?: string;
   isActive: boolean;
   parentId?: string;
   seoMetaDescription?: string;

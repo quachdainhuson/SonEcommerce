@@ -58,10 +58,17 @@ namespace SonEcommerce.Public.Web.Pages.Cart
             });
             CartItems = GetCartItems();
 
-            if (order != null)
+            if (order != null) {
                 CreateStatus = true;
-            else
+                HttpContext.Session.Remove(SonEcommerceConsts.Cart);
+                CartItems.Clear();
+
+            }
+
+            else {
                 CreateStatus = false;
+
+            }
         }
 
         private List<CartItem> GetCartItems()

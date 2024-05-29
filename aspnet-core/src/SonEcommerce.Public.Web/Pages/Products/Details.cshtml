@@ -140,11 +140,11 @@
                                 <div class="font-sm text-quantity">Quantity</div>
                                 <div class="box-quantity">
                                     <div class="input-quantity">
-                                        <input class="font-xl color-brand-3" type="text" value="1"><span class="minus-cart"></span><span class="plus-cart"></span>
+                                        <input class="font-xl color-brand-3" id="quantityInput" type="text" value="1"><span class="minus-cart"></span><span class="plus-cart"></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="button-buy mt-15"><a class="btn btn-cart mb-15" href="shop-cart.html">Add to cart</a><a class="btn btn-buy" href="shop-checkout.html">Buy now</a></div>
+                            <div class="button-buy mt-15"><a id="addToCartLink" class="btn btn-cart mb-15" href="/shop-cart.html?action=add&id=@Model.Product.Id&quantity=1">Add to cart</a><a class="btn btn-buy" href="shop-checkout.html">Buy now</a></div>
                         </div>
                     </div>
                 </div>
@@ -1077,3 +1077,33 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var quantityInput = document.getElementById('quantityInput');
+        var addToCartLink = document.getElementById('addToCartLink');
+
+        function updateAddToCartLink() {
+            var quantity = quantityInput.value;
+            if (!isNaN(quantity) && quantity > 0) {
+                addToCartLink.href = '/shop-cart.html?action=add&id=@Model.Product.Id&quantity=' + quantity;
+            } else {
+                addToCartLink.href = '/shop-cart.html?action=add&id=@Model.Product.Id&quantity=1';
+            }
+        }
+
+        quantityInput.addEventListener('input', updateAddToCartLink);
+
+        // Optional: Add functionality to plus and minus buttons if they are to be used
+        document.querySelector('.plus-cart').addEventListener('click', function () {
+            quantityInput.value = parseInt(quantityInput.value);
+            updateAddToCartLink();
+        });
+
+        document.querySelector('.minus-cart').addEventListener('click', function () {
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value);
+                updateAddToCartLink();
+            }
+        });
+    });
+</script>

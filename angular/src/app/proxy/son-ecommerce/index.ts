@@ -1,3 +1,4 @@
 import * as Attributes from './attributes';
+import * as Orders from './orders';
 import * as Products from './products';
-export { Attributes, Products };
+export { Attributes, Orders, Products };

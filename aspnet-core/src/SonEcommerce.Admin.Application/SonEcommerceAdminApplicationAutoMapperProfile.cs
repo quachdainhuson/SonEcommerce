@@ -8,6 +8,7 @@ using SonEcommerce.Admin.System.Users;
 using SonEcommerce.Admin.Users;
 using SonEcommerce.Attributes;
 using SonEcommerce.Manufacturers;
+using SonEcommerce.Orders;
 using SonEcommerce.ProductCategories;
 using SonEcommerce.Products;
 using SonEcommerce.Roles;
@@ -35,6 +36,10 @@ public class SonEcommerceAdminApplicationAutoMapperProfile : Profile
         CreateMap<ProductAttribute, ProductAttributeDto>();
         CreateMap<ProductAttribute, ProductAttributeInListDto>();
         CreateMap<CreateUpdateProductAttributeDto, ProductAttribute>();
+
+        CreateMap<Order, OrderDto>();
+        CreateMap<Order, OrderInListDto>();
+        CreateMap<CreateOrderDto, Order>();
 
         CreateMap<IdentityRole, RoleDto>().ForMember(x => x.Description,
             map => map.MapFrom(x => x.ExtraProperties.ContainsKey(RoleConsts.DescriptionFieldName)

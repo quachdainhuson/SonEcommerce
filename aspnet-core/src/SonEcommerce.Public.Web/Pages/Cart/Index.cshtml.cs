@@ -20,8 +20,11 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
         [BindProperty]
         public List<CartItem> CartItems { get; set; }
-        public async Task OnGetAsync(string action, string id)
+        public async Task OnGetAsync(string action, string id, int quantity)
         {
+            if (quantity == 0) {
+                quantity = 1;
+            }
             var cart = HttpContext.Session.GetString(SonEcommerceConsts.Cart);
             var productCarts = new Dictionary<string, CartItem>();
             if (cart != null)
@@ -38,7 +41,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                         productCarts.Add(id, new CartItem()
                         {
                             Product = product,
-                            Quantity = 1
+                            Quantity = quantity
                         });
                         HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));
                     }
@@ -47,14 +50,14 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                         productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
                         if (productCarts.ContainsKey(id))
                         {
-                            productCarts[id].Quantity += 1;
+                            productCarts[id].Quantity += quantity;
                         }
                         else
                         {
                             productCarts.Add(id, new CartItem()
                             {
                                 Product = product,
-                                Quantity = 1
+                                Quantity = quantity
                             });
                         }
                         HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));

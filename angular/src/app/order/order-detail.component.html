@@ -1,0 +1,160 @@
+<form>
+  <p-panel #pnl>
+    <!--form grid-->
+    <div class="row justify-content-center">
+      <div class="col-xxl-9">
+          <div class="card" id="demo">
+              <div class="card-body">
+                  <div class="row p-4" >
+                      <div class="col-lg-9">
+                          <h3 class="fw-bold mb-4">Hóa Đơn </h3>
+                          <div class="row g-4">
+                              <div class="col-lg-6 col-6">
+                                  <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Mã Hóa đơn</p>
+                                  <h5 class="fs-16 mb-0"><span id="invoice-no">1</span></h5>
+                              </div>
+                              <!--end col-->
+                              <div class="col-lg-6 col-6">
+                                  <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Ngày</p>
+                                  <h5 class="fs-16 mb-0"><span id="invoice-date">11/05/2024</span> <small class="text-muted" id="invoice-time"></small></h5>
+                              </div>
+                              <!--end col-->
+                              <div class="col-lg-6 col-6">
+                                  <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Payment Status</p>
+                                  <!-- @if($receipt->status == 0) -->
+                                      <!-- <span class="badge bg-secondary-subtle text-secondary fs-11" id="payment-status">Chờ Xác Nhận</span> -->
+                                  <!-- @elseif($receipt->status == 1) -->
+                                      <!-- <span class="badge bg-primary-subtle text-primary fs-11" id="payment-status">Đã Xác Nhận</span> -->
+                                  <!-- @elseif($receipt->status == 2) -->
+                                      <!-- <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Làm</span> -->
+                                  <!-- @elseif($receipt->status == 3) -->
+                                      <span class="badge bg-success-subtle text-success fs-11" id="payment-status">Đã Hoàn Thành</span>
+                                  <!-- @elseif($receipt->status == 4) -->
+                                      <!-- <span class="badge bg-danger-subtle text-danger fs-11" id="payment-status">Đã Hủy</span> -->
+                                  <!-- @elseif($receipt->status == 5) -->
+                                      <!-- <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Giao Hàng</span> -->
+                                  <!-- @endif -->
+                              </div>
+                              <!--end col-->
+                              <div class="col-lg-6 col-6">
+
+                              </div>
+                              <!--end col-->
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <div class="row g-4">
+                              <div class="col-lg-6 col-6">
+
+                              </div>
+                              <!--end col-->
+                              <div class="col-lg-6 col-6">
+                              </div>
+                              <!--end col-->
+                              <div class="col-lg-6 col-6">
+                                  <h6 class="text-muted text-uppercase fw-semibold mb-3">Total Amount</h6>
+                                  <h3 class="fw-bold mb-2">100.000.000 VND</h3>
+                              </div>
+                              <!--end col-->
+                              <div class="col-lg-6 col-6">
+
+                              </div>
+                              <!--end col-->
+                          </div>
+                      </div>
+                  </div><!--end col-->
+
+                  <div class="row p-4 border-top border-top-dashed">
+                      <div class="col-lg-9">
+                          <div class="row g-3">
+                              <!-- @foreach($customer as $customers) @endforeach -->
+                              <div class="col-6">
+
+                                  <h6 class="text-muted text-uppercase fw-semibold mb-3">Thông Tin Khách Hàng</h6>
+                                  <p class="fw-medium mb-2" id="shipping-name">Nem chiên</p>
+                                  <p class="text-muted mb-1" id="shipping-address-line-1">website</p>
+                                  <p class="text-muted mb-1" id="shipping-email-line-1">không có</p>
+                                  <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">011111</span></p>
+                                  <span class="text-danger">Ghi Chú: đen đá không đường</span>
+
+                              </div>
+                              <!--end col-->
+                          </div>
+                          <!--end row-->
+                      </div><!--end col-->
+
+                      <div class="col-lg-3">
+
+                      </div>
+
+                  </div>
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="card-body p-4">
+                              <div class="table-responsive">
+                                  <table class="table table-borderless text-center table-nowrap align-middle mb-0">
+                                      <thead>
+                                      <tr class="table-active">
+                                          <th scope="col" style="width: 50px;">#</th>
+                                          <th scope="col">Sản Phẩm</th>
+                                          <th scope="col">Giá Niêm Yết</th>
+                                          <th scope="col">Số Lượng</th>
+                                          <th scope="col" class="text-end">Giá</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody id="products-list">
+                                      <!-- @php($i = 1)
+                                      @foreach($product_details as $product_detail)
+                                      {{--{{dd($product_detail)}}--}} -->
+                                          <tr>
+                                              <th scope="row">1</th>
+                                              <td class="text-start">
+                                                  <span class="fw-medium">aaaaaaaaaaaa</span>
+                                                  <p class="text-muted mb-0">
+                                                          S</p>
+                                              </td>
+                                              <td>20.000</td>
+                                              <td>500</td>
+                                              <td class="text-end">100.000.000 </td>
+                                          </tr>
+                                          <!-- @php($i++)
+                                      @endforeach -->
+                                      </tbody>
+                                  </table><!--end table-->
+                              </div>
+                              <div class="border-top border-top-dashed mt-2">
+                                  <table class="table table-borderless table-nowrap align-middle mb-0 ms-auto" style="width:250px">
+                                      <tbody>
+                                          <tr class="border-top border-top-dashed fs-15">
+                                              <th scope="row">Tổng Giá</th>
+                                              <th class="text-end">100.000.000</th>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                                  <!--end table-->
+                              </div>
+                          </div>
+                          <!--end card-body-->
+                      </div><!--end col-->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--end col-->
+  </div>
+    <ng-template pTemplate="footer">
+      <button
+        type="submit"
+        pButton
+        icon="fa fa-save"
+        iconPos="left"
+        label="Cập nhật"
+      ></button>
+    </ng-template>
+    <!--Block UI-->
+    <p-blockUI [blocked]="blockedPanel" [target]="pnl">
+      <p-progressSpinner></p-progressSpinner>
+    </p-blockUI>
+  </p-panel>
+</form>
