@@ -70,6 +70,14 @@ export class ProductsService {
     { apiName: this.apiName,...config });
   
 
+  getListAllByCategoryIdByCategoryId = (categoryId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, ProductInListDto[]>({
+      method: 'GET',
+      url: `/api/app/products/all-by-category-id/${categoryId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   getListFilter = (input: ProductListFilterDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, PagedResultDto<ProductInListDto>>({
       method: 'GET',

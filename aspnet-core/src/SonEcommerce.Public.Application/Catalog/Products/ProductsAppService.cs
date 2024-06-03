@@ -70,7 +70,6 @@ namespace SonEcommerce.Public.Products
         public async Task<PagedResult<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
-            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
 
             var totalCount = await AsyncExecuter.LongCountAsync(query);
@@ -232,6 +231,13 @@ namespace SonEcommerce.Public.Products
         {
             var product = await _productRepository.GetAsync(x => x.Slug == slug);
             return ObjectMapper.Map<Product, ProductDto>(product);
+        }
+
+        public async Task<List<ProductInListDto>> GetListAllByCategoryId(Guid categoryId)
+        {
+            var products = await _productRepository.GetListAsync(x => x.CategoryId == categoryId);
+            return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(products);
+
         }
     }
 }

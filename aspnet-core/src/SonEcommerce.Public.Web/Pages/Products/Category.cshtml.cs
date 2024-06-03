@@ -30,7 +30,8 @@ namespace SonEcommerce.Public.Web.Pages.Products
             Categories = await _productCategoriesAppService.GetListAllAsync();
             ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
             {
-                CurrentPage = page
+                CurrentPage = page,
+                CategoryId = Category.Id
             });
         }
     }

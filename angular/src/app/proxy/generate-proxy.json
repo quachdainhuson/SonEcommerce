@@ -1277,6 +1277,23 @@
                   }
                 },
                 {
+                  "name": "GetOrderAndDetailsAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "orderId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "SonEcommerce.Admin.OrderDto",
+                    "typeSimple": "SonEcommerce.Admin.OrderDto"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -1421,6 +1438,43 @@
               "returnValue": {
                 "type": "System.Collections.Generic.List<SonEcommerce.Admin.OrderInListDto>",
                 "typeSimple": "[SonEcommerce.Admin.OrderInListDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.IOrderAppService"
+            },
+            "GetOrderAndDetailsAsyncByOrderId": {
+              "uniqueName": "GetOrderAndDetailsAsyncByOrderId",
+              "name": "GetOrderAndDetailsAsync",
+              "httpMethod": "GET",
+              "url": "api/app/orders/order-and-details/{orderId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "orderId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "orderId",
+                  "name": "orderId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SonEcommerce.Admin.OrderDto",
+                "typeSimple": "SonEcommerce.Admin.OrderDto"
               },
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.IOrderAppService"
@@ -2653,6 +2707,23 @@
                   }
                 },
                 {
+                  "name": "GetListAllByCategoryId",
+                  "parametersOnMethod": [
+                    {
+                      "name": "categoryId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.List<SonEcommerce.Admin.Products.ProductInListDto>",
+                    "typeSimple": "[SonEcommerce.Admin.Products.ProductInListDto]"
+                  }
+                },
+                {
                   "name": "AddProductAttributeAsync",
                   "parametersOnMethod": [
                     {
@@ -3378,6 +3449,43 @@
               "returnValue": {
                 "type": "SonEcommerce.Admin.Products.ProductAttributeValueDto",
                 "typeSimple": "SonEcommerce.Admin.Products.ProductAttributeValueDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "SonEcommerce.Admin.Products.IProductsAppService"
+            },
+            "GetListAllByCategoryIdByCategoryId": {
+              "uniqueName": "GetListAllByCategoryIdByCategoryId",
+              "name": "GetListAllByCategoryId",
+              "httpMethod": "GET",
+              "url": "api/app/products/all-by-category-id/{categoryId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "categoryId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "categoryId",
+                  "name": "categoryId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SonEcommerce.Admin.Products.ProductInListDto>",
+                "typeSimple": "[SonEcommerce.Admin.Products.ProductInListDto]"
               },
               "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Products.IProductsAppService"
@@ -8026,7 +8134,7 @@
           "regex": null
         },
         {
-          "name": "Items",
+          "name": "OrderItems",
           "jsonName": null,
           "type": "[SonEcommerce.Admin.OrderItemDto]",
           "typeSimple": "[SonEcommerce.Admin.OrderItemDto]",

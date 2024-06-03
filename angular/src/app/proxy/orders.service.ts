@@ -52,6 +52,14 @@ export class OrdersService {
     { apiName: this.apiName,...config });
   
 
+  getOrderAndDetails = (orderId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, OrderDto>({
+      method: 'GET',
+      url: `/api/app/orders/order-and-details/${orderId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   update = (id: string, input: CreateOrderDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, OrderDto>({
       method: 'PUT',

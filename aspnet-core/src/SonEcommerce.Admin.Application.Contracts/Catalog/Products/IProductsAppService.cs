@@ -20,6 +20,7 @@ namespace SonEcommerce.Admin.Products
 
         Task<string> GetThumbnailImageAsync(string fileName);
         Task<string> GetSuggestNewCodeAsync();
+        Task<List<ProductInListDto>> GetListAllByCategoryId(Guid categoryId);
 
         Task<ProductAttributeValueDto> AddProductAttributeAsync(AddUpdateProductAttributeDto input);
         Task<ProductAttributeValueDto> UpdateProductAttributeAsync(Guid id, AddUpdateProductAttributeDto input);

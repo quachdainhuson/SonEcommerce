@@ -66,7 +66,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
       .get(id)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
-        next: (response: ProductAttributeDto) => {
+        next: (response: ProductCategoryDto) => {
           this.selectedEntity = response;
           this.buildForm();
           this.toggleBlockUI(false);

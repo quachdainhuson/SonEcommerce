@@ -41,6 +41,9 @@ public class SonEcommerceAdminApplicationAutoMapperProfile : Profile
         CreateMap<Order, OrderInListDto>();
         CreateMap<CreateOrderDto, Order>();
 
+        CreateMap<Order, OrderDto>();
+        CreateMap<OrderItem, OrderItemDto>();
+
         CreateMap<IdentityRole, RoleDto>().ForMember(x => x.Description,
             map => map.MapFrom(x => x.ExtraProperties.ContainsKey(RoleConsts.DescriptionFieldName)
             ?

@@ -82,6 +82,15 @@ namespace SonEcommerce.Admin
             return ObjectMapper.Map<List<Order>, List<OrderInListDto>>(data);
         }
 
+        public async Task<OrderDto> GetOrderAndDetailsAsync(Guid orderId)
+        {
+            var order = await Repository.GetAsync(orderId);
+            var orderItems = await _orderItemRepository.GetListAsync(x => x.OrderId == orderId);
 
+            var orderDto = ObjectMapper.Map<Order, OrderDto>(order);
+            orderDto.OrderItems = ObjectMapper.Map<List<OrderItem>, List<OrderItemDto>>(orderItems);
+
+            return orderDto;
+        }
     }
 }

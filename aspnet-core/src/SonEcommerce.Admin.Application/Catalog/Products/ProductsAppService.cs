@@ -535,5 +535,12 @@ namespace SonEcommerce.Admin.Products
                 TextValue = input.TextValue
             };
         }
+
+        public async Task<List<ProductInListDto>> GetListAllByCategoryId(Guid categoryId)
+        {
+            var products = await Repository.GetListAsync(x => x.CategoryId == categoryId);
+            return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(products);
+
+        }
     }
 }

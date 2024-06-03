@@ -228,20 +228,10 @@
                         <div class="swiper-wrapper pt-5">
                             <div class="swiper-slide">
                                 <div class="list-products-5">
-                                    <div class="card-grid-style-3 home6-style">
-                                        <div class="card-grid-inner">
-                                            <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a><a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a><a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a><a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
-                                            <div class="image-box">
-                                                <span class="label bg-brand-2">-17%</span><a href="shop-single-product-2.html"><img src="assets/imgs/page/homepage6/sp1.png" alt="Ecom"></a>
-                                            </div>
-                                            <div class="info-right">
-                                                <a class="font-xs color-gray-500" href="shop-vendor-single.html">Apple</a><br><a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">HP 11.6&quot; Chromebook, AMD A4, 4GB RAM, 32GB Storage</a>
-                                                <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
-                                                <div class="price-info mb-10"><strong class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span class="color-gray-500 price-line">$3225.6</span></div>
-                                                <div class="mt-10 box-btn-cart"><a class="btn btn-cart" href="shop-cart.html">Add To Cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @foreach (var item in Model.TopSellerProduct)
+                                    {
+                                        <partial name="_ProductItem1" model="item" />
+                                    }
                                     
                                 </div>
                             </div>
@@ -782,76 +772,10 @@
                         <div class="swiper-wrapper pt-5">
                             <div class="swiper-slide">
                                 <div class="list-products-5">
-                                    <div class="card-grid-style-3 home6-style">
-                                        <div class="card-grid-inner">
-                                            <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a><a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a><a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a><a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
-                                            <div class="image-box">
-                                                <span class="label bg-brand-2">-17%</span><a href="shop-single-product-2.html"><img src="assets/imgs/page/homepage6/sp1.png" alt="Ecom"></a>
-                                            </div>
-                                            <div class="info-right">
-                                                <a class="font-xs color-gray-500" href="shop-vendor-single.html">Apple</a><br><a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">HP 11.6&quot; Chromebook, AMD A4, 4GB RAM, 32GB Storage</a>
-                                                <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
-                                                <div class="price-info mb-10"><strong class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span class="color-gray-500 price-line">$3225.6</span></div>
-                                                <div class="mt-10 box-btn-cart"><a class="btn btn-cart" href="shop-cart.html">Add To Cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-grid-style-3 home6-style">
-                                        <div class="card-grid-inner">
-                                            <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a><a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a><a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a><a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
-                                            <div class="image-box">
-                                                <span class="label bg-danger">Hot</span><a href="shop-single-product-2.html"><img src="assets/imgs/page/homepage6/sp2.png" alt="Ecom"></a>
-                                            </div>
-                                            <div class="info-right">
-                                                <a class="font-xs color-gray-500" href="shop-vendor-single.html">Apple</a><br><a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">ASUS VivoBook 15.6&quot; 1080p PC Laptops, Intel Core i3</a>
-                                                <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
-                                                <div class="price-info mb-10"><strong class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span class="color-gray-500 price-line">$3225.6</span></div>
-                                                <div class="mt-10 box-btn-cart"><a class="btn btn-cart" href="shop-cart.html">Add To Cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-grid-style-3 home6-style">
-                                        <div class="card-grid-inner">
-                                            <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a><a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a><a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a><a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
-                                            <div class="image-box">
-                                                <span class="label bg-success">New</span><a href="shop-single-product-2.html"><img src="assets/imgs/page/homepage6/sp3.png" alt="Ecom"></a>
-                                            </div>
-                                            <div class="info-right">
-                                                <a class="font-xs color-gray-500" href="shop-vendor-single.html">Apple</a><br><a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">2020 Apple 10.9-inch iPad Air Wi-Fi 64GB - Silver</a>
-                                                <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
-                                                <div class="price-info mb-10"><strong class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span class="color-gray-500 price-line">$3225.6</span></div>
-                                                <div class="mt-10 box-btn-cart"><a class="btn btn-cart" href="shop-cart.html">Add To Cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-grid-style-3 home6-style">
-                                        <div class="card-grid-inner">
-                                            <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a><a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a><a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a><a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
-                                            <div class="image-box">
-                                                <a href="shop-single-product-2.html"><img src="assets/imgs/page/homepage6/sp4.png" alt="Ecom"></a>
-                                            </div>
-                                            <div class="info-right">
-                                                <a class="font-xs color-gray-500" href="shop-vendor-single.html">Apple</a><br><a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">MSI Optix G272 27&quot; Full HD LED Gaming LCD Monitor</a>
-                                                <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
-                                                <div class="price-info mb-10"><strong class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span class="color-gray-500 price-line">$3225.6</span></div>
-                                                <div class="mt-10 box-btn-cart"><a class="btn btn-cart" href="shop-cart.html">Add To Cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-grid-style-3 home6-style">
-                                        <div class="card-grid-inner">
-                                            <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a><a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a><a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a><a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
-                                            <div class="image-box">
-                                                <a href="shop-single-product-2.html"><img src="assets/imgs/page/homepage6/sp5.png" alt="Ecom"></a>
-                                            </div>
-                                            <div class="info-right">
-                                                <a class="font-xs color-gray-500" href="shop-vendor-single.html">Apple</a><br><a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">MSI Optix G272 27&quot; Full HD LED Gaming LCD Monitor</a>
-                                                <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><img src="assets/imgs/template/icons/star.svg" alt="Ecom"><span class="font-xs color-gray-500">(65)</span></div>
-                                                <div class="price-info mb-10"><strong class="font-lg-bold color-brand-3 price-main">$2856.3</strong><span class="color-gray-500 price-line">$3225.6</span></div>
-                                                <div class="mt-10 box-btn-cart"><a class="btn btn-cart" href="shop-cart.html">Add To Cart</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @foreach (var item in Model.TopSellerProduct)
+                                    {
+                                        <partial name="_ProductItem1" model="item" />
+                                    }
                                 </div>
                             </div>
                         </div>
