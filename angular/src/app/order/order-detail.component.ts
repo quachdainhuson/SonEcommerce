@@ -58,12 +58,13 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   loadFormDetails(id: string) {
     this.toggleBlockUI(true);
     this.orderService
-      .get(id)
+      .getOrderAndDetails(id)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: OrderDto) => {
           this.selectedEntity = response;
           this.toggleBlockUI(false);
+          console.log(response);
         },
         error: () => {
           this.toggleBlockUI(false);

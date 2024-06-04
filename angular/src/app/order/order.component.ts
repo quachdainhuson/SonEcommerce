@@ -94,10 +94,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
 
-  showDetailOrder(){
+  showDetailOrder(id: string){
     const ref = this.dialogService.open(OrderDetailComponent, {
       header: 'Chi tiết đơn hàng',
       width: '70%',
+      data: {
+        id: id,
+      },
     });
 
     ref.onClose.subscribe((data: OrderDto) => {
