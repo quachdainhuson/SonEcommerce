@@ -41,7 +41,7 @@ public class DbMigratorHostedService : IHostedService
             await application
                 .ServiceProvider
                 .GetRequiredService<IdentityDataSeeder>()
-                .SeedAsync("Admin@gmail.com", "Son27122003@");
+                .SeedAsync("Admin@gmail.com", "Nem@123");
             await application.ShutdownAsync();
 
             _hostApplicationLifetime.StopApplication();

@@ -15,10 +15,6 @@ export interface CreateOrderDto {
 }
 
 export interface OrderDto extends EntityDto<string> {
-  invoiceNumber: string;
-  invoiceDate: string;
-  customerEmail: string;
-  products: any;
   code?: string;
   status: OrderStatus;
   paymentMethod: PaymentMethod;
@@ -51,6 +47,7 @@ export interface OrderInListDto extends EntityDto<string> {
 export interface OrderItemDto extends EntityDto {
   orderId?: string;
   productId?: string;
+  name?: string;
   sku?: string;
   quantity: number;
   price: number;

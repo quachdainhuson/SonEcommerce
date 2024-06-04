@@ -11,12 +11,12 @@
                           <div class="row g-4">
                               <div class="col-lg-6 col-6">
                                   <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Mã Hóa đơn</p>
-                                  <h5 class="fs-16 mb-0"><span id="invoice-no">{{selectedEntity.code}}</span></h5>
+                                  <h5 class="fs-16 mb-0"><span id="invoice-no">{{order.code}}</span></h5>
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">
                                   <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Ngày</p>
-                                  <h5 class="fs-16 mb-0"><span id="invoice-date">{{selectedEntity.invoiceDate}}</span> <small class="text-muted" id="invoice-time"></small></h5>
+                                  <!-- <h5 class="fs-16 mb-0"><span id="invoice-date">{{selectedEntity.invoiceDate}}</span> <small class="text-muted" id="invoice-time"></small></h5> -->
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">
@@ -53,7 +53,7 @@
                               <!--end col-->
                               <div class="col-lg-6 col-6">
                                   <h6 class="text-muted text-uppercase fw-semibold mb-3">Total Amount</h6>
-                                  <h3 class="fw-bold mb-2">{{selectedEntity.total}}</h3>
+                                  <h3 class="fw-bold mb-2">${{order.total}}</h3>
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">
@@ -68,14 +68,14 @@
                       <div class="col-lg-9">
                           <div class="row g-3">
                               <!-- @foreach($customer as $customers) @endforeach -->
-                              <div class="col-6">
+                              <div class="col-12">
 
                                   <h6 class="text-muted text-uppercase fw-semibold mb-3">Thông Tin Khách Hàng</h6>
-                                  <p class="fw-medium mb-2" id="shipping-name">{{selectedEntity.customerName}}</p>
-                                  <p class="text-muted mb-1" id="shipping-address-line-1">website</p>
-                                  <p class="text-muted mb-1" id="shipping-email-line-1">không có</p>
-                                  <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{selectedEntity.customerPhoneNumber}}</span></p>
-                                  <span class="text-danger">Ghi Chú: đen đá không đường</span>
+                                  <p class="fw-medium mb-2" id="shipping-name">Tên khách hàng: {{order.customerName}}</p>
+                                  <p class="text-muted mb-1" id="shipping-email-line-1">Email: </p>
+                                  <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{order.customerPhoneNumber}}</span></p>
+                                  <p class="text-muted mb-1">Địa chỉ: {{order.customerAddress}}</p>
+                                  <!-- <span class="text-danger">Ghi Chú: đen đá không đường</span> -->
 
                               </div>
                               <!--end col-->
@@ -105,16 +105,14 @@
                                       </thead>
                                       <tbody id="products-list">
                                       
-                                          <tr *ngFor="let item of selectedEntity.orderItems">
-                                              <th scope="row">{{item}}</th>
+                                          <tr *ngFor="let item of orderItems; let i = index">
+                                              <td>{{ i + 1 }}</td>
                                               <td class="text-start">
-                                                  <span class="fw-medium">aaaaaaaaaaaa</span>
-                                                  <p class="text-muted mb-0">
-                                                          S</p>
+                                                  <span class="fw-medium">{{item.name}}</span>
                                               </td>
-                                              <td>20.000</td>
-                                              <td>500</td>
-                                              <td class="text-end">100.000.000 </td>
+                                              <td>${{item.price}}</td>
+                                              <td>{{item.quantity}}</td>
+                                              <td class="text-end">${{item.price * item.quantity}}</td>
                                           </tr>
                                           <!-- @php($i++)
                                       @endforeach -->
@@ -126,7 +124,7 @@
                                       <tbody>
                                           <tr class="border-top border-top-dashed fs-15">
                                               <th scope="row">Tổng Giá</th>
-                                              <th class="text-end">100.000.000</th>
+                                              <th class="text-end">${{order.total}}</th>
                                           </tr>
                                       </tbody>
                                   </table>

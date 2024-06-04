@@ -62,7 +62,8 @@ namespace SonEcommerce.Public.Orders
                     Price = item.Price,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
-                    SKU = product.SKU
+                    SKU = product.SKU,
+                    Name = product.Name,
                 });
             }
             await _orderItemRepository.InsertManyAsync(items);
