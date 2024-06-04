@@ -396,4 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-aspnet-core/src/SonEcommerce.Admin.HttpApi.Host/Logs/
+aspnet-core/src/SonEcommerce.Admin.HttpApi.Host/Logs/logs.txt
+
