@@ -1,1 +1,1215 @@
 
+2024-06-04 17:13:37.245 +07:00 [INF] Starting SonEcommerce.Admin.HttpApi.Host.
+2024-06-04 17:13:44.461 +07:00 [INF] Loaded ABP modules:
+2024-06-04 17:13:44.462 +07:00 [INF] - SonEcommerce.Admin.SonEcommerceAdminHttpApiHostModule
+2024-06-04 17:13:44.462 +07:00 [INF]   - SonEcommerce.Admin.SonEcommerceHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - SonEcommerce.Admin.SonEcommerceApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - SonEcommerce.SonEcommerceDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.AuditLogging.AbpAuditLoggingDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Validation.AbpValidationModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Localization.AbpLocalizationModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Settings.AbpSettingsModule
+2024-06-04 17:13:44.462 +07:00 [INF]                 - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]                 - Volo.Abp.Security.AbpSecurityModule
+2024-06-04 17:13:44.462 +07:00 [INF]                 - Volo.Abp.Data.AbpDataModule
+2024-06-04 17:13:44.462 +07:00 [INF]                   - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2024-06-04 17:13:44.462 +07:00 [INF]                   - Volo.Abp.Uow.AbpUnitOfWorkModule
+2024-06-04 17:13:44.462 +07:00 [INF]                   - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Threading.AbpThreadingModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Users.AbpUsersDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Features.AbpFeaturesModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.Account.AbpAccountApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.Identity.AbpIdentityApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Users.AbpUsersAbstractionModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.EventBus.AbpEventBusModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Json.AbpJsonModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Guids.AbpGuidsModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Authorization.AbpAuthorizationModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Application.AbpDddApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Auditing.AbpAuditingContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementApplicationContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.FluentValidation.AbpFluentValidationModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.Account.AbpAccountHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.Identity.AbpIdentityHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Auditing.AbpAuditingModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Http.AbpHttpModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Http.AbpHttpAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Minify.AbpMinifyModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.UI.AbpUiModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.Application.AbpDddApplicationModule
+2024-06-04 17:13:44.462 +07:00 [INF]             - Volo.Abp.Domain.AbpDddDomainModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Specifications.AbpSpecificationsModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Caching.AbpCachingModule
+2024-06-04 17:13:44.462 +07:00 [INF]                 - Volo.Abp.Serialization.AbpSerializationModule
+2024-06-04 17:13:44.462 +07:00 [INF]               - Volo.Abp.Domain.AbpDddDomainSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.PermissionManagement.HttpApi.AbpPermissionManagementHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.TenantManagement.AbpTenantManagementHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.SettingManagement.AbpSettingManagementHttpApiModule
+2024-06-04 17:13:44.462 +07:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2024-06-04 17:13:44.462 +07:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2024-06-04 17:13:44.462 +07:00 [INF]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule
+2024-06-04 17:13:44.462 +07:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule
+2024-06-04 17:13:44.462 +07:00 [INF]   - SonEcommerce.Admin.SonEcommerceAdminApplicationModule
+2024-06-04 17:13:44.462 +07:00 [INF]     - SonEcommerce.SonEcommerceDomainModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.AuditLogging.AbpAuditLoggingDomainModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsModule
+2024-06-04 17:13:44.462 +07:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule
+2024-06-04 17:13:44.462 +07:00 [INF]         - Volo.Abp.AutoMapper.AbpAutoMapperModule
+2024-06-04 17:13:44.462 +07:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.Identity.AbpIdentityDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]         - Volo.Abp.Users.AbpUsersDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.PermissionManagement.OpenIddict.AbpPermissionManagementDomainOpenIddictModule
+2024-06-04 17:13:44.463 +07:00 [INF]         - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.PermissionManagement.Identity.AbpPermissionManagementDomainIdentityModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementDomainModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.Emailing.AbpEmailingModule
+2024-06-04 17:13:44.463 +07:00 [INF]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule
+2024-06-04 17:13:44.463 +07:00 [INF]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule
+2024-06-04 17:13:44.463 +07:00 [INF]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.Account.AbpAccountApplicationModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.Identity.AbpIdentityApplicationModule
+2024-06-04 17:13:44.463 +07:00 [INF]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.TenantManagement.AbpTenantManagementApplicationModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.SettingManagement.AbpSettingManagementApplicationModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.BlobStoring.FileSystem.AbpBlobStoringFileSystemModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.BlobStoring.AbpBlobStoringModule
+2024-06-04 17:13:44.463 +07:00 [INF]   - SonEcommerce.EntityFrameworkCore.SonEcommerceEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.SettingManagement.EntityFrameworkCore.AbpSettingManagementEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.EntityFrameworkCore.SqlServer.AbpEntityFrameworkCoreSqlServerModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.BackgroundJobs.EntityFrameworkCore.AbpBackgroundJobsEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.AuditLogging.EntityFrameworkCore.AbpAuditLoggingEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.TenantManagement.EntityFrameworkCore.AbpTenantManagementEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]     - Volo.Abp.FeatureManagement.EntityFrameworkCore.AbpFeatureManagementEntityFrameworkCoreModule
+2024-06-04 17:13:44.463 +07:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2024-06-04 17:13:44.463 +07:00 [INF]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2024-06-04 17:13:44.795 +07:00 [DBG] Started background worker: Volo.Abp.BackgroundJobs.BackgroundJobWorker
+2024-06-04 17:13:44.809 +07:00 [DBG] Started background worker: Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker
+2024-06-04 17:13:45.748 +07:00 [INF] User profile is available. Using 'C:\Users\nhuso\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-04 17:13:45.994 +07:00 [INF] Initialized all ABP modules.
+2024-06-04 17:13:46.236 +07:00 [INF] Now listening on: https://localhost:5001
+2024-06-04 17:13:46.236 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-04 17:13:46.236 +07:00 [INF] Hosting environment: Development
+2024-06-04 17:13:46.236 +07:00 [INF] Content root path: C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.HttpApi.Host
+2024-06-04 17:13:46.922 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - null null
+2024-06-04 17:13:48.028 +07:00 [INF] Executing endpoint 'SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host)'
+2024-06-04 17:13:48.051 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller SonEcommerce.Controllers.HomeController (SonEcommerce.Admin.HttpApi.Host).
+2024-06-04 17:13:48.156 +07:00 [INF] Executing action method SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host) - Validation state: "Valid"
+2024-06-04 17:13:48.159 +07:00 [INF] Executed action method SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.3597ms.
+2024-06-04 17:13:48.165 +07:00 [INF] Executing RedirectResult, redirecting to /swagger.
+2024-06-04 17:13:48.170 +07:00 [INF] Executed action SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host) in 114.924ms
+2024-06-04 17:13:48.170 +07:00 [INF] Executed endpoint 'SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host)'
+2024-06-04 17:13:48.179 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - 302 0 null 1262.2456ms
+2024-06-04 17:13:48.186 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2024-06-04 17:13:48.282 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 95.6586ms
+2024-06-04 17:13:48.434 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:13:48.442 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 7.8676ms
+2024-06-04 17:13:48.445 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:13:48.496 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.9051ms
+2024-06-04 17:13:48.623 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2024-06-04 17:13:48.990 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 367.5682ms
+2024-06-04 17:14:42.563 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:14:42.569 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:14:42.571 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 204 null null 7.6874ms
+2024-06-04 17:14:42.573 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:14:42.576 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:14:42.579 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:14:42.589 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:14:42.668 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:14:42.688 +07:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2024-06-04 17:14:42.703 +07:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-06-04 17:14:43.191 +07:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2024-06-04 17:14:43.193 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 524.9476ms.
+2024-06-04 17:14:43.200 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2024-06-04 17:14:43.227 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 637.6883ms
+2024-06-04 17:14:43.227 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:14:43.228 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 200 null application/json; charset=utf-8 655.7518ms
+2024-06-04 17:14:43.232 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:14:43.232 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:14:43.232 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 204 null null 0.8682ms
+2024-06-04 17:14:43.235 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:14:43.235 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:14:43.236 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:14:43.238 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationLocalization", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:14:43.272 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:14:43.327 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 54.1878ms.
+2024-06-04 17:14:43.327 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto'.
+2024-06-04 17:14:43.332 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 93.1273ms
+2024-06-04 17:14:43.332 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:14:43.332 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 200 null application/json; charset=utf-8 97.6218ms
+2024-06-04 17:19:14.049 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:19:14.049 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:14.049 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 204 null null 1.2127ms
+2024-06-04 17:19:14.051 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:19:14.051 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:14.781 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:14.792 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:19:14.792 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:19:14.815 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:19:14.818 +07:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2024-06-04 17:19:14.821 +07:00 [DBG] PermissionStore.GetCacheItemAsync: pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.ManagePermissions,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.ManagePermissions,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Update.ManageRoles,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:FeatureManagement.ManageHostFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing.Test,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.TimeZone,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:19:14.826 +07:00 [DBG] Not found in the cache: pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:FeatureManagement.ManageHostFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing.Test,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.TimeZone,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:19:14.833 +07:00 [DBG] Getting not cache granted permissions from the repository for this provider name,key: U,d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:14.928 +07:00 [DBG] Setting the cache items. Count: 27
+2024-06-04 17:19:14.939 +07:00 [DBG] Finished setting the cache items. Count: 27
+2024-06-04 17:19:14.941 +07:00 [DBG] PermissionStore.GetCacheItemAsync: pn:R,pk:Admin,n:AbpIdentity.Roles,pn:R,pk:Admin,n:AbpIdentity.Roles.Create,pn:R,pk:Admin,n:AbpIdentity.Roles.Update,pn:R,pk:Admin,n:AbpIdentity.Roles.Delete,pn:R,pk:Admin,n:AbpIdentity.Roles.ManagePermissions,pn:R,pk:Admin,n:AbpIdentity.Users,pn:R,pk:Admin,n:AbpIdentity.Users.Create,pn:R,pk:Admin,n:AbpIdentity.Users.Update,pn:R,pk:Admin,n:AbpIdentity.Users.Delete,pn:R,pk:Admin,n:AbpIdentity.Users.ManagePermissions,pn:R,pk:Admin,n:AbpIdentity.Users.Update.ManageRoles,pn:R,pk:Admin,n:FeatureManagement.ManageHostFeatures,pn:R,pk:Admin,n:SettingManagement.Emailing,pn:R,pk:Admin,n:SettingManagement.Emailing.Test,pn:R,pk:Admin,n:SettingManagement.TimeZone,pn:R,pk:Admin,n:AbpTenantManagement.Tenants,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Create,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Update,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Delete,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageFeatures,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:19:14.942 +07:00 [DBG] Not found in the cache: pn:R,pk:Admin,n:FeatureManagement.ManageHostFeatures,pn:R,pk:Admin,n:SettingManagement.Emailing,pn:R,pk:Admin,n:SettingManagement.Emailing.Test,pn:R,pk:Admin,n:SettingManagement.TimeZone,pn:R,pk:Admin,n:AbpTenantManagement.Tenants,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Create,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Update,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Delete,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageFeatures,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:19:14.944 +07:00 [DBG] Getting not cache granted permissions from the repository for this provider name,key: R,Admin
+2024-06-04 17:19:14.990 +07:00 [DBG] Setting the cache items. Count: 27
+2024-06-04 17:19:14.993 +07:00 [DBG] Finished setting the cache items. Count: 27
+2024-06-04 17:19:14.996 +07:00 [DBG] PermissionStore.GetCacheItemAsync: pn:C,pk:SonEcommerce_Admin,n:AbpIdentity.UserLookup
+2024-06-04 17:19:14.998 +07:00 [DBG] Not found in the cache: pn:C,pk:SonEcommerce_Admin,n:AbpIdentity.UserLookup
+2024-06-04 17:19:14.999 +07:00 [DBG] Getting all granted permissions from the repository for this provider name,key: C,SonEcommerce_Admin
+2024-06-04 17:19:15.006 +07:00 [DBG] Setting the cache items. Count: 39
+2024-06-04 17:19:15.009 +07:00 [DBG] Finished setting the cache items. Count: 39
+2024-06-04 17:19:15.021 +07:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2024-06-04 17:19:15.021 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 205.2292ms.
+2024-06-04 17:19:15.035 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:15.035 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2024-06-04 17:19:15.037 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 244.5143ms
+2024-06-04 17:19:15.037 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:19:15.037 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 200 null application/json; charset=utf-8 986.5586ms
+2024-06-04 17:19:15.040 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:19:15.040 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:15.040 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 204 null null 0.4851ms
+2024-06-04 17:19:15.042 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:19:15.042 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:15.046 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:15.048 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:19:15.048 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationLocalization", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:19:15.064 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:19:15.066 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.5335ms.
+2024-06-04 17:19:15.067 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto'.
+2024-06-04 17:19:15.068 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 20.1343ms
+2024-06-04 17:19:15.068 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:19:15.069 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 200 null application/json; charset=utf-8 27.2447ms
+2024-06-04 17:19:16.742 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/app/orders/all - null null
+2024-06-04 17:19:16.743 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:16.743 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/app/orders/all - 204 null null 0.9018ms
+2024-06-04 17:19:16.744 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/all - null null
+2024-06-04 17:19:16.745 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:16.748 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:16.751 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:16.753 +07:00 [INF] Route matched with {action = "GetListAll", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.List`1[SonEcommerce.Admin.OrderInListDto]] GetListAllAsync() on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:19:17.272 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:19:17.579 +07:00 [WRN] No store type was specified for the decimal property 'Value' on entity type 'ProductAttributeDecimal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-06-04 17:19:17.720 +07:00 [INF] Executed action method SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 448.0486ms.
+2024-06-04 17:19:17.742 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:17.743 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[SonEcommerce.Admin.OrderInListDto, SonEcommerce.Admin.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-04 17:19:17.754 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application) in 1001.5896ms
+2024-06-04 17:19:17.754 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:17.755 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/all - 200 null application/json; charset=utf-8 1011.2753ms
+2024-06-04 17:19:19.362 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:19:19.362 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:19.362 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 204 null null 0.8917ms
+2024-06-04 17:19:19.364 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:19:19.364 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:19:19.369 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:19.372 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:19.374 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:19:19.398 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:19:19.457 +07:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ProductId], [a].[OrderId], [a].[Name], [a].[Price], [a].[Quantity], [a].[SKU]
+FROM [AppOrderItems] AS [a]
+WHERE [a].[OrderId] = @__orderId_0
+2024-06-04 17:19:19.479 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'SonEcommerce.EntityFrameworkCore.SonEcommerceDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:19:19.553 +07:00 [ERR] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": null,
+  "message": "An internal error occurred during your request!",
+  "details": null,
+  "data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.ProdVer": "16.00.1000",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "207",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476"
+  },
+  "validationErrors": null
+}
+
+2024-06-04 17:19:19.553 +07:00 [ERR] Invalid column name 'Name'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+   at Volo.Abp.Castle.DynamicProxy.CastleAbpMethodInvocationAdapterWithReturnValue`1.ProceedAsync()
+   at Volo.Abp.Uow.UnitOfWorkInterceptor.InterceptAsync(IAbpMethodInvocation invocation)
+   at Volo.Abp.Castle.DynamicProxy.CastleAsyncAbpInterceptorAdapter`1.InterceptAsync[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo, Func`3 proceed)
+   at SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync(Guid orderId) in C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.Application\Orders\OrdersAppService .cs:line 88
+   at lambda_method2132(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:19:19.555 +07:00 [ERR] ---------- Exception Data ----------
+HelpLink.ProdName = Microsoft SQL Server
+HelpLink.ProdVer = 16.00.1000
+HelpLink.EvtSrc = MSSQLServer
+HelpLink.EvtID = 207
+HelpLink.BaseHelpUrl = https://go.microsoft.com/fwlink
+HelpLink.LinkId = 20476
+
+2024-06-04 17:19:19.559 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2024-06-04 17:19:19.560 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 185.468ms
+2024-06-04 17:19:19.560 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:19.771 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:19.780 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:19.781 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 500 null application/json; charset=utf-8 417.9352ms
+2024-06-04 17:19:34.770 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/oauth2-redirect.html?code=MLyrvbWBxgrV3RUZhUymf5qNcXmfFpt9U95yVZznI-w&state=VHVlIEp1biAwNCAyMDI0IDE3OjE5OjM0IEdNVCswNzAwIChJbmRvY2hpbmEgVGltZSk%3D&iss=https%3A%2F%2Flocalhost%3A5000%2F - null null
+2024-06-04 17:19:34.798 +07:00 [INF] Sending file. Request path: '/oauth2-redirect.html'. Physical path: 'N/A'
+2024-06-04 17:19:34.798 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/oauth2-redirect.html?code=MLyrvbWBxgrV3RUZhUymf5qNcXmfFpt9U95yVZznI-w&state=VHVlIEp1biAwNCAyMDI0IDE3OjE5OjM0IEdNVCswNzAwIChJbmRvY2hpbmEgVGltZSk%3D&iss=https%3A%2F%2Flocalhost%3A5000%2F - 200 null text/html 28.5161ms
+2024-06-04 17:19:34.814 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:19:34.832 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:19:34.833 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 1.18ms
+2024-06-04 17:19:34.846 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.5226ms
+2024-06-04 17:19:39.124 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/abp/Swashbuckle/SetCsrfCookie - null null
+2024-06-04 17:19:39.130 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:39.134 +07:00 [INF] Executing endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2024-06-04 17:19:39.135 +07:00 [INF] Route matched with {area = "Abp", action = "SetCsrfCookie", controller = "AbpSwashbuckle", page = ""}. Executing controller action with signature Void SetCsrfCookie() on controller Volo.Abp.Swashbuckle.AbpSwashbuckleController (Volo.Abp.Swashbuckle).
+2024-06-04 17:19:39.155 +07:00 [INF] Executing action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) - Validation state: "Valid"
+2024-06-04 17:19:39.156 +07:00 [INF] Executed action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 1.8438ms.
+2024-06-04 17:19:39.157 +07:00 [INF] Executed action Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) in 21.9037ms
+2024-06-04 17:19:39.157 +07:00 [INF] Executed endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2024-06-04 17:19:39.157 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/abp/Swashbuckle/SetCsrfCookie - 204 null null 33.284ms
+2024-06-04 17:19:39.263 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders - null null
+2024-06-04 17:19:39.286 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:39.289 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:39.293 +07:00 [INF] Route matched with {action = "GetList", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.Application.Dtos.PagedResultDto`1[SonEcommerce.Admin.OrderDto]] GetListAsync(Volo.Abp.Application.Dtos.PagedResultRequestDto) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:19:39.323 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:19:39.564 +07:00 [INF] Executed action method SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 241.6246ms.
+2024-06-04 17:19:39.567 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:39.569 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Application.Dtos.PagedResultDto`1[[SonEcommerce.Admin.OrderDto, SonEcommerce.Admin.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-04 17:19:39.577 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application) in 283.3761ms
+2024-06-04 17:19:39.577 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:39.577 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders - 200 null application/json; charset=utf-8 314.5786ms
+2024-06-04 17:19:50.804 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:19:50.808 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:19:50.811 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:50.811 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:19:50.833 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:19:50.840 +07:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ProductId], [a].[OrderId], [a].[Name], [a].[Price], [a].[Quantity], [a].[SKU]
+FROM [AppOrderItems] AS [a]
+WHERE [a].[OrderId] = @__orderId_0
+2024-06-04 17:19:50.841 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'SonEcommerce.EntityFrameworkCore.SonEcommerceDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:19:50.872 +07:00 [ERR] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": null,
+  "message": "An internal error occurred during your request!",
+  "details": null,
+  "data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.ProdVer": "16.00.1000",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "207",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476"
+  },
+  "validationErrors": null
+}
+
+2024-06-04 17:19:50.872 +07:00 [ERR] Invalid column name 'Name'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+   at Volo.Abp.Castle.DynamicProxy.CastleAbpMethodInvocationAdapterWithReturnValue`1.ProceedAsync()
+   at Volo.Abp.Uow.UnitOfWorkInterceptor.InterceptAsync(IAbpMethodInvocation invocation)
+   at Volo.Abp.Castle.DynamicProxy.CastleAsyncAbpInterceptorAdapter`1.InterceptAsync[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo, Func`3 proceed)
+   at SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync(Guid orderId) in C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.Application\Orders\OrdersAppService .cs:line 88
+   at lambda_method2132(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:19:50.872 +07:00 [ERR] ---------- Exception Data ----------
+HelpLink.ProdName = Microsoft SQL Server
+HelpLink.ProdVer = 16.00.1000
+HelpLink.EvtSrc = MSSQLServer
+HelpLink.EvtID = 207
+HelpLink.BaseHelpUrl = https://go.microsoft.com/fwlink
+HelpLink.LinkId = 20476
+
+2024-06-04 17:19:50.872 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2024-06-04 17:19:50.872 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 60.5782ms
+2024-06-04 17:19:50.872 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:19:50.881 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:50.881 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:19:50.882 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 500 null application/json; charset=utf-8 77.2766ms
+2024-06-04 17:20:11.729 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:20:11.734 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:20:11.741 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:20:11.741 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:20:11.791 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:20:11.803 +07:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ProductId], [a].[OrderId], [a].[Name], [a].[Price], [a].[Quantity], [a].[SKU]
+FROM [AppOrderItems] AS [a]
+WHERE [a].[OrderId] = @__orderId_0
+2024-06-04 17:20:11.808 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'SonEcommerce.EntityFrameworkCore.SonEcommerceDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:20:11.867 +07:00 [ERR] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": null,
+  "message": "An internal error occurred during your request!",
+  "details": null,
+  "data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.ProdVer": "16.00.1000",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "207",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476"
+  },
+  "validationErrors": null
+}
+
+2024-06-04 17:20:11.868 +07:00 [ERR] Invalid column name 'Name'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+   at Volo.Abp.Castle.DynamicProxy.CastleAbpMethodInvocationAdapterWithReturnValue`1.ProceedAsync()
+   at Volo.Abp.Uow.UnitOfWorkInterceptor.InterceptAsync(IAbpMethodInvocation invocation)
+   at Volo.Abp.Castle.DynamicProxy.CastleAsyncAbpInterceptorAdapter`1.InterceptAsync[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo, Func`3 proceed)
+   at SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync(Guid orderId) in C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.Application\Orders\OrdersAppService .cs:line 88
+   at lambda_method2132(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:20:11.868 +07:00 [ERR] ---------- Exception Data ----------
+HelpLink.ProdName = Microsoft SQL Server
+HelpLink.ProdVer = 16.00.1000
+HelpLink.EvtSrc = MSSQLServer
+HelpLink.EvtID = 207
+HelpLink.BaseHelpUrl = https://go.microsoft.com/fwlink
+HelpLink.LinkId = 20476
+
+2024-06-04 17:20:11.868 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2024-06-04 17:20:11.868 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 126.8166ms
+2024-06-04 17:20:11.868 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:20:11.876 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:20:11.876 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:20:11.877 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 500 null application/json; charset=utf-8 147.8426ms
+2024-06-04 17:20:13.466 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:20:13.471 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:20:13.474 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:20:13.474 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:20:13.509 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:20:13.518 +07:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ProductId], [a].[OrderId], [a].[Name], [a].[Price], [a].[Quantity], [a].[SKU]
+FROM [AppOrderItems] AS [a]
+WHERE [a].[OrderId] = @__orderId_0
+2024-06-04 17:20:13.520 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'SonEcommerce.EntityFrameworkCore.SonEcommerceDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:20:13.556 +07:00 [ERR] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": null,
+  "message": "An internal error occurred during your request!",
+  "details": null,
+  "data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.ProdVer": "16.00.1000",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "207",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476"
+  },
+  "validationErrors": null
+}
+
+2024-06-04 17:20:13.556 +07:00 [ERR] Invalid column name 'Name'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+   at Volo.Abp.Castle.DynamicProxy.CastleAbpMethodInvocationAdapterWithReturnValue`1.ProceedAsync()
+   at Volo.Abp.Uow.UnitOfWorkInterceptor.InterceptAsync(IAbpMethodInvocation invocation)
+   at Volo.Abp.Castle.DynamicProxy.CastleAsyncAbpInterceptorAdapter`1.InterceptAsync[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo, Func`3 proceed)
+   at SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync(Guid orderId) in C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.Application\Orders\OrdersAppService .cs:line 88
+   at lambda_method2132(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:20:13.556 +07:00 [ERR] ---------- Exception Data ----------
+HelpLink.ProdName = Microsoft SQL Server
+HelpLink.ProdVer = 16.00.1000
+HelpLink.EvtSrc = MSSQLServer
+HelpLink.EvtID = 207
+HelpLink.BaseHelpUrl = https://go.microsoft.com/fwlink
+HelpLink.LinkId = 20476
+
+2024-06-04 17:20:13.556 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2024-06-04 17:20:13.556 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 82.1486ms
+2024-06-04 17:20:13.556 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:20:13.567 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:20:13.567 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:20:13.568 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 500 null application/json; charset=utf-8 102.25ms
+2024-06-04 17:20:15.206 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2024-06-04 17:20:15.243 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 37.9613ms
+2024-06-04 17:20:15.268 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:20:15.268 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:20:15.269 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 1.0624ms
+2024-06-04 17:20:15.287 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.6337ms
+2024-06-04 17:20:15.416 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2024-06-04 17:20:15.588 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 172.3614ms
+2024-06-04 17:20:21.930 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/abp/Swashbuckle/SetCsrfCookie - null null
+2024-06-04 17:20:21.933 +07:00 [INF] Executing endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2024-06-04 17:20:21.934 +07:00 [INF] Route matched with {area = "Abp", action = "SetCsrfCookie", controller = "AbpSwashbuckle", page = ""}. Executing controller action with signature Void SetCsrfCookie() on controller Volo.Abp.Swashbuckle.AbpSwashbuckleController (Volo.Abp.Swashbuckle).
+2024-06-04 17:20:21.962 +07:00 [INF] Executing action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) - Validation state: "Valid"
+2024-06-04 17:20:21.963 +07:00 [INF] Executed action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 0.45ms.
+2024-06-04 17:20:21.963 +07:00 [INF] Executed action Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) in 29.0302ms
+2024-06-04 17:20:21.963 +07:00 [INF] Executed endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2024-06-04 17:20:21.963 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/abp/Swashbuckle/SetCsrfCookie - 204 null null 33.1036ms
+2024-06-04 17:20:22.056 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:20:22.059 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:20:22.062 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:20:22.092 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:20:22.102 +07:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ProductId], [a].[OrderId], [a].[Name], [a].[Price], [a].[Quantity], [a].[SKU]
+FROM [AppOrderItems] AS [a]
+WHERE [a].[OrderId] = @__orderId_0
+2024-06-04 17:20:22.104 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'SonEcommerce.EntityFrameworkCore.SonEcommerceDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:20:22.147 +07:00 [ERR] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": null,
+  "message": "An internal error occurred during your request!",
+  "details": null,
+  "data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.ProdVer": "16.00.1000",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "207",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476"
+  },
+  "validationErrors": null
+}
+
+2024-06-04 17:20:22.147 +07:00 [ERR] Invalid column name 'Name'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+   at Volo.Abp.Castle.DynamicProxy.CastleAbpMethodInvocationAdapterWithReturnValue`1.ProceedAsync()
+   at Volo.Abp.Uow.UnitOfWorkInterceptor.InterceptAsync(IAbpMethodInvocation invocation)
+   at Volo.Abp.Castle.DynamicProxy.CastleAsyncAbpInterceptorAdapter`1.InterceptAsync[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo, Func`3 proceed)
+   at SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync(Guid orderId) in C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.Application\Orders\OrdersAppService .cs:line 88
+   at lambda_method2583(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:20:22.147 +07:00 [ERR] ---------- Exception Data ----------
+HelpLink.ProdName = Microsoft SQL Server
+HelpLink.ProdVer = 16.00.1000
+HelpLink.EvtSrc = MSSQLServer
+HelpLink.EvtID = 207
+HelpLink.BaseHelpUrl = https://go.microsoft.com/fwlink
+HelpLink.LinkId = 20476
+
+2024-06-04 17:20:22.147 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2024-06-04 17:20:22.148 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 86.189ms
+2024-06-04 17:20:22.148 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:20:22.159 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:20:22.160 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:20:22.160 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 500 null application/json; charset=utf-8 104.3471ms
+2024-06-04 17:21:57.245 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2024-06-04 17:21:57.270 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 25.9222ms
+2024-06-04 17:21:57.294 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:21:57.294 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:21:57.295 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 0.9757ms
+2024-06-04 17:21:57.304 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.8722ms
+2024-06-04 17:21:57.478 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2024-06-04 17:21:57.649 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 171.5491ms
+2024-06-04 17:22:05.979 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/abp/Swashbuckle/SetCsrfCookie - null null
+2024-06-04 17:22:05.981 +07:00 [INF] Executing endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2024-06-04 17:22:05.982 +07:00 [INF] Route matched with {area = "Abp", action = "SetCsrfCookie", controller = "AbpSwashbuckle", page = ""}. Executing controller action with signature Void SetCsrfCookie() on controller Volo.Abp.Swashbuckle.AbpSwashbuckleController (Volo.Abp.Swashbuckle).
+2024-06-04 17:22:06.007 +07:00 [INF] Executing action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) - Validation state: "Valid"
+2024-06-04 17:22:06.007 +07:00 [INF] Executed action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 0.2808ms.
+2024-06-04 17:22:06.007 +07:00 [INF] Executed action Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) in 25.0132ms
+2024-06-04 17:22:06.007 +07:00 [INF] Executed endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2024-06-04 17:22:06.008 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/abp/Swashbuckle/SetCsrfCookie - 204 null null 28.2781ms
+2024-06-04 17:22:06.110 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders - null null
+2024-06-04 17:22:06.114 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:22:06.117 +07:00 [INF] Route matched with {action = "GetList", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.Application.Dtos.PagedResultDto`1[SonEcommerce.Admin.OrderDto]] GetListAsync(Volo.Abp.Application.Dtos.PagedResultRequestDto) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:22:06.144 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:22:06.158 +07:00 [INF] Executed action method SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 13.7731ms.
+2024-06-04 17:22:06.159 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:22:06.159 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Application.Dtos.PagedResultDto`1[[SonEcommerce.Admin.OrderDto, SonEcommerce.Admin.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-04 17:22:06.162 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application) in 44.4429ms
+2024-06-04 17:22:06.162 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:22:06.162 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders - 200 null application/json; charset=utf-8 52.7815ms
+2024-06-04 17:22:15.539 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:22:15.542 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:22:15.545 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:22:15.570 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:22:15.578 +07:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ProductId], [a].[OrderId], [a].[Name], [a].[Price], [a].[Quantity], [a].[SKU]
+FROM [AppOrderItems] AS [a]
+WHERE [a].[OrderId] = @__orderId_0
+2024-06-04 17:22:15.578 +07:00 [ERR] An exception occurred while iterating over the results of a query for context type 'SonEcommerce.EntityFrameworkCore.SonEcommerceDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:22:15.615 +07:00 [ERR] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": null,
+  "message": "An internal error occurred during your request!",
+  "details": null,
+  "data": {
+    "HelpLink.ProdName": "Microsoft SQL Server",
+    "HelpLink.ProdVer": "16.00.1000",
+    "HelpLink.EvtSrc": "MSSQLServer",
+    "HelpLink.EvtID": "207",
+    "HelpLink.BaseHelpUrl": "https://go.microsoft.com/fwlink",
+    "HelpLink.LinkId": "20476"
+  },
+  "validationErrors": null
+}
+
+2024-06-04 17:22:15.615 +07:00 [ERR] Invalid column name 'Name'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SplitQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Volo.Abp.Domain.Repositories.EntityFrameworkCore.EfCoreRepository`2.GetListAsync(Expression`1 predicate, Boolean includeDetails, CancellationToken cancellationToken)
+   at Castle.DynamicProxy.AsyncInterceptorBase.ProceedAsynchronous[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo)
+   at Volo.Abp.Castle.DynamicProxy.CastleAbpMethodInvocationAdapterWithReturnValue`1.ProceedAsync()
+   at Volo.Abp.Uow.UnitOfWorkInterceptor.InterceptAsync(IAbpMethodInvocation invocation)
+   at Volo.Abp.Castle.DynamicProxy.CastleAsyncAbpInterceptorAdapter`1.InterceptAsync[TResult](IInvocation invocation, IInvocationProceedInfo proceedInfo, Func`3 proceed)
+   at SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync(Guid orderId) in C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.Application\Orders\OrdersAppService .cs:line 88
+   at lambda_method2599(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+ClientConnectionId:27564699-da93-4a6b-b77f-63fa3ce1b1b3
+Error Number:207,State:1,Class:16
+2024-06-04 17:22:15.615 +07:00 [ERR] ---------- Exception Data ----------
+HelpLink.ProdName = Microsoft SQL Server
+HelpLink.ProdVer = 16.00.1000
+HelpLink.EvtSrc = MSSQLServer
+HelpLink.EvtID = 207
+HelpLink.BaseHelpUrl = https://go.microsoft.com/fwlink
+HelpLink.LinkId = 20476
+
+2024-06-04 17:22:15.615 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2024-06-04 17:22:15.616 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 70.4367ms
+2024-06-04 17:22:15.616 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:22:15.629 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:22:15.630 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:22:15.630 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 500 null application/json; charset=utf-8 91.4646ms
+2024-06-04 17:23:21.761 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2024-06-04 17:23:21.877 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 115.794ms
+2024-06-04 17:23:21.948 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:23:21.948 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:23:21.949 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 0.9781ms
+2024-06-04 17:23:21.967 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 18.6335ms
+2024-06-04 17:23:22.251 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2024-06-04 17:23:22.402 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 151.7755ms
+2024-06-04 17:23:25.705 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2024-06-04 17:23:25.744 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 38.7403ms
+2024-06-04 17:23:25.822 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:23:25.822 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:23:25.823 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 1.6274ms
+2024-06-04 17:23:25.855 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.782ms
+2024-06-04 17:23:26.073 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2024-06-04 17:23:26.238 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 168.4575ms
+2024-06-04 17:24:31.479 +07:00 [INF] Starting SonEcommerce.Admin.HttpApi.Host.
+2024-06-04 17:24:39.189 +07:00 [INF] Loaded ABP modules:
+2024-06-04 17:24:39.190 +07:00 [INF] - SonEcommerce.Admin.SonEcommerceAdminHttpApiHostModule
+2024-06-04 17:24:39.190 +07:00 [INF]   - SonEcommerce.Admin.SonEcommerceHttpApiModule
+2024-06-04 17:24:39.190 +07:00 [INF]     - SonEcommerce.Admin.SonEcommerceApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - SonEcommerce.SonEcommerceDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.AuditLogging.AbpAuditLoggingDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.Validation.AbpValidationModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Localization.AbpLocalizationModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.Settings.AbpSettingsModule
+2024-06-04 17:24:39.190 +07:00 [INF]                 - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]                 - Volo.Abp.Security.AbpSecurityModule
+2024-06-04 17:24:39.190 +07:00 [INF]                 - Volo.Abp.Data.AbpDataModule
+2024-06-04 17:24:39.190 +07:00 [INF]                   - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2024-06-04 17:24:39.190 +07:00 [INF]                   - Volo.Abp.Uow.AbpUnitOfWorkModule
+2024-06-04 17:24:39.190 +07:00 [INF]                   - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.Threading.AbpThreadingModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.Users.AbpUsersDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.Features.AbpFeaturesModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.SettingManagement.AbpSettingManagementDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.TenantManagement.AbpTenantManagementDomainSharedModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - Volo.Abp.Account.AbpAccountApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.Identity.AbpIdentityApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.Users.AbpUsersAbstractionModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.EventBus.AbpEventBusModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.Json.AbpJsonModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.Guids.AbpGuidsModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.Authorization.AbpAuthorizationModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Application.AbpDddApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.Auditing.AbpAuditingContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementApplicationContractsModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - Volo.Abp.FluentValidation.AbpFluentValidationModule
+2024-06-04 17:24:39.190 +07:00 [INF]     - Volo.Abp.Account.AbpAccountHttpApiModule
+2024-06-04 17:24:39.190 +07:00 [INF]       - Volo.Abp.Identity.AbpIdentityHttpApiModule
+2024-06-04 17:24:39.190 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2024-06-04 17:24:39.190 +07:00 [INF]           - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Auditing.AbpAuditingModule
+2024-06-04 17:24:39.190 +07:00 [INF]             - Volo.Abp.Http.AbpHttpModule
+2024-06-04 17:24:39.190 +07:00 [INF]               - Volo.Abp.Http.AbpHttpAbstractionsModule
+2024-06-04 17:24:39.191 +07:00 [INF]               - Volo.Abp.Minify.AbpMinifyModule
+2024-06-04 17:24:39.191 +07:00 [INF]             - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2024-06-04 17:24:39.191 +07:00 [INF]             - Volo.Abp.UI.AbpUiModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.Application.AbpDddApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]             - Volo.Abp.Domain.AbpDddDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]               - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2024-06-04 17:24:39.191 +07:00 [INF]               - Volo.Abp.Specifications.AbpSpecificationsModule
+2024-06-04 17:24:39.191 +07:00 [INF]               - Volo.Abp.Caching.AbpCachingModule
+2024-06-04 17:24:39.191 +07:00 [INF]                 - Volo.Abp.Serialization.AbpSerializationModule
+2024-06-04 17:24:39.191 +07:00 [INF]               - Volo.Abp.Domain.AbpDddDomainSharedModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.PermissionManagement.HttpApi.AbpPermissionManagementHttpApiModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.TenantManagement.AbpTenantManagementHttpApiModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementHttpApiModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.SettingManagement.AbpSettingManagementHttpApiModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - SonEcommerce.Admin.SonEcommerceAdminApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - SonEcommerce.SonEcommerceDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.AuditLogging.AbpAuditLoggingDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.BackgroundJobs.AbpBackgroundJobsDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.AutoMapper.AbpAutoMapperModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.Identity.AbpIdentityDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.Users.AbpUsersDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.PermissionManagement.OpenIddict.AbpPermissionManagementDomainOpenIddictModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.PermissionManagement.Identity.AbpPermissionManagementDomainIdentityModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.SettingManagement.AbpSettingManagementDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.TenantManagement.AbpTenantManagementDomainModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.Emailing.AbpEmailingModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule
+2024-06-04 17:24:39.191 +07:00 [INF]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule
+2024-06-04 17:24:39.191 +07:00 [INF]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.Account.AbpAccountApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.Identity.AbpIdentityApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.TenantManagement.AbpTenantManagementApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.FeatureManagement.AbpFeatureManagementApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.SettingManagement.AbpSettingManagementApplicationModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.BlobStoring.FileSystem.AbpBlobStoringFileSystemModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.BlobStoring.AbpBlobStoringModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - SonEcommerce.EntityFrameworkCore.SonEcommerceEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.SettingManagement.EntityFrameworkCore.AbpSettingManagementEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.EntityFrameworkCore.SqlServer.AbpEntityFrameworkCoreSqlServerModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.BackgroundJobs.EntityFrameworkCore.AbpBackgroundJobsEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.AuditLogging.EntityFrameworkCore.AbpAuditLoggingEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.TenantManagement.EntityFrameworkCore.AbpTenantManagementEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]     - Volo.Abp.FeatureManagement.EntityFrameworkCore.AbpFeatureManagementEntityFrameworkCoreModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2024-06-04 17:24:39.191 +07:00 [INF]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2024-06-04 17:24:39.566 +07:00 [DBG] Started background worker: Volo.Abp.BackgroundJobs.BackgroundJobWorker
+2024-06-04 17:24:39.575 +07:00 [DBG] Started background worker: Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker
+2024-06-04 17:24:40.504 +07:00 [INF] User profile is available. Using 'C:\Users\nhuso\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-04 17:24:40.793 +07:00 [INF] Initialized all ABP modules.
+2024-06-04 17:24:40.955 +07:00 [INF] Now listening on: https://localhost:5001
+2024-06-04 17:24:40.956 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-04 17:24:40.956 +07:00 [INF] Hosting environment: Development
+2024-06-04 17:24:40.956 +07:00 [INF] Content root path: C:\SonEcommerce\aspnet-core\src\SonEcommerce.Admin.HttpApi.Host
+2024-06-04 17:24:41.641 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - null null
+2024-06-04 17:24:42.658 +07:00 [INF] Executing endpoint 'SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host)'
+2024-06-04 17:24:42.681 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller SonEcommerce.Controllers.HomeController (SonEcommerce.Admin.HttpApi.Host).
+2024-06-04 17:24:42.773 +07:00 [INF] Executing action method SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host) - Validation state: "Valid"
+2024-06-04 17:24:42.776 +07:00 [INF] Executed action method SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.2724ms.
+2024-06-04 17:24:42.783 +07:00 [INF] Executing RedirectResult, redirecting to /swagger.
+2024-06-04 17:24:42.787 +07:00 [INF] Executed action SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host) in 102.7361ms
+2024-06-04 17:24:42.787 +07:00 [INF] Executed endpoint 'SonEcommerce.Controllers.HomeController.Index (SonEcommerce.Admin.HttpApi.Host)'
+2024-06-04 17:24:42.794 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - 302 0 null 1156.6443ms
+2024-06-04 17:24:42.798 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - null null
+2024-06-04 17:24:42.884 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - 200 null text/html;charset=utf-8 86.1161ms
+2024-06-04 17:24:42.910 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-04 17:24:42.933 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/_vs/browserLink - null null
+2024-06-04 17:24:42.938 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_framework/aspnetcore-browser-refresh.js - 200 13798 application/javascript; charset=utf-8 27.2081ms
+2024-06-04 17:24:42.989 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.2986ms
+2024-06-04 17:24:43.056 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - null null
+2024-06-04 17:24:43.410 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 353.7108ms
+2024-06-04 17:25:01.526 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:25:01.533 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:01.535 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 204 null null 9.0373ms
+2024-06-04 17:25:01.537 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:25:01.540 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:01.543 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:01.555 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:25:01.640 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:25:01.668 +07:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2024-06-04 17:25:01.689 +07:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-06-04 17:25:02.062 +07:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2024-06-04 17:25:02.064 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 424.4054ms.
+2024-06-04 17:25:02.070 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2024-06-04 17:25:02.093 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 537.9086ms
+2024-06-04 17:25:02.093 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:02.094 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 200 null application/json; charset=utf-8 557.9049ms
+2024-06-04 17:25:02.097 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:25:02.097 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:02.098 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 204 null null 0.4467ms
+2024-06-04 17:25:02.099 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:25:02.099 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:02.100 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:02.103 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationLocalization", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:25:02.127 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:25:02.161 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 33.6088ms.
+2024-06-04 17:25:02.161 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto'.
+2024-06-04 17:25:02.166 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 62.7748ms
+2024-06-04 17:25:02.166 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:02.166 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 200 null application/json; charset=utf-8 67.378ms
+2024-06-04 17:25:19.616 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/app/orders/all - null null
+2024-06-04 17:25:19.618 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:19.618 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/app/orders/all - 204 null null 1.6982ms
+2024-06-04 17:25:19.621 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/all - null null
+2024-06-04 17:25:19.624 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:20.515 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:25:20.530 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:25:20.532 +07:00 [INF] Route matched with {action = "GetListAll", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.List`1[SonEcommerce.Admin.OrderInListDto]] GetListAllAsync() on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:25:21.061 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:25:21.422 +07:00 [WRN] No store type was specified for the decimal property 'Value' on entity type 'ProductAttributeDecimal'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-06-04 17:25:21.629 +07:00 [INF] Executed action method SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 567.439ms.
+2024-06-04 17:25:21.662 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:25:21.662 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[SonEcommerce.Admin.OrderInListDto, SonEcommerce.Admin.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-04 17:25:21.675 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application) in 1142.7822ms
+2024-06-04 17:25:21.675 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:25:21.676 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/all - 200 null application/json; charset=utf-8 2055.3305ms
+2024-06-04 17:25:24.325 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:25:24.326 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:24.326 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 204 null null 1.374ms
+2024-06-04 17:25:24.330 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - null null
+2024-06-04 17:25:24.330 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:24.336 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:25:24.340 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:24.340 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationRequestOptions) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:25:24.363 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:25:24.365 +07:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2024-06-04 17:25:24.369 +07:00 [DBG] PermissionStore.GetCacheItemAsync: pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.ManagePermissions,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.ManagePermissions,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Update.ManageRoles,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:FeatureManagement.ManageHostFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing.Test,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.TimeZone,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:25:24.375 +07:00 [DBG] Found in the cache: pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Roles.ManagePermissions,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.ManagePermissions,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpIdentity.Users.Update.ManageRoles,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:FeatureManagement.ManageHostFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.Emailing.Test,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SettingManagement.TimeZone,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageFeatures,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Delete,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Product.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Create,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Update,pn:U,pk:d519669b-73ee-a7d8-1719-3a12a6f01f1b,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:25:24.379 +07:00 [DBG] PermissionStore.GetCacheItemAsync: pn:R,pk:Admin,n:AbpIdentity.Roles,pn:R,pk:Admin,n:AbpIdentity.Roles.Create,pn:R,pk:Admin,n:AbpIdentity.Roles.Update,pn:R,pk:Admin,n:AbpIdentity.Roles.Delete,pn:R,pk:Admin,n:AbpIdentity.Roles.ManagePermissions,pn:R,pk:Admin,n:AbpIdentity.Users,pn:R,pk:Admin,n:AbpIdentity.Users.Create,pn:R,pk:Admin,n:AbpIdentity.Users.Update,pn:R,pk:Admin,n:AbpIdentity.Users.Delete,pn:R,pk:Admin,n:AbpIdentity.Users.ManagePermissions,pn:R,pk:Admin,n:AbpIdentity.Users.Update.ManageRoles,pn:R,pk:Admin,n:FeatureManagement.ManageHostFeatures,pn:R,pk:Admin,n:SettingManagement.Emailing,pn:R,pk:Admin,n:SettingManagement.Emailing.Test,pn:R,pk:Admin,n:SettingManagement.TimeZone,pn:R,pk:Admin,n:AbpTenantManagement.Tenants,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Create,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Update,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Delete,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageFeatures,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:25:24.381 +07:00 [DBG] Found in the cache: pn:R,pk:Admin,n:AbpIdentity.Roles,pn:R,pk:Admin,n:AbpIdentity.Roles.Create,pn:R,pk:Admin,n:AbpIdentity.Roles.Update,pn:R,pk:Admin,n:AbpIdentity.Roles.Delete,pn:R,pk:Admin,n:AbpIdentity.Roles.ManagePermissions,pn:R,pk:Admin,n:AbpIdentity.Users,pn:R,pk:Admin,n:AbpIdentity.Users.Create,pn:R,pk:Admin,n:AbpIdentity.Users.Update,pn:R,pk:Admin,n:AbpIdentity.Users.Delete,pn:R,pk:Admin,n:AbpIdentity.Users.ManagePermissions,pn:R,pk:Admin,n:AbpIdentity.Users.Update.ManageRoles,pn:R,pk:Admin,n:FeatureManagement.ManageHostFeatures,pn:R,pk:Admin,n:SettingManagement.Emailing,pn:R,pk:Admin,n:SettingManagement.Emailing.Test,pn:R,pk:Admin,n:SettingManagement.TimeZone,pn:R,pk:Admin,n:AbpTenantManagement.Tenants,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Create,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Update,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.Delete,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageFeatures,pn:R,pk:Admin,n:AbpTenantManagement.Tenants.ManageConnectionStrings,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Manufacturer.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.ProductCategory.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Delete,pn:R,pk:Admin,n:SonEcomAdminCatalog.Product.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Create,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Update,pn:R,pk:Admin,n:SonEcomAdminCatalog.Attribute.Delete
+2024-06-04 17:25:24.384 +07:00 [DBG] PermissionStore.GetCacheItemAsync: pn:C,pk:SonEcommerce_Admin,n:AbpIdentity.UserLookup
+2024-06-04 17:25:24.386 +07:00 [DBG] Found in the cache: pn:C,pk:SonEcommerce_Admin,n:AbpIdentity.UserLookup
+2024-06-04 17:25:24.403 +07:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2024-06-04 17:25:24.403 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 40.3501ms.
+2024-06-04 17:25:24.403 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2024-06-04 17:25:24.405 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 64.5294ms
+2024-06-04 17:25:24.405 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:24.405 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-configuration?includeLocalizationResources=false - 200 null application/json; charset=utf-8 75.713ms
+2024-06-04 17:25:24.409 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:25:24.409 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:24.409 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 204 null null 0.7888ms
+2024-06-04 17:25:24.411 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - null null
+2024-06-04 17:25:24.411 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:24.416 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:25:24.420 +07:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:24.420 +07:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationLocalization", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto] GetAsync(Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController (Volo.Abp.AspNetCore.Mvc).
+2024-06-04 17:25:24.442 +07:00 [INF] Executing action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid"
+2024-06-04 17:25:24.446 +07:00 [INF] Executed action method Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3.0595ms.
+2024-06-04 17:25:24.446 +07:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationLocalizationDto'.
+2024-06-04 17:25:24.448 +07:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 28.2797ms
+2024-06-04 17:25:24.448 +07:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationLocalizationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2024-06-04 17:25:24.449 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/abp/application-localization?cultureName=en&onlyDynamics=false - 200 null application/json; charset=utf-8 38.1463ms
+2024-06-04 17:25:24.584 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/all - null null
+2024-06-04 17:25:24.586 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:24.593 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:25:24.633 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:25:24.633 +07:00 [INF] Route matched with {action = "GetListAll", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.List`1[SonEcommerce.Admin.OrderInListDto]] GetListAllAsync() on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:25:24.702 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:25:24.709 +07:00 [INF] Executed action method SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 7.6674ms.
+2024-06-04 17:25:24.712 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:25:24.712 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[SonEcommerce.Admin.OrderInListDto, SonEcommerce.Admin.Application.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-04 17:25:24.712 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application) in 79.3996ms
+2024-06-04 17:25:24.712 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetListAllAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:25:24.713 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/all - 200 null application/json; charset=utf-8 130.7221ms
+2024-06-04 17:25:26.299 +07:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:25:26.300 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:26.300 +07:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 204 null null 1.0969ms
+2024-06-04 17:25:26.302 +07:00 [INF] Request starting HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - null null
+2024-06-04 17:25:26.303 +07:00 [INF] CORS policy execution successful.
+2024-06-04 17:25:26.369 +07:00 [DBG] Get dynamic claims cache for user: d519669b-73ee-a7d8-1719-3a12a6f01f1b
+2024-06-04 17:25:26.372 +07:00 [INF] Executing endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:25:26.375 +07:00 [INF] Route matched with {action = "GetOrderAndDetails", controller = "Orders", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[SonEcommerce.Admin.OrderDto] GetOrderAndDetailsAsync(System.Guid) on controller SonEcommerce.Admin.OrdersAppService (SonEcommerce.Admin.Application).
+2024-06-04 17:25:26.402 +07:00 [INF] Executing action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) - Validation state: "Valid"
+2024-06-04 17:25:26.480 +07:00 [INF] Executed action method SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 78.4533ms.
+2024-06-04 17:25:26.489 +07:00 [DBG] Added 0 entity changes to the current audit log
+2024-06-04 17:25:26.490 +07:00 [INF] Executing ObjectResult, writing value of type 'SonEcommerce.Admin.OrderDto'.
+2024-06-04 17:25:26.493 +07:00 [INF] Executed action SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application) in 118.3061ms
+2024-06-04 17:25:26.494 +07:00 [INF] Executed endpoint 'SonEcommerce.Admin.OrdersAppService.GetOrderAndDetailsAsync (SonEcommerce.Admin.Application)'
+2024-06-04 17:25:26.495 +07:00 [INF] Request finished HTTP/2 GET https://localhost:5001/api/app/orders/order-and-details/c75428ef-9667-4c2c-b054-28b469d2f294 - 200 null application/json; charset=utf-8 192.7861ms
