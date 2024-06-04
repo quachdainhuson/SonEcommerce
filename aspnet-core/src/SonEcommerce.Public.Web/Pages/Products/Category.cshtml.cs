@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SonEcommerce.Public.ProductCategories;
 using SonEcommerce.Public.Products;
@@ -28,11 +28,24 @@ namespace SonEcommerce.Public.Web.Pages.Products
         {
             Category = await _productCategoriesAppService.GetByCodeAsync(code);
             Categories = await _productCategoriesAppService.GetListAllAsync();
-            ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
+            if (int.TryParse(Request.Query["page"], out int currentPage))
             {
-                CurrentPage = page,
-                CategoryId = Category.Id
-            });
+                // Nếu thành công, sử dụng giá trị trang từ query string
+                ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
+                {
+                    CurrentPage = currentPage,
+                    CategoryId = Category.Id
+                });
+            }
+            else
+            {
+                // Nếu không thành công, sử dụng trang mặc định (trang 1)
+                ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
+                {
+                    CurrentPage = 1,
+                    CategoryId = Category.Id
+                });
+            }
         }
     }
 }

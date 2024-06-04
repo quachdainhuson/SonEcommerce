@@ -4,6 +4,7 @@ using SonEcommerce.Attributes;
 using SonEcommerce.ProductCategories;
 using SonEcommerce.Products;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -234,11 +235,7 @@ namespace SonEcommerce.Public.Products
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
-        public async Task<List<ProductInListDto>> GetListAllByCategoryId(Guid categoryId)
-        {
-            var products = await _productRepository.GetListAsync(x => x.CategoryId == categoryId);
-            return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(products);
-
-        }
+   
+        
     }
 }
