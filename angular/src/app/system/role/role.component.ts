@@ -87,8 +87,8 @@ export class RoleComponent implements OnInit, OnDestroy {
   }
 
   pageChanged(event: any): void {
-    this.skipCount = (event.page - 1) * this.maxResultCount;
     this.maxResultCount = event.rows;
+    this.skipCount = (event.first / this.maxResultCount) * this.maxResultCount;
     this.loadData();
   }
 
