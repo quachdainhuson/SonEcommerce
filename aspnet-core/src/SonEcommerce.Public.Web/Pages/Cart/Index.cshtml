@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="wishlist-price">
-                                        <h4 class="color-brand-3">@((@Model.CartItems[i].Product.SellPrice).ToString("N0"))</h4>
+                                        <h4 class="color-brand-3">$@((@Model.CartItems[i].Product.SellPrice).ToString("N0"))</h4>
                                     </div>
                                     <div class="wishlist-status">
                                         <div class="box-quantity">
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="wishlist-action">
-                                        <h4 class="color-brand-3">@((@Model.CartItems[i].Product.SellPrice * @Model.CartItems[i].Quantity).ToString("N0"))</h4>
+                                        <h4 class="color-brand-3">$@((@Model.CartItems[i].Product.SellPrice * @Model.CartItems[i].Quantity).ToString("N0"))</h4>
 
                                     </div>
                                     <div class="wishlist-remove"><a class="btn btn-delete" href="?action=remove&id=@Model.CartItems[i].Product.Id"></a></div>
@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-6"><span class="font-md-bold color-gray-500">Subtotal</span></div>
                             <div class="col-6 text-end">
-                                <h4>	@(@Model.CartItems.Sum(x => x.Product.SellPrice * x.Quantity).ToString("N0"))</h4>
+                                <h4>	$@(@Model.CartItems.Sum(x => x.Product.SellPrice * x.Quantity).ToString("N0"))</h4>
 
                             </div>
                         </div>
@@ -314,7 +314,7 @@
         </ul>
     </div>
 </section>
-<section class="section-box box-newsletter">
+@* <section class="section-box box-newsletter">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-7 col-sm-12">
@@ -331,7 +331,8 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@
+<hr />
 <div class="modal fade" id="ModalFiltersForm" tabindex="-1" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content apply-job-form">
