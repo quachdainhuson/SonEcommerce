@@ -6,7 +6,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { NotificationService } from '../shared/services/notification.service';
 import { UtilityService } from '../shared/services/utility.service';
-import { OrderDto, OrdersService } from '@proxy';
+import { OrderDto, OrderItemDto, OrdersService } from '@proxy';
 import { OrderStatus, PaymentMethod } from '@proxy/son-ecommerce/orders';
 
 @Component({
@@ -22,6 +22,10 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   //Dropdown
   dataTypes: any[] = [];
   selectedEntity = {} as OrderDto;
+  selectedItem = {} as OrderItemDto;
+
+  order: OrderDto;
+  orderItems: OrderItemDto[];
 
   constructor(
     private orderService: OrdersService,
@@ -42,35 +46,55 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.initFormData();
+    // this.initFormData();
+
+    this.getOrderAndDetails();
   }
 
 
-  initFormData() {
-    //Load edit data to form
-    if (this.utilService.isEmpty(this.config.data?.id) == true) {
-      this.toggleBlockUI(false);
-    } else {
-      this.loadFormDetails(this.config.data?.id);
-    }
-  }
-
-  loadFormDetails(id: string) {
+  getOrderAndDetails() {
+    // Lấy ID đơn hàng từ route hoặc bất kỳ nguồn nào khác
+    const orderId = this.config.data?.id;
     this.toggleBlockUI(true);
-    this.orderService
-      .getOrderAndDetails(id)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe({
-        next: (response: OrderDto) => {
-          this.selectedEntity = response;
-          this.toggleBlockUI(false);
-          console.log(response);
-        },
-        error: () => {
-          this.toggleBlockUI(false);
-        },
-      });
+
+    this.orderService.getOrderAndDetails(orderId).subscribe(
+      (orderDto) => {
+        this.order = orderDto;
+        this.orderItems = orderDto.orderItems;
+        this.toggleBlockUI(false);
+      },
+      (error) => {
+        this.toggleBlockUI(false);
+      }
+    );
   }
+
+  // initFormData() {
+  //   //Load edit data to form
+  //   if (this.utilService.isEmpty(this.config.data?.id) == true) {
+  //     this.toggleBlockUI(false);
+  //   } else {
+  //     this.loadFormDetails(this.config.data?.id);
+  //   }
+  // }
+
+  // loadFormDetails(id: string) {
+  //   this.toggleBlockUI(true);
+  //   this.orderService
+  //     .getOrderAndDetails(id)
+  //     .pipe(takeUntil(this.ngUnsubscribe))
+  //     .subscribe({
+  //       next: (response: any) => {
+  //         this.selectedEntity = response;
+  //         this.selectedItem = response;
+  //         this.toggleBlockUI(false);
+  //         console.log(response);
+  //       },
+  //       error: () => {
+  //         this.toggleBlockUI(false);
+  //       },
+  //     });
+  // }
 
   saveChange() {
     this.toggleBlockUI(true);
