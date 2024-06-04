@@ -45,7 +45,7 @@
           <td>{{ row.total }}</td>
           <td>{{ getStatusTypeName(row.status) }}</td>
           <td>{{ getPaymentTypeName(row.paymentMethod) }}</td>
-          <td><p-button (click)="showDetailOrder()" label="Chi tiết" severity="help"></p-button></td>
+          <td><p-button (click)="showDetailOrder(row.id)" label="Chi tiết" severity="help"></p-button></td>
         </tr>
       </ng-template>
       <ng-template pTemplate="summary">
