@@ -29,6 +29,6 @@ namespace SonEcommerce.Public
 
         public long LastRowOnPage => Math.Min(CurrentPage * PageSize, RowCount);
 
-        public string AdditionalData { get; set; }
+        public string? AdditionalData { get; set; }
     }
 }
