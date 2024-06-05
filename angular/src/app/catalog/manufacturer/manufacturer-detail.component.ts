@@ -126,8 +126,8 @@ export class ManufacturerDetailComponent implements OnInit, OnDestroy {
       name: new FormControl(this.selectedEntity.name, [Validators.required]),
       code: new FormControl(this.selectedEntity.code, [Validators.required]),
       slug: new FormControl(this.selectedEntity.slug),
-      visibility : new FormControl(this.selectedEntity.visibility),
-      isActive : new FormControl(this.selectedEntity.isActive),
+      visibility : new FormControl(this.selectedEntity.visibility || true),
+      isActive : new FormControl(this.selectedEntity.isActive || true),
       country : new FormControl(this.selectedEntity.country),
       coverPicture : 'path/to/cover/picture.jpg'
 

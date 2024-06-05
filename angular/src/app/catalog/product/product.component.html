@@ -64,14 +64,15 @@
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
         <th>Mã</th>
-        <th>SKU</th>
+        <!-- <th>SKU</th>  -->
         <th>Tên</th>
         <th>Hình ảnh</th>
-        <th>Loại</th>
+        <!-- <th>Loại</th> -->
         <th>Tên danh mục</th>
         <th>Thứ tự</th>
         <th>Hiển thị</th>
         <th>Kích hoạt</th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-row>
@@ -81,10 +82,10 @@
           <p-tableCheckbox [value]="row"></p-tableCheckbox>
         </td>
         <td>{{ row.code }}</td>
-        <td>{{ row.sku }}</td>
+        <!-- <td>{{ row.sku }}</td> -->
         <td>{{ row.name }}</td>
         <td><img style="width: 130px; height: 130px;" src="../../../assets/images/SonEcommerce/host/product-thumbnail-pictures/{{row.thumbnailPicture}}" alt="{{row.name}}" /> </td>
-        <td>{{ getProductTypeName(row.productType)  }}</td>
+        <!-- <td>{{ getProductTypeName(row.productType)  }}</td> -->
         <td>{{ row.categoryName }}</td>
         <td>{{ row.sortOrder }}</td>
         <td>
@@ -105,7 +106,6 @@
           class="p-button-text"
           (click)="manageProductAttribute(row.id)"
           >
-
           </button>
         </td>
       </tr>
