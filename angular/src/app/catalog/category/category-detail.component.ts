@@ -128,8 +128,8 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
       code: new FormControl(this.selectedEntity.code, [Validators.required]),
       slug: new FormControl(this.selectedEntity.slug),
       seoMetaDescription : new FormControl(this.selectedEntity.seoMetaDescription),
-      visibility : new FormControl(this.selectedEntity.visibility),
-      isActive : new FormControl(this.selectedEntity.isActive),
+      visibility : new FormControl(this.selectedEntity.visibility || true),
+      isActive : new FormControl(this.selectedEntity.isActive || true),
       coverPicture : 'path/to/cover/picture.jpg'
 
       
