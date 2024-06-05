@@ -1,1 +1,9 @@
+<div>
+    <label style="font-size: 20px; margin-right: 20px;" for="yearSelect">Chọn năm:</label>
+    <p-dropdown [options]="yearOptions" [(ngModel)]="selectedYear" (onChange)="onYearChange($event)" placeholder="Select a year"></p-dropdown>
+</div>
+  
+<div style="font-size: 20px; margin-top: 10px;">
+    Tổng doanh thu năm {{ selectedYear }}: <span style="color: #f08080;">{{ getTotalIncomeForYear(selectedYear) | currency:'$' }}</span>
+</div>
 <p-chart type="bar" [data]="basicData"  />
