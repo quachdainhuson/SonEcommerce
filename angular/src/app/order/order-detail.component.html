@@ -16,10 +16,9 @@
                               <!--end col-->
                               <div class="col-lg-6 col-6">
                                   <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Ngày</p>
-                                  <h5 class="fs-16 mb-0">
-                                    <span id="invoice-date">{{ order.creationTime | date: 'dd/MM/yyyy' }}</span>
-                                    <small class="text-muted" id="invoice-time">{{ order.creationTime | date: 'HH:mm:ss' }}</small>
-                                  </h5>
+
+                                  <h5 class="fs-16 mb-0"><span id="invoice-date">{{order.creationTime | date:'dd/MM/yyyy HH:mm:ss'}}</span> <small class="text-muted" id="invoice-time"></small></h5>
+
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">
@@ -148,7 +147,7 @@
         pButton
         icon="fa fa-save"
         iconPos="left"
-        label="Cập nhật"
+        label="In hóa đơn"
       ></button>
     </ng-template>
     <!--Block UI-->
