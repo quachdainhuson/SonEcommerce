@@ -30,6 +30,7 @@ export interface OrderDto extends EntityDto<string> {
   customerUserId?: string;
   id?: string;
   orderItems: OrderItemDto[];
+  creationTime?: string;
 }
 
 export interface OrderInListDto extends EntityDto<string> {
@@ -42,6 +43,7 @@ export interface OrderInListDto extends EntityDto<string> {
   customerUserId?: string;
   id?: string;
   items: OrderItemDto[];
+  creationTime?: string;
 }
 
 export interface OrderItemDto extends EntityDto {

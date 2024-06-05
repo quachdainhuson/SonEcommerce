@@ -71,6 +71,8 @@ namespace SonEcommerce.Public.Products
         public async Task<PagedResult<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
+            query = query.Where(x => x.IsActive == true);
+            query = query.Where(x => x.Visibility == true);
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
 
