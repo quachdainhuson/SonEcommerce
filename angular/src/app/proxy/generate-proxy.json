@@ -8148,7 +8148,7 @@
         {
           "name": "CreationTime",
           "jsonName": null,
-          "type": "System.String",
+          "type": "System.DateTime",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -8251,6 +8251,18 @@
           "regex": null
         },
         {
+          "name": "CreationTime",
+          "jsonName": null,
+          "type": "System.DateTime",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "Id",
           "jsonName": null,
           "type": "System.Guid",
@@ -8267,18 +8279,6 @@
           "jsonName": null,
           "type": "[SonEcommerce.Admin.OrderItemDto]",
           "typeSimple": "[SonEcommerce.Admin.OrderItemDto]",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "CreationTime",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
