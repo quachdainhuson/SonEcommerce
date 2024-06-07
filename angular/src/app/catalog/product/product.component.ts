@@ -182,6 +182,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       },
       header: 'Quản lý thuộc tính sản phẩm',
       width: '70%',
+      height: '40%'
     });
 
     ref.onClose.subscribe((data: ProductDto) => {

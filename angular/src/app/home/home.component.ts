@@ -30,33 +30,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-    this.orderService
-      .getListAll()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe({
-        next: (response: OrderInListDto[]) => {
-          this.items = response;
-          this.totalCount = response.length;
-          this.processChartData(); // Call method to process chart data after items are fetched
-        },
-        error: (error) => {
-          // Handle error if needed
-        },
-      });
+    // this.orderService
+    //   .getListAll()
+    //   .pipe(takeUntil(this.ngUnsubscribe))
+    //   .subscribe({
+    //     next: (response: OrderInListDto[]) => {
+    //       this.items = response;
+    //       this.totalCount = response.length;
+    //       this.processChartData(); // Call method to process chart data after items are fetched
+    //     },
+    //     error: (error) => {
+    //       // Handle error if needed
+    //     },
+    //   });
 
-    // this.items = [
-    //   { creationTime: '2023-01-15T00:00:00Z', total: 100, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2023-02-20T00:00:00Z', total: 150, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2023-03-10T00:00:00Z', total: 200, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2023-04-05T00:00:00Z', total: 250, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2023-06-05T00:00:00Z', total: 250, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2024-01-12T00:00:00Z', total: 300, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2024-02-25T00:00:00Z', total: 350, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2024-03-18T00:00:00Z', total: 400, status: 1, paymentMethod: 1, items: [] },
-    //   { creationTime: '2024-04-22T00:00:00Z', total: 450, status: 1, paymentMethod: 1, items: [] }
-    // ];
-    // this.totalCount = this.items.length;
-    // this.processChartData();
+    this.items = [
+      { creationTime: '2023-01-15T00:00:00Z', total: 100, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2023-02-20T00:00:00Z', total: 150, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2023-03-10T00:00:00Z', total: 200, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2023-04-05T00:00:00Z', total: 250, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2023-06-05T00:00:00Z', total: 250, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2024-01-12T00:00:00Z', total: 300, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2024-02-25T00:00:00Z', total: 350, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2024-03-18T00:00:00Z', total: 400, status: 1, paymentMethod: 1, items: [] },
+      { creationTime: '2024-04-22T00:00:00Z', total: 450, status: 1, paymentMethod: 1, items: [] }
+    ];
+    this.totalCount = this.items.length;
+    this.processChartData();
   }
 
   processChartData() {

@@ -27,10 +27,10 @@ export interface OrderDto extends EntityDto<string> {
   customerName?: string;
   customerPhoneNumber?: string;
   customerAddress?: string;
+  creationTime?: string;
   customerUserId?: string;
   id?: string;
   orderItems: OrderItemDto[];
-  creationTime?: string;
 }
 
 export interface OrderInListDto extends EntityDto<string> {

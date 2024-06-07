@@ -31,6 +31,11 @@ namespace SonEcommerce.Admin
             _productRepository = productRepository;
         }
 
+        public async Task<OrderDto> ChangeStatusOrderAsync(Guid orderId, int status)
+        {
+            throw new NotImplementedException();
+        }
+
         public override async Task<OrderDto> CreateAsync(CreateOrderDto input)
         {
             var subTotal = input.Items.Sum(x => x.Quantity * x.Price);

@@ -24,7 +24,9 @@ namespace SonEcommerce.Admin.Manufacturers
         CreateUpdateManufacturerDto,
         CreateUpdateManufacturerDto>, IManufacturersAppService
     {
-        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository)
+        private readonly ManufacturerManager _manufacturerManager;
+        private readonly ManufacturerCodeGenerator _manufacturerCodeGenerator;
+        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository, ManufacturerManager manufacturerManager, ManufacturerCodeGenerator manufacturerCodeGenerator)
             : base(repository)
         {
             GetPolicyName = SonEcommercePermissions.Manufacturer.Default;
@@ -32,12 +34,29 @@ namespace SonEcommerce.Admin.Manufacturers
             CreatePolicyName = SonEcommercePermissions.Manufacturer.Create;
             UpdatePolicyName = SonEcommercePermissions.Manufacturer.Update;
             DeletePolicyName = SonEcommercePermissions.Manufacturer.Delete;
+            _manufacturerManager = manufacturerManager;
+            _manufacturerCodeGenerator = manufacturerCodeGenerator;
         }
         [Authorize(SonEcommercePermissions.Manufacturer.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
+        }
+        [Authorize(SonEcommercePermissions.Manufacturer.Create)]
+        public override async Task<ManufacturerDto> CreateAsync(CreateUpdateManufacturerDto input)
+        {
+            var manufacturer = await _manufacturerManager.CreateAsync(
+                input.Name,
+                input.Code,
+                input.Slug,
+                input.CoverPicture,
+                input.Visibility,
+                input.IsActive,
+                input.Country
+        );
+            await Repository.InsertAsync(manufacturer);
+            return ObjectMapper.Map<Manufacturer, ManufacturerDto>(manufacturer);
         }
 
         [Authorize(SonEcommercePermissions.Manufacturer.Default)]
@@ -60,6 +79,11 @@ namespace SonEcommerce.Admin.Manufacturers
             var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
             return new PagedResultDto<ManufacturerInListDto>(totalCount, ObjectMapper.Map<List<Manufacturer>, List<ManufacturerInListDto>>(data));
+        }
+
+        public async Task<string> GetSuggestNewCodeAsync()
+        {
+            return await _manufacturerCodeGenerator.GenerateAsync();
         }
     }
 }
