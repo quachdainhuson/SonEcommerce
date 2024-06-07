@@ -24,7 +24,9 @@ namespace SonEcommerce.Admin.ProductCategories
         CreateUpdateProductCategoryDto,
         CreateUpdateProductCategoryDto>, IProductCategoriesAppService
     {
-        public ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository)
+        private readonly ProductCategoryManager _productCategoryManager;
+        private readonly ProductCategoryCodeGenerator _productCategoryCodeGenerator;
+        public ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository, ProductCategoryManager productCategoryManager, ProductCategoryCodeGenerator productCategoryCodeGenerator)
             : base(repository)
         {
             GetPolicyName = SonEcommercePermissions.ProductCategory.Default;
@@ -32,6 +34,8 @@ namespace SonEcommerce.Admin.ProductCategories
             CreatePolicyName = SonEcommercePermissions.ProductCategory.Create;
             UpdatePolicyName = SonEcommercePermissions.ProductCategory.Update;
             DeletePolicyName = SonEcommercePermissions.ProductCategory.Delete;
+            _productCategoryManager = productCategoryManager;
+            _productCategoryCodeGenerator = productCategoryCodeGenerator;
         }
         [Authorize(SonEcommercePermissions.ProductCategory.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
@@ -40,6 +44,23 @@ namespace SonEcommerce.Admin.ProductCategories
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(SonEcommercePermissions.ProductCategory.Create)]
+        public override async Task<ProductCategoryDto> CreateAsync(CreateUpdateProductCategoryDto input)
+        {
+            var category = await _productCategoryManager.CreateAsync(
+                input.Name,
+                input.Code,
+                input.Slug,
+                input.SortOrder,
+                input.CoverPicture,
+                input.Visibility,
+                input.IsActive,
+                input.ParentId,
+                input.SeoMetaDescription
+             );
+            await Repository.InsertAsync(category);
+            return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
+        }
         [Authorize(SonEcommercePermissions.ProductCategory.Default)]
         public async Task<List<ProductCategoryInListDto>> GetListAllAsync()
         {
@@ -60,6 +81,11 @@ namespace SonEcommerce.Admin.ProductCategories
             var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
             return new PagedResultDto<ProductCategoryInListDto>(totalCount, ObjectMapper.Map<List<ProductCategory>, List<ProductCategoryInListDto>>(data));
+        }
+
+        public async Task<string> GetSuggestNewCodeAsync()
+        {
+            return await _productCategoryCodeGenerator.GenerateAsync();
         }
     }
 }

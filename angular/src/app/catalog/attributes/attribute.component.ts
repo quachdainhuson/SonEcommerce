@@ -73,7 +73,7 @@ export class AttributeComponent implements OnInit, OnDestroy {
   }
   showAddModal() {
     const ref = this.dialogService.open(AttributeDetailComponent, {
-      header: 'Thêm mới sản phẩm',
+      header: 'Thêm mới thuộc tính',
       width: '70%',
     });
 
