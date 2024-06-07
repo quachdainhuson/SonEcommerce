@@ -53,12 +53,24 @@ export class ManufacturerDetailComponent implements OnInit, OnDestroy {
   initFormData() {
     //Load edit data to form
     if (this.utilService.isEmpty(this.config.data?.id) == true) {
+      this.getNewSuggestionCode();
       this.toggleBlockUI(false);
     } else {
       this.loadFormDetails(this.config.data?.id);
     }
   }
-
+  getNewSuggestionCode() {
+    this.manufacturerService.getSuggestNewCode()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response : string) => {
+        this.form.patchValue({
+          code: response
+        
+        });
+      }
+    });
+  }
   loadFormDetails(id: string) {
     this.toggleBlockUI(true);
     this.manufacturerService

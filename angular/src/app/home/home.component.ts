@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   });
 
     this.items = [
+
       {"creationTime": "2022-03-25T00:00:00Z", "total": 888, "status": 1, "paymentMethod": 2, "items": []},
       {"creationTime": "2022-01-14T00:00:00Z", "total": 460, "status": 1, "paymentMethod": 2, "items": []},
       {"creationTime": "2022-04-08T00:00:00Z", "total": 478, "status": 1, "paymentMethod": 1, "items": []},
@@ -77,6 +78,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       {"creationTime": "2024-10-07T00:00:00Z", "total": 227, "status": 1, "paymentMethod": 1, "items": []},
       {"creationTime": "2024-12-19T00:00:00Z", "total": 864, "status": 1, "paymentMethod": 2, "items": []},
       {"creationTime": "2024-08-28T00:00:00Z", "total": 713, "status": 1, "paymentMethod": 1, "items": []}
+
+
     ];
     this.totalCount = this.items.length;
     this.processChartData();

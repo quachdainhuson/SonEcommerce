@@ -828,6 +828,14 @@
                   }
                 },
                 {
+                  "name": "GetSuggestNewCodeAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -961,6 +969,43 @@
               "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Manufacturers.IManufacturersAppService"
             },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/app/manufacturers",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
+                  "typeSimple": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
+                  "typeSimple": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SonEcommerce.Admin.Manufacturers.ManufacturerDto",
+                "typeSimple": "SonEcommerce.Admin.Manufacturers.ManufacturerDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SonEcommerce.Admin.Manufacturers.ManufacturerDto,SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto>"
+            },
             "GetListAllAsync": {
               "uniqueName": "GetListAllAsync",
               "name": "GetListAllAsync",
@@ -1037,42 +1082,20 @@
               "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.Manufacturers.IManufacturersAppService"
             },
-            "CreateAsyncByInput": {
-              "uniqueName": "CreateAsyncByInput",
-              "name": "CreateAsync",
-              "httpMethod": "POST",
-              "url": "api/app/manufacturers",
+            "GetSuggestNewCodeAsync": {
+              "uniqueName": "GetSuggestNewCodeAsync",
+              "name": "GetSuggestNewCodeAsync",
+              "httpMethod": "GET",
+              "url": "api/app/manufacturers/suggest-new-code",
               "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto, SonEcommerce.Admin.Application.Contracts",
-                  "type": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
-                  "typeSimple": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
-                  "typeSimple": "SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
+              "parametersOnMethod": [],
+              "parameters": [],
               "returnValue": {
-                "type": "SonEcommerce.Admin.Manufacturers.ManufacturerDto",
-                "typeSimple": "SonEcommerce.Admin.Manufacturers.ManufacturerDto"
+                "type": "System.String",
+                "typeSimple": "string"
               },
               "allowAnonymous": false,
-              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SonEcommerce.Admin.Manufacturers.ManufacturerDto,SonEcommerce.Admin.Manufacturers.CreateUpdateManufacturerDto>"
+              "implementFrom": "SonEcommerce.Admin.Manufacturers.IManufacturersAppService"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
@@ -1294,6 +1317,31 @@
                   }
                 },
                 {
+                  "name": "ChangeStatusOrderAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "orderId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "status",
+                      "typeAsString": "System.Int32, System.Private.CoreLib",
+                      "type": "System.Int32",
+                      "typeSimple": "number",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "SonEcommerce.Admin.OrderDto",
+                    "typeSimple": "SonEcommerce.Admin.OrderDto"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -1390,6 +1438,63 @@
             }
           ],
           "actions": {
+            "ChangeStatusOrderAsyncByOrderIdAndStatus": {
+              "uniqueName": "ChangeStatusOrderAsyncByOrderIdAndStatus",
+              "name": "ChangeStatusOrderAsync",
+              "httpMethod": "POST",
+              "url": "api/app/orders/change-status-order/{orderId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "orderId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "status",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "orderId",
+                  "name": "orderId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "status",
+                  "name": "status",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SonEcommerce.Admin.OrderDto",
+                "typeSimple": "SonEcommerce.Admin.OrderDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.IOrderAppService"
+            },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
               "name": "CreateAsync",
@@ -2199,6 +2304,14 @@
                   }
                 },
                 {
+                  "name": "GetSuggestNewCodeAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -2332,6 +2445,43 @@
               "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.ProductCategories.IProductCategoriesAppService"
             },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/app/product-categories",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
+                  "typeSimple": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
+                  "typeSimple": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SonEcommerce.Admin.ProductCategories.ProductCategoryDto",
+                "typeSimple": "SonEcommerce.Admin.ProductCategories.ProductCategoryDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SonEcommerce.Admin.ProductCategories.ProductCategoryDto,SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto>"
+            },
             "GetListAllAsync": {
               "uniqueName": "GetListAllAsync",
               "name": "GetListAllAsync",
@@ -2408,42 +2558,20 @@
               "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.ProductCategories.IProductCategoriesAppService"
             },
-            "CreateAsyncByInput": {
-              "uniqueName": "CreateAsyncByInput",
-              "name": "CreateAsync",
-              "httpMethod": "POST",
-              "url": "api/app/product-categories",
+            "GetSuggestNewCodeAsync": {
+              "uniqueName": "GetSuggestNewCodeAsync",
+              "name": "GetSuggestNewCodeAsync",
+              "httpMethod": "GET",
+              "url": "api/app/product-categories/suggest-new-code",
               "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto, SonEcommerce.Admin.Application.Contracts",
-                  "type": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
-                  "typeSimple": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
-                  "typeSimple": "SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
+              "parametersOnMethod": [],
+              "parameters": [],
               "returnValue": {
-                "type": "SonEcommerce.Admin.ProductCategories.ProductCategoryDto",
-                "typeSimple": "SonEcommerce.Admin.ProductCategories.ProductCategoryDto"
+                "type": "System.String",
+                "typeSimple": "string"
               },
               "allowAnonymous": false,
-              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<SonEcommerce.Admin.ProductCategories.ProductCategoryDto,SonEcommerce.Admin.ProductCategories.CreateUpdateProductCategoryDto>"
+              "implementFrom": "SonEcommerce.Admin.ProductCategories.IProductCategoriesAppService"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
@@ -8110,6 +8238,18 @@
           "regex": null
         },
         {
+          "name": "CreationTime",
+          "jsonName": null,
+          "type": "System.DateTime",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "CustomerUserId",
           "jsonName": null,
           "type": "System.Guid?",
@@ -8138,18 +8278,6 @@
           "jsonName": null,
           "type": "[SonEcommerce.Admin.OrderItemDto]",
           "typeSimple": "[SonEcommerce.Admin.OrderItemDto]",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "CreationTime",
-          "jsonName": null,
-          "type": "System.DateTime",
-          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
