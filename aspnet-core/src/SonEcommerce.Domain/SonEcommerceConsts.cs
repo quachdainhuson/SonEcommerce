@@ -11,5 +11,9 @@ public static class SonEcommerceConsts
     public const string OrderIdentitySettingId = "Order";
 
     public const string OrderIdentitySettingPrefix = "O";
+    public const string ProductCategoryIdentitySettingPrefix = "PC";
+    public const string ProductCategoryIdentitySettingId = "ProductCategory";
+    public const string ManufacturerIdentitySettingPrefix = "M";
+    public const string ManufacturerIdentitySettingId = "Manufacturer";
 
 }

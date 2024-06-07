@@ -22,59 +22,66 @@ namespace SonEcommerce.Public.Web.Pages.Cart
         public List<CartItem> CartItems { get; set; }
         public async Task OnGetAsync(string action, string id, int quantity)
         {
-            if (quantity == 0) {
-                quantity = 1;
-            }
-            var cart = HttpContext.Session.GetString(SonEcommerceConsts.Cart);
-            var productCarts = new Dictionary<string, CartItem>();
-            if (cart != null)
+            if (id != null)
             {
-                productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
-            }
-            if (!string.IsNullOrEmpty(action))
-            {
-                if (action == "add")
+                if (quantity == 0)
                 {
-                    var product = await _productsAppService.GetAsync(Guid.Parse(id));
-                    if (cart == null)
+                    quantity = 1;
+                }
+                var cart = HttpContext.Session.GetString(SonEcommerceConsts.Cart);
+                var productCarts = new Dictionary<string, CartItem>();
+                if (cart != null)
+                {
+                    productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
+                }
+                if (!string.IsNullOrEmpty(action))
+                {
+                    if (action == "add")
                     {
-                        productCarts.Add(id, new CartItem()
-                        {
-                            Product = product,
-                            Quantity = quantity
-                        });
-                        HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));
-                    }
-                    else
-                    {
-                        productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
-                        if (productCarts.ContainsKey(id))
-                        {
-                            productCarts[id].Quantity += quantity;
-                        }
-                        else
+                        var product = await _productsAppService.GetAsync(Guid.Parse(id));
+                        if (cart == null)
                         {
                             productCarts.Add(id, new CartItem()
                             {
                                 Product = product,
                                 Quantity = quantity
                             });
+                            HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));
                         }
+                        else
+                        {
+                            productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
+                            if (productCarts.ContainsKey(id))
+                            {
+                                productCarts[id].Quantity += quantity;
+                            }
+                            else
+                            {
+                                productCarts.Add(id, new CartItem()
+                                {
+                                    Product = product,
+                                    Quantity = quantity
+                                });
+                            }
+                            HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));
+                        }
+                    }
+                    else if (action == "remove")
+                    {
+                        productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
+                        if (productCarts.ContainsKey(id))
+                        {
+                            productCarts.Remove(id);
+                        }
+
                         HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));
                     }
                 }
-                else if (action == "remove")
-                {
-                    productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
-                    if (productCarts.ContainsKey(id))
-                    {
-                        productCarts.Remove(id);
-                    }
-
-                    HttpContext.Session.SetString(SonEcommerceConsts.Cart, JsonSerializer.Serialize(productCarts));
-                }
+                CartItems = productCarts.Values.ToList();
             }
-            CartItems = productCarts.Values.ToList();
+            
+
+            
 
         }
 
