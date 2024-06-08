@@ -5,8 +5,8 @@ using SonEcommerce.Admin.ProductCategories;
 using SonEcommerce.Admin.Products;
 using SonEcommerce.Admin.Roles;
 using SonEcommerce.Admin.System.Users;
-using SonEcommerce.Admin.Users;
 using SonEcommerce.Attributes;
+using SonEcommerce.Customers;
 using SonEcommerce.Manufacturers;
 using SonEcommerce.Orders;
 using SonEcommerce.ProductCategories;
@@ -57,5 +57,9 @@ public class SonEcommerceAdminApplicationAutoMapperProfile : Profile
         //User
         CreateMap<IdentityUser, UserDto>();
         CreateMap<IdentityUser, UserInListDto>();
+        //Customer
+        CreateMap<Customer, CustomerDto>();
+        CreateMap<Customer, CustomerInListDto>();
+        CreateMap<CreateUpdateCustomerDto, Customer>();
     }
 }

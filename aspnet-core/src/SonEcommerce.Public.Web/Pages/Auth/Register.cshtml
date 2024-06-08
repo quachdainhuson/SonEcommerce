@@ -2,3 +2,77 @@
 @model SonEcommerce.Public.Web.Pages.Auth.RegisterModel
 @{
 }
+<section class="section-box shop-template mt-60">
+    <div class="container">
+        <div class="row mb-100">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <h3>Đăng kí tài khoản người dùng</h3>
+                <div id="error-message" style="display: none;"></div>
+                <form method="post" class="form-register mt-30 mb-30">
+                    <div class="form-group">
+                        <label class="mb-5 font-sm color-gray-700">Họ Và Tên *</label>
+                        <input asp-for="CustomerInput.Name" class="form-control" type="text" placeholder="Nguyen Van A" />
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-5 font-sm color-gray-700">Email *</label>
+                        <input asp-for="CustomerInput.Email" class="form-control" type="text" placeholder="stevenjob@gmail.com" />
+                        <span asp-validation-for="CustomerInput.Email" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-5 font-sm color-gray-700">Tên đăng nhập *</label>
+                        <input asp-for="CustomerInput.Username" class="form-control" type="text" placeholder="nguyenvana" />
+                            <span asp-validation-for="CustomerInput.Username" class="text-danger"></span>
+                    </div>
+                        <div class="form-group">
+                            <label class="mb-5 font-sm color-gray-700">Số điện thoại *</label>
+                            <input asp-for="CustomerInput.Phone" class="form-control" type="text" placeholder="0987865342" />
+                            <span asp-validation-for="CustomerInput.Phone" class="text-danger"></span>
+                        </div>
+                    <div class="form-group">
+                        <label class="mb-5 font-sm color-gray-700">Mật Khẩu *</label>
+                        <input asp-for="CustomerInput.Password" class="form-control" type="password" placeholder="******************" />
+                            <span asp-validation-for="CustomerInput.Password" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-5 font-sm color-gray-700">Nhập lại mật khẩu *</label>
+                        <input asp-for="repassword" class="form-control" type="password" placeholder="******************">
+                    </div>
+                    <div class="form-group">
+                        <input class="font-md-bold btn btn-buy" type="submit" value="Đăng kí" />
+                    </div>
+                    <div class="mt-20">
+                        <span class="font-xs color-gray-500 font-medium">Bạn đã có tài khoản?</span>
+                        <a class="font-xs color-brand-3 font-medium" href="/Login"> Đăng nhập</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-5">
+                <div class="box-login-social pt-65 pl-50">
+                    <h5 class="text-center">Use Social Network Account</h5>
+                    <div class="box-button-login mt-25">
+                        <a class="btn btn-login font-md-bold color-brand-3 mb-15">Sign up with<img src="assets/imgs/page/account/google.svg" alt="Ecom"></a>
+                        <a class="btn btn-login font-md-bold color-brand-3 mb-15">Sign up with<span class="color-blue font-md-bold">Facebook</span></a>
+                        <a class="btn btn-login font-md-bold color-brand-3 mb-15">Sign up with<img src="assets/imgs/page/account/amazon.svg" alt="Ecom"></a>
+                    </div>
+                    <div class="mt-10 text-center">
+                        <span class="font-xs color-gray-900">Buying for work?</span>
+                        <a class="color-brand-1 font-xs" href="#">Create a free business account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function displayErrorMessage(message) {
+        // Lấy phần tử div error-message
+        var errorMessageElement = document.getElementById('error-message');
+        // Đặt nội dung thông báo lỗi
+        errorMessageElement.innerText = message;
+        // Hiển thị phần tử div error-message
+        errorMessageElement.style.display = 'block';
+    }
+</script>

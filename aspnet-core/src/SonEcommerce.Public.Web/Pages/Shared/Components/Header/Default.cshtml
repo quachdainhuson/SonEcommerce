@@ -1,5 +1,9 @@
 ﻿@using SonEcommerce.Public.ProductCategories;
 @model List<ProductCategoryInListDto>
+@{
+
+    
+}
 <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
@@ -334,8 +338,7 @@
                         </ul>
                     </nav>
                 </div>
-                @if (User.Identity.IsAuthenticated)
-                {
+                
                     <div class="mobile-account">
                         <div class="mobile-header-top">
                             <div class="user-account">
@@ -355,9 +358,7 @@
                             <li><a href="page-login.html">Sign out</a></li>
                         </ul>
                     </div>
-                }
-                else
-                {
+                
                     <div class="mobile-account">
                         <div class="mobile-header-top">
                             <div class="user-account">
@@ -367,7 +368,7 @@
                         </div>
                       
                     </div>
-                }
+                
 
                 <div class="mobile-banner">
                     <div class="bg-5 block-iphone">

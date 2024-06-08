@@ -14,6 +14,6 @@ public static class SonEcommerceConsts
     public const string ProductCategoryIdentitySettingPrefix = "PC";
     public const string ProductCategoryIdentitySettingId = "ProductCategory";
     public const string ManufacturerIdentitySettingPrefix = "M";
-    public const string ManufacturerIdentitySettingId = "Manufacturer";
+    public const string ManufacturerIdentitySettingId = "Manufacturer"; 
 
 }
