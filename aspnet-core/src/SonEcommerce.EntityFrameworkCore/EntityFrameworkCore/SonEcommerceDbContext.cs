@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SonEcommerce.Attributes;
+using SonEcommerce.Customers;
 using SonEcommerce.IdentitySettings;
 using SonEcommerce.Inventories;
 using SonEcommerce.InventoryTickets;
@@ -88,6 +89,7 @@ public class SonEcommerceDbContext :
     public DbSet<PromotionProduct> PromotionProducts { get; set; }
     public DbSet<PromotionUsageHistory> PromotionUsageHistories { get; set; }
     public DbSet<IdentitySetting> identitySettings { get; set; }
+    public DbSet<Customer> Customers { get; set; }
     #endregion
 
     public SonEcommerceDbContext(DbContextOptions<SonEcommerceDbContext> options)
@@ -153,5 +155,6 @@ public class SonEcommerceDbContext :
         builder.ApplyConfiguration(new PromotionProductConfiguration());
         builder.ApplyConfiguration(new PromotionUsageHistoryConfiguration());
         builder.ApplyConfiguration(new IdentitySettingConfiguration());
+        builder.ApplyConfiguration(new CustomerConfiguration());
     }
 }
