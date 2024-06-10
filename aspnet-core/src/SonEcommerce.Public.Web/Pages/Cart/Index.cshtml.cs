@@ -11,7 +11,7 @@ using SonEcommerce.Public.Web.Models;
 namespace SonEcommerce.Public.Web.Pages.Cart
 {
     public class IndexModel : PageModel
-    {   
+    {
         private readonly IProductsAppService _productsAppService;
         public IndexModel(IProductsAppService productsAppService)
         {
@@ -22,8 +22,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
         public List<CartItem> CartItems { get; set; }
         public async Task OnGetAsync(string action, string id, int quantity)
         {
-            if (id != null)
-            {
+            
                 if (quantity == 0)
                 {
                     quantity = 1;
@@ -78,10 +77,10 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                     }
                 }
                 CartItems = productCarts.Values.ToList();
-            }
             
 
-            
+
+
 
         }
 

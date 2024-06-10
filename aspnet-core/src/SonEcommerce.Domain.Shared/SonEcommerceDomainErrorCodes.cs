@@ -17,5 +17,8 @@ public static class SonEcommerceDomainErrorCodes
     public const string ManufacturerNameAlreadyExists = "SonEcommerce:ManufacturerNameAlreadyExists";
     public const string ManufacturerCodeAlreadyExists = "SonEcommerce:ManufacturerCodeAlreadyExists";
     public const string ManufacturerSlugAlreadyExists = "SonEcommerce:ManufacturerSlugAlreadyExists";
+    public const string CustomerUserNameAlreadyExists = "SonEcommerce:CustomerUserNameAlreadyExists";
+    public const string CustomerEmailAlreadyExists = "SonEcommerce:CustomerEmailAlreadyExists";
+    public const string CustomerPhoneAlreadyExists = "SonEcommerce:CustomerPhoneAlreadyExists";
 
 }

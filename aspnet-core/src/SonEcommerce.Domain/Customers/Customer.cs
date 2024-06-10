@@ -9,6 +9,19 @@ namespace SonEcommerce.Customers
 {
     public class Customer : FullAuditedEntity<Guid>
     {
+        public Customer()
+        {
+        }
+        public Customer(Guid id, string name, string email, string phone, string address, string username, string password)
+        {
+            Id = id;
+            Name = name;
+            Email = email;
+            Phone = phone;
+            Address = address;
+            Username = username;
+            Password = password;
+        }
         public string? Name { get; set; }
         public string Email { get; set; }
         public string? Phone { get; set; }
