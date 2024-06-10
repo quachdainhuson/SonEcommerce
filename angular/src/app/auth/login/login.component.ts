@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { UsersService } from '@proxy/users';
+import { Subject, switchMap, takeUntil, throwError } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { LoginRequestDto } from 'src/app/shared/models/login-request.dto';
 import { LoginResponseDto } from 'src/app/shared/models/login-response.dto';
@@ -46,6 +47,7 @@ export class LoginComponent implements OnDestroy {
     public layoutService: LayoutService,
     private fb: FormBuilder,
     private authService: AuthService,
+    private userService: UsersService,
     private router: Router,
     private tokenService: TokenStorageService,
     private notificationService: NotificationService
@@ -57,26 +59,36 @@ export class LoginComponent implements OnDestroy {
   }
 
   login() {
+    var username = this.loginForm.controls['username'].value;
+    var password = this.loginForm.controls['password'].value;
     this.toggleBlockUI(true);
     var request: LoginRequestDto = {
       username: this.loginForm.controls['username'].value,
       password: this.loginForm.controls['password'].value,
     };
-    this.authService
-      .login(request)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe({
-        next: (res: LoginResponseDto) => {
-          this.tokenService.saveToken(res.access_token);
-          this.tokenService.saveRefreshToken(res.refresh_token);
-          this.toggleBlockUI(false);
-          this.router.navigate(['']);
-        },
-        error: (ex) => {
-          this.notificationService.showError("Đăng nhập không đúng.")
-          this.toggleBlockUI(false);
-        },
-      });
+    this.authService.getUserIdByUsernameAsync(username).pipe(
+      switchMap(userId => this.authService.checkPermission(userId)),
+      switchMap(hasPermission => {
+        if (hasPermission) {
+          const request: LoginRequestDto = { username, password };
+          return this.authService.login(request);
+      } else {
+        this.notificationService.showError('Bạn không có quyền đăng nhập.');
+      }
+      }),
+      takeUntil(this.ngUnsubscribe)
+    ).subscribe({next: (res: LoginResponseDto) => {
+      this.tokenService.saveToken(res.access_token);
+      this.tokenService.saveRefreshToken(res.refresh_token);
+      this.toggleBlockUI(false);
+      this.router.navigate(['']);
+  },
+  error: (ex) => {
+      this.notificationService.showError('Đăng nhập không đúng.');
+      this.toggleBlockUI(false);
+  },
+});
+    
   }
 
   private toggleBlockUI(enabled: boolean) {

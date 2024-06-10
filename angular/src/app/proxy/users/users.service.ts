@@ -20,6 +20,14 @@ export class UsersService {
     { apiName: this.apiName,...config });
   
 
+  checkPermission = (userId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, boolean>({
+      method: 'POST',
+      url: `/api/app/users/check-permission/${userId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   create = (input: CreateUserDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, UserDto>({
       method: 'POST',
@@ -77,6 +85,16 @@ export class UsersService {
       method: 'GET',
       url: '/api/app/users/with-filter',
       params: { keyword: input.keyword, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getUserIdByUsername = (username: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, string>({
+      method: 'GET',
+      responseType: 'text',
+      url: '/api/app/users/user-id-by-username',
+      params: { username },
     },
     { apiName: this.apiName,...config });
   

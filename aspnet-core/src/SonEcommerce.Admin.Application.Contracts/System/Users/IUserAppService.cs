@@ -21,6 +21,11 @@ namespace SonEcommerce.Admin.System.Users
         Task<List<UserInListDto>> GetListAllAsync(string filterKeyword);
         Task AssignRolesAsync(Guid userId, string[] roleNames);
         Task SetPasswordAsync(Guid userId, SetPasswordDto input);
+        // kiểm tra permission guid id = A9224B56-EF6B-401A-B910-1D248F2C6773
+        Task<bool> CheckPermissionAsync(Guid userId);
+        //GetUserIdByUsernameAsync
+        Task<string> GetUserIdByUsernameAsync(string username);
+
 
 
     }

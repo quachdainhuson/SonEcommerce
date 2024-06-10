@@ -6,13 +6,18 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants/key.constant";
 import { TokenStorageService } from "./token.service";
+import { UsersService } from "@proxy/users";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class AuthService{
-    constructor(private http: HttpClient, private TokenService: TokenStorageService) { 
+    constructor(private http: HttpClient, 
+        private TokenService: 
+        TokenStorageService,
+        private userService: UsersService,
+    ) { 
         
     }
     public login(input: LoginRequestDto) : Observable<LoginResponseDto> {
@@ -34,7 +39,12 @@ export class AuthService{
           );
         }
     }
-
+    public getUserIdByUsernameAsync(username : string){
+        return this.userService.getUserIdByUsername(username);
+    }
+    public checkPermission(userId : any){
+        return this.userService.checkPermission(userId);
+    }
     public refreshToken(refreshToken: string) : Observable<LoginResponseDto> {
         {
             var body = {

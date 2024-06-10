@@ -118,22 +118,38 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   private saveData() {
+
     this.toggleBlockUI(true);
     console.log(this.form.value);
     if (this.utilService.isEmpty(this.config.data?.id)) {
+      this.toggleBlockUI(true); // Hiển thị giao diện chặn
       this.userService
         .create(this.form.value)
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe({
-          next: () => {
-            this.ref.close(this.form.value);
-            this.toggleBlockUI(false);
+          next: (response) => {
+            this.userService
+              .assignRoles(response.id, ["Nhân Viên"])
+              .pipe(takeUntil(this.ngUnsubscribe))
+              .subscribe({
+                next: () => {
+                  console.log(`User ${response.id} created and roles assigned.`);
+                  this.ref.close(this.form.value);
+                  this.toggleBlockUI(false);
+                },
+                error: (error) => {
+                  console.error(`Failed to assign roles: ${error}`);
+                  this.toggleBlockUI(false);
+                },
+              });
           },
-          error: () => {
+          error: (error) => {
+            console.error(`Failed to create user: ${error}`);
             this.toggleBlockUI(false);
           },
         });
-    } else {
+    }
+    else {
       this.userService
         .update(this.config.data?.id, this.form.value)
         .pipe(takeUntil(this.ngUnsubscribe))

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -8,7 +10,7 @@ namespace SonEcommerce.Public.Web.Pages.Auth
 {
     public class LoginModel : PageModel
     {
-        private readonly ICustomerAppService _customerAppService;
+        /*private readonly ICustomerAppService _customerAppService;
         [BindProperty]
         public string Username { get; set; }
         [BindProperty]
@@ -34,7 +36,8 @@ namespace SonEcommerce.Public.Web.Pages.Auth
             {
                 // Await the login task
                 var customer = await _customerAppService.LoginAsync(Username, Password);
-                
+                //add session
+                HttpContext.Session.SetString(SonEcommerceConsts.Customer, JsonSerializer.Serialize(customer));
                 return RedirectToPage("/");
             }
             catch (UserFriendlyException ex)
@@ -42,6 +45,17 @@ namespace SonEcommerce.Public.Web.Pages.Auth
                 ModelState.AddModelError("LoginError", ex.Message);
                 return Page();
             }
+        }*/
+        public IActionResult OnGet()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Challenge(new AuthenticationProperties { RedirectUri = "/" },
+                    OpenIdConnectDefaults.AuthenticationScheme);
+
+            }
+            return RedirectToPage("/");
         }
+
     }
 }

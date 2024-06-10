@@ -7,6 +7,7 @@ import * as SonEcommerce from './son-ecommerce';
 import * as System from './system';
 import * as Users from './users';
 import * as Volo from './volo';
+export * from './customer.service';
 export * from './models';
 export * from './orders.service';
 export { Manufacturers, ProductAttributes, ProductCategories, Products, Roles, SonEcommerce, System, Users, Volo };

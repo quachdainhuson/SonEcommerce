@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using Volo.Abp;
 
@@ -7,7 +8,7 @@ namespace SonEcommerce.Public.Web.Pages.Auth
 {
     public class RegisterModel : PageModel
     {
-        private readonly ICustomerAppService _customerAppService;
+        /*private readonly ICustomerAppService _customerAppService;
         [BindProperty]
         public CreateUpdateCustomerDto CustomerInput { get; set; }
         [BindProperty]
@@ -59,6 +60,15 @@ namespace SonEcommerce.Public.Web.Pages.Auth
             return RedirectToPage("/");
 
 
+        }*/
+        private readonly IConfiguration _configuration;
+        public RegisterModel(IConfiguration configuraiton)
+        {
+            _configuration = configuraiton;
+        }
+        public IActionResult OnGet()
+        {
+            return Redirect(_configuration["AuthServer:Authority"] + "/" + "Account/Register");
         }
     }
 }
