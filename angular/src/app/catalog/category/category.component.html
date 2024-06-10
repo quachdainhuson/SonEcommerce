@@ -58,6 +58,7 @@
         </th>
         <th>Code</th>
         <th>Tên Danh Mục</th>
+        <th>Hình ảnh</th>
         <!-- <th>Slug</th> -->
         <th>Visibility</th>
         <th>Kích Hoạt</th>
@@ -71,6 +72,7 @@
         </td>
         <td>{{ row.code }}</td>
         <td>{{ row.name }}</td>
+        <td><img style="width: 130px; height: 130px;" src="../../../assets/images/SonEcommerce/host/product-thumbnail-pictures/{{row.coverPicture}}" alt="{{row.name}}" /> </td>
         <!-- <td>{{ row.slug }}</td> -->
         <td>
           <p-badge *ngIf="row.visibility == 1" severity="success" value="Hiển thị"></p-badge>

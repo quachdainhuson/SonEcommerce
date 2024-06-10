@@ -3,13 +3,17 @@ using Microsoft.AspNetCore.Authorization;
 using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.ProductCategories;
 using SonEcommerce.ProductCategories;
+using SonEcommerce.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.BlobStoring;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Uow;
 
@@ -26,7 +30,11 @@ namespace SonEcommerce.Admin.ProductCategories
     {
         private readonly ProductCategoryManager _productCategoryManager;
         private readonly ProductCategoryCodeGenerator _productCategoryCodeGenerator;
-        public ProductCategoriesAppService(IRepository<ProductCategory, Guid> repository, ProductCategoryManager productCategoryManager, ProductCategoryCodeGenerator productCategoryCodeGenerator)
+        private readonly IBlobContainer<CategoryCoverPictureContainer> _fileContainer;
+        public ProductCategoriesAppService(IRepository<ProductCategory, 
+            Guid> repository, ProductCategoryManager productCategoryManager, 
+            ProductCategoryCodeGenerator productCategoryCodeGenerator,
+            IBlobContainer<CategoryCoverPictureContainer> fileContainer)
             : base(repository)
         {
             GetPolicyName = SonEcommercePermissions.ProductCategory.Default;
@@ -36,6 +44,7 @@ namespace SonEcommerce.Admin.ProductCategories
             DeletePolicyName = SonEcommercePermissions.ProductCategory.Delete;
             _productCategoryManager = productCategoryManager;
             _productCategoryCodeGenerator = productCategoryCodeGenerator;
+            _fileContainer = fileContainer;
         }
         [Authorize(SonEcommercePermissions.ProductCategory.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
@@ -52,15 +61,31 @@ namespace SonEcommerce.Admin.ProductCategories
                 input.Code,
                 input.Slug,
                 input.SortOrder,
-                input.CoverPicture,
                 input.Visibility,
                 input.IsActive,
                 input.ParentId,
                 input.SeoMetaDescription
              );
-            await Repository.InsertAsync(category);
-            return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
+
+            if (input.CoverPictureContent != null && input.CoverPictureContent.Length > 0)
+            {
+                await SaveCoverPictureAsync(input.CoverPictureName, input.CoverPictureContent);
+                category.CoverPicture = input.CoverPictureName;
+            }
+
+            var result = await Repository.InsertAsync(category);
+            return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(result);
         }
+
+        [Authorize(SonEcommercePermissions.ProductCategory.Update)]
+        private async Task SaveCoverPictureAsync(string fileName, string base64)
+        {
+            Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
+            base64 = regex.Replace(base64, string.Empty);
+            byte[] bytes = Convert.FromBase64String(base64);
+            await _fileContainer.SaveAsync(fileName, bytes, overrideExisting: true);
+        }
+
         [Authorize(SonEcommercePermissions.ProductCategory.Default)]
         public async Task<List<ProductCategoryInListDto>> GetListAllAsync()
         {
@@ -86,6 +111,49 @@ namespace SonEcommerce.Admin.ProductCategories
         public async Task<string> GetSuggestNewCodeAsync()
         {
             return await _productCategoryCodeGenerator.GenerateAsync();
+        }
+
+        public async Task<string> GetCoverPictureAsync(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return null;
+            }
+            var coverPictureContent = await _fileContainer.GetAllBytesOrNullAsync(fileName);
+
+            if (coverPictureContent is null)
+            {
+                return null;
+            }
+            var result = Convert.ToBase64String(coverPictureContent);
+            return result;
+        }
+
+        [Authorize(SonEcommercePermissions.ProductCategory.Update)]
+        public override async Task<ProductCategoryDto> UpdateAsync(Guid id, CreateUpdateProductCategoryDto input)
+        {
+            var category = await Repository.GetAsync(id);
+            if (category == null)
+                throw new BusinessException(SonEcommerceDomainErrorCodes.ProductCategoryIsNotExists);
+            category.Name = input.Name;
+            category.Code = input.Code;
+            category.Slug = input.Slug;
+            category.ParentId = input.ParentId;
+            category.SortOrder = input.SortOrder;
+            category.Visibility = input.Visibility;
+            category.IsActive = input.IsActive;
+
+            category.SeoMetaDescription = input.SeoMetaDescription;
+
+            if (input.CoverPictureContent != null && input.CoverPictureContent.Length > 0)
+            {
+                await SaveCoverPictureAsync(input.CoverPictureName, input.CoverPictureContent);
+                category.CoverPicture = input.CoverPictureName;
+
+            }
+            await Repository.UpdateAsync(category);
+
+            return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
         }
     }
 }
