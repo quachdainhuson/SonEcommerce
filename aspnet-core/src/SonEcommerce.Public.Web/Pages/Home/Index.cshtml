@@ -121,18 +121,11 @@
             <div class="box-swiper">
                 <div class="swiper-container swiper-group-5">
                     <div class="swiper-wrapper pt-5">
-                        <div class="swiper-slide">
-                            <div class="card-category">
-                                <div class="card-image"><a href="#"><img src="assets/imgs/page/homepage6/living-room.png" alt="Ecom"></a></div>
-                                <div class="card-info">
-                                    <a href="blog-single.html">
-                                        <h5 class="color-brand-3 mb-5">Living Room</h5>
-                                        <p class="font-md color-gray-500">156 products</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
+                        @foreach (var item in Model.Categories)
+                        {
+                            <partial name="_CategoryItem" model="item" />
+                        }
+@*                         <div class="swiper-slide">
                             <div class="card-category">
                                 <div class="card-image"><a href="#"><img src="assets/imgs/page/homepage6/reading-room.png" alt="Ecom"></a></div>
                                 <div class="card-info">
@@ -175,7 +168,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> *@
                     </div>
                 </div>
             </div>
@@ -232,7 +225,7 @@
                                     {
                                         <partial name="_ProductItem1" model="item" />
                                     }
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -247,7 +240,7 @@
                                 <div class="list-products-5">
                                     @foreach (var item in Model.TopSellerProduct)
                                     {
-                                        <partial name="_ProductItem1" model="item"/>
+                                        <partial name="_ProductItem1" model="item" />
                                     }
                                 </div>
                             </div>
