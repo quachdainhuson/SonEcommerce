@@ -1,8 +1,6 @@
 ﻿@using SonEcommerce.Public.ProductCategories;
 @model List<ProductCategoryInListDto>
 @{
-
-    
 }
 <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -43,7 +41,7 @@
                         <ul class="main-menu">
                             <li>
                                 <a class="active" href="/">Home</a>
-                                
+                                <p>Customer: </p>
                             </li>
                             
                             <li class="has-children">
@@ -107,13 +105,10 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <a class="font-lg icon-list icon-wishlist" href="shop-wishlist.html"><span>Wishlist</span><span class="number-item font-xs">5</span></a>
-
+                        <a class="font-lg icon-list icon-wishlist" href="shop-wishlist.html">Wishlist<span class="number-item font-xs">5</span></a>
                     }
-                    else
-                    {
-                        <div class="d-inline-block box-dropdown-cart">
+                    else{
+                         <div class="d-inline-block box-dropdown-cart">
                             <span class="font-lg icon-list icon-account"><span>Login/Register</span></span>
                             <div class="dropdown-account">
                                 <ul>
@@ -122,7 +117,6 @@
                                 </ul>
                             </div>
                         </div>
-                        
                     }
 
                     <div class="d-inline-block box-dropdown-cart">

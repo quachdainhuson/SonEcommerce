@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using SonEcommerce.Admin.System.Users;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace SonEcommerce.Admin.Users
 {
@@ -20,9 +22,9 @@ namespace SonEcommerce.Admin.Users
                         CreateUserDto, UpdateUserDto>, IUsersAppService
     {
         private readonly IdentityUserManager _identityUserManager;
-
+        private readonly UserRoleFinder _userRoleFinder;
         public UsersAppService(IRepository<IdentityUser, Guid> repository,
-            IdentityUserManager identityUserManager) : base(repository)
+            IdentityUserManager identityUserManager, UserRoleFinder userRoleFinder) : base(repository)
         {
             _identityUserManager = identityUserManager;
 
@@ -31,6 +33,9 @@ namespace SonEcommerce.Admin.Users
             CreatePolicyName = IdentityPermissions.Users.Create;
             UpdatePolicyName = IdentityPermissions.Users.Update;
             DeletePolicyName = IdentityPermissions.Users.Delete;
+
+            _userRoleFinder = userRoleFinder;
+
         }
         [Authorize(IdentityPermissions.Users.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
@@ -207,6 +212,48 @@ namespace SonEcommerce.Admin.Users
                 }
                 throw new UserFriendlyException(errors);
             }
+        }
+        [AllowAnonymous]
+        public async Task<bool> CheckPermissionAsync(Guid userId)
+        {
+            var user = await Repository.FindAsync(userId);
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), userId);
+            }
+            var roles = await _userRoleFinder.GetRolesAsync(userId);
+
+            if (roles == null || roles.Length == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+            
+            
+        }
+        [AllowAnonymous]
+        public async Task<string> GetUserIdByUsernameAsync(string username)
+        {
+            //get user by username or email
+            var user = await _identityUserManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                user = await _identityUserManager.FindByEmailAsync(username);
+                if (user == null)
+                {
+                   throw new EntityNotFoundException(typeof(IdentityUser), username);
+                }
+            }
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), username);
+            }
+            return user.Id.ToString();
+            
         }
     }
 }
