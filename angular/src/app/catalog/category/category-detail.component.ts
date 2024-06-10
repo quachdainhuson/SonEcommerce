@@ -18,6 +18,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   blockedPanel: boolean = false;
   btnDisabled = false;
   public form: FormGroup;
+  public coverPicture: any
 
   //Dropdown
   dataTypes: any[] = [];
@@ -29,7 +30,9 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
     private utilService: UtilityService,
-    private notificationSerivce: NotificationService
+    private notificationSerivce: NotificationService,
+    private sanitizer: DomSanitizer,
+    private cd: ChangeDetectorRef
   ) {}
 
   validationMessages = {
@@ -80,6 +83,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response: ProductCategoryDto) => {
           this.selectedEntity = response;
+          this.loadCoverPicture(this.selectedEntity.coverPicture);
           this.buildForm();
           this.toggleBlockUI(false);
         },
@@ -142,10 +146,24 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
       seoMetaDescription : new FormControl(this.selectedEntity.seoMetaDescription),
       visibility : new FormControl(this.selectedEntity.visibility || true),
       isActive : new FormControl(this.selectedEntity.isActive || true),
-      coverPicture : 'path/to/cover/picture.jpg'
+      coverPictureName:new FormControl(this.selectedEntity.coverPicture || null),
+      coverPictureContent: new FormControl(null)
 
       
       
+    });
+  }
+
+  loadCoverPicture(fileName: string){
+    this.categoryService.getCoverPicture(fileName)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response: string) => {
+        var fileExt = this.selectedEntity.coverPicture?.split('.').pop();
+        this.coverPicture = this.sanitizer.bypassSecurityTrustResourceUrl(
+          `data:image/${fileExt};base64, ${response}`
+        );
+      },
     });
   }
 
@@ -162,5 +180,24 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   }
   generateSlug() {
     this.form.controls['slug'].setValue(this.utilService.MakeSeoTitle(this.form.get('name').value));
+  }
+
+
+  onFileChange(event){
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.form.patchValue({
+          coverPictureName: file.name,
+          coverPictureContent: reader.result,
+        });
+
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+      };
+    }
   }
 }

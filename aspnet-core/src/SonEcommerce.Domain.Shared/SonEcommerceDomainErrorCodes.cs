@@ -13,6 +13,7 @@ public static class SonEcommerceDomainErrorCodes
     public const string ProductCategoryNameAlreadyExists = "SonEcommerce:ProductCategoryNameAlreadyExists";
     public const string ProductCategoryCodeAlreadyExists = "SonEcommerce:ProductCategoryCodeAlreadyExists";
     public const string ProductCategorySlugAlreadyExists = "SonEcommerce:ProductCategorySlugAlreadyExists";
+    public const string ProductCategoryIsNotExists = "SonEcommerce:ProductCategoryIsNotExists";
     public const string ManufacturerNameAlreadyExists = "SonEcommerce:ManufacturerNameAlreadyExists";
     public const string ManufacturerCodeAlreadyExists = "SonEcommerce:ManufacturerCodeAlreadyExists";
     public const string ManufacturerSlugAlreadyExists = "SonEcommerce:ManufacturerSlugAlreadyExists";
