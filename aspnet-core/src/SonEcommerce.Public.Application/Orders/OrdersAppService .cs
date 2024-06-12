@@ -73,7 +73,67 @@ namespace SonEcommerce.Public.Orders
 
             return ObjectMapper.Map<Order, OrderDto>(result);
         }
+        public async Task ChangeStatusOrderAsync(Guid orderId, OrderStatus status)
+        {
+            // Lấy đơn hàng hiện có
+            var order = await Repository.GetAsync(orderId);
+
+            // Cập nhật trạng thái của đơn hàng
+            order.Status = status;
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            await Repository.UpdateAsync(order);
+        }
 
 
+        public async Task<List<OrderInListDto>> GetListAllAsync()
+        {
+            var query = await Repository.GetQueryableAsync();
+            query = query.Where(x => x.Total > 0);
+            var data = await AsyncExecuter.ToListAsync(query);
+
+            return ObjectMapper.Map<List<Order>, List<OrderInListDto>>(data);
+        }
+
+        public async Task<OrderDto> GetOrderAndDetailsAsync(Guid orderId)
+        {
+            var order = await Repository.GetAsync(orderId);
+            var orderItems = await _orderItemRepository.GetListAsync(x => x.OrderId == orderId);
+
+            var orderDto = ObjectMapper.Map<Order, OrderDto>(order);
+            orderDto.OrderItems = ObjectMapper.Map<List<OrderItem>, List<OrderItemDto>>(orderItems);
+
+            return orderDto;
+        }
+
+        public async Task<List<OrderInListDto>> GetListOrderByUserIdAsync(Guid userId)
+        {
+            var query = await Repository.GetQueryableAsync();
+            query = query.Where(x => x.CustomerUserId == userId);
+            var orders = await AsyncExecuter.ToListAsync(query);
+
+            var orderDtos = new List<OrderInListDto>();
+
+            foreach (var order in orders)
+            {
+                var orderDetailDto = await GetOrderAndDetailsAsync(order.Id);
+                var orderInListDto = new OrderInListDto
+                {
+                    Id = order.Id,
+                    Code = order.Code,
+                    CustomerName = order.CustomerName,
+                    CustomerPhoneNumber = order.CustomerPhoneNumber,
+                    CustomerAddress = order.CustomerAddress,
+                    Status = order.Status,
+                    OrderItems = orderDetailDto.OrderItems,
+                    CreationTime = orderDetailDto.CreationTime
+                    
+
+                };
+                orderDtos.Add(orderInListDto);
+            }
+
+            return orderDtos;
+        }
     }
 }

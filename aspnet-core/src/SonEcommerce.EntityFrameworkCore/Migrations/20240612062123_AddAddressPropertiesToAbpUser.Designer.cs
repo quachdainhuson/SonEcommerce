@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SonEcommerce.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace SonEcommerce.Migrations
 {
     [DbContext(typeof(SonEcommerceDbContext))]
-    partial class SonEcommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240612062123_AddAddressPropertiesToAbpUser")]
+    partial class AddAddressPropertiesToAbpUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1715,6 +1718,10 @@ namespace SonEcommerce.Migrations
                         .HasDefaultValue(0)
                         .HasColumnName("AccessFailedCount");
 
+                    b.Property<string>("Address")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .IsRequired()
@@ -1850,10 +1857,6 @@ namespace SonEcommerce.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
                         .HasColumnName("TwoFactorEnabled");
-
-                    b.Property<string>("UserAddress")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
