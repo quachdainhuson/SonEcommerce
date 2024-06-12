@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SonEcommerce.Admin.Orders;
+using SonEcommerce.Orders;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +13,13 @@ namespace SonEcommerce.Admin
         <OrderDto,
         Guid,
         PagedResultRequestDto,
-        CreateOrderDto,
-        CreateOrderDto
+        UpdateOrderDto
         >
     {
         Task<List<OrderInListDto>> GetListAllAsync();
         Task<OrderDto> GetOrderAndDetailsAsync(Guid orderId);
         // change status order
-        Task<OrderDto> ChangeStatusOrderAsync(Guid orderId, int status);
+        Task ChangeStatusOrderAsync(Guid orderId, OrderStatus status);
     }
 }
 

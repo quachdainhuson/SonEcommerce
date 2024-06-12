@@ -6,14 +6,6 @@ export interface BaseListFilterDto extends PagedResultRequestDto {
   keyword?: string;
 }
 
-export interface CreateOrderDto {
-  customerName?: string;
-  customerPhoneNumber?: string;
-  customerAddress?: string;
-  customerUserId?: string;
-  items: OrderItemDto[];
-}
-
 export interface OrderDto extends EntityDto<string> {
   code?: string;
   status: OrderStatus;

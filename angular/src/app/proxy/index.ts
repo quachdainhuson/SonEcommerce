@@ -1,4 +1,5 @@
 import * as Manufacturers from './manufacturers';
+import * as Orders from './orders';
 import * as ProductAttributes from './product-attributes';
 import * as ProductCategories from './product-categories';
 import * as Products from './products';
@@ -10,4 +11,4 @@ import * as Volo from './volo';
 export * from './customer.service';
 export * from './models';
 export * from './orders.service';
-export { Manufacturers, ProductAttributes, ProductCategories, Products, Roles, SonEcommerce, System, Users, Volo };
+export { Manufacturers, Orders, ProductAttributes, ProductCategories, Products, Roles, SonEcommerce, System, Users, Volo };
