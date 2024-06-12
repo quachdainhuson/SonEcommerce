@@ -20,6 +20,8 @@ namespace SonEcommerce.Admin
         Task<OrderDto> GetOrderAndDetailsAsync(Guid orderId);
         // change status order
         Task ChangeStatusOrderAsync(Guid orderId, OrderStatus status);
+        Task<List<OrderInListDto>> GetListOrderByUserIdAsync(Guid userId);
+
     }
 }
 

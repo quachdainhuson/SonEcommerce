@@ -15,8 +15,10 @@ namespace SonEcommerce.Admin
         public string CustomerName { get; set; }
         public string CustomerPhoneNumber { get; set; }
         public Guid? CustomerUserId { get; set; }
+        public string CustomerAddress { get; set; }
+
         public DateTime CreationTime { get; set; }
         public Guid Id { get; set; }
-        public List<OrderItemDto> Items { get; set; }
+        public List<OrderItemDto> OrderItems { get; set; }
     }
 }

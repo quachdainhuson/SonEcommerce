@@ -15,6 +15,14 @@ public static class SonEcommerceModuleExtensionConfigurator
         {
             ConfigureExistingProperties();
             ConfigureExtraProperties();
+            ObjectExtensionManager.Instance.Modules()
+                .ConfigureIdentity(identity =>
+                {
+                    identity.ConfigureUser(user =>
+                    {
+                        user.AddOrUpdateProperty<string>("UserAddress");
+                    });
+                });
         });
     }
 
