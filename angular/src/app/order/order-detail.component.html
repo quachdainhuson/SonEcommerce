@@ -23,19 +23,7 @@
                               <!--end col-->
                               <div class="col-lg-6 col-6">
                                   <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Payment Status</p>
-                                  <!-- @if($receipt->status == 0) -->
-                                      <!-- <span class="badge bg-secondary-subtle text-secondary fs-11" id="payment-status">Chờ Xác Nhận</span> -->
-                                  <!-- @elseif($receipt->status == 1) -->
-                                      <!-- <span class="badge bg-primary-subtle text-primary fs-11" id="payment-status">Đã Xác Nhận</span> -->
-                                  <!-- @elseif($receipt->status == 2) -->
-                                      <!-- <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Làm</span> -->
-                                  <!-- @elseif($receipt->status == 3) -->
-                                      <span class="badge bg-success-subtle text-success fs-11" id="payment-status">Đã Hoàn Thành</span>
-                                  <!-- @elseif($receipt->status == 4) -->
-                                      <!-- <span class="badge bg-danger-subtle text-danger fs-11" id="payment-status">Đã Hủy</span> -->
-                                  <!-- @elseif($receipt->status == 5) -->
-                                      <!-- <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Giao Hàng</span> -->
-                                  <!-- @endif -->
+                                    <span class="badge bg-success-subtle  fs-13" [class]="getButtonTextClass(order.status)" id="payment-status">{{getStatusTypeName(order.status)}}</span>
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">

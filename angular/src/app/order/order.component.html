@@ -39,7 +39,13 @@
           <td>{{ row.customerName }}</td>
           <td>{{ row.customerPhoneNumber }}</td>
           <td>${{ row.total }}</td>
-          <td>{{ getStatusTypeName(row.status) }}</td>
+          <td>
+              <p-button 
+                (click)="changeOrderStatus(row)" 
+                [label]="getStatusTypeName(row.status)" 
+                [severity]="getButtonSeverity(row.status)">
+              </p-button>
+          </td>
           <td>{{ getPaymentTypeName(row.paymentMethod) }}</td>
           <td><p-button (click)="showDetailOrder(row.id)" label="Chi tiết" severity="help"></p-button></td>
         </tr>

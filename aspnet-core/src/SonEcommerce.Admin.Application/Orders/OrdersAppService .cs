@@ -1,4 +1,5 @@
-﻿using SonEcommerce.Orders;
+﻿using SonEcommerce.Admin.Orders;
+using SonEcommerce.Orders;
 using SonEcommerce.Products;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace SonEcommerce.Admin
         Order,
         OrderDto,
         Guid,
-        PagedResultRequestDto, CreateOrderDto, CreateOrderDto>, IOrderAppService
+        PagedResultRequestDto, UpdateOrderDto>, IOrderAppService
     {
         private readonly IRepository<OrderItem> _orderItemRepository;
         private readonly OrderCodeGenerator _orderCodeGenerator;
@@ -31,52 +32,18 @@ namespace SonEcommerce.Admin
             _productRepository = productRepository;
         }
 
-        public async Task<OrderDto> ChangeStatusOrderAsync(Guid orderId, int status)
+        public async Task ChangeStatusOrderAsync(Guid orderId, OrderStatus status)
         {
-            throw new NotImplementedException();
+            // Lấy đơn hàng hiện có
+            var order = await Repository.GetAsync(orderId);
+
+            // Cập nhật trạng thái của đơn hàng
+            order.Status = status;
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+             await Repository.UpdateAsync(order);
         }
 
-        public override async Task<OrderDto> CreateAsync(CreateOrderDto input)
-        {
-            var subTotal = input.Items.Sum(x => x.Quantity * x.Price);
-            var orderId = Guid.NewGuid();
-            var order = new Order(orderId)
-            {
-                Code = await _orderCodeGenerator.GenerateAsync(),
-                CustomerAddress = input.CustomerAddress,
-                CustomerName = input.CustomerName,
-                CustomerPhoneNumber = input.CustomerPhoneNumber,
-                ShippingFee = 0,
-                CustomerUserId = input.CustomerUserId,
-                Tax = 0,
-                Subtotal = subTotal,
-                GrandTotal = subTotal,
-                Discount = 0,
-                PaymentMethod = PaymentMethod.COD,
-                Total = subTotal,
-                Status = OrderStatus.New
-
-            };
-            var items = new List<OrderItem>();
-            foreach (var item in input.Items)
-            {
-                var product = await _productRepository.GetAsync(item.ProductId);
-                items.Add(new OrderItem()
-                {
-                    OrderId = orderId,
-                    Price = item.Price,
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity,
-                    SKU = product.SKU
-                });
-            }
-            await _orderItemRepository.InsertManyAsync(items);
-
-            var result = await Repository.InsertAsync(order);
-
-
-            return ObjectMapper.Map<Order, OrderDto>(result);
-        }
 
         public async Task<List<OrderInListDto>> GetListAllAsync()
         {
@@ -97,5 +64,16 @@ namespace SonEcommerce.Admin
 
             return orderDto;
         }
+
+        public override async Task<OrderDto> UpdateAsync(Guid orderId, UpdateOrderDto input)
+        {
+            var order = await Repository.GetAsync(orderId);
+            order.Status = input.Status;
+            await Repository.UpdateAsync(order);
+
+            // Return the updated order DTO
+            return ObjectMapper.Map<Order, OrderDto>(order);
+        }
+
     }
 }

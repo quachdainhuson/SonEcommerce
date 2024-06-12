@@ -12,6 +12,7 @@ import { OrderStatus, PaymentMethod } from '@proxy/son-ecommerce/orders';
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
+  styleUrls: ['./order.component.scss'],
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
@@ -134,4 +135,23 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  getButtonTextClass(status: OrderStatus): string {
+    switch (status) {
+      case OrderStatus.Confirmed:
+        return 'confirmed-text';
+      case OrderStatus.Processing:
+        return 'processing-text';
+      case OrderStatus.Shipping:
+        return 'shipping-text';
+      case OrderStatus.Finished:
+        return 'finished-text';
+      case OrderStatus.Canceled:
+        return 'canceled-text';
+      default:
+        return '';
+    }
+  }
+  
+  
 }

@@ -1,4 +1,6 @@
-import type { CreateOrderDto, OrderDto, OrderInListDto } from './models';
+import type { OrderDto, OrderInListDto } from './models';
+import type { UpdateOrderDto } from './orders/models';
+import type { OrderStatus } from './son-ecommerce/orders/order-status.enum';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto, PagedResultRequestDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -10,8 +12,8 @@ export class OrdersService {
   apiName = 'Default';
   
 
-  changeStatusOrder = (orderId: string, status: number, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, OrderDto>({
+  changeStatusOrder = (orderId: string, status: OrderStatus, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
       method: 'POST',
       url: `/api/app/orders/change-status-order/${orderId}`,
       params: { status },
@@ -19,7 +21,7 @@ export class OrdersService {
     { apiName: this.apiName,...config });
   
 
-  create = (input: CreateOrderDto, config?: Partial<Rest.Config>) =>
+  create = (input: UpdateOrderDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, OrderDto>({
       method: 'POST',
       url: '/api/app/orders',
@@ -69,10 +71,11 @@ export class OrdersService {
     { apiName: this.apiName,...config });
   
 
-  update = (id: string, input: CreateOrderDto, config?: Partial<Rest.Config>) =>
+  update = (orderId: string, input: UpdateOrderDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, OrderDto>({
       method: 'PUT',
-      url: `/api/app/orders/${id}`,
+      url: '/api/app/orders',
+      params: { orderId },
       body: input,
     },
     { apiName: this.apiName,...config });

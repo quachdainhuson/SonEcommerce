@@ -13,6 +13,7 @@ import { OrderDto, OrderInListDto, OrdersService } from '@proxy';
   selector: 'app-order',
   templateUrl: './order.component.html',
 
+
 })
 export class OrderComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
@@ -111,4 +112,58 @@ export class OrderComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+
+  changeOrderStatus(order: OrderInListDto) {
+    let newStatus;
+    switch (order.status) {
+      case OrderStatus.New:
+        newStatus = OrderStatus.Confirmed;
+        break;
+      case OrderStatus.Confirmed:
+        newStatus = OrderStatus.Processing;
+        break;
+      case OrderStatus.Processing:
+        newStatus = OrderStatus.Shipping;
+        break;
+      case OrderStatus.Shipping:
+        newStatus = OrderStatus.Finished;
+        break;
+      case OrderStatus.Finished:
+        newStatus = OrderStatus.Canceled;
+        break;
+      default:
+        newStatus = OrderStatus.Canceled;
+    }
+  
+    this.orderService.changeStatusOrder(order.id, newStatus)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: () => {
+          this.notificationService.showSuccess('Cập nhật trạng thái đơn hàng thành công');
+          this.loadData();
+        },
+        error: () => {
+          this.notificationService.showError('Có lỗi xảy ra khi cập nhật trạng thái đơn hàng');
+        }
+      });
+  }
+  
+  getButtonSeverity(status: OrderStatus): string {
+    switch (status) {
+      case OrderStatus.Confirmed:
+        return 'help'; // Màu tím
+      case OrderStatus.Processing:
+        return 'warning'; // Màu vàng
+      case OrderStatus.Shipping:
+        return 'info'; // Màu xanh dương
+      case OrderStatus.Finished:
+        return 'success'; // Màu xanh lá cây
+      case OrderStatus.Canceled:
+        return 'danger'; // Màu đỏ
+      default:
+        return 'basic'; // Màu mặc định
+    }
+  }
+  
 }
