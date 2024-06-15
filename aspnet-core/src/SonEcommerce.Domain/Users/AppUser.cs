@@ -10,6 +10,15 @@ namespace SonEcommerce.Users
     public class AppUser : IdentityUser
     {
         public static string UserAddress { get; } = "UserAddress";
-        // ...
+        public static string IdUserCity { get; } = "IdUserCity";
+        public static string IdUserDistrict { get; } = "IdUserDistrict";
+        public static string IdUserWard { get; } = "IdUserWard";
+
+        public static string UserCity { get; } = "UserCity";
+
+        public static string UserDistrict { get; } = "UserDistrict";
+        public static string UserWard { get; } = "UserWard";
+
+
     }
 }

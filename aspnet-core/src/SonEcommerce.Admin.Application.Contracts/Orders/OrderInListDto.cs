@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Identity;
 
 namespace SonEcommerce.Admin
 {
@@ -20,5 +21,6 @@ namespace SonEcommerce.Admin
         public DateTime CreationTime { get; set; }
         public Guid Id { get; set; }
         public List<OrderItemDto> OrderItems { get; set; }
+        public IdentityUserDto User { get; set; }
     }
 }

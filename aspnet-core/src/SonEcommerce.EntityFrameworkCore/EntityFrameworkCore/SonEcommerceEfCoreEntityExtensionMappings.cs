@@ -49,6 +49,61 @@ public static class SonEcommerceEfCoreEntityExtensionMappings
 
                          }
                      );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.UserCity),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.UserDistrict),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.UserWard),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
+
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.IdUserCity),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.IdUserDistrict),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.IdUserWard),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
             //tại sao khi tôi add Address vào database mà trong Identityuser không có Address
             //và tôi không thể thêm Address vào IdentityUser
 
