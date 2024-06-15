@@ -13,6 +13,6 @@ namespace SonEcommerce.Public.Orders
         public string SKU { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public ProductDto Product { get; set; }
+        /*public ProductDto? Product { get; set; }*/
     }
 }

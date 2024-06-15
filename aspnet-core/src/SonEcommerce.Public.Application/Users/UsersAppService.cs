@@ -88,7 +88,7 @@ namespace SonEcommerce.Public.Users
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserAddress] = input.UserAddress;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserCity] = input.UserCity;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserDistrict] = input.UserDistrict;
-            ((IHasExtraProperties)user).ExtraProperties[AppUser.UserWard] = input.UsserWard;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.UsserWard] = input.UsserWard;
             var result = await _identityUserManager.UpdateAsync(user);
             if (result.Succeeded)
             {
@@ -188,9 +188,9 @@ namespace SonEcommerce.Public.Users
             {
                 userDto.UserDistrict = extraProperties[AppUser.UserDistrict] as string;
             }
-            if (extraProperties.ContainsKey(AppUser.UserWard))
+            if (extraProperties.ContainsKey(AppUser.UsserWard))
             {
-                userDto.UsserWard = extraProperties[AppUser.UserWard] as string;
+                userDto.UsserWard = extraProperties[AppUser.UsserWard] as string;
             }
 
             return userDto;

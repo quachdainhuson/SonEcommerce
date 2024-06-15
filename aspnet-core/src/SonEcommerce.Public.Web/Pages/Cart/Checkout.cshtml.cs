@@ -6,28 +6,43 @@ using SonEcommerce.Public.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Volo.Abp.Users;
+using SonEcommerce.Public.Users;
+using SonEcommerce.Public.Products;
+
 
 namespace SonEcommerce.Public.Web.Pages.Cart
 {
     public class CheckoutModel : PageModel
     {
-        private readonly IOrdersAppService _ordersAppService;
-        public CheckoutModel(IOrdersAppService ordersAppService)
+        private readonly OrdersAppService _ordersAppService;
+        private readonly UsersAppService _usersAppService;
+
+        public CheckoutModel(OrdersAppService ordersAppService, UsersAppService usersAppService)
         {
             _ordersAppService = ordersAppService;
+            _usersAppService = usersAppService;
         }
         public List<CartItem> CartItems { get; set; }
+        public UserDto CurrentUser { get; set; }
 
         public bool? CreateStatus { set; get; }
 
         [BindProperty]
         public OrderDto Order { set; get; }
-
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            CartItems = GetCartItems();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+                CartItems = GetCartItems();
+
+            }
+            
 
         }
 
@@ -53,8 +68,9 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                 CustomerName = Order.CustomerName,
                 CustomerAddress = Order.CustomerAddress,
                 CustomerPhoneNumber = Order.CustomerPhoneNumber,
-                Items = cartItems,
-                CustomerUserId = currentUserId
+                CustomerUserId = currentUserId,
+                Items = cartItems
+
             });
             CartItems = GetCartItems();
 
