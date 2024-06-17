@@ -21,7 +21,8 @@ namespace SonEcommerce.Public.Users
         Task SetPasswordAsync(Guid userId, SetPasswordDto input);
         //GetUserIdByUsernameAsync
         Task<string> GetUserIdByUsernameAsync(string username);
-
+        //kiểm tra SỐ ĐIỆN THOẠI đã tồn tại chưa
+         Task<bool> CheckPhoneNumberExistAsync(string phoneNumber);
 
 
     }

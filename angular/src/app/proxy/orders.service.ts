@@ -63,6 +63,14 @@ export class OrdersService {
     { apiName: this.apiName,...config });
   
 
+  getListOrderByUserId = (userId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, OrderInListDto[]>({
+      method: 'GET',
+      url: `/api/app/orders/order-by-user-id/${userId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   getOrderAndDetails = (orderId: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, OrderDto>({
       method: 'GET',

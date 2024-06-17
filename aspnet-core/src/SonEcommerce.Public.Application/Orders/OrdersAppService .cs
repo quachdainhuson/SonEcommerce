@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
+using SonEcommerce.Public.Products;
 
 namespace SonEcommerce.Public.Orders
 {
@@ -20,15 +22,19 @@ namespace SonEcommerce.Public.Orders
         private readonly IRepository<OrderItem> _orderItemRepository;
         private readonly OrderCodeGenerator _orderCodeGenerator;
         private readonly IRepository<Product, Guid> _productRepository;
+        private readonly IRepository<IdentityUser, Guid> _userRepository;
         public OrdersAppService(IRepository<Order, Guid> repository,
             OrderCodeGenerator orderCodeGenerator,
             IRepository<OrderItem> orderItemRepository,
-            IRepository<Product, Guid> productRepository)
+            IRepository<Product, Guid> productRepository,
+            IRepository<IdentityUser, Guid> userRepository
+            )
             : base(repository)
         {
             _orderItemRepository = orderItemRepository;
             _orderCodeGenerator = orderCodeGenerator;
             _productRepository = productRepository;
+            _userRepository = userRepository;
         }
 
         public override async Task<OrderDto> CreateAsync(CreateOrderDto input)
@@ -41,6 +47,9 @@ namespace SonEcommerce.Public.Orders
                 CustomerAddress = input.CustomerAddress,
                 CustomerName = input.CustomerName,
                 CustomerPhoneNumber = input.CustomerPhoneNumber,
+                UserCity = input.UserCity,
+                UserDistrict = input.UserDistrict,
+                UserWard = input.UserWard,
                 ShippingFee = 0,
                 CustomerUserId = input.CustomerUserId,
                 Tax = 0,
@@ -63,7 +72,6 @@ namespace SonEcommerce.Public.Orders
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
                     SKU = product.SKU,
-                    Name = product.Name,
                 });
             }
             await _orderItemRepository.InsertManyAsync(items);
@@ -97,11 +105,28 @@ namespace SonEcommerce.Public.Orders
 
         public async Task<OrderDto> GetOrderAndDetailsAsync(Guid orderId)
         {
+            // Lấy thông tin order
             var order = await Repository.GetAsync(orderId);
+
+            // Lấy danh sách order items
             var orderItems = await _orderItemRepository.GetListAsync(x => x.OrderId == orderId);
 
+            // Lấy thông tin sản phẩm cho từng OrderItem
+            var productIds = orderItems.Select(item => item.ProductId).ToList();
+            var products = await _productRepository.GetListAsync(p => productIds.Contains(p.Id));
+
+            // Map dữ liệu vào DTO
             var orderDto = ObjectMapper.Map<Order, OrderDto>(order);
-            orderDto.OrderItems = ObjectMapper.Map<List<OrderItem>, List<OrderItemDto>>(orderItems);
+
+            var orderItemDtos = orderItems.Select(item =>
+            {
+                var orderItemDto = ObjectMapper.Map<OrderItem, OrderItemDto>(item);
+                var product = products.FirstOrDefault(p => p.Id == item.ProductId);
+                orderItemDto.Product = ObjectMapper.Map<Product, ProductDto>(product);
+                return orderItemDto;
+            }).ToList();
+
+            orderDto.OrderItems = orderItemDtos;
 
             return orderDto;
         }
@@ -117,23 +142,29 @@ namespace SonEcommerce.Public.Orders
             foreach (var order in orders)
             {
                 var orderDetailDto = await GetOrderAndDetailsAsync(order.Id);
+
+                // Lấy thông tin người dùng
+                var user = await _userRepository.GetAsync(userId);
+                var userDto = ObjectMapper.Map<IdentityUser, IdentityUserDto>(user);
+
                 var orderInListDto = new OrderInListDto
                 {
                     Id = order.Id,
                     Code = order.Code,
-                    CustomerName = order.CustomerName,
-                    CustomerPhoneNumber = order.CustomerPhoneNumber,
-                    CustomerAddress = order.CustomerAddress,
                     Status = order.Status,
+                    PaymentMethod = order.PaymentMethod,
+                    Total = (double)order.Total,
+                    CustomerUserId = userId,
+                    CreationTime = orderDetailDto.CreationTime,
                     OrderItems = orderDetailDto.OrderItems,
-                    CreationTime = orderDetailDto.CreationTime
-                    
-
+                    User = userDto // Gán thông tin người dùng vào DTO
                 };
+
                 orderDtos.Add(orderInListDto);
             }
 
             return orderDtos;
         }
+
     }
 }

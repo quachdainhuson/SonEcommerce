@@ -21,6 +21,9 @@ namespace SonEcommerce.Public.Orders
         public string CustomerPhoneNumber { get; set; }
         public string CustomerAddress { get; set; }
         public DateTime CreationTime { get; set; }
+        public string UserCity { get; set; }
+        public string UserDistrict { get; set; }
+        public string UserWard { get; set; }
 
         public Guid? CustomerUserId { get; set; }
         public Guid Id { get; set; }

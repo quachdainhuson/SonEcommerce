@@ -1,6 +1,8 @@
 import type { EntityDto, PagedResultRequestDto } from '@abp/ng.core';
 import type { OrderStatus } from './son-ecommerce/orders/order-status.enum';
 import type { PaymentMethod } from './son-ecommerce/orders/payment-method.enum';
+import type { IdentityUserDto } from './volo/abp/identity/models';
+import type { ProductDto } from './products/models';
 
 export interface BaseListFilterDto extends PagedResultRequestDto {
   keyword?: string;
@@ -23,6 +25,9 @@ export interface OrderDto extends EntityDto<string> {
   customerUserId?: string;
   id?: string;
   orderItems: OrderItemDto[];
+  userCity?: string;
+  userDistrict?: string;
+  userWard?: string;
 }
 
 export interface OrderInListDto extends EntityDto<string> {
@@ -33,16 +38,19 @@ export interface OrderInListDto extends EntityDto<string> {
   customerName?: string;
   customerPhoneNumber?: string;
   customerUserId?: string;
+  customerAddress?: string;
+  userCity?: string;
+  userDistrict?: string;
+  userWard?: string;
   creationTime?: string;
   id?: string;
-  items: OrderItemDto[];
+  orderItems: OrderItemDto[];
+  user: IdentityUserDto;
 }
 
 export interface OrderItemDto extends EntityDto {
   orderId?: string;
   productId?: string;
-  name?: string;
-  sku?: string;
   quantity: number;
-  price: number;
+  product: ProductDto;
 }

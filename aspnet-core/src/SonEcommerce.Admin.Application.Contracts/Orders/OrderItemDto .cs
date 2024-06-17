@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SonEcommerce.Admin.Products;
 using Volo.Abp.Application.Dtos;
 
 namespace SonEcommerce.Admin
@@ -9,9 +10,7 @@ namespace SonEcommerce.Admin
     {
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
-        public string Name { get; set; }
-        public string SKU { get; set; }
         public int Quantity { get; set; }
-        public double Price { get; set; }
+        public ProductDto Product { get; set; }
     }
 }

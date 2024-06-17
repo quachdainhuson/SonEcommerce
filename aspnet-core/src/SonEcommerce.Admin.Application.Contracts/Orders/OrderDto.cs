@@ -20,6 +20,9 @@ namespace SonEcommerce.Admin
         public string CustomerName { get; set; }
         public string CustomerPhoneNumber { get; set; }
         public string CustomerAddress { get; set; }
+        public string UserCity { get; set; }
+        public string UserDistrict { get; set; }
+        public string UserWard { get; set; }
         public DateTime CreationTime { get; set; }
 
         public Guid? CustomerUserId { get; set; }

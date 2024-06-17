@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Identity;
 
 namespace SonEcommerce.Admin
 {
@@ -16,9 +17,13 @@ namespace SonEcommerce.Admin
         public string CustomerPhoneNumber { get; set; }
         public Guid? CustomerUserId { get; set; }
         public string CustomerAddress { get; set; }
+        public string UserCity { get; set; }
+        public string UserDistrict { get; set; }
+        public string UserWard { get; set; }
 
         public DateTime CreationTime { get; set; }
         public Guid Id { get; set; }
         public List<OrderItemDto> OrderItems { get; set; }
+        public IdentityUserDto User { get; set; }
     }
 }
