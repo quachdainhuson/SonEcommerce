@@ -15,6 +15,7 @@ using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -156,5 +157,54 @@ public class SonEcommerceDbContext :
         builder.ApplyConfiguration(new PromotionUsageHistoryConfiguration());
         builder.ApplyConfiguration(new IdentitySettingConfiguration());
         builder.ApplyConfiguration(new CustomerConfiguration());
+
+        builder.Entity<Product>(b =>
+        {
+            b.ToTable(SonEcommerceConsts.DbTablePrefix + "Products", SonEcommerceConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+
+            //add the mappings
+            b.HasOne<ProductCategory>().WithMany().HasForeignKey(x => x.CategoryId).IsRequired();
+            b.HasOne<Manufacturer>().WithMany().HasForeignKey(x => x.ManufacturerId).IsRequired();
+
+            b.HasMany<ProductAttributeDateTime>().WithOne().HasForeignKey(pad => pad.ProductId);
+            b.HasMany<ProductAttributeDecimal>().WithOne().HasForeignKey(pad => pad.ProductId);
+            b.HasMany<ProductAttributeInt>().WithOne().HasForeignKey(pad => pad.ProductId);
+            b.HasMany<ProductAttributeText>().WithOne().HasForeignKey(pad => pad.ProductId);
+            b.HasMany<ProductAttributeVarchar>().WithOne().HasForeignKey(pad => pad.ProductId);
+
+
+
+        });
+        builder.Entity<ProductAttribute>(b =>
+        {
+            b.ToTable(SonEcommerceConsts.DbTablePrefix + "ProductAttributes", SonEcommerceConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.HasMany<ProductAttributeDateTime>().WithOne().HasForeignKey(pad => pad.AttributeId);
+            b.HasMany<ProductAttributeDecimal>().WithOne().HasForeignKey(pad => pad.AttributeId);
+            b.HasMany<ProductAttributeInt>().WithOne().HasForeignKey(pad => pad.AttributeId);
+            b.HasMany<ProductAttributeText>().WithOne().HasForeignKey(pad => pad.AttributeId);
+            b.HasMany<ProductAttributeVarchar>().WithOne().HasForeignKey(pad => pad.AttributeId);
+
+        });
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable(SonEcommerceConsts.DbTablePrefix + "Orders", SonEcommerceConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.HasMany<OrderItem>().WithOne().HasForeignKey(oi => oi.OrderId);
+            //order - IdentityUser: 1-n
+            b.HasOne<IdentityUser>().WithMany().HasForeignKey(o => o.CustomerUserId);
+
+        });
+
+        // OrderItem - Product: 1-1
+        builder.Entity<OrderItem>(b =>
+        {
+            b.ToTable(SonEcommerceConsts.DbTablePrefix + "OrderItems", SonEcommerceConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.HasOne<Product>().WithMany().HasForeignKey(oi => oi.ProductId);
+
+        });
     }
 }

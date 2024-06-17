@@ -6,33 +6,57 @@ using SonEcommerce.Public.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Volo.Abp.Users;
+using SonEcommerce.Public.Users;
+using SonEcommerce.Public.Products;
+
 
 namespace SonEcommerce.Public.Web.Pages.Cart
 {
     public class CheckoutModel : PageModel
     {
-        private readonly IOrdersAppService _ordersAppService;
-        public CheckoutModel(IOrdersAppService ordersAppService)
+        private readonly OrdersAppService _ordersAppService;
+        private readonly UsersAppService _usersAppService;
+        private readonly ProductsAppService _productsAppService;
+
+        public CheckoutModel(OrdersAppService ordersAppService, UsersAppService usersAppService, ProductsAppService productsAppService)
         {
             _ordersAppService = ordersAppService;
+            _usersAppService = usersAppService;
+            _productsAppService = productsAppService;
         }
         public List<CartItem> CartItems { get; set; }
+        public UserDto CurrentUser { get; set; }
 
         public bool? CreateStatus { set; get; }
 
         [BindProperty]
         public OrderDto Order { set; get; }
-
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            CartItems = GetCartItems();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+                CartItems = GetCartItems();
+
+            }
+
 
         }
 
         public async Task OnPostAsync()
         {
+            Order.UserCity = Order.UserCity.Trim();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+
+            }
             if (ModelState.IsValid == false)
             {
 
@@ -45,7 +69,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                     Price = item.Product.SellPrice,
                     ProductId = item.Product.Id,
                     Quantity = item.Quantity
-                });
+                }); 
             }
             Guid? currentUserId = User.Identity.IsAuthenticated ? User.GetUserId() : null;
             var order = await _ordersAppService.CreateAsync(new CreateOrderDto()
@@ -53,19 +77,25 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                 CustomerName = Order.CustomerName,
                 CustomerAddress = Order.CustomerAddress,
                 CustomerPhoneNumber = Order.CustomerPhoneNumber,
-                Items = cartItems,
-                CustomerUserId = currentUserId
+                UserCity = Order.UserCity,
+                UserDistrict = Order.UserDistrict,
+                UserWard = Order.UserWard,
+                CustomerUserId = currentUserId,
+                Items = cartItems
+
             });
             CartItems = GetCartItems();
 
-            if (order != null) {
+            if (order != null)
+            {
                 CreateStatus = true;
                 HttpContext.Session.Remove(SonEcommerceConsts.Cart);
                 CartItems.Clear();
 
             }
 
-            else {
+            else
+            {
                 CreateStatus = false;
 
             }

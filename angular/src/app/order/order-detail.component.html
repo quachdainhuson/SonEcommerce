@@ -64,7 +64,10 @@
                                   <p class="fw-medium mb-2" id="shipping-name">Tên khách hàng: {{order.customerName}}</p>
                                   <!-- <p class="text-muted mb-1" id="shipping-email-line-1">Email: </p> -->
                                   <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{order.customerPhoneNumber}}</span></p>
-                                  <p class="text-muted mb-1">Địa chỉ: {{order.customerAddress}}</p>
+                                <p class="text-muted mb-1">Thành Phố: {{userCity}}</p>
+                                <p class="text-muted mb-1">Quận: {{userDistrict}}</p>
+                                <p class="text-muted mb-1">Phường: {{userWards}}</p>
+                                  <p class="text-muted mb-1">Địa chỉ Cụ Thể: {{order.customerAddress}}</p>
                                   <!-- <span class="text-danger">Ghi Chú: đen đá không đường</span> -->
 
                               </div>
@@ -98,11 +101,11 @@
                                           <tr *ngFor="let item of orderItems; let i = index">
                                               <td>{{ i + 1 }}</td>
                                               <td class="text-start">
-                                                  <span class="fw-medium">{{item.name}}</span>
+                                                  <span class="fw-medium">{{item.product.name}}</span>
                                               </td>
-                                              <td>${{item.price}}</td>
+                                              <td>${{item.product.sellPrice}}</td>
                                               <td>{{item.quantity}}</td>
-                                              <td class="text-end">${{item.price * item.quantity}}</td>
+                                              <td class="text-end">${{item.product.sellPrice * item.quantity}}</td>
                                           </tr>
                                           <!-- @php($i++)
                                       @endforeach -->

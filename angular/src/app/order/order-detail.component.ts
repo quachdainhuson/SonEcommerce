@@ -27,6 +27,9 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   order: OrderDto;
   orderItems: OrderItemDto[];
+  userCity: string;
+  userDistrict: string;
+  userWards: string;
 
   constructor(
     private orderService: OrdersService,
@@ -52,7 +55,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     this.getOrderAndDetails();
   }
 
-
+   
   getOrderAndDetails() {
     // Lấy ID đơn hàng từ route hoặc bất kỳ nguồn nào khác
     const orderId = this.config.data?.id;
@@ -62,6 +65,14 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
       (orderDto) => {
         this.order = orderDto;
         this.orderItems = orderDto.orderItems;
+        this.fetchCityData(orderDto.userCity).then(data => this.userCity = data);
+        this.fetchDistrictData(orderDto.userDistrict).then(data => this.userDistrict = data);
+        this.fetchWardData(orderDto.userWard).then(data => {
+          this.userWards = data;
+          console.log(this.userWards);
+      });
+        //gửi userCity sang html
+        
         this.toggleBlockUI(false);
       },
       (error) => {
@@ -153,5 +164,55 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     }
   }
   
-  
+   fetchCityData(userCity) {
+    const url = `https://esgoo.net/api-tinhthanh/2/${userCity}.htm`;
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data.data_name;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
+
+ fetchDistrictData(userDistrict) {
+    const url = `https://esgoo.net/api-tinhthanh/3/${userDistrict}.htm`;
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data.data_name;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
+
+ fetchWardData(userWard) {
+  const url = `https://esgoo.net/api-tinhthanh/3/${userWard}.htm`;
+  return fetch(url)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.json();
+      })
+      .then(data => {
+          return data.data_name;
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
+}
+
 }

@@ -82,10 +82,23 @@ namespace SonEcommerce.Public.Users
                 throw new UserFriendlyException("Không Tìm Thấy Người Dùng!");
             }
             user.Name = input.Name;
-            user.SetPhoneNumber(input.PhoneNumber, true);
-            
+            //kiểm tra xem số điện thoại đã tồn tại chưa
+            if (user.PhoneNumber != input.PhoneNumber ) {
+                if (await CheckPhoneNumberExistAsync(input.PhoneNumber)) {
+                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                }
+                else
+                {
+                    user.SetPhoneNumber(input.PhoneNumber, true);
+
+                }
+            }
             user.Surname = input.Surname;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserAddress] = input.UserAddress;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.UserCity] = input.UserCity;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.UserDistrict] = input.UserDistrict;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.UserWard] = input.UserWard;
+
             var result = await _identityUserManager.UpdateAsync(user);
             if (result.Succeeded)
             {
@@ -177,8 +190,34 @@ namespace SonEcommerce.Public.Users
             {
                 userDto.UserAddress = extraProperties[AppUser.UserAddress] as string;
             }
+            if (extraProperties.ContainsKey(AppUser.UserCity))
+            {
+                userDto.UserCity = extraProperties[AppUser.UserCity] as string;
+            }
+            if (extraProperties.ContainsKey(AppUser.UserDistrict))
+            {
+                userDto.UserDistrict = extraProperties[AppUser.UserDistrict] as string;
+            }
+            if (extraProperties.ContainsKey(AppUser.UserWard))
+            {
+                userDto.UserWard = extraProperties[AppUser.UserWard] as string;
+            }
 
             return userDto;
+        }
+
+        public async Task<bool> CheckPhoneNumberExistAsync(string phoneNumber)
+        {
+            var query = await Repository.GetQueryableAsync();
+            var isPhoneNumberExisted = query.Any(x => x.PhoneNumber == phoneNumber);
+            if (isPhoneNumberExisted)
+            {
+                return true;
+            }
+            return false;
+            
+
+            
         }
     }
 }

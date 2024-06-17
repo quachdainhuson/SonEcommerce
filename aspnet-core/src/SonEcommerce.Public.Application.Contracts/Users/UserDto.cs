@@ -13,6 +13,9 @@ namespace SonEcommerce.Public.Users
         public string? Surname { get; set; }
         public string? PhoneNumber { get; set; }
         public string? UserAddress { get; set; }
+        public string? UserCity { get; set; }
+        public string? UserDistrict { get; set; }
+        public string? UserWard { get; set; }
         public IList<string> Roles { get; set; }
         public bool IsActive { get; set; }
 

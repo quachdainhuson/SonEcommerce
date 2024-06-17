@@ -38,37 +38,42 @@ namespace SonEcommerce.Public.Web.Pages.User
                 CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
                 var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
                 Orders = orders;
-                
+
             }
-            
+
 
         }
         //lấy thông tin đơn hàng theo user id
-        
+
         public async Task<IActionResult> OnPostAsync()
         {
 
-            try {
-                await _usersAppService.UpdateAsync(Guid.Parse(userId), UpdateUser);
+            try
+            {
                 if (User.Identity.IsAuthenticated)
                 {
                     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+                    var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
+                    Orders = orders;
+                    await _usersAppService.UpdateAsync(Guid.Parse(userId), UpdateUser);
+
                 }
 
                 return RedirectToPage();
             }
             catch (Exception ex)
             {
+                ModelState.AddModelError("UpdateUser.PhoneNumber", ex.Message);
                 ModelState.AddModelError("UpdateError", ex.Message);
                 return Page();
             }
 
-            
+
         }
 
 
     }
-        
-    
+
+
 }

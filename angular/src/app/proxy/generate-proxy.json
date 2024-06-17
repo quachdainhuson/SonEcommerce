@@ -2015,6 +2015,23 @@
                   }
                 },
                 {
+                  "name": "GetListOrderByUserIdAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "userId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.List<SonEcommerce.Admin.OrderInListDto>",
+                    "typeSimple": "[SonEcommerce.Admin.OrderInListDto]"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -2176,6 +2193,43 @@
               "supportedVersions": [],
               "parametersOnMethod": [],
               "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SonEcommerce.Admin.OrderInListDto>",
+                "typeSimple": "[SonEcommerce.Admin.OrderInListDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.IOrderAppService"
+            },
+            "GetListOrderByUserIdAsyncByUserId": {
+              "uniqueName": "GetListOrderByUserIdAsyncByUserId",
+              "name": "GetListOrderByUserIdAsync",
+              "httpMethod": "GET",
+              "url": "api/app/orders/order-by-user-id/{userId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "userId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "userId",
+                  "name": "userId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
               "returnValue": {
                 "type": "System.Collections.Generic.List<SonEcommerce.Admin.OrderInListDto>",
                 "typeSimple": "[SonEcommerce.Admin.OrderInListDto]"
@@ -9050,6 +9104,42 @@
           "minimum": null,
           "maximum": null,
           "regex": null
+        },
+        {
+          "name": "UserCity",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserDistrict",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserWard",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
         }
       ]
     },
@@ -9145,6 +9235,54 @@
           "regex": null
         },
         {
+          "name": "CustomerAddress",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserCity",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserDistrict",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserWard",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "CreationTime",
           "jsonName": null,
           "type": "System.DateTime",
@@ -9169,10 +9307,22 @@
           "regex": null
         },
         {
-          "name": "Items",
+          "name": "OrderItems",
           "jsonName": null,
           "type": "[SonEcommerce.Admin.OrderItemDto]",
           "typeSimple": "[SonEcommerce.Admin.OrderItemDto]",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "User",
+          "jsonName": null,
+          "type": "Volo.Abp.Identity.IdentityUserDto",
+          "typeSimple": "Volo.Abp.Identity.IdentityUserDto",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -9214,30 +9364,6 @@
           "regex": null
         },
         {
-          "name": "Name",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SKU",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "Quantity",
           "jsonName": null,
           "type": "System.Int32",
@@ -9250,10 +9376,10 @@
           "regex": null
         },
         {
-          "name": "Price",
+          "name": "Product",
           "jsonName": null,
-          "type": "System.Double",
-          "typeSimple": "number",
+          "type": "SonEcommerce.Admin.Products.ProductDto",
+          "typeSimple": "SonEcommerce.Admin.Products.ProductDto",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
