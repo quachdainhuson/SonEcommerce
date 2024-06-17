@@ -83,13 +83,15 @@ namespace SonEcommerce.Public.Users
             }
             user.Name = input.Name;
             //kiểm tra xem số điện thoại đã tồn tại chưa
-            if (await CheckPhoneNumberExistAsync(input.PhoneNumber)) {
-                throw new UserFriendlyException("Số điện thoại đã tồn tại");
-            }
-            else
-            {
-                user.SetPhoneNumber(input.PhoneNumber, true);
+            if (user.PhoneNumber != input.PhoneNumber ) {
+                if (await CheckPhoneNumberExistAsync(input.PhoneNumber)) {
+                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                }
+                else
+                {
+                    user.SetPhoneNumber(input.PhoneNumber, true);
 
+                }
             }
             user.Surname = input.Surname;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserAddress] = input.UserAddress;
