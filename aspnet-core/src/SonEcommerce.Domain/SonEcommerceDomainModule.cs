@@ -15,6 +15,7 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.OpenIddict;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Abp.VirtualFileSystem;
 
 namespace SonEcommerce;
 
@@ -33,6 +34,19 @@ namespace SonEcommerce;
 )]
 public class SonEcommerceDomainModule : AbpModule
 {
+    public override void OnApplicationInitialization(Volo.Abp.ApplicationInitializationContext context)
+    {
+        var settingManager = context.ServiceProvider.GetService<ISettingManager>();
+        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Host", "smtp.gmail.com");
+        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Port", "587");
+        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.UserName", "nhuson.udemy@gmail.com");
+        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Password", "fsposhytixnmzmit");
+        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.EnableSsl", "true");
+        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.UseDefaultCredentials", "false");
+        settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromAddress", "nhuson.udemy@gmail.com");
+        settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromDisplayName", "Cửa Hàng");
+
+    }
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpLocalizationOptions>(options =>
@@ -61,9 +75,9 @@ public class SonEcommerceDomainModule : AbpModule
         {
             options.IsEnabled = MultiTenancyConsts.IsEnabled;
         });
-        
-#if DEBUG
-        context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
-#endif
+        Configure<AbpVirtualFileSystemOptions>(options =>
+        {
+            options.FileSets.AddEmbedded<SonEcommerceDomainModule>("TEDU");
+        });
     }
 }

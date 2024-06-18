@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SonEcommerce.Public.Orders;
 using SonEcommerce.Public.Web.Extensions;
@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using Volo.Abp.Users;
 using SonEcommerce.Public.Users;
 using SonEcommerce.Public.Products;
+using Volo.Abp.TextTemplating;
+using Volo.Abp.Emailing;
+using SonEcommerce.Emailing;
 
 
 namespace SonEcommerce.Public.Web.Pages.Cart
@@ -21,12 +24,17 @@ namespace SonEcommerce.Public.Web.Pages.Cart
         private readonly OrdersAppService _ordersAppService;
         private readonly UsersAppService _usersAppService;
         private readonly ProductsAppService _productsAppService;
+        private readonly IEmailSender _emailSender;
+        private readonly ITemplateRenderer _templateRenderer;
 
-        public CheckoutModel(OrdersAppService ordersAppService, UsersAppService usersAppService, ProductsAppService productsAppService)
+        public CheckoutModel(OrdersAppService ordersAppService, UsersAppService usersAppService, ProductsAppService productsAppService, IEmailSender emailSender, ITemplateRenderer templateRenderer)
         {
             _ordersAppService = ordersAppService;
             _usersAppService = usersAppService;
             _productsAppService = productsAppService;
+            _emailSender = emailSender;
+            _templateRenderer = templateRenderer;
+
         }
         public List<CartItem> CartItems { get; set; }
         public UserDto CurrentUser { get; set; }
@@ -88,12 +96,23 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
             if (order != null)
             {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var email = User.GetSpecificClaim(ClaimTypes.Email);
+                    var emailBody = await _templateRenderer.RenderAsync(
+                        EmailTemplates.CreateOrderEmail,
+                        new
+                        {
+                            message = "Create order success"
+
+                        });
+                    await _emailSender.SendAsync(email, "Tạo đơn hàng thành công", emailBody);
+                }
+
                 CreateStatus = true;
                 HttpContext.Session.Remove(SonEcommerceConsts.Cart);
                 CartItems.Clear();
-
             }
-
             else
             {
                 CreateStatus = false;
