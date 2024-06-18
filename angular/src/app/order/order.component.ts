@@ -129,11 +129,8 @@ export class OrderComponent implements OnInit, OnDestroy {
       case OrderStatus.Shipping:
         newStatus = OrderStatus.Finished;
         break;
-      case OrderStatus.Finished:
-        newStatus = OrderStatus.Canceled;
-        break;
       default:
-        newStatus = OrderStatus.Canceled;
+        newStatus = OrderStatus.Finished;
     }
   
     this.orderService.changeStatusOrder(order.id, newStatus)

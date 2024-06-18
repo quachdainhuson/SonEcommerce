@@ -149,6 +149,8 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   getButtonTextClass(status: OrderStatus): string {
     switch (status) {
+      case OrderStatus.New:
+        return 'new-text'
       case OrderStatus.Confirmed:
         return 'confirmed-text';
       case OrderStatus.Processing:

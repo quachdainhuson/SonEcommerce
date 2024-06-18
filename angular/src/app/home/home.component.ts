@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.yearlyTotalIncome = {};
 
     this.items.forEach((order) => {
-      if(order.status == OrderStatus.Finished || order.status ==  OrderStatus.Canceled){
+      if(order.status == OrderStatus.Finished){
         const date = new Date(order.creationTime);
         const year = date.getFullYear();
         const month = date.getMonth();
