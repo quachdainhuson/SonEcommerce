@@ -85,6 +85,24 @@ public static class SonEcommerceEfCoreEntityExtensionMappings
 
                          }
                      );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.OTP),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
+            ObjectExtensionManager.Instance
+                     .MapEfCoreProperty<IdentityUser, string>(
+                         nameof(AppUser.OTPExpire),
+                         (entityBuilder, propertyBuilder) =>
+                         {
+                             propertyBuilder.HasMaxLength(256);
+
+                         }
+                     );
             //tại sao khi tôi add Address vào database mà trong Identityuser không có Address
             //và tôi không thể thêm Address vào IdentityUser
 

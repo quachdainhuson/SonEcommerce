@@ -15,6 +15,7 @@ using Volo.Abp.TextTemplating;
 using Volo.Abp.Identity;
 using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 using Volo.Abp.Emailing;
+using Microsoft.EntityFrameworkCore;
 
 namespace SonEcommerce.Public.Web.Pages.User
 {
@@ -35,6 +36,10 @@ namespace SonEcommerce.Public.Web.Pages.User
         public string userId { get; set; }
         [BindProperty]
         public string StatusMessage { get; set; }
+        [BindProperty]
+        public bool ShowOTPVerification { get; set; }
+        [BindProperty]
+        public string OTP { get; set; }
         public AccountModel(UsersAppService usersAppService, OrdersAppService ordersAppService, IdentityUserManager identityUserManager, IEmailSender emailSender, ITemplateRenderer templateRenderer)
         {
             _usersAppService = usersAppService;
@@ -87,45 +92,103 @@ namespace SonEcommerce.Public.Web.Pages.User
 
 
         }
-        public async Task<IActionResult> OnPostSendEmailConfirmationAsync()
+        public async Task OnPostSendEmailConfirmationAsync()
         {
             if (User.Identity.IsAuthenticated)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+                var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
+                Orders = orders;
                 await SendEmailConfirmAsync(userId);
-                StatusMessage = "Email xác thực đã được gửi. Vui lòng kiểm tra email của bạn.";
+                StatusMessage = "Email xác thực OTP đã được gửi. Vui lòng kiểm tra email của bạn.";
+                TempData["ShowOTP"] = true;
             }
-            return RedirectToPage();
+            
         }
-
+        public async Task OnPostVerifyEmailAsync() { 
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+                var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
+                Orders = orders;
+                await VerifyOTPAsync(userId, OTP);
+            }
+        }
         private async Task SendEmailConfirmAsync(string userId)
         {
-            var user = await _identityUserManager.FindByIdAsync(userId);
+            var user = await _usersAppService.GetUserByIdAsync(userId);
             if (user == null)
             {
                 throw new EntityNotFoundException(typeof(Microsoft.AspNetCore.Identity.IdentityUser), userId);
             }
+            //userdto to updatedto
+            var otp = GenerateOTP();
+            var otpExpiry = DateTime.Now.AddMinutes(10).ToString("o"); // OTP expires in 10 minutes
 
-            var code = await _identityUserManager.GenerateEmailConfirmationTokenAsync(user);
-
-            // Đường dẫn xác thực email
-            var confirmationLink = Url.Page(
-                EmailTemplates.ConfirmEmail,
-                pageHandler: null,
-                values: new { userId = userId, code = code },
-                protocol: Request.Scheme);
+            var updateUser = new UpdateUserDto
+            {
+                Email = user.Email,
+                EmailConfirmed = user.EmailConfirmed,
+                OTP = otp,
+                OTPExpire = otpExpiry
+            };
+            await _usersAppService.UpdateOTPAsync(Guid.Parse(userId), updateUser);
 
             // Chuẩn bị dữ liệu cho template
             var model = new
             {
-                ConfirmationLink = confirmationLink
+                message = otp
             };
 
             // Render template
             var emailBody = await _templateRenderer.RenderAsync(EmailTemplates.ConfirmEmail, model);
 
             // Gửi email
-            await _emailSender.SendAsync(user.Email, "Xác thực tài khoản", emailBody);
+            await _emailSender.SendAsync(user.Email, "Xác thực OTP", emailBody);
+        }
+
+        private string GenerateOTP()
+        {
+            // You can use any preferred method to generate OTP
+            // Here is a simple example
+            var random = new Random();
+            return random.Next(100000, 999999).ToString();
+        }
+
+        public async Task<IActionResult> VerifyOTPAsync(string userId, string otp)
+        {
+            var user = await _usersAppService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(Microsoft.AspNetCore.Identity.IdentityUser), userId);
+            }
+
+            if (DateTime.TryParse(user.OTPExpire, out var expirationTime))
+            {
+                if (user.OTP == otp && expirationTime > DateTime.Now)
+                {
+                    // OTP hợp lệ, cập nhật trạng thái người dùng
+                    var updateUser = new UpdateUserDto
+                    {
+                        EmailConfirmed = true,
+                        OTP = null,
+                        OTPExpire = null
+
+                    };
+                    await _usersAppService.UpdateOTPAsync(Guid.Parse(userId), updateUser);
+
+                    return Page();
+                }
+            }
+            else
+            {
+                // Invalid or expired OTP
+                StatusMessage = "OTP không hợp lệ hoặc đã hết hạn.";
+                return Page();
+            }
+            return Page();
         }
 
 

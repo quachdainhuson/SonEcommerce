@@ -11,7 +11,7 @@
         <div class="box-tabs mb-100">
             <ul class="nav nav-tabs nav-tabs-account" role="tablist">
                 <li><a class="active" href="#tab-setting" data-bs-toggle="tab" role="tab" aria-controls="tab-setting" aria-selected="true">Setting</a></li>
-                <li><a  href="#tab-orders" data-bs-toggle="tab" role="tab" aria-controls="tab-orders" aria-selected="true">Orders</a></li>
+                <li><a href="#tab-orders" data-bs-toggle="tab" role="tab" aria-controls="tab-orders" aria-selected="true">Orders</a></li>
             </ul>
             <div class="border-bottom mt-20 mb-40"></div>
             <div class="tab-content mt-30">
@@ -97,14 +97,34 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label for="email">Email *</label>
-                                            <input id="email" asp-for="UpdateUser.Email" class="form-control" font-sm" type="text" placeholder="Email *" value="@Model.CurrentUser.Email" >
+                                            <input id="email" asp-for="UpdateUser.Email" class="form-control" font-sm" type="text" placeholder="Email *" value="@Model.CurrentUser.Email">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary" asp-page-handler="SendEmailConfirmation" id="btnVerifyEmail">Xác thực Email</button>
-                                        </div>
+                                        @if (!Model.CurrentUser.EmailConfirmed)
+                                        {
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary" asp-page-handler="SendEmailConfirmation" id="btnVerifyEmail">Xác thực Email</button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-group">
+                                                <span class="text-success">Đã xác thực</span>
+                                            </div>
+                                        }
                                     </div>
+
+                                    <div class="col-lg-6" id="otpContainer" style="display: none;">
+                                        <form class="form-group" method="post">
+                                            <label for="otp">Nhập mã OTP *</label>
+                                            <input id="otp" asp-for="OTP" class="form-control" type="text" placeholder="Nhập mã OTP *" />
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary" asp-page-handler="VerifyEmail" id="btnVerifyOTP">Xác thực OTP</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="tinh">Tỉnh Thành</label>
@@ -569,6 +589,19 @@
             $("#tinh").trigger('change');
         }
     });
+    $(document).ready(function () {
+        // Kiểm tra TempData để hiển thị lại ô OTP nếu cần
+        var showOTP = '@TempData["ShowOTP"]';
+        if (showOTP === 'True') {
+            $('#otpContainer').show(); // Hiển thị ô nhập mã OTP khi cần thiết
+        }
+
+        // Xử lý sự kiện khi click vào nút "Xác thực Email"
+        $('#btnVerifyEmail').click(function () {
+            $('#otpContainer').show(); // Hiển thị ô nhập mã OTP khi click vào nút "Xác thực Email"
+        });
+    });
+
 </script>
 
 

@@ -18,5 +18,8 @@ namespace SonEcommerce.Public.Users
         public string? UserCity { get; set; }
         public string? UserDistrict { get; set; }
         public string? UserWard { get; set; }
+        public string? OTP { get; set; }
+        public string? OTPExpire { get; set; }
+        public bool EmailConfirmed { get; set; }
     }
 }

@@ -14,5 +14,8 @@ namespace SonEcommerce.Users
 
         public static string UserDistrict { get; } = "UserDistrict";
         public static string UserWard { get; } = "UserWard";
+        // OTP and OTP Expire
+        public static string OTP { get; } = "OTP";
+        public static string OTPExpire { get; } = "OTPExpire";
     }
 }

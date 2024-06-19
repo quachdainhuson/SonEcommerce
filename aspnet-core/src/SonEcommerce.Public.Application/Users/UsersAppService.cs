@@ -82,7 +82,40 @@ namespace SonEcommerce.Public.Users
                 throw new UserFriendlyException(errors);
             }
         }
+        public async Task<UserDto> UpdateOTPAsync(Guid id, UpdateUserDto input)
+        {
 
+            var user = await _identityUserManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new UserFriendlyException("Không Tìm Thấy Người Dùng!");
+            }
+            //EmailConfirm is true
+            user.SetEmailConfirmed(input.EmailConfirmed);
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTP] = input.OTP;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTPExpire] = input.OTPExpire;
+
+
+            var result = await _identityUserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return ObjectMapper.Map<IdentityUser, UserDto>(user);
+            }
+            else
+            {
+                List<Microsoft.AspNetCore.Identity.IdentityError> errorList = result.Errors.ToList();
+                string errors = "";
+
+                foreach (var error in errorList)
+                {
+                    errors = errors + error.Description.ToString();
+                }
+                throw new UserFriendlyException(errors);
+            }
+
+
+
+        }
         public async override Task<UserDto> UpdateAsync(Guid id, UpdateUserDto input)
         {
 
@@ -110,6 +143,9 @@ namespace SonEcommerce.Public.Users
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserCity] = input.UserCity;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserDistrict] = input.UserDistrict;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserWard] = input.UserWard;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTP] = input.OTP;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTPExpire] = input.OTPExpire;
+
 
             var result = await _identityUserManager.UpdateAsync(user);
             if (result.Succeeded)
@@ -214,7 +250,14 @@ namespace SonEcommerce.Public.Users
             {
                 userDto.UserWard = extraProperties[AppUser.UserWard] as string;
             }
-
+            if (extraProperties.ContainsKey(AppUser.OTP))
+            {
+                userDto.OTP = extraProperties[AppUser.OTP] as string;
+            }
+            if (extraProperties.ContainsKey(AppUser.OTPExpire))
+            {
+                userDto.OTPExpire = extraProperties[AppUser.OTPExpire] as string;
+            }
             return userDto;
         }
 
