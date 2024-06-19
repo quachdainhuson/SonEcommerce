@@ -82,7 +82,40 @@ namespace SonEcommerce.Public.Users
                 throw new UserFriendlyException(errors);
             }
         }
+        public async Task<UserDto> UpdateOTPAsync(Guid id, UpdateUserDto input)
+        {
 
+            var user = await _identityUserManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new UserFriendlyException("Không Tìm Thấy Người Dùng!");
+            }
+            //EmailConfirm is true
+            user.SetEmailConfirmed(input.EmailConfirmed);
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTP] = input.OTP;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTPExpire] = input.OTPExpire;
+
+
+            var result = await _identityUserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return ObjectMapper.Map<IdentityUser, UserDto>(user);
+            }
+            else
+            {
+                List<Microsoft.AspNetCore.Identity.IdentityError> errorList = result.Errors.ToList();
+                string errors = "";
+
+                foreach (var error in errorList)
+                {
+                    errors = errors + error.Description.ToString();
+                }
+                throw new UserFriendlyException(errors);
+            }
+
+
+
+        }
         public async override Task<UserDto> UpdateAsync(Guid id, UpdateUserDto input)
         {
 
@@ -105,11 +138,35 @@ namespace SonEcommerce.Public.Users
 
                 }
             }
+            if (user.Email != input.Email)
+            {
+                if (await _identityUserManager.FindByEmailAsync(input.Email) != null)
+                {
+                    throw new UserFriendlyException("Email đã tồn tại");
+                }
+                else
+                {
+                    var setEmailResult = await _identityUserManager.SetEmailAsync(user, input.Email);
+                    if (!setEmailResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setEmailResult.Errors.Select(e => e.Description)));
+                    }
+
+                    var setUserNameResult = await _identityUserManager.SetUserNameAsync(user, input.Email);
+                    if (!setUserNameResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setUserNameResult.Errors.Select(e => e.Description)));
+                    }
+                }
+            }
             user.Surname = input.Surname;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserAddress] = input.UserAddress;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserCity] = input.UserCity;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserDistrict] = input.UserDistrict;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserWard] = input.UserWard;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTP] = input.OTP;
+            ((IHasExtraProperties)user).ExtraProperties[AppUser.OTPExpire] = input.OTPExpire;
+
 
             var result = await _identityUserManager.UpdateAsync(user);
             if (result.Succeeded)
@@ -214,7 +271,14 @@ namespace SonEcommerce.Public.Users
             {
                 userDto.UserWard = extraProperties[AppUser.UserWard] as string;
             }
-
+            if (extraProperties.ContainsKey(AppUser.OTP))
+            {
+                userDto.OTP = extraProperties[AppUser.OTP] as string;
+            }
+            if (extraProperties.ContainsKey(AppUser.OTPExpire))
+            {
+                userDto.OTPExpire = extraProperties[AppUser.OTPExpire] as string;
+            }
             return userDto;
         }
 
