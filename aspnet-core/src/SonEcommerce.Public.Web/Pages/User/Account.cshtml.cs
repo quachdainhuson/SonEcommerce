@@ -106,7 +106,7 @@ namespace SonEcommerce.Public.Web.Pages.User
             }
             
         }
-        public async Task OnPostVerifyEmailAsync() { 
+        public async Task<IActionResult> OnPostVerifyEmailAsync() { 
             if (User.Identity.IsAuthenticated)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -114,7 +114,9 @@ namespace SonEcommerce.Public.Web.Pages.User
                 var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
                 Orders = orders;
                 await VerifyOTPAsync(userId, OTP);
+                
             }
+            return RedirectToPage();
         }
         private async Task SendEmailConfirmAsync(string userId)
         {

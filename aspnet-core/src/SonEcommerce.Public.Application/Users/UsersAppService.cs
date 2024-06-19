@@ -138,6 +138,27 @@ namespace SonEcommerce.Public.Users
 
                 }
             }
+            if (user.Email != input.Email)
+            {
+                if (await _identityUserManager.FindByEmailAsync(input.Email) != null)
+                {
+                    throw new UserFriendlyException("Email đã tồn tại");
+                }
+                else
+                {
+                    var setEmailResult = await _identityUserManager.SetEmailAsync(user, input.Email);
+                    if (!setEmailResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setEmailResult.Errors.Select(e => e.Description)));
+                    }
+
+                    var setUserNameResult = await _identityUserManager.SetUserNameAsync(user, input.Email);
+                    if (!setUserNameResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setUserNameResult.Errors.Select(e => e.Description)));
+                    }
+                }
+            }
             user.Surname = input.Surname;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserAddress] = input.UserAddress;
             ((IHasExtraProperties)user).ExtraProperties[AppUser.UserCity] = input.UserCity;
