@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using SonEcommerce.Public.Products;
 using SonEcommerce.Public.Web.Models;
+using Volo.Abp;
 
 namespace SonEcommerce.Public.Web.Pages.Cart
 {
@@ -20,9 +21,9 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
         [BindProperty]
         public List<CartItem> CartItems { get; set; }
-        public async Task OnGetAsync(string action, string id, int quantity)
+        public async Task<IActionResult> OnGetAsync(string action, string id, int quantity)
         {
-            
+            try {
                 if (quantity == 0)
                 {
                     quantity = 1;
@@ -77,7 +78,15 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                     }
                 }
                 CartItems = productCarts.Values.ToList();
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToPage();
+            }
             
+
 
 
 

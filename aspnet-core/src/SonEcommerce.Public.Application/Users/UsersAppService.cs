@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using SonEcommerce.Emailing;
 using SonEcommerce.Users;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,10 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Emailing;
 using Volo.Abp.Identity;
+using Volo.Abp.TextTemplating;
+using Volo.Abp.Users;
 using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace SonEcommerce.Public.Users
@@ -21,13 +25,19 @@ namespace SonEcommerce.Public.Users
     public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, PagedResultRequestDto,
                         CreateUserDto, UpdateUserDto>, IUsersAppService
     {
+        private readonly IEmailSender _emailSender;
+        private readonly ITemplateRenderer _templateRenderer;
         private readonly IdentityUserManager _identityUserManager;
         private readonly UserRoleFinder _userRoleFinder;
         public UsersAppService(IRepository<IdentityUser, Guid> repository,
-            IdentityUserManager identityUserManager, UserRoleFinder userRoleFinder) : base(repository)
+            IdentityUserManager identityUserManager, UserRoleFinder userRoleFinder,
+            IEmailSender emailSender, ITemplateRenderer templateRenderer) : base(repository)
+
         {
             _identityUserManager = identityUserManager;
             _userRoleFinder = userRoleFinder;
+            _emailSender = emailSender;
+            _templateRenderer = templateRenderer;
 
         }
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
@@ -83,8 +93,10 @@ namespace SonEcommerce.Public.Users
             }
             user.Name = input.Name;
             //kiểm tra xem số điện thoại đã tồn tại chưa
-            if (user.PhoneNumber != input.PhoneNumber ) {
-                if (await CheckPhoneNumberExistAsync(input.PhoneNumber)) {
+            if (user.PhoneNumber != input.PhoneNumber)
+            {
+                if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                {
                     throw new UserFriendlyException("Số điện thoại đã tồn tại");
                 }
                 else
@@ -215,9 +227,50 @@ namespace SonEcommerce.Public.Users
                 return true;
             }
             return false;
-            
 
-            
+
+
         }
+        //xác thực email
+        public async Task ConfirmEmailAsync(string userId, string code)
+        {
+            var user = await _identityUserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), userId);
+            }
+            var result = await _identityUserManager.ConfirmEmailAsync(user, code);
+            if (!result.Succeeded)
+            {
+                List<Microsoft.AspNetCore.Identity.IdentityError> errorList = result.Errors.ToList();
+                string errors = "";
+
+                foreach (var error in errorList)
+                {
+                    errors = errors + error.Description.ToString();
+                }
+                throw new UserFriendlyException(errors);
+            }
+        }
+        //gửi email xác thực
+        public async Task SendEmailConfirmAsync(string userId)
+        {
+            var user = await _identityUserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), userId);
+            }
+            var code = await _identityUserManager.GenerateEmailConfirmationTokenAsync(user);
+            var emailBody = await _templateRenderer.RenderAsync(
+                               EmailTemplates.ConfirmEmail,
+                                              new
+                                              {
+                                                  userId = userId,
+                                                  code = code
+                                              });
+            await _emailSender.SendAsync(user.Email, "Xác thực tài khoản", emailBody);
+        }
+
+
     }
 }

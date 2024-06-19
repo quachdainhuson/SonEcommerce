@@ -43,6 +43,17 @@ namespace SonEcommerce.Emailing
                       isInlineLocalized: true
                   ).WithScribanEngine()
           );
+            context.Add(
+              new TemplateDefinition(
+                  name: EmailTemplates.ConfirmEmail,
+                  layout: EmailTemplates.Layout
+                  )
+                  .WithVirtualFilePath(
+                      "/Emailing/Templates/ConfirmEmail.tpl",
+                      isInlineLocalized: true
+                  ).WithScribanEngine()
+          );
+
 
         }
     }

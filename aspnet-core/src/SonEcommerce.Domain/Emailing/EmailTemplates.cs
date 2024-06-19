@@ -12,5 +12,7 @@ namespace SonEcommerce.Emailing
 
         public const string WelcomeEmail = "TEDU.Emailing.Templates.WelcomeEmail";
         public const string CreateOrderEmail = "TEDU.Emailing.Templates.CreateOrderEmail";
+        public const string ConfirmEmail = "TEDU.Emailing.Templates.ConfirmEmail";
     }
 }
+
