@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SonEcommerce.Public.Web.Pages.Products
 {
-    public class CategoryModel : PageModel
+    public class ProductModel : PageModel
     {
         public ProductCategoryDto Category { set; get; }
 
@@ -18,11 +18,10 @@ namespace SonEcommerce.Public.Web.Pages.Products
         private readonly IProductsAppService _productsAppService;
         [BindProperty]
         public double? MinPrice { get; set; }
-        [BindProperty]
-        public string? CategoryCode { get; set; }
+
         [BindProperty]
         public double? MaxPrice { get; set; }
-        public CategoryModel(IProductCategoriesAppService productCategoriesAppService,
+        public ProductModel(IProductCategoriesAppService productCategoriesAppService,
             IProductsAppService productsAppService)
         {
             _productCategoriesAppService = productCategoriesAppService;
@@ -31,7 +30,6 @@ namespace SonEcommerce.Public.Web.Pages.Products
 
         public async Task OnGetAsync(string code, int page = 1)
         {
-            Category = await _productCategoriesAppService.GetByCodeAsync(code);
             Categories = await _productCategoriesAppService.GetListAllAsync();
             if (int.TryParse(Request.Query["page"], out int currentPage))
             {
@@ -39,7 +37,8 @@ namespace SonEcommerce.Public.Web.Pages.Products
                 ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
                 {
                     CurrentPage = currentPage,
-                    CategoryId = Category.Id
+                    MinPrice= MinPrice,
+                    MaxPrice= MaxPrice
                 });
             }
             else
@@ -48,12 +47,14 @@ namespace SonEcommerce.Public.Web.Pages.Products
                 ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
                 {
                     CurrentPage = 1,
-                    CategoryId = Category.Id
+                    MinPrice = MinPrice,
+                    MaxPrice = MaxPrice
                 });
             }
         }
-        public async Task OnPostAsync( int page = 1)
+        public async Task OnPostAsync(string code, int page = 1)
         {
+            //kiểm tra nếu giá trị min và max price không hợp lệ thì gán giá trị mặc định
             if (MinPrice == null || MinPrice < 0)
             {
                 MinPrice = 0;
@@ -70,7 +71,7 @@ namespace SonEcommerce.Public.Web.Pages.Products
                 MaxPrice = 0;
                 TempData["Message"] = "Giá min hiện tại đang cao hơn giá max";
             }
-            Category = await _productCategoriesAppService.GetByCodeAsync(CategoryCode);
+            
             Categories = await _productCategoriesAppService.GetListAllAsync();
             if (int.TryParse(Request.Query["page"], out int currentPage))
             {
@@ -78,7 +79,6 @@ namespace SonEcommerce.Public.Web.Pages.Products
                 ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
                 {
                     CurrentPage = currentPage,
-                    CategoryId = Category.Id,
                     MinPrice = MinPrice,
                     MaxPrice = MaxPrice
                 });
@@ -89,11 +89,11 @@ namespace SonEcommerce.Public.Web.Pages.Products
                 ProductData = await _productsAppService.GetListFilterAsync(new ProductListFilterDto()
                 {
                     CurrentPage = 1,
-                    CategoryId = Category.Id,
                     MinPrice = MinPrice,
                     MaxPrice = MaxPrice
                 });
             }
         }
+
     }
 }

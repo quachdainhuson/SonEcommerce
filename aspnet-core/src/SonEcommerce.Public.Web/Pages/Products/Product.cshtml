@@ -1,11 +1,11 @@
-﻿@page "/products/{code}.html"
-@model SonEcommerce.Public.Web.Pages.Products.CategoryModel
+﻿@page "/products.html"
+@model SonEcommerce.Public.Web.Pages.Products.ProductModel
 <div class="section-box">
     <div class="breadcrumbs-div">
         <div class="container">
             <ul class="breadcrumb">
                 <li><a class="font-xs color-gray-1000" href="/">Home</a></li>
-                <li><a class="font-xs color-gray-500">@Model.Category.Name</a></li>
+                <li><a class="font-xs color-gray-500">Sản Phẩm</a></li>
             </ul>
         </div>
     </div>
@@ -81,7 +81,16 @@
                         <h6 class="color-gray-900 mt-10 mb-10">Price</h6>
                         <div class="price-filter">
                             <form method="post">
-                                <input type="text" asp-for="CategoryCode" value="@Model.Category.Code" hidden/>
+                                @* hiển thị thông báo lỗi *@
+                                @if (TempData["Message"] != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        <ul>
+                                            @TempData["Message"]
+                                        </ul>
+                                    </div>
+                                }
+                                
                                 <label for="min-price">Min Price</label>
                                 <input type="number" id="min-price" asp-for="MinPrice" class="form-control" placeholder="0" min="0">
                                 <label for="max-price">Max Price</label>
@@ -89,7 +98,7 @@
                                 <button type="submit" class="form-control">Apply</button>
                             </form>
                         </div>
-
+                        
                     </div>
                 </div>
                 <div class="box-slider-item mb-30">
