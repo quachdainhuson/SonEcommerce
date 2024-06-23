@@ -75,6 +75,9 @@ namespace SonEcommerce.Public.Products
             query = query.Where(x => x.Visibility == true);
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
+            query = query.WhereIf(input.MinPrice.HasValue, x => x.SellPrice >= input.MinPrice);
+            query = query.WhereIf(input.MaxPrice.HasValue, x => x.SellPrice <= input.MaxPrice);
+
 
             var totalCount = await AsyncExecuter.LongCountAsync(query);
             var data = await AsyncExecuter

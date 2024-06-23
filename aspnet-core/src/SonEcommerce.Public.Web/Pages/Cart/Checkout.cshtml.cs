@@ -103,7 +103,8 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                         EmailTemplates.CreateOrderEmail,
                         new
                         {
-                            message = "Create order success"
+                            message = "Tạo đơn hàng thành công!!",
+                            orderEmail = order
 
                         });
                     await _emailSender.SendAsync(email, "Tạo đơn hàng thành công", emailBody);
