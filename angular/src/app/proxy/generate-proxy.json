@@ -5371,6 +5371,40 @@
                   }
                 },
                 {
+                  "name": "GetListWithoutRolesAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "SonEcommerce.Admin.BaseListFilterDto, SonEcommerce.Admin.Application.Contracts",
+                      "type": "SonEcommerce.Admin.BaseListFilterDto",
+                      "typeSimple": "SonEcommerce.Admin.BaseListFilterDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>"
+                  }
+                },
+                {
+                  "name": "GetListWithRolesAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "SonEcommerce.Admin.BaseListFilterDto, SonEcommerce.Admin.Application.Contracts",
+                      "type": "SonEcommerce.Admin.BaseListFilterDto",
+                      "typeSimple": "SonEcommerce.Admin.BaseListFilterDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -5919,6 +5953,128 @@
                 "typeSimple": "string"
               },
               "allowAnonymous": true,
+              "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
+            },
+            "GetListWithoutRolesAsyncByInput": {
+              "uniqueName": "GetListWithoutRolesAsyncByInput",
+              "name": "GetListWithoutRolesAsync",
+              "httpMethod": "GET",
+              "url": "api/app/users/without-roles",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.BaseListFilterDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.BaseListFilterDto",
+                  "typeSimple": "SonEcommerce.Admin.BaseListFilterDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Keyword",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
+            },
+            "GetListWithRolesAsyncByInput": {
+              "uniqueName": "GetListWithRolesAsyncByInput",
+              "name": "GetListWithRolesAsync",
+              "httpMethod": "GET",
+              "url": "api/app/users/with-roles",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.BaseListFilterDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.BaseListFilterDto",
+                  "typeSimple": "SonEcommerce.Admin.BaseListFilterDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Keyword",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>"
+              },
+              "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
             },
             "DeleteAsyncById": {

@@ -89,6 +89,24 @@ export class UsersService {
     { apiName: this.apiName,...config });
   
 
+  getListWithRoles = (input: BaseListFilterDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<UserInListDto>>({
+      method: 'GET',
+      url: '/api/app/users/with-roles',
+      params: { keyword: input.keyword, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getListWithoutRoles = (input: BaseListFilterDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<UserInListDto>>({
+      method: 'GET',
+      url: '/api/app/users/without-roles',
+      params: { keyword: input.keyword, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
   getUserIdByUsername = (username: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, string>({
       method: 'GET',

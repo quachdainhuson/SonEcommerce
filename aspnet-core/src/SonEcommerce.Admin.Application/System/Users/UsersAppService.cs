@@ -255,5 +255,27 @@ namespace SonEcommerce.Admin.Users
             return user.Id.ToString();
             
         }
+
+        public async Task<PagedResultDto<UserInListDto>> GetListWithoutRolesAsync(BaseListFilterDto input)
+        {
+            var query = await Repository.GetQueryableAsync();
+            var users = query.Where(o => o.Roles.Count == 0).ToList();
+            var totalCount = users.Count;
+            var data = users.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+            var userInListDtos = ObjectMapper.Map<List<IdentityUser>, List<UserInListDto>>(data);
+            return new PagedResultDto<UserInListDto>(totalCount, userInListDtos);
+            
+        }
+
+        public async Task<PagedResultDto<UserInListDto>> GetListWithRolesAsync(BaseListFilterDto input)
+        {
+            var query = await Repository.GetQueryableAsync();
+            var users = query.Where(o => o.Roles.Count > 0).ToList();
+            var totalCount = users.Count;
+            var data = users.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+            var userInListDtos = ObjectMapper.Map<List<IdentityUser>, List<UserInListDto>>(data);
+            return new PagedResultDto<UserInListDto>(totalCount, userInListDtos);
+            
+        }
     }
 }
