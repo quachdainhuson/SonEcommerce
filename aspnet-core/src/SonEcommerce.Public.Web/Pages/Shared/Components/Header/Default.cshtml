@@ -20,7 +20,7 @@
                 <div class="header-logo"><a class="d-flex" href="/"><img alt="ORDINAIRE" src="/assets/imgs/template/logo_furniture.webp"></a></div>
                 <div class="header-search">
                     <div class="box-header-search">
-                        <form class="form-search" method="post" action="#">
+                        <form class="form-search" method="get" asp-page="/Products/Product">
                             <div class="box-category">
                                 <select class="select-active select2-hidden-accessible">
                                     <option>All categories</option>
@@ -32,7 +32,7 @@
                                 </select>
                             </div>
                             <div class="box-keysearch">
-                                <input class="form-control font-xs" type="text" value="" placeholder="Search for items">
+                                <input class="form-control font-xs" type="text" name="keyword" placeholder="Search...">
                             </div>
                         </form>
                     </div>
