@@ -21,13 +21,13 @@ export interface OrderDto extends EntityDto<string> {
   customerName?: string;
   customerPhoneNumber?: string;
   customerAddress?: string;
+  userCity?: string;
+  userDistrict?: string;
+  userWard?: string;
   creationTime?: string;
   customerUserId?: string;
   id?: string;
   orderItems: OrderItemDto[];
-  userCity?: string;
-  userDistrict?: string;
-  userWard?: string;
 }
 
 export interface OrderInListDto extends EntityDto<string> {
@@ -52,5 +52,7 @@ export interface OrderItemDto extends EntityDto {
   orderId?: string;
   productId?: string;
   quantity: number;
+  name?: string;
   product: ProductDto;
+  price: number;
 }

@@ -74,6 +74,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
             {
                 cartItems.Add(new OrderItemDto()
                 {
+                    Name = item.Product.Name,
                     Price = item.Product.SellPrice,
                     ProductId = item.Product.Id,
                     Quantity = item.Quantity
@@ -82,6 +83,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
             Guid? currentUserId = User.Identity.IsAuthenticated ? User.GetUserId() : null;
             var order = await _ordersAppService.CreateAsync(new CreateOrderDto()
             {
+
                 CustomerName = Order.CustomerName,
                 CustomerAddress = Order.CustomerAddress,
                 CustomerPhoneNumber = Order.CustomerPhoneNumber,

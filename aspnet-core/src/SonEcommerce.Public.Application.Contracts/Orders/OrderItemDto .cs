@@ -10,8 +10,9 @@ namespace SonEcommerce.Public.Orders
     {
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
+        public string Name { get; set; }
         public string SKU { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } 
         public double Price { get; set; }
         public ProductDto? Product { get; set; }
     }

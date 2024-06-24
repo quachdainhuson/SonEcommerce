@@ -101,11 +101,11 @@
                                           <tr *ngFor="let item of orderItems; let i = index">
                                               <td>{{ i + 1 }}</td>
                                               <td class="text-start">
-                                                  <span class="fw-medium">{{item.product.name}}</span>
+                                                  <span class="fw-medium">{{item.name}}</span>
                                               </td>
-                                              <td>${{item.product.sellPrice}}</td>
+                                              <td>${{item.price}}</td>
                                               <td>{{item.quantity}}</td>
-                                              <td class="text-end">${{item.product.sellPrice * item.quantity}}</td>
+                                              <td class="text-end">${{item.price * item.quantity}}</td>
                                           </tr>
                                           <!-- @php($i++)
                                       @endforeach -->
