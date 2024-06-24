@@ -67,7 +67,7 @@ namespace SonEcommerce.Public.Orders
                 var product = await _productRepository.GetAsync(item.ProductId);
                 items.Add(new OrderItem()
                 {
-                    Name = item.Name,
+                    Name = product.Name,
                     OrderId = orderId,
                     Price = item.Price,
                     ProductId = item.ProductId,

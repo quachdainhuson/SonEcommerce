@@ -240,7 +240,7 @@ namespace SonEcommerce.Public.Products
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
-        public async Task<PagedResult<ProductInListDto>> SearchProduct(ProductInListDto input)
+        /*public async Task<PagedResult<ProductInListDto>> SearchProduct(ProductInListDto input)
         {
             var query = await Repository.GetQueryableAsync();
             query = query.Where(x => x.IsActive == true);
@@ -259,6 +259,6 @@ namespace SonEcommerce.Public.Products
                 input.CurrentPage,
                 input.PageSize
             );
-        }
+        }*/
     }
 }
