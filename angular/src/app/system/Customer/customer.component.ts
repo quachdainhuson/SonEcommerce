@@ -45,6 +45,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
 
   loadData(selectionId = null) {
+    console.log(this.keyword);
     this.toggleBlockUI(true);
     this.userService
       .getListWithoutRoles({
