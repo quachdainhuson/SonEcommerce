@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   //Filter
   productCategories: any[] = [];
-  keyword: string = '';
+  keywords: string = '';
   categoryId: string = '';
 
   constructor(
@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.toggleBlockUI(true);
     this.productService
       .getListFilter({
-        keyword: this.keyword,
+        keyword: this.keywords,
         categoryId: this.categoryId,
         maxResultCount: this.maxResultCount,
         skipCount: this.skipCount,

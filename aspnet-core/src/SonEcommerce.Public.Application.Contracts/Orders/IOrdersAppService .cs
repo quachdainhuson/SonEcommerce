@@ -18,6 +18,7 @@ namespace SonEcommerce.Public.Orders
         // change status order
         Task ChangeStatusOrderAsync(Guid orderId, OrderStatus status);
         Task<List<OrderInListDto>> GetListOrderByUserIdAsync(Guid userId);
-
+        // CancelOrderAsync
+        Task<bool> CancelOrderAsync(Guid orderId);
     }
 }
