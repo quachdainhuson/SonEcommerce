@@ -69,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonEcommerce.Public.HttpApi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonEcommerce.Public.Web", "src\SonEcommerce.Public.Web\SonEcommerce.Public.Web.csproj", "{0AB05343-5BCF-4F12-B757-67CF6F9CB230}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonEcommerce.BackgroundWorkers", "src\SonEcommerce.BackgroundWorkers\SonEcommerce.BackgroundWorkers.csproj", "{75F1204A-9057-43FF-B4B6-B680C790482C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +165,10 @@ Global
 		{0AB05343-5BCF-4F12-B757-67CF6F9CB230}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AB05343-5BCF-4F12-B757-67CF6F9CB230}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AB05343-5BCF-4F12-B757-67CF6F9CB230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F1204A-9057-43FF-B4B6-B680C790482C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F1204A-9057-43FF-B4B6-B680C790482C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F1204A-9057-43FF-B4B6-B680C790482C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F1204A-9057-43FF-B4B6-B680C790482C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,6 +205,7 @@ Global
 		{21723D60-70F8-4CA5-98BD-8C364B004450} = {6D8D566B-FB02-465B-B4DF-D4560F4B13EA}
 		{8DA5FC4D-3B14-47FA-8760-E6F3260D027E} = {6D8D566B-FB02-465B-B4DF-D4560F4B13EA}
 		{0AB05343-5BCF-4F12-B757-67CF6F9CB230} = {6D8D566B-FB02-465B-B4DF-D4560F4B13EA}
+		{75F1204A-9057-43FF-B4B6-B680C790482C} = {4A38D412-1161-4AE1-A77E-633E071E6E66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
