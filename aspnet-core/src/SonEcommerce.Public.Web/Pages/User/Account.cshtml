@@ -6,12 +6,15 @@
 }
 <section class="section-box shop-template mt-30">
     <div class="container box-account-template">
-        <h3>Hello @Model.CurrentUser.Surname @Model.CurrentUser.Name</h3>
-        <p class="font-md color-gray-500">From your account dashboard. you can easily check & view your recent orders,<br class="d-none d-lg-block">manage your shipping and billing addresses and edit your password and account details.</p>
+        <h3>Xin Chào @Model.CurrentUser.Surname @Model.CurrentUser.Name</h3>
+        <p class="font-md color-gray-500">
+            Từ bảng điều khiển tài khoản của bạn. bạn có thể dễ dàng kiểm tra và xem các đơn đặt hàng gần đây của mình,
+            quản lý địa chỉ giao hàng và thanh toán cũng như chỉnh sửa chi tiết mật khẩu và tài khoản của bạn.
+        </p>
         <div class="box-tabs mb-100">
             <ul class="nav nav-tabs nav-tabs-account" role="tablist">
-                <li><a class="active" href="#tab-setting" data-bs-toggle="tab" role="tab" aria-controls="tab-setting" aria-selected="true">Setting</a></li>
-                <li><a href="#tab-orders" data-bs-toggle="tab" role="tab" aria-controls="tab-orders" aria-selected="true">Orders</a></li>
+                <li><a class="active" href="#tab-setting" data-bs-toggle="tab" role="tab" aria-controls="tab-setting" aria-selected="true">Thiết Lập Tài Khoản</a></li>
+                <li><a href="#tab-orders" data-bs-toggle="tab" role="tab" aria-controls="tab-orders" aria-selected="true">Lịch Sử Đơn Hàng</a></li>
             </ul>
             <div class="border-bottom mt-20 mb-40"></div>
             <div class="tab-content mt-30">
@@ -21,7 +24,7 @@
                         <div class="box-orders">
                             <div class="head-orders">
                                 <div class="head-left">
-                                    <h5 class="mr-20">Order ID:  @item.Code</h5><span class="font-md color-brand-3 mr-20">Date: @String.Format("{0:yyyy-MM-dd HH:mm:ss}", @item.CreationTime)</span>
+                                    <h5 class="mr-20">Mã hóa đơn:  @item.Code</h5><span class="font-md color-brand-3 mr-20">Đặt Lúc: @String.Format("{0:yyyy-MM-dd HH:mm:ss}", @item.CreationTime)</span>
 
                                     <span class="label-delivery">@item.Status</span>
                                 </div>
@@ -49,10 +52,10 @@
                                                 <h5>@orderItem.Product.Name</h5>
                                             </div>
                                             <div class="quantity-orders">
-                                                <h5>Quantity: @orderItem.Quantity</h5>
+                                                <h5>Số Lượng: @orderItem.Quantity</h5>
                                             </div>
                                             <div class="price-orders">
-                                                <h3>$@orderItem.Price</h3>
+                                                <h3> $@String.Format("{0:N0}", orderItem.Price)</h3>
                                             </div>
                                         </div>
                                     }
@@ -61,18 +64,7 @@
                         </div>
                     }
 
-                    <nav>
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link page-prev" href="#"></a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link active" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item"><a class="page-link page-next" href="#"></a></li>
-                        </ul>
-                    </nav>
+                    
                 </div>
                 @* Chỉnh Sửa Thông Tin Người DÙng *@
                 <div class="tab-pane fade active show" id="tab-setting" role="tabpanel" aria-labelledby="tab-setting">

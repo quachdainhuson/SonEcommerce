@@ -21,7 +21,7 @@
                 <div class="header-search">
                     <div class="box-header-search">
                         <form class="form-search" method="get" asp-page="/Products/Product">
-                            <div class="box-category">
+                            @* <div class="box-category">
                                 <select class="select-active select2-hidden-accessible">
                                     <option>All categories</option>
                                     @foreach (var item in Model)
@@ -30,9 +30,9 @@
 
                                     }
                                 </select>
-                            </div>
+                            </div> *@
                             <div class="box-keysearch">
-                                <input class="form-control font-xs" type="text" name="keyword" placeholder="Search...">
+                                <input class="form-control font-xs" type="text" name="keyword" placeholder="Tìm Kiếm...">
                             </div>
                         </form>
                     </div>
@@ -41,11 +41,11 @@
                     <nav class="nav-main-menu d-none d-xl-block">
                         <ul class="main-menu">
                             <li>
-                                <a class="active" href="/">Home</a>
+                                <a class="active" href="/">Trang Chủ</a>
                             </li>
                             
                             <li class="has-children">
-                                <a href="/products.html">Product</a>
+                                <a href="/products.html">Sản Phẩm</a>
                                 <ul class="sub-menu two-col">
                                     @foreach (var item in Model)
                                     {
@@ -53,38 +53,19 @@
                                     }
                                 </ul>
                             </li>
+                            
                             <li class="has-children">
-                                <a href="shop-vendor-list.html">Vendors</a>
+                                <a href="#">Trang</a>
                                 <ul class="sub-menu">
-                                    <li><a href="shop-vendor-list.html">Vendors Listing</a></li>
-                                    <li><a href="shop-vendor-single.html">Vendor Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-children">
-                                <a href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="page-about-us.html">About Us</a></li>
-                                    <li><a href="page-contact.html">Contact Us</a></li>
-                                    <li><a href="page-careers.html">Careers</a></li>
+                                    <li><a href="page-about-us.html">Về Chúng tôi</a></li>
+                                    <li><a href="page-contact.html">Liên Hệ</a></li>
+                                    <li><a href="page-careers.html">Tuyển dụng</a></li>
                                     <li><a href="page-term.html">Term and Condition</a></li>
-                                    <li><a href="page-register.html">Register</a></li>
-                                    <li><a href="page-login.html">Login</a></li>
-                                    <li><a href="page-404.html">Error 404</a></li>
+                                    
                                 </ul>
                             </li>
-                            <li class="has-children">
-                                <a href="blog.html">Blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog.html">Blog - No Sidebar</a></li>
-                                    <li><a href="blog-2.html">Blog - Right Sidebar</a></li>
-                                    <li><a href="blog-list.html">Blog List</a></li>
-                                    <li><a href="blog-big.html">Blog category big</a></li>
-                                    <li><a href="blog-single.html">Blog Single - Left sidebar</a></li>
-                                    <li><a href="blog-single-2.html">Blog Single - Right sidebar</a></li>
-                                    <li><a href="blog-single-3.html">Blog Single - No sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-contact.html">Contact Us</a></li>
+                            
+                            <li><a href="page-contact.html">Liên Hệ Chúng Tôi</a></li>
                         </ul>
                     </nav>
                     <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
@@ -93,41 +74,37 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <div class="d-inline-block box-dropdown-cart">
-                            <span class="font-lg icon-list icon-account"><span>Account</span></span>
+                            <span class="font-lg icon-list icon-account"><span>Tài Khoản</span></span>
                             <div class="dropdown-account">
                                 <ul>
-                                    <li><a href="/user/account">My Account</a></li>
-                                    <li><a href="page-account.html">Order Tracking</a></li>
-                                    <li><a href="page-account.html">My Orders</a></li>
-                                    <li><a href="page-account.html">My Wishlist</a></li>
-                                    <li><a href="page-account.html">Setting</a></li>
-                                    <li><a href="/logout.html">Sign out</a></li>
+                                    <li><a href="/user/account">Tài Khoản Của Tôi</a></li>
+                                    <li><a href="/logout.html">Đăng Xuất</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <a class="font-lg icon-list icon-wishlist" href="shop-wishlist.html">Wishlist<span class="number-item font-xs">5</span></a>
+                        <a class="font-lg icon-list icon-wishlist" href="shop-wishlist.html">Yêu Thích<span class="number-item font-xs">5</span></a>
                     }
                     else{
                          <div class="d-inline-block box-dropdown-cart">
-                            <span class="font-lg icon-list icon-account"><span>Login/Register</span></span>
+                            <span class="font-lg icon-list icon-account"><span>Đăng Kí/ Đăng Nhập</span></span>
                             <div class="dropdown-account">
                                 <ul>
-                                    <li><a href="/login.html">Login</a></li>
-                                    <li><a href="/register.html">Register</a></li>
+                                    <li><a href="/login.html">Đăng Nhập</a></li>
+@*                                     <li><a href="/register.html">Register</a></li> *@
                                 </ul>
                             </div>
                         </div>
                     }
 
                     <div class="d-inline-block box-dropdown-cart">
-                        <a href="/shop-cart.html"><span class="font-lg icon-list icon-cart"><span>Cart</span></span></a>
+                        <a href="/shop-cart.html"><span class="font-lg icon-list icon-cart"><span>Giỏ Hàng</span></span></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+@* <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-content-area">
             <div class="mobile-logo"><a class="d-flex" href="index.html"><img alt="Ecom" src="/assets/imgs/template/logo.svg"></a></div>
@@ -348,4 +325,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
