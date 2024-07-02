@@ -25,7 +25,17 @@
 
                                     <span class="label-delivery">@item.Status</span>
                                 </div>
-                                <div class="head-right"><a class="btn btn-buy font-sm-bold w-auto">Xem chi tiết</a></div>
+                                <div class="head-right">
+                                    <form method="post" asp-page-handler="CancelOrder">
+                                        <input type="hidden" name="orderId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-buy font-sm-bold w-auto">Hủy Đơn</button>
+                                        @if (TempData != null)
+                                        {
+                                            <span class="text-danger">@TempData["CancelOrderMessage"]</span>
+                                        }
+                                        
+                                    </form>
+                                </div>
                             </div>
                             <div class="body-orders">
                                 <div class="list-orders">
@@ -493,6 +503,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://esgoo.net/scripts/jquery.js"></script>
 <script>
     $(document).ready(function () {

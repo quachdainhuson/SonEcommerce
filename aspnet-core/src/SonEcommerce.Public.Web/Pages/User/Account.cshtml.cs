@@ -192,7 +192,24 @@ namespace SonEcommerce.Public.Web.Pages.User
             }
             return Page();
         }
+        public async Task<IActionResult> OnPostCancelOrderAsync(Guid orderId)
+        {
+            // Gọi hàm dịch vụ để hủy đơn
+            var result = await _ordersAppService.CancelOrderAsync(orderId);
 
+            if (result)
+            {
+                // Nếu hủy đơn thành công, chuyển hướng về trang danh sách hóa đơn
+                return RedirectToPage();
+            }
+            else
+            {
+                // Nếu có lỗi, hiển thị thông báo lỗi (tùy chỉnh theo nhu cầu của bạn)
+                TempData["CancelOrderMessage"] = "Không thể hủy đơn hàng này.";
+                return RedirectToPage();
+
+            }
+        }
 
     }
 

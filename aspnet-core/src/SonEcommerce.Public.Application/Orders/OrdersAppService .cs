@@ -10,6 +10,7 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using SonEcommerce.Public.Products;
+using Volo.Abp;
 
 namespace SonEcommerce.Public.Orders
 {
@@ -67,7 +68,7 @@ namespace SonEcommerce.Public.Orders
                 var product = await _productRepository.GetAsync(item.ProductId);
                 items.Add(new OrderItem()
                 {
-                    Name = item.Name,
+                    Name = product.Name,
                     OrderId = orderId,
                     Price = item.Price,
                     ProductId = item.ProductId,
@@ -167,5 +168,21 @@ namespace SonEcommerce.Public.Orders
             return orderDtos;
         }
 
+        public async Task<bool> CancelOrderAsync(Guid orderId)
+        {
+            var order = await Repository.GetAsync(orderId);
+            //nếu orderStatus = New thì mới cho phép hủy
+            if (order.Status == OrderStatus.New)
+            {
+                order.Status = OrderStatus.Canceled;
+                await Repository.UpdateAsync(order);
+                return true;
+            }else
+            {
+                return false;
+            }
+
+            
+        }
     }
 }

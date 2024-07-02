@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RoleComponent } from './role/role.component';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard, permissionGuard } from '@abp/ng.core';
+import { CustomerComponent } from './Customer/customer.component';
 
 const routes: Routes = [
 { path: 'role', 
@@ -20,6 +21,15 @@ data:
 {
   requirePolicy: 'AbpIdentity.Users'
 } 
+},
+{ path: 'customer', 
+  component: CustomerComponent,
+  canActivate: [permissionGuard],
+  data: 
+  {
+    requirePolicy: 'AbpIdentity.Users'
+  
+  },
 },
 ];
 

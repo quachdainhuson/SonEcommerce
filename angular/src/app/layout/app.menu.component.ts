@@ -66,10 +66,15 @@ export class AppMenuComponent implements OnInit {
                         permission: 'SonEcomAdminCatalog.Attribute'
                     },
                     { 
-                        label: 'Danh Sách Người Dùng', 
+                        label: 'Danh Sách Nhân Viên', 
                         icon: 'pi pi-fw pi-id-card', 
                         routerLink: ['/system/user'] , 
                         permission: 'SonEcomAdminCatalog.Attribute'
+                    },
+                    { 
+                        label: 'Danh Sách Người Dùng', 
+                        icon: 'pi pi-fw pi-id-card', 
+                        routerLink: ['/system/customer'] 
                     },
                     
                 ]

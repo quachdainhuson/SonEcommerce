@@ -22,6 +22,8 @@ namespace SonEcommerce.Public.Web.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync() 
         {
+            //tìm kiếm
+
             var cacheItem = await _distributedCache.GetOrAddAsync(SonEcommercePublicConsts.CacheKeys.HeaderData, async () =>
             {
                 var model = await _productCategoriesAppService.GetListAllAsync();
@@ -35,5 +37,6 @@ namespace SonEcommerce.Public.Web.ViewComponents
             });
            return View(cacheItem.Categories);
         }
+        
     }
 }

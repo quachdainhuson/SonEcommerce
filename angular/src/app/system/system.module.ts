@@ -28,6 +28,7 @@ import { RoleAssignComponent } from './user/role-assign.component';
 import { PickListModule } from 'primeng/picklist';
 import { SetPasswordComponent } from './user/set-password.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { CustomerComponent } from './Customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     RoleDetailComponent,
     PermissionGrantComponent,
     UserComponent,
+    CustomerComponent,
     UserDetailComponent,
     RoleAssignComponent,
     SetPasswordComponent

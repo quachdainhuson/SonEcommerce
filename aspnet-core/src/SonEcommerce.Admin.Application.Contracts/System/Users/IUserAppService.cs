@@ -25,7 +25,9 @@ namespace SonEcommerce.Admin.System.Users
         Task<bool> CheckPermissionAsync(Guid userId);
         //GetUserIdByUsernameAsync
         Task<string> GetUserIdByUsernameAsync(string username);
-
+        // lấy user không có roles với base filter
+        Task<PagedResultDto<UserInListDto>> GetListWithoutRolesAsync(BaseListFilterDto input);
+        Task<PagedResultDto<UserInListDto>> GetListWithRolesAsync(BaseListFilterDto input);
 
 
     }
