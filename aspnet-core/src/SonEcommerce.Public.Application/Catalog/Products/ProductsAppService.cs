@@ -240,25 +240,5 @@ namespace SonEcommerce.Public.Products
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
-        /*public async Task<PagedResult<ProductInListDto>> SearchProduct(ProductInListDto input)
-        {
-            var query = await Repository.GetQueryableAsync();
-            query = query.Where(x => x.IsActive == true);
-            query = query.Where(x => x.Visibility == true);
-            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
-
-            var totalCount = await AsyncExecuter.LongCountAsync(query);
-            var data = await AsyncExecuter
-               .ToListAsync(
-                  query.Skip((input.CurrentPage - 1) * input.PageSize)
-               .Take(input.PageSize));
-
-            return new PagedResult<ProductInListDto>(
-                ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data),
-                totalCount,
-                input.CurrentPage,
-                input.PageSize
-            );
-        }*/
     }
 }
