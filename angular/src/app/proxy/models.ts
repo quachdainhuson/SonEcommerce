@@ -52,7 +52,7 @@ export interface OrderItemDto extends EntityDto {
   orderId?: string;
   productId?: string;
   quantity: number;
+  price: number;
   name?: string;
   product: ProductDto;
-  price: number;
 }
