@@ -15,7 +15,6 @@ using Volo.Abp.Uow;
 
 namespace SonEcommerce.Admin.Manufacturers
 {
-    [Authorize(SonEcommercePermissions.Manufacturer.Default, Policy = "AdminOnly")]
     public class ManufacturersAppService : CrudAppService<
         Manufacturer,
         ManufacturerDto,

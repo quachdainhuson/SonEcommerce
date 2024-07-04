@@ -13,7 +13,6 @@ using Volo.Abp.Domain.Repositories;
 
 namespace SonEcommerce.Admin.ProductAttributes
 {
-    [Authorize(SonEcommercePermissions.Attribute.Default, Policy = "AdminOnly")]
     public class ProductAttributesAppService : CrudAppService<
         ProductAttribute,
         ProductAttributeDto,

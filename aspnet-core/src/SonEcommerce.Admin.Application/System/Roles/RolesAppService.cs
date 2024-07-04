@@ -22,7 +22,6 @@ using Volo.Abp.SimpleStateChecking;
 
 namespace SonEcommerce.Admin.Roles
 {
-    [Authorize(IdentityPermissions.Roles.Default, Policy = "AdminOnly")]
 
     public class RolesAppService : CrudAppService<
         IdentityRole,

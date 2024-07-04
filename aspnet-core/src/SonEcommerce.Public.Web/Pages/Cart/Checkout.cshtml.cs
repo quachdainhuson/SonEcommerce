@@ -18,6 +18,7 @@ using SonEcommerce.Emailing;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
 using Volo.Abp.AspNetCore.Mvc.UI.Packages.Toastr;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 
 
 namespace SonEcommerce.Public.Web.Pages.Cart
@@ -118,7 +119,15 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                         new
                         {
                             message = "Tạo đơn hàng thành công!!",
-                            orderEmail = order
+                            ten = order.CustomerName,
+                            diaChi = order.CustomerAddress,
+                            sdt = order.CustomerPhoneNumber,
+                            diachiemail = email,
+                            chitiethoadon = cartItems
+
+
+
+
 
                         });
                     await _emailSender.SendAsync(email, "Tạo đơn hàng thành công", emailBody);

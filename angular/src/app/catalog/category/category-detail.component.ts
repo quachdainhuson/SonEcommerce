@@ -8,6 +8,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { UtilityService } from '../../shared/services/utility.service';
 import { ProductCategoriesService, ProductCategoryDto } from '@proxy/product-categories';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-category-detail',
@@ -32,7 +33,8 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     private utilService: UtilityService,
     private notificationSerivce: NotificationService,
     private sanitizer: DomSanitizer,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private primengConfig: PrimeNGConfig
   ) {}
 
   validationMessages = {
@@ -48,6 +50,12 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.primengConfig.zIndex = {
+      modal: 700,    // dialog, sidebar
+      overlay: 1000,  // dropdown, overlaypanel
+      menu: 1000,     // overlay menus
+      tooltip: 1100
+    };
     this.buildForm();
     this.loadAttributeTypes();
     this.initFormData();

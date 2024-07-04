@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using SonEcommerce.Admin.System.Users;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,6 @@ using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace SonEcommerce.Admin.Users
 {
-    [Authorize(IdentityPermissions.Users.Default, Policy = "AdminOnly")]
 
     public class UsersAppService : CrudAppService<IdentityUser, UserDto, Guid, PagedResultRequestDto,
                         CreateUserDto, UpdateUserDto>, IUsersAppService
@@ -100,7 +100,15 @@ namespace SonEcommerce.Admin.Users
             var user = new IdentityUser(userId, input.UserName, input.Email);
             user.Name = input.Name;
             user.Surname = input.Surname;
-            user.SetPhoneNumber(input.PhoneNumber, true);
+            var isUserPhoneNumberExisted = query.Any(x => x.PhoneNumber == input.PhoneNumber);
+            if (isUserPhoneNumberExisted)
+            {
+                throw new UserFriendlyException("Số điện thoại đã tồn tại");
+            }else
+            {
+                user.SetPhoneNumber(input.PhoneNumber, true);
+            }
+
 
             var result = await _identityUserManager.CreateAsync(user, input.Password);
             if (result.Succeeded)
@@ -123,14 +131,29 @@ namespace SonEcommerce.Admin.Users
         [Authorize(IdentityPermissions.Users.Update)]
         public async override Task<UserDto> UpdateAsync(Guid id, UpdateUserDto input)
         {
+            var query = await Repository.GetQueryableAsync();
+
             var user = await _identityUserManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
                 throw new EntityNotFoundException(typeof(IdentityUser), id);
             }
-            user.Name = input.Name;
+            var isEmailExisted = await _identityUserManager.FindByEmailAsync(input.Email);
+            if (isEmailExisted != null && isEmailExisted.Id != id)
+            {
+                throw new UserFriendlyException("Email đã tồn tại");
+            }
+             await _identityUserManager.SetEmailAsync(user, input.Email);
+
+            var isUserPhoneNumberExisted = query.Any(x => x.PhoneNumber == input.PhoneNumber);
+            if (isUserPhoneNumberExisted)
+            {
+                throw new UserFriendlyException("Số điện thoại đã tồn tại");
+            }
             user.SetPhoneNumber(input.PhoneNumber, true);
+            user.Name = input.Name;
             user.Surname = input.Surname;
+
             var result = await _identityUserManager.UpdateAsync(user);
             if (result.Succeeded)
             {
