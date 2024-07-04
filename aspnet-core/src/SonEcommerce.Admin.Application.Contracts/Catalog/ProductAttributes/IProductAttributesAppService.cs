@@ -17,5 +17,7 @@ namespace SonEcommerce.Admin.ProductAttributes
         Task<PagedResultDto<ProductAttributeInListDto>> GetListFilterAsync(BaseListFilterDto input);
         Task<List<ProductAttributeInListDto>> GetListAllAsync();
         Task DeleteMultipleAsync(IEnumerable<Guid> ids);
+        Task<string> GetSuggestNewCodeAsync();
+
     }
 }

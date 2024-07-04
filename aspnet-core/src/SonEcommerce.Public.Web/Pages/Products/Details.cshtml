@@ -2,6 +2,7 @@
 @model SonEcommerce.Public.Web.Pages.Products.DetailsModel
 @using SonEcommerce.Public.Products;
 @inject IProductsAppService _productsAppService;
+@using SonEcommerce.Attributes;
 @{
     var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.Product.ThumbnailPicture);
     var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.Product.ThumbnailPicture, fileContent);
@@ -74,10 +75,40 @@
 
                 </div>
                 <div class="product-description mt-20 color-gray-900">
-                    – Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    <br>– Nulla sit amet diam elementum, vehicula elit nec, accumsan velit.
-                    <br>– Integer consectetur lacus nec vestibulum auctor.
-                    <br>– Nulla suscipit tellus vel sem rhoncus auctor.
+                    @if (Model.ProductAttribute.Count > 0)
+                    {
+                        <ul class="list-styles">
+                            @foreach (var item in Model.ProductAttribute)
+                            {
+                                <li>
+                                    @switch (item.DataType)
+                                    {
+                                        case AttributeType.Int:
+                                            @($"{item.Label}: {item.IntValue}")
+                                            break;
+                                        case AttributeType.Decimal:
+                                            @($"{item.Label}: {item.DecimalValue}")
+                                            break;
+                                        case AttributeType.Varchar:
+                                            @($"{item.Label}: {item.VarcharValue}")
+                                            break;
+                                        case AttributeType.Date:
+                                            @($"{item.Label}: {item.DateTimeValue}")
+                                            break;
+                                        case AttributeType.Text:
+                                            @($"{item.Label}: {item.TextValue}")
+                                            break;
+                                        default:
+                                            @($"{item.Label}: Unknown")
+                                            break;
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                        
+                        
+                    }
                 </div>
                 <div class="buy-product mt-20">
                     <p class="font-sm mb-20">Quantity</p>
@@ -589,6 +620,7 @@
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var quantityInput = document.getElementById('quantityInput');

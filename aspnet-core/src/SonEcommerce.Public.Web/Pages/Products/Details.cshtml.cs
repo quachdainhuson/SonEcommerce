@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SonEcommerce.Public.ProductCategories;
 using SonEcommerce.Public.Products;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SonEcommerce.Public.Web.Pages.Products
@@ -18,10 +19,12 @@ namespace SonEcommerce.Public.Web.Pages.Products
         }
         public ProductCategoryDto Category { get; set; }
         public ProductDto Product { get; set; }
+        public List<ProductAttributeValueDto> ProductAttribute { get; set; }
         public async Task OnGetAsync(string categorySlug, string slug)
         {
             Category = await _productCategoriesAppService.GetBySlugAsync(categorySlug);
             Product = await _productsAppService.GetBySlugAsync(slug);
+            ProductAttribute = await _productsAppService.GetListProductAttributeAllAsync(Product.Id);
         }
     }
 }

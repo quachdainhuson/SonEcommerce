@@ -9,6 +9,8 @@ namespace SonEcommerce.Public.Users
     {
         public string Name { get; set; }
         public string Surname { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập email.")]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại.")]

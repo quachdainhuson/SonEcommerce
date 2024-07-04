@@ -59,6 +59,7 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
   initFormData() {
     //Load edit data to form
     if (this.utilService.isEmpty(this.config.data?.id) == true) {
+      this.getNewSuggestionCode();
       this.toggleBlockUI(false);
     } else {
       this.loadFormDetails(this.config.data?.id);
@@ -126,7 +127,20 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
       });
     });
   }
-
+  getNewSuggestionCode() {
+    this.attributeService.getSuggestNewCode()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response : string) => {
+        console.log(response);
+        this.form.patchValue({
+          
+          code: response
+        
+        });
+      }
+    });
+  }
   private buildForm() {
     this.form = this.fb.group({
       label: new FormControl(

@@ -4,6 +4,7 @@
 @inject IProductsAppService _productsAppService;
 @{
 }
+<partial name="_MessageNotification" />
 <div class="section-box">
     <div class="breadcrumbs-div">
         <div class="container">
@@ -22,7 +23,7 @@
                 <div class="box-carts">
                     <div class="head-wishlist">
                         <div class="item-wishlist">
-                            
+
                             <div class="wishlist-product"><span class="font-md-bold color-brand-3">Sản Phẩm</span></div>
                             <div class="wishlist-price"><span class="font-md-bold color-brand-3">Giá Sản Phẩm</span></div>
                             <div class="wishlist-status"><span class="font-md-bold color-brand-3">Số Lượng</span></div>
@@ -38,43 +39,51 @@
                     }
                     <form method="post">
                         <div class="content-wishlist mb-20">
-                            @for (int i = 0; i < Model.CartItems.Count; i++)
+                            @if (Model.CartItems.Count == 0)
                             {
-                                var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.CartItems[i].Product.ThumbnailPicture);
-                                var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.CartItems[i].Product.ThumbnailPicture, fileContent);
-                                <div class="item-wishlist">
-                                    <div class="wishlist-cb">
-                                        <input class="cb-layout cb-select" type="checkbox">
-                                    </div>
-                                    <div class="wishlist-product">
-                                        <div class="product-wishlist">
-                                            <div class="product-image"><a href="shop-single-product.html"><img src="@base64Image" alt="@Model.CartItems[i].Product.ThumbnailPicture"></a></div>
-                                            <div class="product-info">
-                                                <a href="shop-single-product.html">
-                                                    <h6 class="color-brand-3">@Model.CartItems[i].Product.Name</h6>
-                                                    <input hidden asp-for="@Model.CartItems[i].Product.Id" class="form-control" />
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wishlist-price">
-                                        <h4 class="color-brand-3">$@((@Model.CartItems[i].Product.SellPrice).ToString("N0"))</h4>
-                                    </div>
-                                    <div class="wishlist-status">
-                                        <div class="box-quantity">
-                                            <div class="input-quantity">
-                                                <input class="font-xl color-brand-3" min="1" type="text" asp-for="CartItems[i].Quantity"><span class="minus-cart"></span><span class="plus-cart"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wishlist-action">
-                                        <h4 class="color-brand-3">$@((@Model.CartItems[i].Product.SellPrice * @Model.CartItems[i].Quantity).ToString("N0"))</h4>
-
-                                    </div>
-                                    <div class="wishlist-remove"><a class="btn btn-delete" href="?action=remove&id=@Model.CartItems[i].Product.Id"></a></div>
-                                </div>
+                                <h6 style="text-align: center">Không có sản phẩm nào trong giỏ hàng</h6>
                             }
+                            else
+                            {
+                                @for (int i = 0; i < Model.CartItems.Count; i++)
+                                {
+                                    var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.CartItems[i].Product.ThumbnailPicture);
+                                    var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.CartItems[i].Product.ThumbnailPicture, fileContent);
+                                    <div class="item-wishlist">
+                                        <div class="wishlist-cb">
+                                            <input class="cb-layout cb-select" type="checkbox">
+                                        </div>
+                                        <div class="wishlist-product">
+                                            <div class="product-wishlist">
+                                                <div class="product-image"><a href="shop-single-product.html"><img src="@base64Image" alt="@Model.CartItems[i].Product.ThumbnailPicture"></a></div>
+                                                <div class="product-info">
+                                                    <a href="shop-single-product.html">
+                                                        <h6 class="color-brand-3">@Model.CartItems[i].Product.Name</h6>
+                                                        <input hidden asp-for="@Model.CartItems[i].Product.Id" class="form-control" />
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wishlist-price">
+                                            <h4 class="color-brand-3">$@((@Model.CartItems[i].Product.SellPrice).ToString("N0"))</h4>
+                                        </div>
+                                        <div class="wishlist-status">
+                                            <div class="box-quantity">
+                                                <div class="input-quantity">
+                                                    <input class="font-xl color-brand-3" min="1" type="text" asp-for="CartItems[i].Quantity"><span class="minus-cart"></span><span class="plus-cart"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wishlist-action">
+                                            <h4 class="color-brand-3">$@((@Model.CartItems[i].Product.SellPrice * @Model.CartItems[i].Quantity).ToString("N0"))</h4>
+
+                                        </div>
+                                        <div class="wishlist-remove"><a class="btn btn-delete" href="?action=remove&id=@Model.CartItems[i].Product.Id"></a></div>
+                                    </div>
+                                }
+                            }
+
 
 
                         </div>
@@ -105,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mb-10">
                         <div class="row">
                             <div class="col-6"><span class="font-md-bold color-gray-500">Total</span></div>
@@ -114,7 +123,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-button"><a class="btn btn-buy" href="/checkout.html">Tiến Hành Thanh Toán</a></div>
+                    @if (Model.CartItems.Count == 0)
+                    {
+                        <div class="box-button" hidden><a class="btn btn-buy" href="/checkout.html">Tiến Hành Thanh Toán</a></div>
+                    }
+                    else
+                    {
+                        <div class="box-button"><a class="btn btn-buy" href="/checkout.html">Tiến Hành Thanh Toán</a></div>
+                    }
+
                 </div>
             </div>
         </div>
@@ -206,7 +223,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
 

@@ -35,130 +35,141 @@
                 }
             </div>
         }
-        @if (Model.CreateStatus == null)
+        @if(User.Identity.IsAuthenticated == false)
         {
-            <div class="row">
-                <div class="col-lg-6">
+            <div class="alert alert-danger" role="alert">
+                Đăng Nhập để thanh toán
+            </div>
+        }
+        else
+        {
+            @if (Model.CreateStatus == null)
+            {
+                <div class="row">
+                    <div class="col-lg-6">
 
-                    <form method="post">
-                        <div class="box-border">
+                        <form method="post">
+                            <div class="box-border">
 
-                            <div class="row">
+                                <div class="row">
 
-                                <div class="col-lg-12">
-                                    <h5 class="font-md-bold color-brand-3 mt-15 mb-20">Địa Chỉ Giao Hàng</h5>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control font-sm" type="text" asp-for="Order.CustomerName" placeholder="Name*" value="@(@Model.CurrentUser.Surname + " " +Model.CurrentUser.Name)" readonly>
+                                    <div class="col-lg-12">
+                                        <h5 class="font-md-bold color-brand-3 mt-15 mb-20">Địa Chỉ Giao Hàng</h5>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="tinh">Tỉnh Thành</label>
-                                        <select class="form-control" asp-for="Order.UserCity" id="tinh" name="Order.UserCity" title="Chọn Tỉnh Thành">
-                                            <option value="0">Tỉnh Thành</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="quan">Quận Huyện</label>
-                                        <select class="form-control" asp-for="Order.UserDistrict" id="quan" name="Order.UserDistrict" title="Chọn Quận Huyện">
-
-
-                                            <option value="0">Quận Huyện</option>
-
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="phuong">Phường Xã</label>
-                                        <select class="form-control" asp-for="Order.UserWard" id="phuong" name="Order.UserWard" title="Chọn Phường Xã">
-                                            <option value="0">Phường Xã</option>
-
-
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control font-sm" type="text" asp-for="Order.CustomerAddress" placeholder="Address 1*" value="@Model.CurrentUser.UserAddress">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control font-sm" type="text" asp-for="Order.CustomerPhoneNumber" placeholder="Phone*" value="@Model.CurrentUser.PhoneNumber">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row mt-20">
-                            <div class="col-lg-6 col-5 mb-20"><a class="btn font-sm-bold color-brand-1 arrow-back-1" href="/shop-cart.html">Quay Lại Giỏ Hàng</a></div>
-                            <div class="col-lg-6 col-7 mb-20 text-end"><button class="btn btn-buy w-auto arrow-next" type="submit">Thanh Toán</button></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-lg-6">
-                    <div class="box-border">
-                        <h5 class="font-md-bold mb-20">Your Order</h5>
-                        <div class="listCheckout">
-                            @foreach (var item in Model.CartItems)
-                            {
-                                var url = $"/products/{item.Product.CategorySlug}/{item.Product.Slug}.html";
-                                var fileContent = await _productsAppService.GetThumbnailImageAsync(item.Product.ThumbnailPicture);
-                                var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(item.Product.ThumbnailPicture, fileContent);
-                                <div class="item-wishlist">
-                                    <div class="wishlist-product">
-                                        <div class="product-wishlist">
-                                            <div class="product-image">
-                                                <a href="@url">
-                                                    <img src="@base64Image" alt="@item.Product.Name">
-                                                </a>
-                                            </div>
-                                            <div class="product-info">
-                                                <a href="@url">
-                                                    <h6 class="color-brand-3">@item.Product.Name</h6>
-                                                </a>
-                                                
-                                            </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerName" placeholder="Name*" value="@(@Model.CurrentUser.Surname + " " +Model.CurrentUser.Name ?? "Không Biết")" readonly>
                                         </div>
                                     </div>
-                                    <div class="wishlist-status">
-                                        <h5 class="color-gray-500">@item.Quantity</h5>
-                                    </div>
-                                    <div class="wishlist-price">
-                                        <h4 class="color-brand-3 font-lg-bold">$@(item.Product.SellPrice * item.Quantity)</h4>
-                                    </div>
-                                </div>
-                            }
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tinh">Tỉnh Thành</label>
+                                            <select class="form-control" asp-for="Order.UserCity" id="tinh" name="Order.UserCity" title="Chọn Tỉnh Thành">
+                                                <option value="0">Tỉnh Thành</option>
 
-                        </div>
-                        <div class="form-group mb-0">
-                            <div class="row mb-10">
-                                <div class="col-lg-6 col-6"><span class="font-md-bold color-brand-3">Tổng Giá Phụ</span></div>
-                                <div class="col-lg-6 col-6 text-end"><span class="font-lg-bold color-brand-3">$@(Model.CartItems.Sum(x => x.Product.SellPrice * x.Quantity))</span></div>
-                            </div>
-                            <div class="border-bottom mb-10 pb-5">
-                                <div class="row">
-                                    <div class="col-lg-6 col-6"><span class="font-md-bold color-brand-3">Phí Giao Hàng</span></div>
-                                    <div class="col-lg-6 col-6 text-end"><span class="font-lg-bold color-brand-3">-</span></div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="quan">Quận Huyện</label>
+                                            <select class="form-control" asp-for="Order.UserDistrict" id="quan" name="Order.UserDistrict" title="Chọn Quận Huyện">
+
+
+                                                <option value="0">Quận Huyện</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="phuong">Phường Xã</label>
+                                            <select class="form-control" asp-for="Order.UserWard" id="phuong" name="Order.UserWard" title="Chọn Phường Xã">
+                                                <option value="0">Phường Xã</option>
+
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerAddress" placeholder="Address 1*" value="@Model.CurrentUser.UserAddress">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerPhoneNumber" placeholder="Phone*" value="@Model.CurrentUser.PhoneNumber">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-6"><span class="font-md-bold color-brand-3">Tổng Giá</span></div>
-                                <div class="col-lg-6 col-6 text-end"><span class="font-lg-bold color-brand-3">$@(Model.CartItems.Sum(x => x.Product.SellPrice * x.Quantity))</span></div>
+                            <div class="row mt-20">
+                                <div class="col-lg-6 col-5 mb-20"><a class="btn font-sm-bold color-brand-1 arrow-back-1" href="/shop-cart.html">Quay Lại Giỏ Hàng</a></div>
+                                <div class="col-lg-6 col-7 mb-20 text-end"><button class="btn btn-buy w-auto arrow-next" type="submit">Thanh Toán</button></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="box-border">
+                            <h5 class="font-md-bold mb-20">Your Order</h5>
+                            <div class="listCheckout">
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    var url = $"/products/{item.Product.CategorySlug}/{item.Product.Slug}.html";
+                                    var fileContent = await _productsAppService.GetThumbnailImageAsync(item.Product.ThumbnailPicture);
+                                    var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(item.Product.ThumbnailPicture, fileContent);
+                                    <div class="item-wishlist">
+                                        <div class="wishlist-product">
+                                            <div class="product-wishlist">
+                                                <div class="product-image">
+                                                    <a href="@url">
+                                                        <img src="@base64Image" alt="@item.Product.Name">
+                                                    </a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <a href="@url">
+                                                        <h6 class="color-brand-3">@item.Product.Name</h6>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wishlist-status">
+                                            <h5 class="color-gray-500">@item.Quantity</h5>
+                                        </div>
+                                        <div class="wishlist-price">
+                                            <h4 class="color-brand-3 font-lg-bold">$@(item.Product.SellPrice * item.Quantity)</h4>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="form-group mb-0">
+                                <div class="row mb-10">
+                                    <div class="col-lg-6 col-6"><span class="font-md-bold color-brand-3">Tổng Giá Phụ</span></div>
+                                    <div class="col-lg-6 col-6 text-end"><span class="font-lg-bold color-brand-3">$@(Model.CartItems.Sum(x => x.Product.SellPrice * x.Quantity))</span></div>
+                                </div>
+                                <div class="border-bottom mb-10 pb-5">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-6"><span class="font-md-bold color-brand-3">Phí Giao Hàng</span></div>
+                                        <div class="col-lg-6 col-6 text-end"><span class="font-lg-bold color-brand-3">-</span></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-6"><span class="font-md-bold color-brand-3">Tổng Giá</span></div>
+                                    <div class="col-lg-6 col-6 text-end"><span class="font-lg-bold color-brand-3">$@(Model.CartItems.Sum(x => x.Product.SellPrice * x.Quantity))</span></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         }
+
+        
     </div>
 </section>
 
@@ -349,19 +360,22 @@
 <script src="https://esgoo.net/scripts/jquery.js"></script>
 <script>
     $(document).ready(function () {
-        var userCity = '@(Model.CurrentUser.UserCity ?? "null")';
-        console.log(userCity);
-        if (userCity === "null") {
-            userCity = null;
-        }
-        var userDistrict = '@(Model.CurrentUser.UserDistrict ?? "null")';
-        if (userDistrict === "null") {
-            userDistrict = null;
-        }
-        var userWard = '@(Model.CurrentUser.UserWard ?? "null")';
-        if (userWard === "null") {
-            userWard = null;
-        }
+        
+            var userCity = '@(Model.CurrentUser.UserCity ?? "null")';
+            console.log(userCity);
+            if (userCity === "null") {
+                userCity = null;
+            }
+            var userDistrict = '@(Model.CurrentUser.UserDistrict ?? "null")';
+            if (userDistrict === "null") {
+                userDistrict = null;
+            }
+            var userWard = '@(Model.CurrentUser.UserWard ?? "null")';
+            if (userWard === "null") {
+                userWard = null;
+            }
+        
+        
 
         //Lấy tỉnh thành
         $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (data_tinh) {

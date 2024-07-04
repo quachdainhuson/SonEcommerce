@@ -2,6 +2,7 @@
 using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.ProductAttributes;
 using SonEcommerce.Attributes;
+using SonEcommerce.ProductAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace SonEcommerce.Admin.ProductAttributes
         CreateUpdateProductAttributeDto,
         CreateUpdateProductAttributeDto>, IProductAttributesAppService
     {
-        public ProductAttributesAppService(IRepository<ProductAttribute, Guid> repository)
+        private readonly ProductAttributeCodeGenerator _productAttributeCodeGenerator;
+        public ProductAttributesAppService(IRepository<ProductAttribute, Guid> repository, ProductAttributeCodeGenerator productAttributeCodeGenerator)
             : base(repository)
         {
             GetPolicyName = SonEcommercePermissions.Attribute.Default;
@@ -29,6 +31,7 @@ namespace SonEcommerce.Admin.ProductAttributes
             CreatePolicyName = SonEcommercePermissions.Attribute.Create;
             UpdatePolicyName = SonEcommercePermissions.Attribute.Update;
             DeletePolicyName = SonEcommercePermissions.Attribute.Delete;
+            _productAttributeCodeGenerator = productAttributeCodeGenerator;
         }
         [Authorize(SonEcommercePermissions.Attribute.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
@@ -58,6 +61,11 @@ namespace SonEcommerce.Admin.ProductAttributes
             var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
 
             return new PagedResultDto<ProductAttributeInListDto>(totalCount, ObjectMapper.Map<List<ProductAttribute>, List<ProductAttributeInListDto>>(data));
+        }
+
+        public async Task<string> GetSuggestNewCodeAsync()
+        {
+            return await _productAttributeCodeGenerator.GenerateAsync();
         }
     }
 }

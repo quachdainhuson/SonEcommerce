@@ -9,10 +9,13 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { UtilityService } from '../../shared/services/utility.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss'],
+
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
@@ -37,7 +40,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     private utilService: UtilityService,
     private notificationSerivce: NotificationService,
     private cd: ChangeDetectorRef,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private primengConfig: PrimeNGConfig
   ) {}
 
   validationMessages = {
@@ -65,6 +69,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.primengConfig.zIndex = {
+      modal: 700,    // dialog, sidebar
+      overlay: 1000,  // dropdown, overlaypanel
+      menu: 1000,     // overlay menus
+      tooltip: 1100
+  };
     this.buildForm();
     this.loadProductTypes();
     this.initFormData();
@@ -121,6 +131,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (response : string) => {
         this.form.patchValue({
+          
           code: response
         
         });
@@ -160,7 +171,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           },
           error: err => {
             this.notificationSerivce.showError(err.error.error.message);
-
             this.toggleBlockUI(false);
           },
         });
