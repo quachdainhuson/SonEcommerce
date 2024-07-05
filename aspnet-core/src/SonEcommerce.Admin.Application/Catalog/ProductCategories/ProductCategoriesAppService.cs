@@ -19,7 +19,6 @@ using Volo.Abp.Uow;
 
 namespace SonEcommerce.Admin.ProductCategories
 {
-    [Authorize(SonEcommercePermissions.ProductCategory.Default, Policy = "AdminOnly")]
     public class ProductCategoriesAppService : CrudAppService<
         ProductCategory,
         ProductCategoryDto,

@@ -7,6 +7,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { UtilityService } from '../../shared/services/utility.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-attribute-detail',
@@ -28,7 +29,9 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
     private utilService: UtilityService,
-    private notificationSerivce: NotificationService
+    private notificationSerivce: NotificationService,
+    private primengConfig: PrimeNGConfig
+
   ) {}
 
   validationMessages = {
@@ -50,6 +53,12 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.primengConfig.zIndex = {
+      modal: 700,    // dialog, sidebar
+      overlay: 1000,  // dropdown, overlaypanel
+      menu: 1000,     // overlay menus
+      tooltip: 1100
+  };
     this.buildForm();
     this.loadAttributeTypes();
     this.initFormData();
@@ -59,6 +68,7 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
   initFormData() {
     //Load edit data to form
     if (this.utilService.isEmpty(this.config.data?.id) == true) {
+      this.getNewSuggestionCode();
       this.toggleBlockUI(false);
     } else {
       this.loadFormDetails(this.config.data?.id);
@@ -126,7 +136,20 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
       });
     });
   }
-
+  getNewSuggestionCode() {
+    this.attributeService.getSuggestNewCode()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response : string) => {
+        console.log(response);
+        this.form.patchValue({
+          
+          code: response
+        
+        });
+      }
+    });
+  }
   private buildForm() {
     this.form = this.fb.group({
       label: new FormControl(

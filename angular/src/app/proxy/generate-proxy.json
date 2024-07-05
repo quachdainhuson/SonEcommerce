@@ -2548,6 +2548,14 @@
                   }
                 },
                 {
+                  "name": "GetSuggestNewCodeAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.String",
+                    "typeSimple": "string"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -2753,6 +2761,21 @@
               "returnValue": {
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.ProductAttributes.ProductAttributeInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.ProductAttributes.ProductAttributeInListDto>"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "SonEcommerce.Admin.ProductAttributes.IProductAttributesAppService"
+            },
+            "GetSuggestNewCodeAsync": {
+              "uniqueName": "GetSuggestNewCodeAsync",
+              "name": "GetSuggestNewCodeAsync",
+              "httpMethod": "GET",
+              "url": "api/app/product-attributes/suggest-new-code",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.String",
+                "typeSimple": "string"
               },
               "allowAnonymous": false,
               "implementFrom": "SonEcommerce.Admin.ProductAttributes.IProductAttributesAppService"

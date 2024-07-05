@@ -127,7 +127,7 @@ public class SonEcommercePublicWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
-
+        
         context.Services.AddSession(options => {
             options.IdleTimeout = TimeSpan.FromMinutes(30);
         });
@@ -289,5 +289,6 @@ public class SonEcommercePublicWebModule : AbpModule
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
+        
     }
 }

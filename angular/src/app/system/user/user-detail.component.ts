@@ -7,6 +7,7 @@ import { UtilityService } from 'src/app/shared/services/utility.service';
 import { UserDto } from '@proxy/system/users';
 import { UsersService } from '@proxy/users';
 import { RoleDto, RolesService } from '@proxy/roles';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   templateUrl: 'user-detail.component.html',
@@ -35,7 +36,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private userService: UsersService,
     public authService: AuthService,
     private utilService: UtilityService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private primengConfig: PrimeNGConfig
   ) {}
   ngOnDestroy(): void {
     if (this.ref) {
@@ -61,6 +63,12 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit() {
+    this.primengConfig.zIndex = {
+      modal: 700,    // dialog, sidebar
+      overlay: 1000,  // dropdown, overlaypanel
+      menu: 1000,     // overlay menus
+      tooltip: 1100
+    };
     //Init form
     this.buildForm();
     //Load data to form
@@ -120,7 +128,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   private saveData() {
 
     this.toggleBlockUI(true);
-    console.log(this.form.value);
     if (this.utilService.isEmpty(this.config.data?.id)) {
       this.toggleBlockUI(true); // Hiển thị giao diện chặn
       this.userService

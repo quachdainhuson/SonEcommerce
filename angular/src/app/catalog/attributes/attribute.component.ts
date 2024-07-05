@@ -65,7 +65,7 @@ export class AttributeComponent implements OnInit, OnDestroy {
         },
       });
   }
-
+  
   pageChanged(event: any): void {
     this.maxResultCount = event.rows;
     this.skipCount = (event.first / this.maxResultCount) * this.maxResultCount;

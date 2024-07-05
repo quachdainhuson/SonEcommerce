@@ -5,8 +5,11 @@ public static class SonEcommerceConsts
     public const string DbTablePrefix = "App";
 
     public const string DbSchema = null;
+    public const string ProductIdentitySettingPrefix = "P"; 
     public const string ProductIdentitySettingId = "Product";
-    public const string ProductIdentitySettingPrefix = "P";
+
+    public const string ProductAttributeIdentitySettingPrefix = "PA";
+    public const string ProductAttributeIdentitySettingId = "ProductAttribute";
     public const string Cart = "Cart";
     public const string Customer = "Customer";
     public const string OrderIdentitySettingId = "Order";
