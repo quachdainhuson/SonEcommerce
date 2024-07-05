@@ -34,7 +34,7 @@ namespace SonEcommerce;
 )]
 public class SonEcommerceDomainModule : AbpModule
 {
-    public override void OnApplicationInitialization(Volo.Abp.ApplicationInitializationContext context)
+    /*public override void OnApplicationInitialization(Volo.Abp.ApplicationInitializationContext context)
     {
         var settingManager = context.ServiceProvider.GetService<ISettingManager>();
         settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Host", "smtp.gmail.com");
@@ -46,7 +46,7 @@ public class SonEcommerceDomainModule : AbpModule
         settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromAddress", "nhuson.udemy@gmail.com");
         settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromDisplayName", "Cửa Hàng");
 
-    }
+    }*/
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpLocalizationOptions>(options =>

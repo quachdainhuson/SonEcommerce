@@ -108,7 +108,11 @@
                             </div>
                             <div class="row mt-20">
                                 <div class="col-lg-6 col-5 mb-20"><a class="btn font-sm-bold color-brand-1 arrow-back-1" href="/shop-cart.html">Quay Lại Giỏ Hàng</a></div>
-                                <div class="col-lg-6 col-7 mb-20 text-end"><button class="btn btn-buy w-auto arrow-next" type="submit">Thanh Toán</button></div>
+                                @if (Model.CartItems.Count > 0 )
+                                {
+                                    <div class="col-lg-6 col-7 mb-20 text-end"><button class="btn btn-buy w-auto arrow-next" type="submit">Thanh Toán</button></div>
+
+                                }
                             </div>
                         </form>
                     </div>
