@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.ProductCategories;
+using SonEcommerce.Admin.Products;
 using SonEcommerce.ProductCategories;
 using SonEcommerce.Products;
 using System;
@@ -30,10 +31,13 @@ namespace SonEcommerce.Admin.ProductCategories
         private readonly ProductCategoryManager _productCategoryManager;
         private readonly ProductCategoryCodeGenerator _productCategoryCodeGenerator;
         private readonly IBlobContainer<CategoryCoverPictureContainer> _fileContainer;
+        private readonly IProductsAppService _productsAppService;
         public ProductCategoriesAppService(IRepository<ProductCategory, 
             Guid> repository, ProductCategoryManager productCategoryManager, 
             ProductCategoryCodeGenerator productCategoryCodeGenerator,
-            IBlobContainer<CategoryCoverPictureContainer> fileContainer)
+            IBlobContainer<CategoryCoverPictureContainer> fileContainer,
+            IProductsAppService productsAppService
+            )
             : base(repository)
         {
             GetPolicyName = SonEcommercePermissions.ProductCategory.Default;
@@ -44,13 +48,25 @@ namespace SonEcommerce.Admin.ProductCategories
             _productCategoryManager = productCategoryManager;
             _productCategoryCodeGenerator = productCategoryCodeGenerator;
             _fileContainer = fileContainer;
+            _productsAppService = productsAppService;
         }
         [Authorize(SonEcommercePermissions.ProductCategory.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
+            // Kiểm tra xem các danh mục có sản phẩm hay không
+            foreach (var id in ids)
+            {
+                var hasProducts = await _productsAppService.CheckProductCategoryHasProduct(id);
+                if (hasProducts)
+                {
+                    throw new UserFriendlyException("Không thể xóa danh mục vì có sản phẩm.");
+                }
+            }
+
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
+
 
         [Authorize(SonEcommercePermissions.ProductCategory.Create)]
         public override async Task<ProductCategoryDto> CreateAsync(CreateUpdateProductCategoryDto input)
@@ -154,5 +170,8 @@ namespace SonEcommerce.Admin.ProductCategories
 
             return ObjectMapper.Map<ProductCategory, ProductCategoryDto>(category);
         }
+
+        
     }
+
 }
