@@ -29,6 +29,9 @@ namespace SonEcommerce.Admin.Products
 
         Task<List<ProductAttributeValueDto>> GetListProductAttributeAllAsync(Guid productId);
         Task<PagedResultDto<ProductAttributeValueDto>> GetListProductAttributesAsync(ProductAttributeListFilterDto input);
+        Task<bool> CheckProductCategoryHasProduct(Guid id);
+        //kiểm tra sản phẩm có thuộc nhà sản xuất hay không theo id của nhà sản xuất
+        Task<bool> CheckProductHasManufacturer(Guid id);
 
     }
 }

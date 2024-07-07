@@ -542,5 +542,19 @@ namespace SonEcommerce.Admin.Products
             return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(products);
 
         }
+
+        public async Task<bool> CheckProductCategoryHasProduct(Guid id)
+        {
+            var hasProduct = await Repository.AnyAsync(x => x.CategoryId == id);
+            return hasProduct;
+            
+        }
+
+        public async Task<bool> CheckProductHasManufacturer(Guid id)
+        {
+            var hasProduct = await Repository.AnyAsync(x => x.ManufacturerId == id);
+            return hasProduct;
+            
+        }
     }
 }

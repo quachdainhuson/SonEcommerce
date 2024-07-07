@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Authorization;
 using SonEcommerce.Admin.Manufacturers;
 using SonEcommerce.Admin.Permissions;
+using SonEcommerce.Admin.Products;
 using SonEcommerce.Manufacturers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -25,7 +27,8 @@ namespace SonEcommerce.Admin.Manufacturers
     {
         private readonly ManufacturerManager _manufacturerManager;
         private readonly ManufacturerCodeGenerator _manufacturerCodeGenerator;
-        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository, ManufacturerManager manufacturerManager, ManufacturerCodeGenerator manufacturerCodeGenerator)
+        private readonly IProductsAppService _productsAppService;
+        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository, ManufacturerManager manufacturerManager, ManufacturerCodeGenerator manufacturerCodeGenerator, IProductsAppService productsAppService)
             : base(repository)
         {
             GetPolicyName = SonEcommercePermissions.Manufacturer.Default;
@@ -35,10 +38,18 @@ namespace SonEcommerce.Admin.Manufacturers
             DeletePolicyName = SonEcommercePermissions.Manufacturer.Delete;
             _manufacturerManager = manufacturerManager;
             _manufacturerCodeGenerator = manufacturerCodeGenerator;
+            _productsAppService = productsAppService;
         }
         [Authorize(SonEcommercePermissions.Manufacturer.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
+            // Kiểm tra xem các nhà sản xuất có sản phẩm hay không
+            foreach (var id in ids)
+            {
+                var hasProducts = await _productsAppService.CheckProductHasManufacturer(id);
+                if (hasProducts)
+                    throw new UserFriendlyException("Nhà sản xuất đang chứa sản phẩm, không thể xóa");
+            }
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
