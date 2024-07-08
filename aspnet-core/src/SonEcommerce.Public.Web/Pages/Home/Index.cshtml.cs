@@ -28,30 +28,17 @@ public class IndexModel : SonEcommercePublicPageModel
     }
     public async Task OnGetAsync()
     {
-        var cacheItem = await _distributedCache.GetOrAddAsync(SonEcommercePublicConsts.CacheKeys.HomeData, async () => 
+        var allCategories = await _productCategoriesAppService.GetListAllAsync();
+        var rootCategories = allCategories.Where(x => x.ParentId == null).ToList();
+        foreach (var category in rootCategories)
         {
-            var allCategories = await _productCategoriesAppService.GetListAllAsync();
-            var rootCategories = allCategories.Where(x => x.ParentId == null).ToList();
-            foreach (var category in rootCategories)
-            {
-                category.Children = rootCategories.Where(x => x.ParentId == category.Id).ToList();
-            }
+            category.Children = rootCategories.Where(x => x.ParentId == category.Id).ToList();
+        }
 
-            var topSellerProduct = await _productsAppService.GetListTopSellerAsync(10);
+        var topSellerProduct = await _productsAppService.GetListTopSellerAsync(10);
 
-            return new HomeCacheItem
-            {
-                Categories = rootCategories,
-                TopSellerProduct = topSellerProduct
-            };
-        }, () => new DistributedCacheEntryOptions 
-        { 
-            AbsoluteExpiration = DateTimeOffset.Now.AddHours(12)
-        });
-        
-
-        TopSellerProduct = cacheItem.TopSellerProduct;
-        Categories = cacheItem.Categories;
-
+        TopSellerProduct = topSellerProduct;
+        Categories = rootCategories;
     }
+
 }

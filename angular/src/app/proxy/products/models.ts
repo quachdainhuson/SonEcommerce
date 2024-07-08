@@ -70,7 +70,6 @@ export interface ProductDto {
   thumbnailPicture?: string;
   sellPrice: number;
   id?: string;
-  categoryName?: string;
   categorySlug?: string;
 }
 
@@ -81,13 +80,15 @@ export interface ProductInListDto extends EntityDto<string> {
   slug?: string;
   productType: ProductType;
   sku?: string;
-  sortOrder: number;
-  visibility: boolean;
-  isActive: boolean;
+  sortOrder?: number;
+  visibility?: boolean;
+  isActive?: boolean;
   categoryId?: string;
+  creationTime?: string;
   thumbnailPicture?: string;
   categoryName?: string;
   categorySlug?: string;
+  manufacturerName?: string;
 }
 
 export interface ProductListFilterDto extends BaseListFilterDto {

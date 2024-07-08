@@ -1,4 +1,5 @@
-﻿using SonEcommerce.Products;
+﻿
+using SonEcommerce.Products;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +25,6 @@ namespace SonEcommerce.Admin.Products
 
         public double SellPrice { get; set; }
         public Guid Id { get; set; }
-        public string CategoryName { get; set; }
         public string CategorySlug { get; set; }
     }
 }
