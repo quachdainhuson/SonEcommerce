@@ -66,6 +66,14 @@ export class LoginComponent implements OnDestroy {
       username: this.loginForm.controls['username'].value,
       password: this.loginForm.controls['password'].value,
     };
+    //kiểm tra username và password có null không
+    if (request.username == '' || request.password == '') {
+      this.notificationService.showError('Vui lòng nhập tài khoản và mật khẩu.');
+      this.toggleBlockUI(false);
+      return;
+    }
+    
+
     this.authService.getUserIdByUsernameAsync(username).pipe(
       switchMap(userId => this.authService.checkPermission(userId)),
       switchMap(hasPermission => {
@@ -74,6 +82,7 @@ export class LoginComponent implements OnDestroy {
           return this.authService.login(request);
       } else {
         this.notificationService.showError('Bạn không có quyền đăng nhập.');
+        return;
       }
       }),
       takeUntil(this.ngUnsubscribe)

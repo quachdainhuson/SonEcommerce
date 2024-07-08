@@ -70,6 +70,8 @@
         <th>Hình ảnh</th>
         <!-- <th>Loại</th> -->
         <th>Tên danh mục</th>
+        <th>Tên NSX</th>
+        
         <th>Thứ tự</th>
         <th>Hiển thị</th>
         <th>Kích hoạt</th>
@@ -88,6 +90,7 @@
         <td><img style="width: 130px; height: 130px;" src="../../../assets/images/SonEcommerce/host/product-thumbnail-pictures/{{row.thumbnailPicture}}" alt="{{row.name}}" /> </td>
         <!-- <td>{{ getProductTypeName(row.productType)  }}</td> -->
         <td>{{ row.categoryName }}</td>
+        <td>{{ row.manufacturerName }}</td>
         <td>{{ row.sortOrder }}</td>
         <td>
           <p-badge *ngIf="row.visibility == 1" severity="success" value="Hiển thị"></p-badge>

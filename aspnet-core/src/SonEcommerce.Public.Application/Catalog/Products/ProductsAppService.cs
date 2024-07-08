@@ -1,6 +1,7 @@
 ﻿using AutoMapper.Internal.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using SonEcommerce.Attributes;
+using SonEcommerce.Manufacturers;
 using SonEcommerce.ProductCategories;
 using SonEcommerce.Products;
 using System;
@@ -26,6 +27,8 @@ namespace SonEcommerce.Public.Products
        PagedResultRequestDto>, IProductsAppService
     {
         private readonly IBlobContainer<ProductThumbnailPictureContainer> _fileContainer;
+        private readonly IRepository<ProductCategory> _productCategoryRepository;
+
         private readonly IRepository<ProductAttribute> _productAttributeRepository;
         private readonly IRepository<ProductAttributeDateTime> _productAttributeDateTimeRepository;
         private readonly IRepository<ProductAttributeInt> _productAttributeIntRepository;
@@ -33,16 +36,20 @@ namespace SonEcommerce.Public.Products
         private readonly IRepository<ProductAttributeVarchar> _productAttributeVarcharRepository;
         private readonly IRepository<ProductAttributeText> _productAttributeTextRepository;
         private readonly IRepository<Product, Guid> _productRepository;
+        private readonly IRepository<Manufacturer> _manufacturerRepository;
 
 
         public ProductsAppService(IRepository<Product, Guid> repository,
             IBlobContainer<ProductThumbnailPictureContainer> fileContainer,
             IRepository<ProductAttribute> productAttributeRepository,
+            IRepository<ProductCategory> productCategoryRepository,
             IRepository<ProductAttributeDateTime> productAttributeDateTimeRepository,
               IRepository<ProductAttributeInt> productAttributeIntRepository,
               IRepository<ProductAttributeDecimal> productAttributeDecimalRepository,
               IRepository<ProductAttributeVarchar> productAttributeVarcharRepository,
               IRepository<ProductAttributeText> productAttributeTextRepository,
+              IRepository<Manufacturer> manufacturerRepository,
+
               IRepository<Product, Guid> productRepository
               )
             : base(repository)
@@ -55,9 +62,12 @@ namespace SonEcommerce.Public.Products
             _productAttributeVarcharRepository = productAttributeVarcharRepository;
             _productAttributeTextRepository = productAttributeTextRepository;
             _productRepository = productRepository;
+            _manufacturerRepository = manufacturerRepository;
+            _productCategoryRepository = productCategoryRepository;
+
         }
 
-        
+
 
         public async Task<List<ProductInListDto>> GetListAllAsync()
         {
@@ -70,6 +80,8 @@ namespace SonEcommerce.Public.Products
 
         public async Task<PagedResult<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
         {
+            var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
+            var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
             var query = await Repository.GetQueryableAsync();
             query = query.Where(x => x.IsActive == true);
             query = query.Where(x => x.Visibility == true);
@@ -77,20 +89,46 @@ namespace SonEcommerce.Public.Products
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
             query = query.WhereIf(input.MinPrice.HasValue, x => x.SellPrice >= input.MinPrice);
             query = query.WhereIf(input.MaxPrice.HasValue, x => x.SellPrice <= input.MaxPrice);
+            var joinQuery = from product in query
+                            join category in categoryQuery on product.CategoryId equals category.Id
+                            join manufacturer in manufacturerQuery on product.ManufacturerId equals manufacturer.Id
+                            select new
+                            {
+                                Product = product,
+                                CategoryName = category.Name,
+                                CategorySlug = category.Slug,
+                                ManufacturerName = manufacturer.Name
+                            };
 
-
-            var totalCount = await AsyncExecuter.LongCountAsync(query);
+            var totalCount = await AsyncExecuter.LongCountAsync(joinQuery);
             var data = await AsyncExecuter
                .ToListAsync(
-                  query.Skip((input.CurrentPage - 1) * input.PageSize)
+                  joinQuery.Skip((input.CurrentPage - 1) * input.PageSize)
                .Take(input.PageSize));
+            var result = data.Select(x => new ProductInListDto
+            {
+                Id = x.Product.Id,
+                ManufacturerId = x.Product.ManufacturerId,
+                Name = x.Product.Name,
+                Code = x.Product.Code,
+                Slug = x.Product.Slug,
+                ProductType = x.Product.ProductType,
+                SKU = x.Product.SKU,
+                SellPrice = x.Product.SellPrice,
+                SortOrder = x.Product.SortOrder,
+                Visibility = x.Product.Visibility,
+                IsActive = x.Product.IsActive,
+                CategoryId = x.Product.CategoryId,
+                CreationTime = x.Product.CreationTime,
+                ThumbnailPicture = x.Product.ThumbnailPicture,
+                CategoryName = x.CategoryName,
+                CategorySlug = x.CategorySlug,
+                ManufacturerName = x.ManufacturerName
 
-            return new PagedResult<ProductInListDto>(
-                ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data),
-                totalCount,
-                input.CurrentPage,
-                input.PageSize
-            );
+
+            }).ToList();
+            return new PagedResult<ProductInListDto>(result, totalCount, input.CurrentPage, input.PageSize);
+            
         }
 
 
@@ -229,10 +267,39 @@ namespace SonEcommerce.Public.Products
         public async Task<List<ProductInListDto>> GetListTopSellerAsync(int numberOfRecords)
         {
             var query = await Repository.GetQueryableAsync();
-            query = query.Where(x => x.IsActive == true).OrderByDescending(x => x.CreationTime).Take(numberOfRecords);
+            query = query.Where(x => x.IsActive == true && x.Visibility == true)
+                         .OrderByDescending(x => x.SortOrder) // Sắp xếp theo thứ tự giảm dần của SortOrder (hoặc một trường phù hợp khác)
+                         .Take(numberOfRecords);
+
             var data = await AsyncExecuter.ToListAsync(query);
-            return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data);
+
+            var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
+            var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
+
+            var result = data.Select(x => new ProductInListDto
+            {
+                Id = x.Id,
+                ManufacturerId = x.ManufacturerId,
+                Name = x.Name,
+                Code = x.Code,
+                Slug = x.Slug,
+                ProductType = x.ProductType,
+                SKU = x.SKU,
+                SellPrice = x.SellPrice,
+                SortOrder = x.SortOrder,
+                Visibility = x.Visibility,
+                IsActive = x.IsActive,
+                CategoryId = x.CategoryId,
+                CreationTime = x.CreationTime,
+                ThumbnailPicture = x.ThumbnailPicture,
+                CategoryName = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Name,
+                CategorySlug = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Slug,
+                ManufacturerName = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Name
+            }).ToList();
+
+            return result;
         }
+
 
         public async Task<ProductDto> GetBySlugAsync(string slug)
         {
