@@ -4,11 +4,13 @@ using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.ProductAttributes;
 using SonEcommerce.Admin.Products;
 using SonEcommerce.Attributes;
+using SonEcommerce.Manufacturers;
 using SonEcommerce.ProductCategories;
 using SonEcommerce.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,7 +23,6 @@ using Volo.Abp.Uow;
 
 namespace SonEcommerce.Admin.Products
 {
-    [Authorize(SonEcommercePermissions.Product.Default, Policy = "AdminOnly")]
     public class ProductsAppService : CrudAppService<
        Product,
        ProductDto,
@@ -40,6 +41,7 @@ namespace SonEcommerce.Admin.Products
         private readonly IRepository<ProductAttributeDecimal> _productAttributeDecimalRepository;
         private readonly IRepository<ProductAttributeVarchar> _productAttributeVarcharRepository;
         private readonly IRepository<ProductAttributeText> _productAttributeTextRepository;
+        private readonly IRepository<Manufacturer> _manufacturerRepository;
 
 
         public ProductsAppService(IRepository<Product, Guid> repository,
@@ -52,7 +54,8 @@ namespace SonEcommerce.Admin.Products
               IRepository<ProductAttributeInt> productAttributeIntRepository,
               IRepository<ProductAttributeDecimal> productAttributeDecimalRepository,
               IRepository<ProductAttributeVarchar> productAttributeVarcharRepository,
-              IRepository<ProductAttributeText> productAttributeTextRepository
+              IRepository<ProductAttributeText> productAttributeTextRepository,
+              IRepository<Manufacturer> manufacturerRepository
               )
             : base(repository)
         {
@@ -66,6 +69,7 @@ namespace SonEcommerce.Admin.Products
             _productAttributeDecimalRepository = productAttributeDecimalRepository;
             _productAttributeVarcharRepository = productAttributeVarcharRepository;
             _productAttributeTextRepository = productAttributeTextRepository;
+            _manufacturerRepository = manufacturerRepository;
 
             GetPolicyName = SonEcommercePermissions.Product.Default;
             GetListPolicyName = SonEcommercePermissions.Product.Default;
@@ -161,20 +165,55 @@ namespace SonEcommerce.Admin.Products
         [Authorize(SonEcommercePermissions.Product.Default)]
         public async Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
         {
+            var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
+            var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
             var query = await Repository.GetQueryableAsync();
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
-            query = query.WhereIf(input.MinPrice.HasValue, x => x.SellPrice >= input.MinPrice);
-            query = query.WhereIf(input.MaxPrice.HasValue, x => x.SellPrice <= input.MaxPrice);
-            var totalCount = await AsyncExecuter.LongCountAsync(query);
-            var data = await AsyncExecuter.ToListAsync(
-                query.OrderByDescending(x => x.CreationTime)
-                .Skip(input.SkipCount)
-                .Take(input.MaxResultCount)
-                );
 
-            return new PagedResultDto<ProductInListDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data));
+            // Join with Category table
+            var joinQuery = from product in query
+                            join category in categoryQuery on product.CategoryId equals category.Id
+                            join manufacturer in manufacturerQuery on product.ManufacturerId equals manufacturer.Id
+                            select new
+                            {
+                                Product = product,
+                                CategoryName = category.Name,
+                                CategorySlug = category.Slug,
+                                ManufacturerName = manufacturer.Name
+                            };
+
+            var totalCount = await AsyncExecuter.LongCountAsync(joinQuery);
+
+            var data = await AsyncExecuter.ToListAsync(
+                joinQuery.OrderByDescending(x => x.Product.CreationTime)
+                         .Skip(input.SkipCount)
+                         .Take(input.MaxResultCount)
+            );
+
+            var result = data.Select(x => new ProductInListDto
+            {
+                Id = x.Product.Id,
+                ManufacturerId = x.Product.ManufacturerId,
+                Name = x.Product.Name,
+                Code = x.Product.Code,
+                Slug = x.Product.Slug,
+                ProductType = x.Product.ProductType,
+                SKU = x.Product.SKU,
+                SortOrder = x.Product.SortOrder,
+                Visibility = x.Product.Visibility,
+                IsActive = x.Product.IsActive,
+                CategoryId = x.Product.CategoryId,
+                CreationTime = x.Product.CreationTime,
+                ThumbnailPicture = x.Product.ThumbnailPicture,
+                CategoryName = x.CategoryName,
+                CategorySlug = x.CategorySlug,
+                ManufacturerName = x.ManufacturerName
+            }).ToList();
+
+            return new PagedResultDto<ProductInListDto>(totalCount, result);
         }
+
 
         [Authorize(SonEcommercePermissions.Product.Update)]
         private async Task SaveThumbnailImageAsync(string fileName, string base64)
@@ -542,6 +581,20 @@ namespace SonEcommerce.Admin.Products
             var products = await Repository.GetListAsync(x => x.CategoryId == categoryId);
             return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(products);
 
+        }
+
+        public async Task<bool> CheckProductCategoryHasProduct(Guid id)
+        {
+            var hasProduct = await Repository.AnyAsync(x => x.CategoryId == id);
+            return hasProduct;
+            
+        }
+
+        public async Task<bool> CheckProductHasManufacturer(Guid id)
+        {
+            var hasProduct = await Repository.AnyAsync(x => x.ManufacturerId == id);
+            return hasProduct;
+            
         }
     }
 }

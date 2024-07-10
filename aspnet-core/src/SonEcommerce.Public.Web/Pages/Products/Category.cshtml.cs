@@ -66,9 +66,9 @@ namespace SonEcommerce.Public.Web.Pages.Products
             //kiểm tra nếu giá trị min price lớn hơn max price thì gán giá trị mặc định và hiển thị thông báo
             if (MinPrice > MaxPrice)
             {
-                MinPrice = 0;
-                MaxPrice = 0;
-                TempData["Message"] = "Giá min hiện tại đang cao hơn giá max";
+                MinPrice = null;
+                MaxPrice = null;
+                TempData["MessageError"] = "Giá min hiện tại đang cao hơn giá max";
             }
             Category = await _productCategoriesAppService.GetByCodeAsync(CategoryCode);
             Categories = await _productCategoriesAppService.GetListAllAsync();

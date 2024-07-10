@@ -8,6 +8,7 @@ import {
   UpdatePermissionDto,
   UpdatePermissionsDto,
 } from '@proxy/volo/abp/permission-management';
+import { PrimeNGConfig } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -33,7 +34,9 @@ export class PermissionGrantComponent implements OnInit, OnDestroy {
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private roleService: RolesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private primengConfig: PrimeNGConfig
+
   ) {}
 
   ngOnDestroy(): void {
@@ -45,6 +48,12 @@ export class PermissionGrantComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.primengConfig.zIndex = {
+      modal: 700, // dialog, sidebar
+      overlay: 1000, // dropdown, overlaypanel
+      menu: 1000, // overlay menus
+      tooltip: 1100,
+    };
     this.buildForm();
     this.loadDetail(this.config.data.name, 'R');
     this.saveBtnName = 'Cập nhật';

@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { RoleDto, RolesService } from '@proxy/roles';
+import { PrimeNGConfig } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -29,7 +30,8 @@ export class RoleDetailComponent implements OnInit, OnDestroy {
     private roleService: RolesService,
     public authService: AuthService,
     private utilService: UtilityService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnDestroy(): void {
@@ -45,6 +47,13 @@ export class RoleDetailComponent implements OnInit, OnDestroy {
     this.form.controls['slug'].setValue(slug);
   }
   ngOnInit() {
+    this.primengConfig.zIndex = {
+      modal: 700, // dialog, sidebar
+      overlay: 1000, // dropdown, overlaypanel
+      menu: 1000, // overlay menus
+      tooltip: 1100,
+    };
+    
     this.buildForm();
     if (this.utilService.isEmpty(this.config.data?.id) == false) {
       this.loadDetail(this.config.data.id);

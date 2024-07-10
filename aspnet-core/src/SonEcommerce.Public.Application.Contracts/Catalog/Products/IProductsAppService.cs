@@ -22,5 +22,6 @@ namespace SonEcommerce.Public.Products
         Task<ProductDto> GetBySlugAsync(string slug);
 
 
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SonEcommerce.Manufacturers;
+using SonEcommerce.ProductCategories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +18,7 @@ namespace SonEcommerce.Products
             int sortOrder, bool visibility,
             bool isActive, Guid categoryId,
             string seoMetaDescription, string description,
-            string thumbnailPicture, double sellPrice,
-            string categoryName, string categorySlug)
+            string thumbnailPicture, double sellPrice, string categorySlug)
         {
             Id = id;
             ManufacturerId = manufacturerId;
@@ -34,7 +35,6 @@ namespace SonEcommerce.Products
             Description = description;
             ThumbnailPicture = thumbnailPicture;
             SellPrice = sellPrice;
-            CategoryName = categoryName;
             CategorySlug = categorySlug;
         }
         public Guid? ManufacturerId { get; set; }

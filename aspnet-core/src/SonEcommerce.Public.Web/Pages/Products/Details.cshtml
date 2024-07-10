@@ -2,6 +2,7 @@
 @model SonEcommerce.Public.Web.Pages.Products.DetailsModel
 @using SonEcommerce.Public.Products;
 @inject IProductsAppService _productsAppService;
+@using SonEcommerce.Attributes;
 @{
     var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.Product.ThumbnailPicture);
     var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.Product.ThumbnailPicture, fileContent);
@@ -11,7 +12,7 @@
     <div class="breadcrumbs-div">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a class="font-xs color-gray-1000" href="index.html">Home</a></li>
+                <li><a class="font-xs color-gray-1000" href="index.html">Trang Chủ</a></li>
                 <li><a class="font-xs color-gray-500" href="shop-grid.html">@Model.Product.CategoryName</a></li>
                 <li><a class="font-xs color-gray-500" href="shop-grid.html">@Model.Product.Name</a></li>
 
@@ -66,23 +67,48 @@
             
             <div class="col-lg-6">
                 <h3 class="color-brand-3 mb-25">@Model.Product.Name</h3>
-                <div class="rating mt-5">
-                    <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                    <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                    <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                    <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                    <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                    <span class="font-xs color-gray-500"> (65)</span>
-                </div>
                 <div class="border-bottom pt-20 mb-40"></div>
                 <div class="box-product-price">
-                    <h3 class="color-brand-3 price-main d-inline-block mr-10">$@Model.Product.SellPrice</h3>
+                    <h3 class="color-brand-3 price-main d-inline-block mr-10">
+                        $ @String.Format("{0:N0}", Model.Product.SellPrice)
+                    </h3>
+
                 </div>
                 <div class="product-description mt-20 color-gray-900">
-                    – Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    <br>– Nulla sit amet diam elementum, vehicula elit nec, accumsan velit.
-                    <br>– Integer consectetur lacus nec vestibulum auctor.
-                    <br>– Nulla suscipit tellus vel sem rhoncus auctor.
+                    @if (Model.ProductAttribute.Count > 0)
+                    {
+                        <ul class="list-styles">
+                            @foreach (var item in Model.ProductAttribute)
+                            {
+                                <li>
+                                    @switch (item.DataType)
+                                    {
+                                        case AttributeType.Int:
+                                            @($"{item.Label}: {item.IntValue}")
+                                            break;
+                                        case AttributeType.Decimal:
+                                            @($"{item.Label}: {item.DecimalValue}")
+                                            break;
+                                        case AttributeType.Varchar:
+                                            @($"{item.Label}: {item.VarcharValue}")
+                                            break;
+                                        case AttributeType.Date:
+                                            @($"{item.Label}: {item.DateTimeValue}")
+                                            break;
+                                        case AttributeType.Text:
+                                            @($"{item.Label}: {item.TextValue}")
+                                            break;
+                                        default:
+                                            @($"{item.Label}: Unknown")
+                                            break;
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                        
+                        
+                    }
                 </div>
                 <div class="buy-product mt-20">
                     <p class="font-sm mb-20">Quantity</p>
@@ -98,20 +124,11 @@
                     </div>
                 </div>
                 <div class="border-bottom pt-30 mb-20"></div>
-                <a class="mr-30" href="shop-wishlist.html">
-                    <span class="btn btn-wishlist mr-5 opacity-100 transform-none"></span>
-                    <span class="font-md color-gray-900">Add to Wish list</span>
-                </a>
-                <a href="shop-compare.html">
-                    <span class="btn btn-compare mr-5 opacity-100 transform-none"></span>
-                    <span class="font-md color-gray-900">Add to Compare</span>
-                </a>
+                
                 <div class="info-product mt-20 font-md color-gray-900">
                     SKU: @Model.Product.SKU<br>
                     Category: @Model.Product.CategoryName<br>
-                    Tags: Blue, Smartphone
                 </div>
-                <div class="mt-20"><a class="font-md color-gray-900" href="shop-compare.html">Compare with similar items</a></div>
             </div>
         </div>
         <div class="border-bottom pt-20 mb-40"></div>
@@ -123,11 +140,7 @@
     <div class="container">
         <div class="pt-30 mb-10">
             <ul class="nav nav-tabs nav-tabs-product" role="tablist">
-                <li><a class="active" href="#tab-description" data-bs-toggle="tab" role="tab" aria-controls="tab-description" aria-selected="true">Description</a></li>
-                <li><a href="#tab-specification" data-bs-toggle="tab" role="tab" aria-controls="tab-specification" aria-selected="true">Specification</a></li>
-                <li><a href="#tab-additional" data-bs-toggle="tab" role="tab" aria-controls="tab-additional" aria-selected="true">Additional information</a></li>
-                <li><a href="#tab-reviews" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews" aria-selected="true">Reviews (2)</a></li>
-                <li><a href="#tab-vendor" data-bs-toggle="tab" role="tab" aria-controls="tab-vendor" aria-selected="true">Vendor</a></li>
+                <li><a class="active" href="#tab-description" data-bs-toggle="tab" role="tab" aria-controls="tab-description" aria-selected="true">Mô tả Sản Phẩm</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade active show" id="tab-description" role="tabpanel" aria-labelledby="tab-description">
@@ -607,6 +620,7 @@
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var quantityInput = document.getElementById('quantityInput');

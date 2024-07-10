@@ -15,6 +15,10 @@ using SonEcommerce.Public.Products;
 using Volo.Abp.TextTemplating;
 using Volo.Abp.Emailing;
 using SonEcommerce.Emailing;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
+using Volo.Abp.AspNetCore.Mvc.UI.Packages.Toastr;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 
 
 namespace SonEcommerce.Public.Web.Pages.Cart
@@ -34,7 +38,6 @@ namespace SonEcommerce.Public.Web.Pages.Cart
             _productsAppService = productsAppService;
             _emailSender = emailSender;
             _templateRenderer = templateRenderer;
-
         }
         public List<CartItem> CartItems { get; set; }
         public UserDto CurrentUser { get; set; }
@@ -43,15 +46,25 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
         [BindProperty]
         public OrderDto Order { set; get; }
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
+            {
+
+
+                return Challenge(new AuthenticationProperties { RedirectUri = "/" },
+                    OpenIdConnectDefaults.AuthenticationScheme);
+
+
+            }
+            else
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
                 CartItems = GetCartItems();
-
+                
             }
+            return Page();
 
 
         }
@@ -106,7 +119,15 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                         new
                         {
                             message = "Tạo đơn hàng thành công!!",
-                            orderEmail = order
+                            ten = order.CustomerName,
+                            diaChi = order.CustomerAddress,
+                            sdt = order.CustomerPhoneNumber,
+                            diachiemail = email,
+                            chitiethoadon = cartItems
+
+
+
+
 
                         });
                     await _emailSender.SendAsync(email, "Tạo đơn hàng thành công", emailBody);

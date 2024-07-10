@@ -1,5 +1,5 @@
 import { AccountConfigModule } from '@abp/ng.account/config';
-import { CoreModule } from '@abp/ng.core';
+import { CoreModule, PermissionService } from '@abp/ng.core';
 import { registerLocale } from '@abp/ng.core/locale';
 import { IdentityConfigModule } from '@abp/ng.identity/config';
 import { SettingManagementConfigModule } from '@abp/ng.setting-management/config';
@@ -68,6 +68,7 @@ import { GlobalHttpInterceptorService } from './shared/interceptors/error-handle
       useClass: GlobalHttpInterceptorService,
       multi: true
     },
+    
     APP_ROUTE_PROVIDER, 
     DialogService,
      MessageService, 

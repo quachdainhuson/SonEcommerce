@@ -19,6 +19,22 @@ export class ProductsService {
     { apiName: this.apiName,...config });
   
 
+  checkProductCategoryHasProductById = (id: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, boolean>({
+      method: 'POST',
+      url: `/api/app/products/${id}/check-product-category-has-product`,
+    },
+    { apiName: this.apiName,...config });
+  
+
+  checkProductHasManufacturerById = (id: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, boolean>({
+      method: 'POST',
+      url: `/api/app/products/${id}/check-product-has-manufacturer`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   create = (input: CreateUpdateProductDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ProductDto>({
       method: 'POST',

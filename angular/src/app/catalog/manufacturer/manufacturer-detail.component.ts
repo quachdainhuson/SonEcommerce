@@ -7,6 +7,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { UtilityService } from '../../shared/services/utility.service';
 import { ManufacturerDto, ManufacturersService } from '@proxy/manufacturers';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-manufacturer-detail',
@@ -28,7 +29,9 @@ export class ManufacturerDetailComponent implements OnInit, OnDestroy {
     private config: DynamicDialogConfig,
     private ref: DynamicDialogRef,
     private utilService: UtilityService,
-    private notificationSerivce: NotificationService
+    private notificationSerivce: NotificationService,
+    private primengConfig: PrimeNGConfig
+
   ) {}
 
   validationMessages = {
@@ -44,6 +47,12 @@ export class ManufacturerDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.primengConfig.zIndex = {
+      modal: 700,    // dialog, sidebar
+      overlay: 1000,  // dropdown, overlaypanel
+      menu: 1000,     // overlay menus
+      tooltip: 1100
+    };
     this.buildForm();
     this.loadAttributeTypes();
     this.initFormData();
