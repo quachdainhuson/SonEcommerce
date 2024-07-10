@@ -127,7 +127,7 @@ namespace SonEcommerce.Public.Web.Pages.User
             }
             //userdto to updatedto
             var otp = GenerateOTP();
-            var otpExpiry = DateTime.Now.AddMinutes(10).ToString("o"); // OTP expires in 10 minutes
+            var otpExpiry = DateTime.Now.AddMinutes(1).ToString("o"); // OTP expires in 10 minutes
 
             var updateUser = new UpdateUserDto
             {
