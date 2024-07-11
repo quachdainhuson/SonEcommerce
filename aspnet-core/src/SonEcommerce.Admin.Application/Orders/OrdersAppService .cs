@@ -68,7 +68,7 @@ namespace SonEcommerce.Admin
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Code.Contains(input.Keyword) || x.CustomerName.Contains(input.Keyword) || x.CustomerPhoneNumber.Contains(input.Keyword));
             var totalCount = await AsyncExecuter.LongCountAsync(query);
             var data = await AsyncExecuter.ToListAsync(
-                query
+                query.OrderByDescending(x => x.CreationTime)
                 .Skip(input.SkipCount)
                 .Take(input.MaxResultCount));
             return new PagedResultDto<OrderInListDto>(totalCount, ObjectMapper.Map<List<Order>, List<OrderInListDto>>(data));

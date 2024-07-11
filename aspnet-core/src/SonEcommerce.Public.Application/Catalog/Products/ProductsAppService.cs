@@ -307,7 +307,7 @@ namespace SonEcommerce.Public.Products
         }
 
 
-        public async Task<ProductDto> GetBySlugAsync(string slug)
+        public async Task<ProductInListDto> GetBySlugAsync(string slug)
         {
             var query = await Repository.GetQueryableAsync();
             query = query.Where(x => x.Slug == slug);
@@ -318,7 +318,7 @@ namespace SonEcommerce.Public.Products
             var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
             var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
 
-            var result = data.Select(x => new ProductDto
+            var result = data.Select(x => new ProductInListDto
             {
                 Id = x.Id,
                 ManufacturerId = x.ManufacturerId,
@@ -333,6 +333,7 @@ namespace SonEcommerce.Public.Products
                 IsActive = x.IsActive,
                 CategoryId = x.CategoryId,
                 CreationTime = x.CreationTime,
+                Description = x.Description,
                 ThumbnailPicture = x.ThumbnailPicture,
                 CategoryName = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Name,
                 CategorySlug = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Slug,

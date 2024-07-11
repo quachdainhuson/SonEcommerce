@@ -16,6 +16,7 @@ namespace SonEcommerce.Public.Products
         public string? SKU { get; set; }
         public int? SortOrder { get; set; }
         public double? SellPrice { get; set; }
+        public string Description { get; set; }
         public bool? Visibility { get; set; }
         public bool? IsActive { get; set; }
         public Guid? CategoryId { get; set; }
