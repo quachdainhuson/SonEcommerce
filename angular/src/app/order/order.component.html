@@ -8,6 +8,13 @@
                   <label for="txt-keyword" class="p-sr-only">Từ khóa</label>
                   <input id="txt-keyword" [(ngModel)]="keyword" pInputText type="text" placeholder="Gõ từ khóa" />
                 </div>
+                <div class="field">
+                  <p-dropdown
+                    [options]="OrderStatus"
+                    [(ngModel)]="Status"
+                    placeholder="Chọn danh mục"
+                  ></p-dropdown>
+                </div>
                 <button
                   type="button"
                   pButton

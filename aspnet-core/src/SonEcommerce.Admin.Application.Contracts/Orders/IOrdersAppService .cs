@@ -21,6 +21,8 @@ namespace SonEcommerce.Admin
         // change status order
         Task ChangeStatusOrderAsync(Guid orderId, OrderStatus status);
         Task<List<OrderInListDto>> GetListOrderByUserIdAsync(Guid userId);
+        //getlistfilter
+        Task<PagedResultDto<OrderInListDto>> GetListFilterAsync(OrderListFilterDto input);
 
     }
 }

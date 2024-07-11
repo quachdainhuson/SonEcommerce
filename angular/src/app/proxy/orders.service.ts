@@ -1,5 +1,5 @@
 import type { OrderDto, OrderInListDto } from './models';
-import type { UpdateOrderDto } from './orders/models';
+import type { OrderListFilterDto, UpdateOrderDto } from './orders/models';
 import type { OrderStatus } from './son-ecommerce/orders/order-status.enum';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto, PagedResultRequestDto } from '@abp/ng.core';
@@ -59,6 +59,15 @@ export class OrdersService {
     this.restService.request<any, OrderInListDto[]>({
       method: 'GET',
       url: '/api/app/orders/all',
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getListFilter = (input: OrderListFilterDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<OrderInListDto>>({
+      method: 'GET',
+      url: '/api/app/orders/filter',
+      params: { status: input.status, keyword: input.keyword, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
   
