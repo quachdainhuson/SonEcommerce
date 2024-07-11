@@ -20,6 +20,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   blockedPanel: boolean = false;
   items: OrderInListDto[] = [];
   public selectedItems: OrderInListDto[] = [];
+  
 
   //Paging variables
   public skipCount: number = 0;
@@ -27,10 +28,10 @@ export class OrderComponent implements OnInit, OnDestroy {
   public totalCount: number;
 
   //Filter
-  AttributeCategories: any[] = [];
+  OrderStatus: any[] = [];
   keyword: string = '';
   categoryId: string = '';
-
+  Status: number;
   constructor(
     private orderService: OrdersService,
     private dialogService: DialogService,
@@ -44,24 +45,40 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loadOrderStatus();
     this.loadData();
   }
-
+  loadOrderStatus() {
+    this.OrderStatus = [
+      { label: 'Tất cả', value: 0 },
+      { label: 'Mới', value: OrderStatus.New },
+      { label: 'Đã xác nhận', value: OrderStatus.Confirmed },
+      { label: 'Đang xử lý', value: OrderStatus.Processing },
+      { label: 'Đang giao hàng', value: OrderStatus.Shipping },
+      { label: 'Hoàn thành', value: OrderStatus.Finished },
+      { label: 'Đã hủy', value: OrderStatus.Canceled
+      },
+    ];
+  }
 
   loadData(selectionId = null) {
     this.toggleBlockUI(true);
       this.orderService
-        .getListAll()
+        .getListFilter({
+          keyword: this.keyword,
+          maxResultCount: this.maxResultCount,
+          skipCount: this.skipCount,
+          status: this.Status,
+        }
+        )
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe({
-          next: (response: OrderInListDto[]) => {
-            this.items = response;
-            this.totalCount = response.length; // Since there's no pagination, totalCount is the length of the response array
-            if (selectionId != null && this.items.length > 0) {
-              this.selectedItems = this.items.filter(x => x.id == selectionId);
-            }
+          next: (response: PagedResultDto<OrderInListDto>) => {
+            this.items = response.items;
+            this.totalCount = response.totalCount;
             this.toggleBlockUI(false);
           },
+          
           error: () => {
             this.toggleBlockUI(false);
           },
