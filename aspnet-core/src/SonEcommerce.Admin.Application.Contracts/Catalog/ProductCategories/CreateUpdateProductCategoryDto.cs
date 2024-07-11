@@ -13,7 +13,6 @@ namespace SonEcommerce.Admin.ProductCategories
         public bool Visibility { get; set; }
         public bool IsActive { get; set; }
         public Guid? ParentId { get; set; }
-        public string SeoMetaDescription { get; set; }
         public string? CoverPictureContent { get; set; }
         public string? CoverPictureName { get; set; }
     }

@@ -38,7 +38,7 @@
                                 <figure class="border-radius-10"><img src="/assets/imgs/page/product/img-gallery-7.jpg" alt="product image"></figure>
                             </div>
                         </div>
-                        <div class="slider-nav-thumbnails">
+                        @* <div class="slider-nav-thumbnails">
                             <div>
                                 <div class="item-thumb"><img src="@base64Image" alt="@Model.Product.Name"></div>
                             </div>
@@ -60,7 +60,7 @@
                             <div>
                                 <div class="item-thumb"><img src="/assets/imgs/page/product/img-gallery-7.jpg" alt="product image"></div>
                             </div>
-                        </div>
+                        </div> *@
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                     }
                 </div>
                 <div class="buy-product mt-20">
-                    <p class="font-sm mb-20">Quantity</p>
+                    <p class="font-sm mb-20">Số Lượng</p>
                     <div class="box-quantity">
                         <div class="input-quantity">
                             <input class="font-xl color-brand-3" id="quantityInput" type="text" min="1" value="1">
@@ -119,7 +119,7 @@
                             </span><span class="plus-cart"></span>
                         </div>
                         <div class="button-buy">
-                            <a id="addToCartLink" class="btn btn-cart mb-15" href="/shop-cart.html?action=add&id=@Model.Product.Id&quantity=1">Add to cart</a>
+                            <a id="addToCartLink" class="btn btn-cart mb-15" href="/shop-cart.html?action=add&id=@Model.Product.Id&quantity=1">Thêm Vào Giỏ Hàng</a>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,8 @@
                 
                 <div class="info-product mt-20 font-md color-gray-900">
                     SKU: @Model.Product.SKU<br>
-                    Category: @Model.Product.CategoryName<br>
+                    Danh Mục: @Model.Product.CategoryName<br>
+                    Nhà Sản Xuất: @Model.Product.ManufacturerName<br>
                 </div>
             </div>
         </div>

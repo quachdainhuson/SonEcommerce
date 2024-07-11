@@ -24,8 +24,7 @@ namespace SonEcommerce.ProductCategories
             int sortOrder,
             bool visibility,
             bool isActive,
-            Guid? parentId,
-            string seoMetaDescription
+            Guid? parentId
         )
         {
             if (await _productCategoryRepository.AnyAsync(x => x.Name == name)) 
@@ -41,7 +40,7 @@ namespace SonEcommerce.ProductCategories
                 throw new UserFriendlyException("Slug danh mục sản phẩm đã tồn tại", SonEcommerceDomainErrorCodes.ProductCategorySlugAlreadyExists); 
             }
 
-            return new ProductCategory(Guid.NewGuid(), name, code, slug, sortOrder, null, visibility, isActive, parentId, seoMetaDescription);
+            return new ProductCategory(Guid.NewGuid(), name, code, slug, sortOrder, null, visibility, isActive, parentId);
         }
     }
 }

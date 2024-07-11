@@ -34,19 +34,19 @@ namespace SonEcommerce;
 )]
 public class SonEcommerceDomainModule : AbpModule
 {
-    /*public override void OnApplicationInitialization(Volo.Abp.ApplicationInitializationContext context)
-    {
-        var settingManager = context.ServiceProvider.GetService<ISettingManager>();
-        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Host", "smtp.gmail.com");
-        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Port", "587");
-        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.UserName", "nhuson.udemy@gmail.com");
-        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Password", "fsposhytixnmzmit");
-        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.EnableSsl", "true");
-        settingManager.SetGlobalAsync("Abp.Mailing.Smtp.UseDefaultCredentials", "false");
-        settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromAddress", "nhuson.udemy@gmail.com");
-        settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromDisplayName", "Cửa Hàng");
+    //public override void OnApplicationInitialization(Volo.Abp.ApplicationInitializationContext context)
+    //{
+    //    var settingManager = context.ServiceProvider.GetService<ISettingManager>();
+    //    settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Host", "smtp.gmail.com");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Port", "587");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.Smtp.UserName", "nhuson.udemy@gmail.com");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.Smtp.Password", "fsposhytixnmzmit");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.Smtp.EnableSsl", "true");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.Smtp.UseDefaultCredentials", "false");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromAddress", "nhuson.udemy@gmail.com");
+    //    settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromDisplayName", "Cửa Hàng");
 
-    }*/
+    //}
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpLocalizationOptions>(options =>

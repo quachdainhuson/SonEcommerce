@@ -4,7 +4,7 @@
 @inject IProductsAppService _productsAppService;
 @{
 }
-
+<partial name="_MessageNotification" />
 <div class="section-box">
     <div class="breadcrumbs-div">
         <div class="container">
@@ -58,13 +58,13 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerName" placeholder="Name*" value="@(@Model.CurrentUser.Surname + " " +Model.CurrentUser.Name ?? "Không Biết")" readonly>
+                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerName" placeholder="Name*" value="@(@Model.CurrentUser.Surname + " " +Model.CurrentUser.Name ?? "Không Biết")" readonly required>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="tinh">Tỉnh Thành</label>
-                                            <select class="form-control" asp-for="Order.UserCity" id="tinh" name="Order.UserCity" title="Chọn Tỉnh Thành">
+                                            <select class="form-control" asp-for="Order.UserCity" id="tinh" name="Order.UserCity" title="Chọn Tỉnh Thành" required>
                                                 <option value="0">Tỉnh Thành</option>
 
                                             </select>
@@ -73,7 +73,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="quan">Quận Huyện</label>
-                                            <select class="form-control" asp-for="Order.UserDistrict" id="quan" name="Order.UserDistrict" title="Chọn Quận Huyện">
+                                            <select class="form-control" asp-for="Order.UserDistrict" id="quan" name="Order.UserDistrict" title="Chọn Quận Huyện" required>
 
 
                                                 <option value="0">Quận Huyện</option>
@@ -85,7 +85,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label for="phuong">Phường Xã</label>
-                                            <select class="form-control" asp-for="Order.UserWard" id="phuong" name="Order.UserWard" title="Chọn Phường Xã">
+                                            <select class="form-control" asp-for="Order.UserWard" id="phuong" name="Order.UserWard" title="Chọn Phường Xã" required>
                                                 <option value="0">Phường Xã</option>
 
 
@@ -95,12 +95,12 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerAddress" placeholder="Address 1*" value="@Model.CurrentUser.UserAddress">
+                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerAddress" placeholder="Address 1*" value="@Model.CurrentUser.UserAddress" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerPhoneNumber" placeholder="Phone*" value="@Model.CurrentUser.PhoneNumber">
+                                            <input class="form-control font-sm" type="text" asp-for="Order.CustomerPhoneNumber" placeholder="Phone*" value="@Model.CurrentUser.PhoneNumber" >
                                         </div>
                                     </div>
 
@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="box-border">
-                            <h5 class="font-md-bold mb-20">Your Order</h5>
+                            <h5 class="font-md-bold mb-20">Giỏ Hàng Của Bạn</h5>
                             <div class="listCheckout">
                                 @foreach (var item in Model.CartItems)
                                 {

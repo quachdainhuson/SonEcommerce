@@ -97,7 +97,9 @@ namespace SonEcommerce.Public.Products
                                 Product = product,
                                 CategoryName = category.Name,
                                 CategorySlug = category.Slug,
-                                ManufacturerName = manufacturer.Name
+                                ManufacturerName = manufacturer.Name,
+                                ManufacturerSlug = manufacturer.Slug
+
                             };
 
             var totalCount = await AsyncExecuter.LongCountAsync(joinQuery);
@@ -123,7 +125,9 @@ namespace SonEcommerce.Public.Products
                 ThumbnailPicture = x.Product.ThumbnailPicture,
                 CategoryName = x.CategoryName,
                 CategorySlug = x.CategorySlug,
-                ManufacturerName = x.ManufacturerName
+                ManufacturerName = x.ManufacturerName,
+                ManufacturerSlug = x.ManufacturerSlug
+
 
 
             }).ToList();
@@ -294,7 +298,9 @@ namespace SonEcommerce.Public.Products
                 ThumbnailPicture = x.ThumbnailPicture,
                 CategoryName = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Name,
                 CategorySlug = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Slug,
-                ManufacturerName = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Name
+                ManufacturerName = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Name,
+                ManufacturerSlug = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Slug
+
             }).ToList();
 
             return result;
@@ -303,8 +309,38 @@ namespace SonEcommerce.Public.Products
 
         public async Task<ProductDto> GetBySlugAsync(string slug)
         {
-            var product = await _productRepository.GetAsync(x => x.Slug == slug);
-            return ObjectMapper.Map<Product, ProductDto>(product);
+            var query = await Repository.GetQueryableAsync();
+            query = query.Where(x => x.Slug == slug);
+                         
+
+            var data = await AsyncExecuter.ToListAsync(query);
+
+            var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
+            var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
+
+            var result = data.Select(x => new ProductDto
+            {
+                Id = x.Id,
+                ManufacturerId = x.ManufacturerId,
+                Name = x.Name,
+                Code = x.Code,
+                Slug = x.Slug,
+                ProductType = x.ProductType,
+                SKU = x.SKU,
+                SellPrice = x.SellPrice,
+                SortOrder = x.SortOrder,
+                Visibility = x.Visibility,
+                IsActive = x.IsActive,
+                CategoryId = x.CategoryId,
+                CreationTime = x.CreationTime,
+                ThumbnailPicture = x.ThumbnailPicture,
+                CategoryName = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Name,
+                CategorySlug = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Slug,
+                ManufacturerName = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Name,
+                ManufacturerSlug = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Slug
+            }).ToList();
+
+            return result.FirstOrDefault();
         }
 
     }

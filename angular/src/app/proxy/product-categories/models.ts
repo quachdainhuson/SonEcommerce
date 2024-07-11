@@ -8,7 +8,6 @@ export interface CreateUpdateProductCategoryDto {
   visibility: boolean;
   isActive: boolean;
   parentId?: string;
-  seoMetaDescription?: string;
   coverPictureContent?: string;
   coverPictureName?: string;
 }

@@ -78,8 +78,7 @@ namespace SonEcommerce.Admin.ProductCategories
                 input.SortOrder,
                 input.Visibility,
                 input.IsActive,
-                input.ParentId,
-                input.SeoMetaDescription
+                input.ParentId
              );
 
             if (input.CoverPictureContent != null && input.CoverPictureContent.Length > 0)
@@ -158,7 +157,6 @@ namespace SonEcommerce.Admin.ProductCategories
             category.Visibility = input.Visibility;
             category.IsActive = input.IsActive;
 
-            category.SeoMetaDescription = input.SeoMetaDescription;
 
             if (input.CoverPictureContent != null && input.CoverPictureContent.Length > 0)
             {

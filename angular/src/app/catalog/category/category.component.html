@@ -62,7 +62,6 @@
         <!-- <th>Slug</th> -->
         <th>Visibility</th>
         <th>Kích Hoạt</th>
-        <th>SEO</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-row>
@@ -82,7 +81,6 @@
           <p-badge *ngIf="row.isActive == 1" value="Kích hoạt" severity="success"></p-badge>
           <p-badge *ngIf="row.isActive == 0" value="Khoá" severity="danger"></p-badge>
         </td>
-        <td>{{ row.seoMetaDescription }} </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
