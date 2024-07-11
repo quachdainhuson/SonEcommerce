@@ -23,7 +23,7 @@ namespace SonEcommerce.Public.Web.Pages.Products
             _manufacturersAppService = manufacturersAppService;
         }
         public ProductCategoryDto Category { get; set; }
-        public ProductDto Product { get; set; }
+        public ProductInListDto Product { get; set; }
         public List<ProductAttributeValueDto> ProductAttribute { get; set; }
         public async Task OnGetAsync(string categorySlug, string slug)
         {
