@@ -34,6 +34,8 @@ namespace SonEcommerce;
 )]
 public class SonEcommerceDomainModule : AbpModule
 {
+
+
     //public override void OnApplicationInitialization(Volo.Abp.ApplicationInitializationContext context)
     //{
     //    var settingManager = context.ServiceProvider.GetService<ISettingManager>();
@@ -47,6 +49,7 @@ public class SonEcommerceDomainModule : AbpModule
     //    settingManager.SetGlobalAsync("Abp.Mailing.DefaultFromDisplayName", "Cửa Hàng");
 
     //}
+    
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpLocalizationOptions>(options =>
