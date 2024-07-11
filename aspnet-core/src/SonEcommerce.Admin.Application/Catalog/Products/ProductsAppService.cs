@@ -86,13 +86,10 @@ namespace SonEcommerce.Admin.Products
                 input.Name,
                 input.Code,
                 input.Slug,
-                input.ProductType,
                 input.SKU,
-                input.SortOrder,
                 input.Visibility,
                 input.IsActive,
                 input.CategoryId,
-                input.SeoMetaDescription,
                 input.Description,
                 input.sellPrice);
 
@@ -117,9 +114,7 @@ namespace SonEcommerce.Admin.Products
             product.Name = input.Name;
             product.Code = input.Code;
             product.Slug = input.Slug;
-            product.ProductType = input.ProductType;
             product.SKU = input.SKU;
-            product.SortOrder = input.SortOrder;
             product.Visibility = input.Visibility;
             product.IsActive = input.IsActive;
 
@@ -130,7 +125,6 @@ namespace SonEcommerce.Admin.Products
                 product.CategoryName = category.Name;
                 product.CategorySlug = category.Slug;
             }
-            product.SeoMetaDescription = input.SeoMetaDescription;
             product.Description = input.Description;
 
             if (input.ThumbnailPictureContent != null && input.ThumbnailPictureContent.Length > 0)

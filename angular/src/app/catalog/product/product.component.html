@@ -71,8 +71,6 @@
         <!-- <th>Loại</th> -->
         <th>Tên danh mục</th>
         <th>Tên NSX</th>
-        
-        <th>Thứ tự</th>
         <th>Hiển thị</th>
         <th>Kích hoạt</th>
         <th></th>
@@ -91,7 +89,6 @@
         <!-- <td>{{ getProductTypeName(row.productType)  }}</td> -->
         <td>{{ row.categoryName }}</td>
         <td>{{ row.manufacturerName }}</td>
-        <td>{{ row.sortOrder }}</td>
         <td>
           <p-badge *ngIf="row.visibility == 1" severity="success" value="Hiển thị"></p-badge>
           <p-badge *ngIf="row.visibility == 0" severity="danger" value="Ẩn"></p-badge>

@@ -60,6 +60,21 @@ namespace SonEcommerce.Admin
             return ObjectMapper.Map<List<Order>, List<OrderInListDto>>(data);
         }
 
+        public async Task<PagedResultDto<OrderInListDto>> GetListFilterAsync(OrderListFilterDto input)
+        {
+            var query = await Repository.GetQueryableAsync();
+            query = query.Where(x => x.Total > 0);
+            query = query.WhereIf(input.Status.HasValue, x => x.Status == input.Status);
+            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Code.Contains(input.Keyword) || x.CustomerName.Contains(input.Keyword) || x.CustomerPhoneNumber.Contains(input.Keyword));
+            var totalCount = await AsyncExecuter.LongCountAsync(query);
+            var data = await AsyncExecuter.ToListAsync(
+                query
+                .Skip(input.SkipCount)
+                .Take(input.MaxResultCount));
+            return new PagedResultDto<OrderInListDto>(totalCount, ObjectMapper.Map<List<Order>, List<OrderInListDto>>(data));
+            
+        }
+
         public async Task<List<OrderInListDto>> GetListOrderByUserIdAsync(Guid userId)
         {
             var query = await Repository.GetQueryableAsync();

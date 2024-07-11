@@ -2032,6 +2032,23 @@
                   }
                 },
                 {
+                  "name": "GetListFilterAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "SonEcommerce.Admin.Orders.OrderListFilterDto, SonEcommerce.Admin.Application.Contracts",
+                      "type": "SonEcommerce.Admin.Orders.OrderListFilterDto",
+                      "typeSimple": "SonEcommerce.Admin.Orders.OrderListFilterDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.OrderInListDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.OrderInListDto>"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -2196,6 +2213,79 @@
               "returnValue": {
                 "type": "System.Collections.Generic.List<SonEcommerce.Admin.OrderInListDto>",
                 "typeSimple": "[SonEcommerce.Admin.OrderInListDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.IOrderAppService"
+            },
+            "GetListFilterAsyncByInput": {
+              "uniqueName": "GetListFilterAsyncByInput",
+              "name": "GetListFilterAsync",
+              "httpMethod": "GET",
+              "url": "api/app/orders/filter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.Orders.OrderListFilterDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.Orders.OrderListFilterDto",
+                  "typeSimple": "SonEcommerce.Admin.Orders.OrderListFilterDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Status",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Keyword",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.OrderInListDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.OrderInListDto>"
               },
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.IOrderAppService"
@@ -9724,6 +9814,27 @@
         }
       ]
     },
+    "SonEcommerce.Admin.Orders.OrderListFilterDto": {
+      "baseType": "SonEcommerce.Admin.BaseListFilterDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Status",
+          "jsonName": null,
+          "type": "SonEcommerce.Orders.OrderStatus?",
+          "typeSimple": "SonEcommerce.Orders.OrderStatus?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
     "SonEcommerce.Admin.Orders.UpdateOrderDto": {
       "baseType": null,
       "isEnum": false,
@@ -10200,18 +10311,6 @@
           "regex": null
         },
         {
-          "name": "SeoMetaDescription",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "CoverPictureContent",
           "jsonName": null,
           "type": "System.String",
@@ -10620,34 +10719,10 @@
           "regex": null
         },
         {
-          "name": "ProductType",
-          "jsonName": null,
-          "type": "SonEcommerce.Products.ProductType",
-          "typeSimple": "SonEcommerce.Products.ProductType",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "SKU",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SortOrder",
-          "jsonName": null,
-          "type": "System.Int32",
-          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -10695,18 +10770,6 @@
           "name": "CategoryId",
           "jsonName": null,
           "type": "System.Guid",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SeoMetaDescription",
-          "jsonName": null,
-          "type": "System.String",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -11031,34 +11094,10 @@
           "regex": null
         },
         {
-          "name": "ProductType",
-          "jsonName": null,
-          "type": "SonEcommerce.Products.ProductType",
-          "typeSimple": "SonEcommerce.Products.ProductType",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "SKU",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SortOrder",
-          "jsonName": null,
-          "type": "System.Int32",
-          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -11094,18 +11133,6 @@
           "name": "CategoryId",
           "jsonName": null,
           "type": "System.Guid",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SeoMetaDescription",
-          "jsonName": null,
-          "type": "System.String",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -12178,6 +12205,41 @@
       ],
       "genericArguments": null,
       "properties": null
+    },
+    "System.Nullable<T0>": {
+      "baseType": "System.ValueType",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": [
+        "T"
+      ],
+      "properties": [
+        {
+          "name": "HasValue",
+          "jsonName": null,
+          "type": "System.Boolean",
+          "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Value",
+          "jsonName": null,
+          "type": "T",
+          "typeSimple": "T",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
     },
     "Volo.Abp.Account.ChangePasswordInput": {
       "baseType": null,
