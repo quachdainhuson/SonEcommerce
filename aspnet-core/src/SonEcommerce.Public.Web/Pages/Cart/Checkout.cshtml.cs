@@ -82,6 +82,13 @@ namespace SonEcommerce.Public.Web.Pages.Cart
             {
 
             }
+            //kiểm tra xem đã đầy đủ thông tin chưa
+            if (Order.CustomerName == null || Order.CustomerAddress == null || Order.CustomerPhoneNumber == null || Order.UserCity == null || Order.UserDistrict == null || Order.UserWard == null)
+            {
+                TempData["MessageError"] = "Vui lòng điền đầy đủ thông tin";
+                CreateStatus = false;
+                return;
+            }
             var cartItems = new List<OrderItemDto>();
             foreach (var item in GetCartItems())
             {
@@ -93,6 +100,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                     Quantity = item.Quantity
                 }); 
             }
+            
             Guid? currentUserId = User.Identity.IsAuthenticated ? User.GetUserId() : null;
             var order = await _ordersAppService.CreateAsync(new CreateOrderDto()
             {

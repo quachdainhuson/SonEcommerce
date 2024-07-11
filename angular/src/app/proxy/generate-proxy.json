@@ -10200,18 +10200,6 @@
           "regex": null
         },
         {
-          "name": "SeoMetaDescription",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "CoverPictureContent",
           "jsonName": null,
           "type": "System.String",
@@ -10620,34 +10608,10 @@
           "regex": null
         },
         {
-          "name": "ProductType",
-          "jsonName": null,
-          "type": "SonEcommerce.Products.ProductType",
-          "typeSimple": "SonEcommerce.Products.ProductType",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "SKU",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SortOrder",
-          "jsonName": null,
-          "type": "System.Int32",
-          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -10695,18 +10659,6 @@
           "name": "CategoryId",
           "jsonName": null,
           "type": "System.Guid",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SeoMetaDescription",
-          "jsonName": null,
-          "type": "System.String",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -11031,34 +10983,10 @@
           "regex": null
         },
         {
-          "name": "ProductType",
-          "jsonName": null,
-          "type": "SonEcommerce.Products.ProductType",
-          "typeSimple": "SonEcommerce.Products.ProductType",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
           "name": "SKU",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SortOrder",
-          "jsonName": null,
-          "type": "System.Int32",
-          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -11094,18 +11022,6 @@
           "name": "CategoryId",
           "jsonName": null,
           "type": "System.Guid",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "SeoMetaDescription",
-          "jsonName": null,
-          "type": "System.String",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

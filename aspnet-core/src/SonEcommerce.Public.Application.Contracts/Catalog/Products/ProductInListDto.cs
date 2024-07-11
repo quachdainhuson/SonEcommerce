@@ -24,5 +24,7 @@ namespace SonEcommerce.Public.Products
         public string? CategoryName { get; set; }
         public string? CategorySlug { get; set; }
         public string? ManufacturerName { get; set; }
+        public string? ManufacturerSlug { get; set; }
+
     }
 }

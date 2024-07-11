@@ -1,7 +1,7 @@
-import type { ProductType } from '../son-ecommerce/products/product-type.enum';
 import type { BaseListFilterDto } from '../models';
 import type { AttributeType } from '../son-ecommerce/attributes/attribute-type.enum';
 import type { EntityDto } from '@abp/ng.core';
+import type { ProductType } from '../son-ecommerce/products/product-type.enum';
 
 export interface AddUpdateProductAttributeDto {
   productId?: string;
@@ -18,14 +18,11 @@ export interface CreateUpdateProductDto {
   name?: string;
   code?: string;
   slug?: string;
-  productType: ProductType;
   sku?: string;
-  sortOrder: number;
   visibility: boolean;
   isActive: boolean;
   sellPrice: number;
   categoryId?: string;
-  seoMetaDescription?: string;
   description?: string;
   thumbnailPictureName?: string;
   thumbnailPictureContent?: string;
@@ -59,13 +56,10 @@ export interface ProductDto {
   name?: string;
   code?: string;
   slug?: string;
-  productType: ProductType;
   sku?: string;
-  sortOrder: number;
   visibility: boolean;
   isActive: boolean;
   categoryId?: string;
-  seoMetaDescription?: string;
   description?: string;
   thumbnailPicture?: string;
   sellPrice: number;

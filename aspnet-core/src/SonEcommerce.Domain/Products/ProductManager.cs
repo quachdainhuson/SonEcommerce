@@ -22,11 +22,8 @@ namespace SonEcommerce.Products
         }
 
         public async Task<Product> CreateAsync(Guid manufacturerId,
-            string name, string code, string slug,
-            ProductType productType, string sKU,
-            int sortOrder, bool visibility,
-            bool isActive, Guid categoryId,
-            string seoMetaDescription, string description, double sellPrice)
+            string name, string code, string slug, string sKU, bool visibility,
+            bool isActive, Guid categoryId, string description, double sellPrice)
         {
             if (await _productRepository.AnyAsync(x => x.Name == name))
                 throw new UserFriendlyException("Tên sản phẩm đã tồn tại", SonEcommerceDomainErrorCodes.ProductNameAlreadyExists);
@@ -37,8 +34,8 @@ namespace SonEcommerce.Products
 
             var category = await _productCategoryRepository.GetAsync(categoryId);
 
-            return new Product(Guid.NewGuid(), manufacturerId, name, code, slug, productType, sKU, sortOrder,
-                visibility, isActive, categoryId, seoMetaDescription, description, null, sellPrice, category?.Slug);
+            return new Product(Guid.NewGuid(), manufacturerId, name, code, slug, sKU,
+                visibility, isActive, categoryId, description, null, sellPrice);
         }
     }
 }

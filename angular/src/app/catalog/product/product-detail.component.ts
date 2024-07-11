@@ -54,8 +54,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     sku: [{ type: 'required', message: 'Bạn phải mã SKU sản phẩm' }],
     manufacturerId: [{ type: 'required', message: 'Bạn phải chọn nhà cung cấp' }],
     categoryId: [{ type: 'required', message: 'Bạn phải chọn danh mục' }],
-    productType: [{ type: 'required', message: 'Bạn phải chọn loại sản phẩm' }],
-    sortOrder: [{ type: 'required', message: 'Bạn phải nhập thứ tự' }],
+    // productType: [{ type: 'required', message: 'Bạn phải chọn loại sản phẩm' }],
+    // sortOrder: [{ type: 'required', message: 'Bạn phải nhập thứ tự' }],
     sellPrice: [{ type: 'required', message: 'Bạn phải nhập giá bán' }],
   };
 
@@ -214,12 +214,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         Validators.required
       ),
       categoryId: new FormControl(this.selectedEntity.categoryId || null, Validators.required),
-      productType: new FormControl(this.selectedEntity.productType || null, Validators.required),
-      sortOrder: new FormControl(this.selectedEntity.sortOrder || null, Validators.required),
+      // productType: new FormControl(this.selectedEntity.productType || null, Validators.required),
+      // sortOrder: new FormControl(this.selectedEntity.sortOrder || null, Validators.required),
       sellPrice: new FormControl(this.selectedEntity.sellPrice || null, Validators.required),
       visibility: new FormControl(this.selectedEntity.visibility || true),
       isActive: new FormControl(this.selectedEntity.isActive || true),
-      seoMetaDescription: new FormControl(this.selectedEntity.seoMetaDescription || null),
+      // seoMetaDescription: new FormControl(this.selectedEntity.seoMetaDescription || null),
       description: new FormControl(this.selectedEntity.description || null),
       thumbnailPictureName:new FormControl(this.selectedEntity.thumbnailPicture || null),
       thumbnailPictureContent: new FormControl(null)
