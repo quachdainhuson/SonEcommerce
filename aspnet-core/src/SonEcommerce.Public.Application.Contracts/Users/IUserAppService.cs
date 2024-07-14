@@ -24,6 +24,7 @@ namespace SonEcommerce.Public.Users
         //kiểm tra SỐ ĐIỆN THOẠI đã tồn tại chưa
          Task<bool> CheckPhoneNumberExistAsync(string phoneNumber);
 
-
+        //Đổi mật khẩu người dùng
+        Task ChangePasswordAsync(Guid id,ChangePasswordDto input);
     }
 }

@@ -335,6 +335,27 @@ namespace SonEcommerce.Public.Users
             await _emailSender.SendAsync(user.Email, "Xác thực tài khoản", emailBody);
         }
 
+        public async Task ChangePasswordAsync(Guid id, ChangePasswordDto input)
+        {
+            var user = await _identityUserManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), id);
+            }
+            var checkPassword = await _identityUserManager.CheckPasswordAsync(user, input.CurrentPassword);
+            if (checkPassword) 
+            {
+                if (input.NewPassword != input.ConfirmNewPassword)
+                {
+                    throw new UserFriendlyException("Mật khẩu mới không khớp");
+                }
+                await SetPasswordAsync(id, new SetPasswordDto { NewPassword = input.NewPassword });
+            }
+            else
+            {
+                throw new UserFriendlyException("Mật khẩu cũ không đúng");
+            }
 
+        }
     }
 }

@@ -4,6 +4,7 @@
 @inject IProductsAppService _productsAppService;
 @{
 }
+<partial name="_MessageNotification" />
 <section class="section-box shop-template mt-30">
     <div class="container box-account-template">
         <h3>Xin Chào @Model.CurrentUser.Surname @Model.CurrentUser.Name</h3>
@@ -15,6 +16,7 @@
             <ul class="nav nav-tabs nav-tabs-account" role="tablist">
                 <li><a class="active" href="#tab-setting" data-bs-toggle="tab" role="tab" aria-controls="tab-setting" aria-selected="true">Thiết Lập Tài Khoản</a></li>
                 <li><a href="#tab-orders" data-bs-toggle="tab" role="tab" aria-controls="tab-orders" aria-selected="true">Lịch Sử Đơn Hàng</a></li>
+                <li><a href="#tab-changepassword" data-bs-toggle="tab" role="tab" aria-controls="tab-changepassword" aria-selected="true">Đổi mật khẩu</a></li>
             </ul>
             <div class="border-bottom mt-20 mb-40"></div>
             <div class="tab-content mt-30">
@@ -186,6 +188,44 @@
 
                     </div>
                 </div>
+                <div class="tab-pane fade" id="tab-changepassword" role="tabpanel" aria-labelledby="tab-changepassword">
+                    <div class="row">
+                        <div class="col-lg-6 mb-20">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-lg-12 mb-20">
+                                        <h5 class="font-md-bold color-brand-3 text-sm-start text-center">Đổi Mật Khẩu</h5>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="currentPassword">Mật Khẩu Hiện Tại *</label>
+                                            <input id="currentPassword" asp-for="ChangePassword.CurrentPassword" class="form-control" type="password" placeholder="Mật Khẩu Hiện Tại *">
+                                            <span asp-validation-for="ChangePassword.CurrentPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="newPassword">Mật Khẩu Mới *</label>
+                                            <input id="newPassword" asp-for="ChangePassword.NewPassword" class="form-control" type="password" placeholder="Mật Khẩu Mới *">
+                                            <span asp-validation-for="ChangePassword.NewPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="confirmNewPassword">Xác Nhận Mật Khẩu Mới *</label>
+                                            <input id="confirmNewPassword" asp-for="ChangePassword.ConfirmNewPassword" class="form-control" type="password" placeholder="Xác Nhận Mật Khẩu Mới *">
+                                            <span asp-validation-for="ChangePassword.ConfirmNewPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 text-center">
+                                        <button type="submit" asp-page-handler="ChangePassword" class="btn btn-primary">Đổi Mật Khẩu</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    </div>
             </div>
         </div>
     </div>

@@ -282,23 +282,57 @@ namespace SonEcommerce.Admin.Users
         public async Task<PagedResultDto<UserInListDto>> GetListWithoutRolesAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
-            var users = query.Where(o => o.Roles.Count == 0).ToList();
-            var totalCount = users.Count;
-            var data = users.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+
+            // Apply keyword filter
+            query = query.WhereIf(
+                !input.Keyword.IsNullOrWhiteSpace(),
+                o => o.Name.ToLower().Contains(input.Keyword.ToLower()) ||
+                     o.Email.Contains(input.Keyword) ||
+                     o.PhoneNumber.Contains(input.Keyword)
+            );
+
+            // Filter users without roles
+            query = query.Where(o => o.Roles.Count == 0);
+
+            // Get the total count of filtered records
+            var totalCount = query.Count();
+
+            // Apply pagination
+            var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
+
+            // Map to DTO
             var userInListDtos = ObjectMapper.Map<List<IdentityUser>, List<UserInListDto>>(data);
+
             return new PagedResultDto<UserInListDto>(totalCount, userInListDtos);
-            
         }
+
 
         public async Task<PagedResultDto<UserInListDto>> GetListWithRolesAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
-            var users = query.Where(o => o.Roles.Count > 0).ToList();
-            var totalCount = users.Count;
-            var data = users.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+
+            // Apply keyword filter
+            query = query.WhereIf(
+                !input.Keyword.IsNullOrWhiteSpace(),
+                o => o.Name.ToLower().Contains(input.Keyword.ToLower()) ||
+                     o.Email.Contains(input.Keyword) ||
+                     o.PhoneNumber.Contains(input.Keyword)
+            );
+
+            // Filter users without roles
+            query = query.Where(o => o.Roles.Count > 0);
+
+            // Get the total count of filtered records
+            var totalCount = query.Count();
+
+            // Apply pagination
+            var data = await AsyncExecuter.ToListAsync(query.Skip(input.SkipCount).Take(input.MaxResultCount));
+
+            // Map to DTO
             var userInListDtos = ObjectMapper.Map<List<IdentityUser>, List<UserInListDto>>(data);
+
             return new PagedResultDto<UserInListDto>(totalCount, userInListDtos);
-            
+
         }
     }
 }

@@ -28,7 +28,9 @@ namespace SonEcommerce.Public.Web.Pages.User
         private readonly OrdersAppService _ordersAppService;
         [BindProperty]
         public UpdateUserDto UpdateUser { get; set; }
+        [BindProperty]
 
+        public ChangePasswordDto ChangePassword { get; set; }
         public UserDto CurrentUser { get; set; }
         public List<OrderInListDto> Orders { get; set; }
         public OrderItemDto OrderItem { get; set; }
@@ -205,10 +207,34 @@ namespace SonEcommerce.Public.Web.Pages.User
             else
             {
                 // Nếu có lỗi, hiển thị thông báo lỗi (tùy chỉnh theo nhu cầu của bạn)
-                TempData["CancelOrderMessage"] = "Không thể hủy đơn hàng này.";
+                TempData["MessageError"] = "Không thể hủy đơn hàng này.";
                 return RedirectToPage();
 
             }
+        }
+        public async Task<IActionResult> OnPostChangePasswordAsync()
+        {
+            try {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var changePassword = ChangePassword;
+
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
+                    var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
+                    Orders = orders;
+                    await _usersAppService.ChangePasswordAsync(Guid.Parse(userId), ChangePassword);
+                    TempData["Message"] = "Mật khẩu đã được thay đổi.";
+                }
+                return RedirectToPage();
+            } catch (Exception ex) {
+                ModelState.AddModelError("ChangePassword.NewPassword", ex.Message);
+                ModelState.AddModelError("ChangePassword.ConfirmPassword", ex.Message);
+                ModelState.AddModelError("ChangePassword.CurrentPassword", ex.Message);
+                return Page();
+                
+            }
+            
         }
 
     }

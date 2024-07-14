@@ -1,7 +1,9 @@
-import { AuthService } from '@abp/ng.core';
+import { AuthService, PagedResultDto } from '@abp/ng.core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OrderInListDto, OrdersService } from '@proxy';
 import { OrderStatus } from '@proxy/son-ecommerce/orders';
+import { UserInListDto } from '@proxy/system/users';
+import { UsersService } from '@proxy/users';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -18,18 +20,86 @@ export class HomeComponent implements OnInit, OnDestroy {
   yearlyTotalIncome: { [year: number]: number } = {};
   selectedYear: number;
   yearOptions: { label: string, value: number }[] = [];
+  //tạo biến hóa đơn chưa xử lý
+  countOrderNew: number;
+  countEmployee: number;
+  countCustomer: number;
+  Status: number = OrderStatus.New;
+  constructor(
+    private authService: AuthService, 
+    private orderService: OrdersService,
+    private userService: UsersService,
 
-  constructor(private authService: AuthService, private orderService: OrdersService) {}
+    
+  ) {}
 
   ngOnInit() {
     this.getData();
+    this.countOrderNewFn();
+    this.countEmployeeFn();
+    this.countCustomerFn();
   }
 
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-
+  //đếm số hóa đơn mới
+  countOrderNewFn(){
+    this.orderService
+        .getListFilter({
+          skipCount: 0,
+          maxResultCount: 10,
+          status: OrderStatus.New,
+        }
+        )
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe({
+          next: (response: PagedResultDto<OrderInListDto>) => {
+            this.items = response.items;
+            this.countOrderNew = response.totalCount;
+          },
+          
+          error: () => {
+          },
+        });
+  }
+  countEmployeeFn(){
+    this.userService
+        .getListWithRoles({
+          skipCount: 0,
+          maxResultCount: 10,
+        }
+        )
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe({
+          next: (response: PagedResultDto<UserInListDto>) => {
+            console.log(response);
+            this.countEmployee = response.totalCount;
+          },
+          
+          error: () => {
+          },
+        });
+    
+  }
+  countCustomerFn(){
+    this.userService
+        .getListWithoutRoles({
+          skipCount: 0,
+          maxResultCount: 10,
+        }
+        )
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe({
+          next: (response: PagedResultDto<UserInListDto>) => {
+            this.countCustomer = response.totalCount;
+          },
+          
+          error: () => {
+          },
+        });
+  }
   getData() {
     this.orderService
       .getListAll()
