@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
   loadOrderStatus() {
     this.OrderStatus = [
-      { label: 'Tất cả', value: 0 },
+      { label: 'Tất cả', value: null },
       { label: 'Mới', value: OrderStatus.New },
       { label: 'Đã xác nhận', value: OrderStatus.Confirmed },
       { label: 'Đang xử lý', value: OrderStatus.Processing },
@@ -84,24 +84,6 @@ export class OrderComponent implements OnInit, OnDestroy {
           },
         });
     } 
-    translateStatusToVietnamese(status: string) {
-      switch (status) {
-        case 'New':
-          return 'Moi';
-        case 'Confirmed':
-          return 'DaXacNhan';
-        case 'Processing':
-          return 'DangXuLy';
-        case 'Shipping':
-          return 'DangGiaoHang';
-        case 'Finished':
-          return 'HoanThanh';
-        case 'Canceled':
-          return 'DaHuy';
-        default:
-          return status;
-      }
-    }
     pageChanged(event: any): void {
       this.maxResultCount = event.rows;
       this.skipCount = (event.first / this.maxResultCount) * this.maxResultCount;

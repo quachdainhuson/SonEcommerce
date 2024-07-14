@@ -29,6 +29,7 @@ import { CategoryComponent } from './category/category.component';
 import { CategoryDetailComponent } from './category/category-detail.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { ManufacturerDetailComponent } from './manufacturer/manufacturer-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -64,7 +65,9 @@ import { ManufacturerDetailComponent } from './manufacturer/manufacturer-detail.
     ImageModule,
     FileUploadModule,
     ConfirmDialogModule,
-    CalendarModule
+    CalendarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   
 

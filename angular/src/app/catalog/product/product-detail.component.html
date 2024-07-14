@@ -148,8 +148,9 @@
       </div> -->
       <div class="field col-12">
         <label for="description" class="block">Mô tả</label>
-        <p-editor id="description" formControlName="description" [style]="{ height: '320px' }"></p-editor>
+        <textarea pInputTextarea id="description" formControlName="description" [style]="{ height: '320px' }" class="w-full"></textarea>
       </div>
+      
     </div>
     <ng-template pTemplate="footer">
       <button

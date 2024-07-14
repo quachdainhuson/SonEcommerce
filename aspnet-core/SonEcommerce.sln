@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonEcommerce.Public.HttpApi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonEcommerce.Public.Web", "src\SonEcommerce.Public.Web\SonEcommerce.Public.Web.csproj", "{0AB05343-5BCF-4F12-B757-67CF6F9CB230}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonEcommerce.BackgroundWorkers", "src\SonEcommerce.BackgroundWorkers\SonEcommerce.BackgroundWorkers.csproj", "{75F1204A-9057-43FF-B4B6-B680C790482C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonEcommerce.BackgroundWorkers", "src\SonEcommerce.BackgroundWorkers\SonEcommerce.BackgroundWorkers.csproj", "{75F1204A-9057-43FF-B4B6-B680C790482C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

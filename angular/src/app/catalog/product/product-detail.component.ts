@@ -139,22 +139,24 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     });
   }
   loadFormDetails(id: string) {
-    this.toggleBlockUI(true);
-    this.productService
-      .get(id)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe({
-        next: (response: ProductDto) => {
-          this.selectedEntity = response;
-          this.loadThumbnail(this.selectedEntity.thumbnailPicture);
-          this.buildForm();
-          this.toggleBlockUI(false);
-        },
-        error: () => {
-          this.toggleBlockUI(false);
-        },
-      });
-  }
+  this.toggleBlockUI(true);
+  this.productService
+    .get(id)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response: ProductDto) => {
+        this.selectedEntity = response;
+        this.loadThumbnail(this.selectedEntity.thumbnailPicture);
+        this.buildForm();
+        this.form.patchValue(this.selectedEntity); // Cập nhật giá trị form
+        this.toggleBlockUI(false);
+      },
+      error: () => {
+        this.toggleBlockUI(false);
+      },
+    });
+}
+
 
   saveChange() {
     this.toggleBlockUI(true);
