@@ -38,7 +38,7 @@ namespace SonEcommerce.Public.Web.Pages.Products
                 CurrentPage = page,
                 MinPrice = MinPrice,
                 MaxPrice = MaxPrice,
-                Keyword = keyword // Thêm từ khóa vào bộ lọc
+                Keyword = keyword
             };
 
             ProductData = await _productsAppService.GetListFilterAsync(filterDto);

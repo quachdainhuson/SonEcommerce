@@ -50,9 +50,6 @@
                                     var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.CartItems[i].Product.ThumbnailPicture);
                                     var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.CartItems[i].Product.ThumbnailPicture, fileContent);
                                     <div class="item-wishlist">
-                                        <div class="wishlist-cb">
-                                            <input class="cb-layout cb-select" type="checkbox">
-                                        </div>
                                         <div class="wishlist-product">
                                             <div class="product-wishlist">
                                                 <div class="product-image"><a href="shop-single-product.html"><img src="@base64Image" alt="@Model.CartItems[i].Product.ThumbnailPicture"></a></div>

@@ -72,7 +72,6 @@ namespace SonEcommerce.Public.Products
         public async Task<List<ProductInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
-            query = query.Where(x => x.IsActive == true);
             var data = await AsyncExecuter.ToListAsync(query);
 
             return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data);
@@ -83,10 +82,10 @@ namespace SonEcommerce.Public.Products
             var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
             var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
             var query = await Repository.GetQueryableAsync();
-            query = query.Where(x => x.IsActive == true);
             query = query.Where(x => x.Visibility == true);
-            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
+            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword) || x.CategoryName.Contains(input.Keyword));
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
+            query = query.WhereIf(input.ManufacturerId.HasValue, x => x.ManufacturerId == input.ManufacturerId);
             query = query.WhereIf(input.MinPrice.HasValue, x => x.SellPrice >= input.MinPrice);
             query = query.WhereIf(input.MaxPrice.HasValue, x => x.SellPrice <= input.MaxPrice);
             var joinQuery = from product in query
@@ -271,7 +270,7 @@ namespace SonEcommerce.Public.Products
         public async Task<List<ProductInListDto>> GetListTopSellerAsync(int numberOfRecords)
         {
             var query = await Repository.GetQueryableAsync();
-            query = query.Where(x => x.IsActive == true && x.Visibility == true)
+            query = query.Where(x => x.Visibility == true)
                          .OrderByDescending(x => x.SortOrder) // Sắp xếp theo thứ tự giảm dần của SortOrder (hoặc một trường phù hợp khác)
                          .Take(numberOfRecords);
 
@@ -344,5 +343,38 @@ namespace SonEcommerce.Public.Products
             return result.FirstOrDefault();
         }
 
+        public async Task<ProductInListDto> GetProductByIdsAsync(Guid ids)
+        {
+            var query = await Repository.GetQueryableAsync();
+            query = query.Where(x => x.Id == ids);
+            var data = await AsyncExecuter.ToListAsync(query);
+            var categoryQuery = await _productCategoryRepository.GetQueryableAsync();
+            var manufacturerQuery = await _manufacturerRepository.GetQueryableAsync();
+
+            var result = data.Select(x => new ProductInListDto
+            {
+                Id = x.Id,
+                ManufacturerId = x.ManufacturerId,
+                Name = x.Name,
+                Code = x.Code,
+                Slug = x.Slug,
+                ProductType = x.ProductType,
+                SKU = x.SKU,
+                SellPrice = x.SellPrice,
+                SortOrder = x.SortOrder,
+                Visibility = x.Visibility,
+                IsActive = x.IsActive,
+                CategoryId = x.CategoryId,
+                CreationTime = x.CreationTime,
+                Description = x.Description,
+                ThumbnailPicture = x.ThumbnailPicture,
+                CategoryName = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Name,
+                CategorySlug = categoryQuery.FirstOrDefault(c => c.Id == x.CategoryId)?.Slug,
+                ManufacturerName = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Name,
+                ManufacturerSlug = manufacturerQuery.FirstOrDefault(m => m.Id == x.ManufacturerId)?.Slug
+            }).ToList();
+
+            return result.FirstOrDefault();
+        }
     }
 }

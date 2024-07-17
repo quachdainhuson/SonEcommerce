@@ -14,7 +14,7 @@ namespace SonEcommerce.Public.Products
     {
         Task<PagedResult<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input);
         Task<List<ProductInListDto>> GetListAllAsync();
-
+        Task<ProductInListDto> GetProductByIdsAsync(Guid ids);
         Task<string> GetThumbnailImageAsync(string fileName);
         Task<List<ProductAttributeValueDto>> GetListProductAttributeAllAsync(Guid productId);
         Task<PagedResult<ProductAttributeValueDto>> GetListProductAttributesAsync(ProductAttributeListFilterDto input);

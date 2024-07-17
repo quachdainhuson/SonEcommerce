@@ -1,7 +1,8 @@
 ﻿@using SonEcommerce.Public.ProductCategories;
-@model List<ProductCategoryInListDto>
+@using SonEcommerce.Public.Web.Models;
+@model HeaderCacheItem
 @{
-
+    
 }
 <div id="preloader-active">
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -47,13 +48,21 @@
                             <li class="has-children">
                                 <a href="/products.html">Sản Phẩm</a>
                                 <ul class="sub-menu two-col">
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.Categories)
                                     {
                                         <li><a href="/products/@(item.Code).html" value="@item.Id">@item.Name</a></li>
                                     }
                                 </ul>
                             </li>
-                            
+                            <li class="has-children">
+                                <a href="/products.html">Nhà Sản Xuất</a>
+                                <ul class="sub-menu two-col">
+                                    @foreach (var item in Model.Manufacturer)
+                                    {
+                                        <li><a href="/products/manufacturer/@(item.Code).html" value="@item.Id">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </li>
                             <li class="has-children">
                                 <a href="#">Trang</a>
                                 <ul class="sub-menu">
