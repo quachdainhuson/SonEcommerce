@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
   loadOrderStatus() {
     this.OrderStatus = [
-      { label: 'Tất cả', value: 0 },
+      { label: 'Tất cả', value: null },
       { label: 'Mới', value: OrderStatus.New },
       { label: 'Đã xác nhận', value: OrderStatus.Confirmed },
       { label: 'Đang xử lý', value: OrderStatus.Processing },
