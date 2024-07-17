@@ -19,9 +19,17 @@ namespace SonEcommerce.Public.Manufacturers
         Guid,
         PagedResultRequestDto>, IManufacturersAppService
     {
-        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository)
+        private readonly IRepository<Manufacturer> _manufacturerRepository;
+        public ManufacturersAppService(IRepository<Manufacturer, Guid> repository, IRepository<Manufacturer> manufacturerRepository)
             : base(repository)
         {
+            _manufacturerRepository = manufacturerRepository;
+        }
+
+        public async Task<ManufacturerDto> GetByCodeAsync(string code)
+        {
+            var data = await _manufacturerRepository.GetAsync(x => x.Code == code);
+            return ObjectMapper.Map<Manufacturer, ManufacturerDto>(data);
         }
 
         public async Task<List<ManufacturerInListDto>> GetListAllAsync()

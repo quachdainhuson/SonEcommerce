@@ -8,6 +8,8 @@
     var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.Product.ThumbnailPicture, fileContent);
 
 }
+<partial name="_MessageNotification" />
+
 <div class="section-box">
     <div class="breadcrumbs-div">
         <div class="container">
@@ -119,6 +121,7 @@
                             </span><span class="plus-cart"></span>
                         </div>
                         <div class="button-buy">
+                            
                             <a id="addToCartLink" class="btn btn-cart mb-15" href="/shop-cart.html?action=add&id=@Model.Product.Id&quantity=1">Thêm Vào Giỏ Hàng</a>
                         </div>
                     </div>

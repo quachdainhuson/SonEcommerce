@@ -164,6 +164,8 @@ namespace SonEcommerce.Admin.Products
             var query = await Repository.GetQueryableAsync();
             query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword), x => x.Name.Contains(input.Keyword));
             query = query.WhereIf(input.CategoryId.HasValue, x => x.CategoryId == input.CategoryId);
+            query = query.WhereIf(input.ManufacturerId.HasValue, x => x.ManufacturerId == input.ManufacturerId);
+
 
             // Join with Category table
             var joinQuery = from product in query

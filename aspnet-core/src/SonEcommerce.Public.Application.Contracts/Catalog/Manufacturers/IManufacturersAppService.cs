@@ -14,5 +14,6 @@ namespace SonEcommerce.Public.Manufacturers
     {
         Task<PagedResult<ManufacturerInListDto>> GetListFilterAsync(BaseListFilterDto input);
         Task<List<ManufacturerInListDto>> GetListAllAsync();
+        Task<ManufacturerDto> GetByCodeAsync(string code);
     }
 }
