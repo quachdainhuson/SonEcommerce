@@ -104,7 +104,7 @@ export class UserComponent implements OnInit, OnDestroy {
         id: id,
       },
       header: 'Cập nhật người dùng',
-      width: '70%',
+      width: '30%',
     });
 
     ref.onClose.subscribe((data: UserDto) => {

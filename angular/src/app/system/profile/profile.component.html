@@ -1,0 +1,66 @@
+<div class="animated fadeIn">
+    <p-panel #pnl [style]="{ 'margin-bottom': '10px' }">
+      <h5>Thông tin cá nhân</h5>
+      <div class="row">
+        <div class="col-8">
+          <div class="col-8">
+            <label for="">Tên tài khoản</label>
+              <div class="p-inputgroup">
+                  <input type="text" pInputText placeholder="Tên tài khoản">         
+              </div>
+          </div>
+          
+          <div class="col-8">
+            <label for="">Họ</label>
+              <div class="p-inputgroup">
+                  <input type="text" pInputText placeholder="Họ">         
+              </div>
+          </div>
+                  
+          <div class="col-8">
+            <label for="">Tên</label>
+              <div class="p-inputgroup">
+                  <input type="text" pInputText placeholder="Tên">      
+              </div>
+          </div>
+  
+          <div class="col-8">
+            <label for="">Số điện thoại</label>
+              <div class="p-inputgroup">
+                  <input type="text" pInputText placeholder="Tên">      
+              </div>
+          </div>
+  
+          <div class="col-8">
+            <label for="">Email</label>
+              <div class="p-inputgroup">
+                  <input type="text" pInputText placeholder="Email">      
+              </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <button (click)="changePassword()" type="submit" class="btn btn-primary">
+            Đổi mật khẩu
+          </button>
+        </div>  
+      </div>
+
+
+
+
+
+            <button type="submit" class="btn btn-primary">
+              Lưu lại
+            </button>
+
+      <p-blockUI [target]="pnl" [blocked]="blockedPanel">
+        <p-progressSpinner
+          [style]="{ width: '100px', height: '100px', position: 'absolute', top: '25%', left: '50%' }"
+          strokeWidth="2"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </p-blockUI>
+    </p-panel>
+  </div>
+  

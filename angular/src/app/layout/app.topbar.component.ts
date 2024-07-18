@@ -25,12 +25,12 @@ export class AppTopBarComponent implements OnInit {
             {
                 label: 'Xem thông tin cá nhân',
                 icon: 'pi pi-id-card',
-                routerLink: ['/profile'],
+                routerLink: ['/system/profile'],
               },
               {
                 label: 'Đổi mật khẩu',
                 icon: 'pi pi-key',
-                routerLink: ['/change-password'],
+                routerLink: ['/system/change-password'],
               },
               {
                 label: 'Đăng xuất',

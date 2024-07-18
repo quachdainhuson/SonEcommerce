@@ -87,6 +87,7 @@ export interface ProductInListDto extends EntityDto<string> {
 
 export interface ProductListFilterDto extends BaseListFilterDto {
   categoryId?: string;
+  manufacturerId?: string;
   minPrice?: number;
   maxPrice?: number;
 }
