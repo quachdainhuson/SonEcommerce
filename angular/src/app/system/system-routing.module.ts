@@ -4,7 +4,7 @@ import { RoleComponent } from './role/role.component';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard, permissionGuard } from '@abp/ng.core';
 import { CustomerComponent } from './Customer/customer.component';
-import { ChangePasswordComponent } from './user/change-password.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 { path: 'role', 
@@ -32,8 +32,9 @@ data:
   
   },
 },
-{ path: 'change-password', 
-  component: ChangePasswordComponent
+{ path: 'profile', 
+  component: ProfileComponent,
+  canActivate: [permissionGuard],
 },
 ];
 
