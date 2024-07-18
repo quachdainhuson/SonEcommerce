@@ -4154,6 +4154,18 @@
                 },
                 {
                   "nameOnMethod": "input",
+                  "name": "ManufacturerId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
                   "name": "MinPrice",
                   "jsonName": null,
                   "type": "System.Double?",
@@ -11401,6 +11413,18 @@
       "properties": [
         {
           "name": "CategoryId",
+          "jsonName": null,
+          "type": "System.Guid?",
+          "typeSimple": "string?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ManufacturerId",
           "jsonName": null,
           "type": "System.Guid?",
           "typeSimple": "string?",
