@@ -4,6 +4,7 @@ import { RoleComponent } from './role/role.component';
 import { UserComponent } from './user/user.component';
 import { PermissionGuard, permissionGuard } from '@abp/ng.core';
 import { CustomerComponent } from './Customer/customer.component';
+import { ChangePasswordComponent } from './user/change-password.component';
 
 const routes: Routes = [
 { path: 'role', 
@@ -30,6 +31,9 @@ data:
     requirePolicy: 'AbpIdentity.Users'
   
   },
+},
+{ path: 'change-password', 
+  component: ChangePasswordComponent
 },
 ];
 

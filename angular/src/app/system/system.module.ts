@@ -29,6 +29,7 @@ import { PickListModule } from 'primeng/picklist';
 import { SetPasswordComponent } from './user/set-password.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CustomerComponent } from './Customer/customer.component';
+import { ChangePasswordComponent } from './user/change-password.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CustomerComponent } from './Customer/customer.component';
     CustomerComponent,
     UserDetailComponent,
     RoleAssignComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
+    ChangePasswordComponent,
 
   ],
   imports: [

@@ -30,7 +30,7 @@ export class AppTopBarComponent implements OnInit {
               {
                 label: 'Đổi mật khẩu',
                 icon: 'pi pi-key',
-                routerLink: ['/change-password'],
+                routerLink: ['/system/change-password'],
               },
               {
                 label: 'Đăng xuất',

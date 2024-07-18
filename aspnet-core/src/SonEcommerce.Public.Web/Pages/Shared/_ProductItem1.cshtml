@@ -3,33 +3,21 @@
 @inject IProductsAppService _productsAppService;
 @{
     var urlCate = $"/products/{Model.CategorySlug}/{Model.Slug}.html";
-    var urlManu = $"/products/{Model.ManufacturerSlug}/{Model.Slug}.html";
     var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.ThumbnailPicture);
     var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.ThumbnailPicture, fileContent);
 
 }
 <div class="card-grid-style-3 home6-style">
     <div class="card-grid-inner">
-        <div class="tools"><a class="btn btn-trend btn-tooltip mb-10" href="#" aria-label="Trend" data-bs-placement="left"></a>
-            <a class="btn btn-wishlist btn-tooltip mb-10" href="shop-wishlist.html" aria-label="Add To Wishlist"></a>
-            <a class="btn btn-compare btn-tooltip mb-10" href="shop-compare.html" aria-label="Compare"></a>
-            <a class="btn btn-quickview btn-tooltip" aria-label="Quick view" href="#ModalQuickview" data-bs-toggle="modal"></a></div>
+        
         <div class="image-box">
             @* <span class="label bg-brand-2">-17%</span> *@
             <a href="@urlCate"><img src="@base64Image" alt="@Model.Name"></a>
         </div>
         <div class="info-right">
-            <a class="font-xs color-gray-500" href="@urlManu">@Model.ManufacturerName</a><br>
+            <p class="font-xs color-gray-500">@Model.ManufacturerName</p><br>
 
             <a class="color-brand-3 font-sm-bold" href="shop-single-product-2.html">@Model.Name</a>
-            <div class="rating">
-                <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                <img src="/assets/imgs/template/icons/star.svg" alt="Ecom">
-                <span class="font-xs color-gray-500">(65)</span>
-            </div>
             <div class="price-info mb-10">
                 <strong class="font-lg-bold color-brand-3 price-main">$@Model.SellPrice.ToString() </strong>
             </div>

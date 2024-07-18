@@ -215,12 +215,12 @@ public class SonEcommerceAdminHttpApiHostModule : AbpModule
 
         var supportedCultures = new[]
          {
-                new CultureInfo("en")
+                new CultureInfo("vi")
             };
 
         app.UseAbpRequestLocalization(options =>
         {
-            options.DefaultRequestCulture = new RequestCulture("en");
+            options.DefaultRequestCulture = new RequestCulture("vi");
             options.SupportedCultures = supportedCultures;
             options.SupportedUICultures = supportedCultures;
             options.RequestCultureProviders = new List<IRequestCultureProvider>
