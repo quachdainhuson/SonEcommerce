@@ -24,6 +24,6 @@ export class MessageConstants {
     public static SET_VIP_POINT_SUCCESS_MSG = 'Đổi điểm VIP thành công';
     public static TOPUP_MONEY_SUCCESS_MSG = 'Nạp tiền thành công';
     public static ROLE_ASSIGN_SUCCESS_MSG = 'Gán quyền thành công';
-
+    public static UPDATED_FAIL_MSG = 'Cập nhật thất bại';
 
 }

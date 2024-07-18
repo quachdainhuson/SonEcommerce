@@ -29,6 +29,7 @@ import { PickListModule } from 'primeng/picklist';
 import { SetPasswordComponent } from './user/set-password.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CustomerComponent } from './Customer/customer.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import {PasswordModule} from 'primeng/password';
 import { ChangePasswordComponent } from './profile/changePass.component';

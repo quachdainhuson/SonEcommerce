@@ -1,13 +1,14 @@
-import { PagedResultDto } from '@abp/ng.core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserDto, UserInListDto } from '@proxy/system/users';
+import { UserDto } from '@proxy/system/users';
 import { UsersService } from '@proxy/users';
-import { ConfirmationService, MenuItem } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
 import { MessageConstants } from 'src/app/shared/constants/messages.constant';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { ChangePasswordComponent } from './changePass.component';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,22 +18,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   //System variables
   private ngUnsubscribe = new Subject<void>();
   public blockedPanel: boolean = false;
-
-  //Paging variables
-  public skipCount: number = 0;
-  public maxResultCount: number = 10;
-  public totalCount: number;
-
-  //Business variables
-  public items: UserInListDto[];
-  public selectedItems: UserInListDto[] = [];
-  public keyword: string = '';
+  public form: FormGroup;
+  public btnDisabled = false;
+  public blockedPanelDetail: boolean = false;
+  selectedEntity = {} as UserDto;
+  userId: string;
+  private fb: FormBuilder
 
   constructor(
     private userService: UsersService,
     public dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public authService: AuthService
   ) {}
 
   ngOnDestroy(): void {
@@ -40,161 +38,88 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete();
   }
 
+  validationMessages = {
+    name: [{ type: 'required', message: 'Bạn phải nhập tên' }],
+    surname: [{ type: 'required', message: 'Bạn phải nhập họ' }],
+    email: [{ type: 'required', message: 'Bạn phải nhập email' }],
+    userName: [{ type: 'required', message: 'Bạn phải nhập tài khoản' }],
+    phoneNumber: [{ type: 'required', message: 'Bạn phải nhập số điện thoại' }],
+  };
+
+  buildForm() {
+    this.form = new FormGroup({
+      email: new FormControl(this.selectedEntity.email || null, Validators.required),
+      phoneNumber: new FormControl(this.selectedEntity.phoneNumber || null, Validators.required),
+      name: new FormControl(this.selectedEntity.name || null, Validators.required),
+      userName: new FormControl(this.selectedEntity.userName || null, Validators.required),
+      surname: new FormControl(this.selectedEntity.surname || null, Validators.required),
+
+    });
+  }
+  
+
   ngOnInit() {
-    // this.loadData();
+    this.userId = this.authService.getUserIdFromToken();
+    this.buildForm();
+    this.loadUserProfile();
+  }
+
+  loadUserProfile() {
+    if (this.userId) {
+      this.userService.get(this.userId)
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe({
+          next: (user: UserDto) => {
+            console.log(user);
+            this.selectedEntity = user;
+            console.log(this.selectedEntity);
+            this.buildForm();
+          },
+          error: (error) => {
+            this.notificationService.showError('Cập nhật thông tin bị lỗi');
+          },
+        });
+    }
+  }
+
+  saveChange() {
+    this.toggleBlockUI(true);
+    this.saveData();
+  }
+
+  private saveData() {
+    this.userId = this.authService.getUserIdFromToken();
+    this.userService
+      .update(this.userId, this.form.value)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (response) => {
+          this.notificationService.showSuccess(MessageConstants.UPDATED_OK_MSG);
+          this.toggleBlockUI(false);
+        },
+        error: (error) => {
+          this.notificationService.showError(MessageConstants.UPDATED_FAIL_MSG);
+          this.toggleBlockUI(false);
+        },
+      });
+  }
+
+  private toggleBlockUI(enabled: boolean) {
+    if (enabled) {
+      this.btnDisabled = true;
+      this.blockedPanelDetail = true;
+    } else {
+      setTimeout(() => {
+        this.btnDisabled = false;
+        this.blockedPanelDetail = false;
+      }, 1000);
+    }
   }
 
   changePassword() {
-    
     const ref = this.dialogService.open(ChangePasswordComponent, {
       header: 'Đổi mật khẩu',
       width: '30%',
     });
+  }
 }
-}
-//   loadData(selectionId = null) {
-//     this.toggleBlockUI(true);
-//     this.userService
-//       .getListWithRoles({
-//         maxResultCount: this.maxResultCount,
-//         skipCount: this.skipCount,
-//         keyword: this.keyword,
-//       })
-//       .pipe(takeUntil(this.ngUnsubscribe))
-//       .subscribe({
-//         next: (response: PagedResultDto<UserInListDto>) => {
-//           this.items = response.items;
-//           this.totalCount = response.totalCount;
-//           if (selectionId != null && this.items.length > 0) {
-//             this.selectedItems = this.items.filter(x => x.id == selectionId);
-//           }
-
-//           this.toggleBlockUI(false);
-//         },
-//         error: () => {
-//           this.toggleBlockUI(false);
-//         },
-//       });
-//   }
-
-//   showAddModal() {
-//     const ref = this.dialogService.open(UserDetailComponent, {
-//       header: 'Thêm mới người dùng',
-//       width: '70%',
-//     });
-
-//     ref.onClose.subscribe((data: UserDto) => {
-//       if (data) {
-//         this.notificationService.showSuccess(MessageConstants.CREATED_OK_MSG);
-//         this.selectedItems = [];
-//         this.loadData();
-//       }
-//     });
-//   }
-
-//   pageChanged(event: any): void {
-//     this.maxResultCount = event.rows;
-//     this.skipCount = (event.first / this.maxResultCount) * this.maxResultCount;
-//     this.loadData();
-//   }
-
-//   showEditModal() {
-//     if (this.selectedItems.length == 0) {
-//       this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
-//       return;
-//     }
-//     var id = this.selectedItems[0].id;
-//     const ref = this.dialogService.open(UserDetailComponent, {
-//       data: {
-//         id: id,
-//       },
-//       header: 'Cập nhật người dùng',
-//       width: '70%',
-//     });
-
-//     ref.onClose.subscribe((data: UserDto) => {
-//       if (data) {
-//         this.notificationService.showSuccess(MessageConstants.UPDATED_OK_MSG);
-//         this.selectedItems = [];
-//         this.loadData(data.id);
-//       }
-//     });
-//   }
-
-//   deleteItems() {
-//     if (this.selectedItems.length == 0) {
-//       this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
-//       return;
-//     }
-//     var ids = [];
-//     this.selectedItems.forEach(element => {
-//       ids.push(element.id);
-//     });
-//     this.confirmationService.confirm({
-//       message: MessageConstants.CONFIRM_DELETE_MSG,
-//       accept: () => {
-//         this.deleteItemsConfirm(ids);
-//       },
-//     });
-//   }
-
-//   deleteItemsConfirm(ids: any[]) {
-//     this.toggleBlockUI(true);
-//     this.userService.deleteMultiple(ids).subscribe({
-//       next: () => {
-//         this.notificationService.showSuccess(MessageConstants.DELETED_OK_MSG);
-//         this.loadData();
-//         this.selectedItems = [];
-//         this.toggleBlockUI(false);
-//       },
-//       error: () => {
-//         this.toggleBlockUI(false);
-//       },
-//     });
-//   }
-
-//   setPassword(id: string) {
-//     const ref = this.dialogService.open(SetPasswordComponent, {
-//       data: {
-//         id: id,
-//       },
-//       header: 'Đặt lại mật khẩu',
-//       width: '70%',
-//     });
-
-//     ref.onClose.subscribe((result: boolean) => {
-//       if (result) {
-//         this.notificationService.showSuccess(MessageConstants.CHANGE_PASSWORD_SUCCCESS_MSG);
-//         this.selectedItems = [];
-//         this.loadData();
-//       }
-//     });
-//   }
-  
-//   assignRole(id: string) {
-//     const ref = this.dialogService.open(RoleAssignComponent, {
-//       data: {
-//         id: id,
-//       },
-//       header: 'Gán quyền',
-//       width: '70%',
-//     });
-
-//     ref.onClose.subscribe((result: boolean) => {
-//       if (result) {
-//         this.notificationService.showSuccess(MessageConstants.ROLE_ASSIGN_SUCCESS_MSG);
-//         this.loadData();
-//       }
-//     });
-//   }
-
-//   private toggleBlockUI(enabled: boolean) {
-//     if (enabled == true) {
-//       this.blockedPanel = true;
-//     } else {
-//       setTimeout(() => {
-//         this.blockedPanel = false;
-//       }, 1000);
-//     }
-//   }
-// }

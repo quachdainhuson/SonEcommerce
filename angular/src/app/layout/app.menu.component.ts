@@ -63,13 +63,13 @@ export class AppMenuComponent implements OnInit {
                         label: 'Danh Sách Quyền', 
                         icon: 'pi pi-fw pi-id-card', 
                         routerLink: ['/system/role'] , 
-                        permission: 'SonEcomAdminCatalog.Attribute'
+                        permission: 'AbpIdentity.Roles'
                     },
                     { 
                         label: 'Danh Sách Nhân Viên', 
                         icon: 'pi pi-fw pi-id-card', 
                         routerLink: ['/system/user'] , 
-                        permission: 'SonEcomAdminCatalog.Attribute'
+                        permission: 'AbpIdentity.Users'
                     },
                     { 
                         label: 'Danh Sách Người Dùng', 

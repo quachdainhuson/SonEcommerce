@@ -1,42 +1,73 @@
-<div class="animated fadeIn">
+<form [formGroup]="form" (ngSubmit)="saveChange()">
     <p-panel #pnl [style]="{ 'margin-bottom': '10px' }">
       <h5>Đổi mật khẩu</h5>
           <div class="col-12">
             <label for="">Mật khẩu Cũ</label>
+
               <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Mật khẩu cũ">      
+                  <input
+          id="currentPassword"
+          type="password"
+          pInputText
+          formControlName="currentPassword"
+          [style]="{ width: '100%' }"
+        />
+        <app-validation-message
+          [entityForm]="form"
+          fieldName="currentPassword"
+          [validationMessages]="validationMessages"
+        ></app-validation-message>
               </div>
           </div>
           <div class="col-12">
             <label for="">Mật khẩu mới</label>
               <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Mật khẩu mới">      
+                <input
+                id="newPassword"
+                type="password"
+                pInputText
+                [pKeyFilter]="noSpecial"
+                formControlName="newPassword"
+                [style]="{ width: '100%' }"
+              />
+              <app-validation-message
+                [entityForm]="form"
+                fieldName="newPassword"
+                [validationMessages]="validationMessages"
+              ></app-validation-message>      
               </div>
           </div>
           <div class="col-12">
             <label for="">Xác nhận mật khẩu</label>
               <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Xác nhận mật khẩu">      
+                <input
+                id="confirmNewPassword"
+                type="password"
+                pInputText
+                [pKeyFilter]="noSpecial"
+                formControlName="confirmNewPassword"
+                [style]="{ width: '100%' }"
+              />
+              <app-validation-message
+                [entityForm]="form"
+                fieldName="confirmNewPassword"
+                [validationMessages]="validationMessages"
+              ></app-validation-message>     
               </div>
           </div>
-
-
-
-
-
           <ng-template pTemplate="footer">
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid || btnDisabled">
               Lưu lại
             </button>
           </ng-template>   
 
-      <p-blockUI [target]="pnl" [blocked]="blockedPanel">
+      <!-- <p-blockUI [target]="pnl" [blocked]="blockedPanel">
         <p-progressSpinner
           [style]="{ width: '100px', height: '100px', position: 'absolute', top: '25%', left: '50%' }"
           strokeWidth="2"
           animationDuration=".5s"
         ></p-progressSpinner>
-      </p-blockUI>
+      </p-blockUI> -->
     </p-panel>
-  </div>
+</form>
   

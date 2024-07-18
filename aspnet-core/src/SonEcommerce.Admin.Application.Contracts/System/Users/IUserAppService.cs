@@ -28,7 +28,9 @@ namespace SonEcommerce.Admin.System.Users
         // lấy user không có roles với base filter
         Task<PagedResultDto<UserInListDto>> GetListWithoutRolesAsync(BaseListFilterDto input);
         Task<PagedResultDto<UserInListDto>> GetListWithRolesAsync(BaseListFilterDto input);
-
-
+        Task<bool> CheckPhoneNumberExistAsync(string phoneNumber);
+        Task ChangePasswordAsync(Guid id, ChangePasswordDto input);
     }
+
 }
+

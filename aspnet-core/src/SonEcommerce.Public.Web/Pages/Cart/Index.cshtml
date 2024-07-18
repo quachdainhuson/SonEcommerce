@@ -87,7 +87,16 @@
 
                         <div class="row mb-40">
                             <div class="col-lg-6 col-md-6 col-sm-6-col-6"><a class="btn btn-buy w-auto arrow-back mb-10" href="/">Tiếp Tục Mua Sắm</a></div>
-                            <div class="col-lg-6 col-md-6 col-sm-6-col-6 text-md-end"><button class="btn btn-buy w-auto update-cart mb-10" type="submit">Cập Nhật</button></div>
+                            @if (Model.CartItems.Count == 0)
+                            {
+                                <div class="col-lg-6 col-md-6 col-sm-6-col-6 text-md-end" hidden><button class="btn btn-buy w-auto update-cart mb-10" type="submit">Cập Nhật</button></div>
+
+                            }
+                            else
+                            {
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-6-col-6 text-md-end"><button class="btn btn-buy w-auto update-cart mb-10" type="submit">Cập Nhật</button></div>
+                            }
                         </div>
                     </form>
                 </div>
@@ -132,7 +141,7 @@
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 </section>

@@ -131,27 +131,46 @@ namespace SonEcommerce.Admin.Users
         [Authorize(IdentityPermissions.Users.Update)]
         public async override Task<UserDto> UpdateAsync(Guid id, UpdateUserDto input)
         {
-            var query = await Repository.GetQueryableAsync();
-
             var user = await _identityUserManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
-                throw new EntityNotFoundException(typeof(IdentityUser), id);
+                throw new UserFriendlyException("Không Tìm Thấy Người Dùng!");
             }
-            var isEmailExisted = await _identityUserManager.FindByEmailAsync(input.Email);
-            if (isEmailExisted != null && isEmailExisted.Id != id)
-            {
-                throw new UserFriendlyException("Email đã tồn tại");
-            }
-             await _identityUserManager.SetEmailAsync(user, input.Email);
-
-            var isUserPhoneNumberExisted = query.Any(x => x.PhoneNumber == input.PhoneNumber);
-            if (isUserPhoneNumberExisted)
-            {
-                throw new UserFriendlyException("Số điện thoại đã tồn tại");
-            }
-            user.SetPhoneNumber(input.PhoneNumber, true);
             user.Name = input.Name;
+            //kiểm tra xem số điện thoại đã tồn tại chưa
+            if (user.PhoneNumber != input.PhoneNumber)
+            {
+                if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                {
+                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                }
+                else
+                {
+                    user.SetPhoneNumber(input.PhoneNumber, true);
+
+                }
+            }
+            if (user.Email != input.Email)
+            {
+                if (await _identityUserManager.FindByEmailAsync(input.Email) != null)
+                {
+                    throw new UserFriendlyException("Email đã tồn tại");
+                }
+                else
+                {
+                    var setEmailResult = await _identityUserManager.SetEmailAsync(user, input.Email);
+                    if (!setEmailResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setEmailResult.Errors.Select(e => e.Description)));
+                    }
+
+                    var setUserNameResult = await _identityUserManager.SetUserNameAsync(user, input.Email);
+                    if (!setUserNameResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setUserNameResult.Errors.Select(e => e.Description)));
+                    }
+                }
+            }
             user.Surname = input.Surname;
 
             var result = await _identityUserManager.UpdateAsync(user);
@@ -171,7 +190,19 @@ namespace SonEcommerce.Admin.Users
                 throw new UserFriendlyException(errors);
             }
         }
+        public async Task<bool> CheckPhoneNumberExistAsync(string phoneNumber)
+        {
+            var query = await Repository.GetQueryableAsync();
+            var isPhoneNumberExisted = query.Any(x => x.PhoneNumber == phoneNumber);
+            if (isPhoneNumberExisted)
+            {
+                return true;
+            }
+            return false;
 
+
+
+        }
         [Authorize(IdentityPermissions.Users.Default)]
         public async override Task<UserDto> GetAsync(Guid id)
         {
@@ -332,6 +363,28 @@ namespace SonEcommerce.Admin.Users
             var userInListDtos = ObjectMapper.Map<List<IdentityUser>, List<UserInListDto>>(data);
 
             return new PagedResultDto<UserInListDto>(totalCount, userInListDtos);
+
+        }
+        public async Task ChangePasswordAsync(Guid id, ChangePasswordDto input)
+        {
+            var user = await _identityUserManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), id);
+            }
+            var checkPassword = await _identityUserManager.CheckPasswordAsync(user, input.CurrentPassword);
+            if (checkPassword)
+            {
+                if (input.NewPassword != input.ConfirmNewPassword)
+                {
+                    throw new UserFriendlyException("Mật khẩu mới không khớp");
+                }
+                await SetPasswordAsync(id, new SetPasswordDto { NewPassword = input.NewPassword });
+            }
+            else
+            {
+                throw new UserFriendlyException("Mật khẩu cũ không đúng");
+            }
 
         }
     }
