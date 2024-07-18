@@ -1,66 +1,51 @@
-<div class="animated fadeIn">
-    <p-panel #pnl [style]="{ 'margin-bottom': '10px' }">
-      <h5>Thông tin cá nhân</h5>
-      <div class="row">
-        <div class="col-8">
-          <div class="col-8">
-            <label for="">Tên tài khoản</label>
-              <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Tên tài khoản">         
-              </div>
-          </div>
-          
-          <div class="col-8">
-            <label for="">Họ</label>
-              <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Họ">         
-              </div>
-          </div>
-                  
-          <div class="col-8">
-            <label for="">Tên</label>
-              <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Tên">      
-              </div>
-          </div>
-  
-          <div class="col-8">
-            <label for="">Số điện thoại</label>
-              <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Tên">      
-              </div>
-          </div>
-  
-          <div class="col-8">
-            <label for="">Email</label>
-              <div class="p-inputgroup">
-                  <input type="text" pInputText placeholder="Email">      
-              </div>
-          </div>
-        </div>
+<form [formGroup]="form" (ngSubmit)="saveChange()">
+  <div class="row">
+    <div class="col-8">
+      <div class="col-8">
+        <label for="userName">Tài khoản <span class="required">*</span></label>
+        <input id="userName" type="text" pInputText formControlName="userName" class="w-full" placeholder="Tài Khoản" readonly />
+      </div>
+      <app-validation-message [entityForm]="form" fieldName="userName" [validationMessages]="validationMessages"></app-validation-message>
 
-        <div class="col-4">
-          <button (click)="changePassword()" type="submit" class="btn btn-primary">
-            Đổi mật khẩu
-          </button>
-        </div>  
+
+      <div class="col-8">
+        <label for="surname">Họ</label>
+        <div class="p-inputgroup">
+          <input id="surname" type="text" pInputText formControlName="surname" placeholder="Họ" />
+        </div>
+          <app-validation-message [entityForm]="form" fieldName="surname" [validationMessages]="validationMessages"></app-validation-message>
+        </div>
+      
+      <div class="col-8">
+        <label for="name">Tên</label>
+        <div class="p-inputgroup">
+          <input id="name" type="text" pInputText formControlName="name" placeholder="Tên" />
+        </div>
+        <app-validation-message [entityForm]="form" fieldName="name" [validationMessages]="validationMessages"></app-validation-message>
       </div>
 
+      <div class="col-8">
+        <label for="phoneNumber">Số điện thoại</label>
+        <div class="p-inputgroup">
+          <input id="phoneNumber" type="text" pInputText formControlName="phoneNumber" placeholder="Số điện thoại" />
+        </div>
+        <app-validation-message [entityForm]="form" fieldName="phoneNumber" [validationMessages]="validationMessages"></app-validation-message>
 
+      </div>
 
+      <div class="col-8">
+        <label for="email">Email</label>
+        <div class="p-inputgroup">
+          <input id="email" type="email" pInputText formControlName="email" placeholder="Email" />
+        </div>
+        <app-validation-message [entityForm]="form" fieldName="email" [validationMessages]="validationMessages"></app-validation-message>
+      </div>
+    </div>
 
-
-            <button type="submit" class="btn btn-primary">
-              Lưu lại
-            </button>
-
-      <p-blockUI [target]="pnl" [blocked]="blockedPanel">
-        <p-progressSpinner
-          [style]="{ width: '100px', height: '100px', position: 'absolute', top: '25%', left: '50%' }"
-          strokeWidth="2"
-          animationDuration=".5s"
-        ></p-progressSpinner>
-      </p-blockUI>
-    </p-panel>
+    <div class="col-4">
+      <button (click)="changePassword()" type="button" class="btn btn-primary">Đổi mật khẩu</button>
+    </div>  
   </div>
   
+  <button type="submit" class="btn btn-primary">Lưu lại</button>
+</form>

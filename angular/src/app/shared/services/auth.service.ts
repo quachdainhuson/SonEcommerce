@@ -7,6 +7,8 @@ import { Observable } from "rxjs";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants/key.constant";
 import { TokenStorageService } from "./token.service";
 import { UsersService } from "@proxy/users";
+import * as jwt_decode from 'jwt-decode';
+
 
 @Injectable({
     providedIn: 'root'
@@ -39,6 +41,23 @@ export class AuthService{
           );
         }
     }
+    public getUserIdFromToken(): string {
+        const token = this.TokenService.getToken();
+        if (token) {
+          const decodedToken = this.decodeToken(token);
+          return decodedToken.sub; // User ID thường được lưu trong thuộc tính 'sub'
+        }
+        return null;
+      }
+      private decodeToken(token: string): any {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        return JSON.parse(jsonPayload);
+      }
     public getUserIdByUsernameAsync(username : string){
         return this.userService.getUserIdByUsername(username);
     }

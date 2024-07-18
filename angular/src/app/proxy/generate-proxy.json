@@ -5638,6 +5638,48 @@
                   }
                 },
                 {
+                  "name": "CheckPhoneNumberExistAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "phoneNumber",
+                      "typeAsString": "System.String, System.Private.CoreLib",
+                      "type": "System.String",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Boolean",
+                    "typeSimple": "boolean"
+                  }
+                },
+                {
+                  "name": "ChangePasswordAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "SonEcommerce.Admin.System.Users.ChangePasswordDto, SonEcommerce.Admin.Application.Contracts",
+                      "type": "SonEcommerce.Admin.System.Users.ChangePasswordDto",
+                      "typeSimple": "SonEcommerce.Admin.System.Users.ChangePasswordDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -5962,6 +6004,43 @@
               },
               "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<SonEcommerce.Admin.System.Users.UserDto,System.Guid,SonEcommerce.Admin.System.Users.UpdateUserDto>"
+            },
+            "CheckPhoneNumberExistAsyncByPhoneNumber": {
+              "uniqueName": "CheckPhoneNumberExistAsyncByPhoneNumber",
+              "name": "CheckPhoneNumberExistAsync",
+              "httpMethod": "POST",
+              "url": "api/app/users/check-phone-number-exist",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "phoneNumber",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "phoneNumber",
+                  "name": "phoneNumber",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
             },
             "GetAsyncById": {
               "uniqueName": "GetAsyncById",
@@ -6306,6 +6385,63 @@
               "returnValue": {
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SonEcommerce.Admin.System.Users.UserInListDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
+            },
+            "ChangePasswordAsyncByIdAndInput": {
+              "uniqueName": "ChangePasswordAsyncByIdAndInput",
+              "name": "ChangePasswordAsync",
+              "httpMethod": "POST",
+              "url": "api/app/users/{id}/change-password",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.System.Users.ChangePasswordDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.System.Users.ChangePasswordDto",
+                  "typeSimple": "SonEcommerce.Admin.System.Users.ChangePasswordDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SonEcommerce.Admin.System.Users.ChangePasswordDto",
+                  "typeSimple": "SonEcommerce.Admin.System.Users.ChangePasswordDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
               },
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
@@ -11548,6 +11684,51 @@
         },
         {
           "name": "Description",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "SonEcommerce.Admin.System.Users.ChangePasswordDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CurrentPassword",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "NewPassword",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ConfirmNewPassword",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",

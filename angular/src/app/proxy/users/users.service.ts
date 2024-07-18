@@ -2,7 +2,7 @@ import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto, PagedResultRequestDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 import type { BaseListFilterDto } from '../models';
-import type { CreateUserDto, SetPasswordDto, UpdateUserDto, UserDto, UserInListDto } from '../system/users/models';
+import type { ChangePasswordDto, CreateUserDto, SetPasswordDto, UpdateUserDto, UserDto, UserInListDto } from '../system/users/models';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +20,28 @@ export class UsersService {
     { apiName: this.apiName,...config });
   
 
+  changePassword = (id: string, input: ChangePasswordDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'POST',
+      url: `/api/app/users/${id}/change-password`,
+      body: input,
+    },
+    { apiName: this.apiName,...config });
+  
+
   checkPermission = (userId: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, boolean>({
       method: 'POST',
       url: `/api/app/users/check-permission/${userId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
+  checkPhoneNumberExist = (phoneNumber: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, boolean>({
+      method: 'POST',
+      url: '/api/app/users/check-phone-number-exist',
+      params: { phoneNumber },
     },
     { apiName: this.apiName,...config });
   
