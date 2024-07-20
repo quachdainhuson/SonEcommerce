@@ -7,6 +7,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { CategoryDetailComponent } from './category-detail.component';
 import { ProductCategoriesService, ProductCategoryDto, ProductCategoryInListDto } from '@proxy/product-categories';
+import { DialogsService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-category',
@@ -33,7 +34,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
     private categoryService: ProductCategoriesService,
     private dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private customDialogService: DialogsService
   ) {}
 
   ngOnDestroy(): void {
@@ -76,7 +78,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       header: 'Thêm mới sản phẩm',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: ProductCategoryDto) => {
       if (data) {
         this.loadData();
@@ -99,7 +101,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       header: 'Cập nhật sản phẩm',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: ProductCategoryDto) => {
       if (data) {
         this.loadData();

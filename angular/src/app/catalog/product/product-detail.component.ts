@@ -174,6 +174,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           error: err => {
             this.notificationSerivce.showError(err.error.error.message);
             this.toggleBlockUI(false);
+            this.ref.close(null);
           },
         });
     } else {

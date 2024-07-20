@@ -5680,6 +5680,31 @@
                   }
                 },
                 {
+                  "name": "UpdateProfileAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "SonEcommerce.Admin.System.Users.UpdateUserDto, SonEcommerce.Admin.Application.Contracts",
+                      "type": "SonEcommerce.Admin.System.Users.UpdateUserDto",
+                      "typeSimple": "SonEcommerce.Admin.System.Users.UpdateUserDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "SonEcommerce.Admin.System.Users.UserDto",
+                    "typeSimple": "SonEcommerce.Admin.System.Users.UserDto"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -6076,7 +6101,7 @@
                 "type": "SonEcommerce.Admin.System.Users.UserDto",
                 "typeSimple": "SonEcommerce.Admin.System.Users.UserDto"
               },
-              "allowAnonymous": false,
+              "allowAnonymous": null,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<SonEcommerce.Admin.System.Users.UserDto,SonEcommerce.Admin.System.Users.UserDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "AssignRolesAsyncByUserIdAndRoleNames": {
@@ -6442,6 +6467,63 @@
               "returnValue": {
                 "type": "System.Void",
                 "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
+            },
+            "UpdateProfileAsyncByIdAndInput": {
+              "uniqueName": "UpdateProfileAsyncByIdAndInput",
+              "name": "UpdateProfileAsync",
+              "httpMethod": "PUT",
+              "url": "api/app/users/{id}/profile",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "SonEcommerce.Admin.System.Users.UpdateUserDto, SonEcommerce.Admin.Application.Contracts",
+                  "type": "SonEcommerce.Admin.System.Users.UpdateUserDto",
+                  "typeSimple": "SonEcommerce.Admin.System.Users.UpdateUserDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SonEcommerce.Admin.System.Users.UpdateUserDto",
+                  "typeSimple": "SonEcommerce.Admin.System.Users.UpdateUserDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SonEcommerce.Admin.System.Users.UserDto",
+                "typeSimple": "SonEcommerce.Admin.System.Users.UserDto"
               },
               "allowAnonymous": null,
               "implementFrom": "SonEcommerce.Admin.System.Users.IUsersAppService"
@@ -11777,7 +11859,7 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
+          "isRequired": true,
           "minLength": null,
           "maxLength": null,
           "minimum": null,
@@ -11813,12 +11895,12 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
+          "isRequired": true,
           "minLength": null,
           "maxLength": null,
           "minimum": null,
           "maximum": null,
-          "regex": null
+          "regex": "^\\d{10}$"
         }
       ]
     },
@@ -11948,7 +12030,7 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
+          "isRequired": true,
           "minLength": null,
           "maxLength": null,
           "minimum": null,
@@ -11972,12 +12054,12 @@
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
+          "isRequired": true,
           "minLength": null,
           "maxLength": null,
           "minimum": null,
           "maximum": null,
-          "regex": null
+          "regex": "^\\d{10}$"
         },
         {
           "name": "Roles",

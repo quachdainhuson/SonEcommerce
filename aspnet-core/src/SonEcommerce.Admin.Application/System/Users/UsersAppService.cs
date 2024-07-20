@@ -203,7 +203,6 @@ namespace SonEcommerce.Admin.Users
 
 
         }
-        [Authorize(IdentityPermissions.Users.Default)]
         public async override Task<UserDto> GetAsync(Guid id)
         {
             var user = await _identityUserManager.FindByIdAsync(id.ToString());
@@ -386,6 +385,67 @@ namespace SonEcommerce.Admin.Users
                 throw new UserFriendlyException("Mật khẩu cũ không đúng");
             }
 
+        }
+
+        public async Task<UserDto> UpdateProfileAsync(Guid id, UpdateUserDto input)
+        {
+            var user = await _identityUserManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new EntityNotFoundException(typeof(IdentityUser), id);
+            }
+            user.Name = input.Name;
+            user.Surname = input.Surname;
+            var isUserPhoneNumberExisted = await CheckPhoneNumberExistAsync(input.PhoneNumber);
+            if (user.PhoneNumber != input.PhoneNumber)
+            {
+                if (isUserPhoneNumberExisted)
+                {
+                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                }
+                else
+                {
+                    user.SetPhoneNumber(input.PhoneNumber, true);
+                }
+            }
+            if (user.Email != input.Email)
+            {
+                if (await _identityUserManager.FindByEmailAsync(input.Email) != null)
+                {
+                    throw new UserFriendlyException("Email đã tồn tại");
+                }
+                else
+                {
+                    var setEmailResult = await _identityUserManager.SetEmailAsync(user, input.Email);
+                    if (!setEmailResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setEmailResult.Errors.Select(e => e.Description)));
+                    }
+
+                    var setUserNameResult = await _identityUserManager.SetUserNameAsync(user, input.Email);
+                    if (!setUserNameResult.Succeeded)
+                    {
+                        throw new UserFriendlyException(string.Join(", ", setUserNameResult.Errors.Select(e => e.Description)));
+                    }
+                }
+            }
+            var result = await _identityUserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return ObjectMapper.Map<IdentityUser, UserDto>(user);
+            }
+            else
+            {
+                List<Microsoft.AspNetCore.Identity.IdentityError> errorList = result.Errors.ToList();
+                string errors = "";
+
+                foreach (var error in errorList)
+                {
+                    errors = errors + error.Description.ToString();
+                }
+                throw new UserFriendlyException(errors);
+            }
+            
         }
     }
 }

@@ -151,6 +151,15 @@ export class UsersService {
       body: input,
     },
     { apiName: this.apiName,...config });
+  
+
+  updateProfile = (id: string, input: UpdateUserDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, UserDto>({
+      method: 'PUT',
+      url: `/api/app/users/${id}/profile`,
+      body: input,
+    },
+    { apiName: this.apiName,...config });
 
   constructor(private restService: RestService) {}
 }

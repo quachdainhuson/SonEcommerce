@@ -7,6 +7,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { ManufacturerDetailComponent } from './manufacturer-detail.component';
 import { ManufacturerDto, ManufacturerInListDto, ManufacturersService } from '@proxy/manufacturers';
+import { DialogsService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-manufacturer',
@@ -33,7 +34,8 @@ export class ManufacturerComponent implements OnInit, OnDestroy {
     private manufacturerService: ManufacturersService,
     private dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private customDialogService: DialogsService
   ) {}
 
   ngOnDestroy(): void {
@@ -76,6 +78,7 @@ export class ManufacturerComponent implements OnInit, OnDestroy {
       header: 'Thêm mới sản phẩm',
       width: '70%',
     });
+    this.customDialogService.setDialogRef(ref);
 
     ref.onClose.subscribe((data: ManufacturerDto) => {
       if (data) {
@@ -99,6 +102,7 @@ export class ManufacturerComponent implements OnInit, OnDestroy {
       header: 'Cập nhật sản phẩm',
       width: '70%',
     });
+    this.customDialogService.setDialogRef(ref);
 
     ref.onClose.subscribe((data: ManufacturerDto) => {
       if (data) {

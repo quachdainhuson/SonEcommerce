@@ -30,6 +30,8 @@ namespace SonEcommerce.Admin.System.Users
         Task<PagedResultDto<UserInListDto>> GetListWithRolesAsync(BaseListFilterDto input);
         Task<bool> CheckPhoneNumberExistAsync(string phoneNumber);
         Task ChangePasswordAsync(Guid id, ChangePasswordDto input);
+        //cập nhật thông tin cá nhân
+        Task<UserDto> UpdateProfileAsync(Guid id, UpdateUserDto input);
     }
 
 }

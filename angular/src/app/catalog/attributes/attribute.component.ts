@@ -7,6 +7,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Subject, take, takeUntil } from 'rxjs';
 import { NotificationService } from '../../shared/services/notification.service';
 import { AttributeDetailComponent } from './attribute-detail.component';
+import { DialogsService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-attribute',
@@ -33,7 +34,8 @@ export class AttributeComponent implements OnInit, OnDestroy {
     private attributeService: ProductAttributesService,
     private dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private customDialogService: DialogsService
   ) {}
 
   ngOnDestroy(): void {
@@ -76,7 +78,7 @@ export class AttributeComponent implements OnInit, OnDestroy {
       header: 'Thêm mới thuộc tính',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: ProductAttributeDto) => {
       if (data) {
         this.loadData();
@@ -99,7 +101,7 @@ export class AttributeComponent implements OnInit, OnDestroy {
       header: 'Cập nhật sản phẩm',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: ProductAttributeDto) => {
       if (data) {
         this.loadData();
