@@ -9,6 +9,7 @@ import { NotificationService } from '../../shared/services/notification.service'
 import { ProductDetailComponent } from './product-detail.component';
 import { ConfirmationService } from 'primeng/api';
 import { ProductAttributeComponent } from './product-attribute.component';
+import { DialogsService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-product',
@@ -36,7 +37,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productCategoryService: ProductCategoriesService,
     private dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private customDialogService: DialogsService
   ) {}
 
   ngOnDestroy(): void {
@@ -93,7 +95,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       width: '70%',
       baseZIndex: 500,
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: ProductDto) => {
       if (data) {
         this.loadData();
@@ -116,7 +118,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       header: 'Cập nhật sản phẩm',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: ProductDto) => {
       if (data) {
         this.loadData();

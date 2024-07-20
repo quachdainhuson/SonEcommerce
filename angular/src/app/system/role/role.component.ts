@@ -8,6 +8,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { RoleDetailComponent } from './role-detail.component';
 import { MessageConstants } from '../../shared/constants/messages.constant';
 import { PermissionGrantComponent } from './permission-grant.component';
+import { DialogsService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-role',
@@ -33,7 +34,8 @@ export class RoleComponent implements OnInit, OnDestroy {
     private roleService: RolesService,
     public dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private customDialogService: DialogsService
   ) {}
 
   ngOnDestroy(): void {
@@ -76,6 +78,7 @@ export class RoleComponent implements OnInit, OnDestroy {
       header: 'Thêm mới quyền',
       width: '70%',
     });
+    this.customDialogService.setDialogRef(ref);
 
     ref.onClose.subscribe((data: RoleDto) => {
       if (data) {
@@ -105,6 +108,7 @@ export class RoleComponent implements OnInit, OnDestroy {
       header: 'Cập nhật quyền',
       width: '70%',
     });
+    this.customDialogService.setDialogRef(ref);
 
     ref.onClose.subscribe((data: RoleDto) => {
       if (data) {
@@ -123,6 +127,7 @@ export class RoleComponent implements OnInit, OnDestroy {
       header: name,
       width: '70%',
     });
+    this.customDialogService.setDialogRef(ref);
 
     ref.onClose.subscribe((data: RoleDto) => {
       if (data) {

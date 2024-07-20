@@ -34,7 +34,6 @@ data:
 },
 { path: 'profile', 
   component: ProfileComponent,
-  canActivate: [permissionGuard],
 },
 ];
 

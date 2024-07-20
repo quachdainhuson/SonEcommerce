@@ -9,10 +9,10 @@ export interface ChangePasswordDto {
 export interface CreateUserDto {
   name?: string;
   surname?: string;
-  email?: string;
+  email: string;
   userName?: string;
   password?: string;
-  phoneNumber?: string;
+  phoneNumber: string;
 }
 
 export interface SetPasswordDto {
@@ -30,9 +30,9 @@ export interface UpdateUserDto {
 export interface UserDto extends AuditedEntityDto<string> {
   name?: string;
   userName?: string;
-  email?: string;
+  email: string;
   surname?: string;
-  phoneNumber?: string;
+  phoneNumber: string;
   roles: string[];
   isActive: boolean;
 }

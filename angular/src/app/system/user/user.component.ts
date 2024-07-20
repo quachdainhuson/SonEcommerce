@@ -10,6 +10,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { UserDetailComponent } from './user-detail.component';
 import { RoleAssignComponent } from './role-assign.component';
 import { SetPasswordComponent } from './set-password.component';
+import { DialogsService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-user',
@@ -35,7 +36,8 @@ export class UserComponent implements OnInit, OnDestroy {
     private userService: UsersService,
     public dialogService: DialogService,
     private notificationService: NotificationService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private customDialogService: DialogsService
   ) {}
 
   ngOnDestroy(): void {
@@ -77,7 +79,7 @@ export class UserComponent implements OnInit, OnDestroy {
       header: 'Thêm mới người dùng',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: UserDto) => {
       if (data) {
         this.notificationService.showSuccess(MessageConstants.CREATED_OK_MSG);
@@ -104,9 +106,9 @@ export class UserComponent implements OnInit, OnDestroy {
         id: id,
       },
       header: 'Cập nhật người dùng',
-      width: '30%',
+      width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((data: UserDto) => {
       if (data) {
         this.notificationService.showSuccess(MessageConstants.UPDATED_OK_MSG);
@@ -156,7 +158,7 @@ export class UserComponent implements OnInit, OnDestroy {
       header: 'Đặt lại mật khẩu',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((result: boolean) => {
       if (result) {
         this.notificationService.showSuccess(MessageConstants.CHANGE_PASSWORD_SUCCCESS_MSG);
@@ -174,7 +176,7 @@ export class UserComponent implements OnInit, OnDestroy {
       header: 'Gán quyền',
       width: '70%',
     });
-
+    this.customDialogService.setDialogRef(ref);
     ref.onClose.subscribe((result: boolean) => {
       if (result) {
         this.notificationService.showSuccess(MessageConstants.ROLE_ASSIGN_SUCCESS_MSG);

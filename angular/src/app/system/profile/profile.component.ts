@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private saveData() {
     this.userId = this.authService.getUserIdFromToken();
     this.userService
-      .update(this.userId, this.form.value)
+      .updateProfile(this.userId, this.form.value)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response) => {

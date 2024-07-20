@@ -49,8 +49,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   // Validate
   validationMessages = {
     name: [{ type: 'required', message: 'Bạn phải nhập tên' }],
-    surname: [{ type: 'required', message: 'Bạn phải URL duy nhất' }],
-    email: [{ type: 'required', message: 'Bạn phải nhập email' }],
+    surname: [{ type: 'required', message: 'Bạn phải nhập họ' }],
+    email: [
+      { type: 'required', message: 'Bạn phải nhập email' },
+      { type: 'email', message: 'Email không đúng định dạng' }
+    ],
     userName: [{ type: 'required', message: 'Bạn phải nhập tài khoản' }],
     password: [
       { type: 'required', message: 'Bạn phải nhập mật khẩu' },
@@ -59,8 +62,12 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         message: 'Mật khẩu ít nhất 8 ký tự, ít nhất 1 số, 1 ký tự đặc biệt, và một chữ hoa',
       },
     ],
-    phoneNumber: [{ type: 'required', message: 'Bạn phải nhập số điện thoại' }],
+    phoneNumber: [
+      { type: 'required', message: 'Bạn phải nhập số điện thoại' },
+      { type: 'pattern', message: 'Số điện thoại phải có 10 chữ số' }
+    ],
   };
+  
 
   ngOnInit() {
     this.primengConfig.zIndex = {
@@ -140,18 +147,15 @@ export class UserDetailComponent implements OnInit, OnDestroy {
               .pipe(takeUntil(this.ngUnsubscribe))
               .subscribe({
                 next: () => {
-                  console.log(`User ${response.id} created and roles assigned.`);
                   this.ref.close(this.form.value);
                   this.toggleBlockUI(false);
                 },
                 error: (error) => {
-                  console.error(`Failed to assign roles: ${error}`);
                   this.toggleBlockUI(false);
                 },
               });
           },
           error: (error) => {
-            console.error(`Failed to create user: ${error}`);
             this.toggleBlockUI(false);
           },
         });
@@ -206,8 +210,20 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       name: new FormControl(this.selectedEntity.name || null, Validators.required),
       surname: new FormControl(this.selectedEntity.surname || null, Validators.required),
       userName: new FormControl(this.selectedEntity.userName || null, Validators.required),
-      email: new FormControl(this.selectedEntity.email || null, Validators.required),
-      phoneNumber: new FormControl(this.selectedEntity.phoneNumber || null, Validators.required),
+      email: new FormControl(
+        this.selectedEntity.email || null,
+        Validators.compose([
+          Validators.required,
+          Validators.email,
+        ])
+      ),
+      phoneNumber: new FormControl(
+        this.selectedEntity.phoneNumber || null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[0-9]{10}$'),
+        ])
+      ),
       password: new FormControl(
         null,
         Validators.compose([
