@@ -121,5 +121,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
       header: 'Đổi mật khẩu',
       width: '30%',
     });
+    
+    ref.onClose.subscribe((result) => {
+      if (result) {
+        this.notificationService.showSuccess(MessageConstants.CHANGE_PASSWORD_SUCCCESS_MSG);
+      }
+    });
   }
 }
