@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
 using Volo.Abp.AspNetCore.Mvc.UI.Packages.Toastr;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 
 namespace SonEcommerce.Public.Web.Pages.Cart
@@ -71,6 +73,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
         public async Task OnPostAsync()
         {
+            // lấy địa chỉ từ api
             Order.UserCity = Order.UserCity.Trim();
             if (User.Identity.IsAuthenticated)
             {
@@ -78,15 +81,30 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                 CurrentUser = await _usersAppService.GetUserByIdAsync(userId);
 
             }
+            if (CurrentUser.EmailConfirmed == false) {
+                CartItems = GetCartItems();
+                TempData["MessageError"] = "Vui lòng xác nhận email trước khi tạo đơn hàng";
+                return;
+            }
             if (ModelState.IsValid == false)
             {
 
             }
             //kiểm tra xem đã đầy đủ thông tin chưa
-            if (Order.CustomerName == null || Order.CustomerAddress == null || Order.CustomerPhoneNumber == null || Order.UserCity == null || Order.UserDistrict == null || Order.UserWard == null)
+            if (Order.CustomerName == null || 
+                Order.CustomerAddress == null || 
+                Order.CustomerPhoneNumber == null || 
+                Order.UserCity == null || 
+                Order.UserDistrict == null || 
+                Order.UserWard == null ||
+                Order.UserCity == "0" ||
+                Order.UserDistrict == "0" ||
+                Order.UserWard == "0"
+
+                )
             {
+                CartItems = GetCartItems();
                 TempData["MessageError"] = "Vui lòng điền đầy đủ thông tin";
-                CreateStatus = false;
                 return;
             }
             var cartItems = new List<OrderItemDto>();
@@ -116,7 +134,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
             });
             CartItems = GetCartItems();
-
+            var address = await GetCityNameAsync(int.Parse(Order.UserWard));
             if (order != null)
             {
                 if (User.Identity.IsAuthenticated)
@@ -128,10 +146,13 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                         {
                             message = "Tạo đơn hàng thành công!!",
                             ten = order.CustomerName,
-                            diaChi = order.CustomerAddress,
+                            diachi = order.CustomerAddress,
                             sdt = order.CustomerPhoneNumber,
                             diachiemail = email,
-                            chitiethoadon = cartItems
+                            chitiethoadon = cartItems,
+                            tongtien = cartItems.Sum(x => x.Price * x.Quantity),
+                            fulldiachi = address,
+
 
 
 
@@ -161,6 +182,23 @@ namespace SonEcommerce.Public.Web.Pages.Cart
                 productCarts = JsonSerializer.Deserialize<Dictionary<string, CartItem>>(cart);
             }
             return productCarts.Values.ToList();
+        }
+        public async Task<string> GetLocationNameAsync(string apiUrl)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetStringAsync(apiUrl);
+                var json = JObject.Parse(response);
+                var fullname = json["data"]["full_name"].ToString(); // Truy cập vào trường "fullname" bên trong "data"
+                return fullname;
+            }
+        }
+
+
+        public async Task<string> GetCityNameAsync(int wardId)
+        {
+            return await GetLocationNameAsync($"https://esgoo.net/api-tinhthanh/5/{wardId}.htm");
+
         }
 
     }

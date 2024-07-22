@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UsersService } from '@proxy/users';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { MessageConstants } from 'src/app/shared/constants/messages.constant';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-changePass',
@@ -21,7 +23,11 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UsersService,
     private notificationService: NotificationService,
-    public authService: AuthService
+    public authService: AuthService,
+    private fb: FormBuilder,
+    private ref: DynamicDialogRef,
+    private primengConfig: PrimeNGConfig
+
   ) {}
 
   ngOnDestroy(): void {
@@ -30,17 +36,25 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
 
   buildForm() {
-    this.form = new FormGroup({
+    this.form = this.fb.group({
       currentPassword: new FormControl(null, Validators.required),
       newPassword: new FormControl(null, [
         Validators.required,
         Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
       ]),
       confirmPassword: new FormControl(null, Validators.required),
-    });
+    },
+    passwordMatchingValidatior
+  );
   }
 
   ngOnInit() {
+    this.primengConfig.zIndex = {
+      modal: 700,    // dialog, sidebar
+      overlay: 1000,  // dropdown, overlaypanel
+      menu: 1000,     // overlay menus
+      tooltip: 1100
+    };
     this.buildForm();
     this.toggleBlockUI(false);
   }
@@ -72,13 +86,6 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
-
-    const { newPassword, confirmPassword } = this.form.value;
-    if (newPassword !== confirmPassword) {
-      this.notificationService.showError('Mật khẩu mới và xác nhận mật khẩu không khớp');
-      return;
-    }
-
     this.saveData();
   }
 
@@ -90,7 +97,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.toggleBlockUI(false);
-          this.notificationService.showSuccess(MessageConstants.CHANGE_PASSWORD_SUCCCESS_MSG);
+          this.ref.close(this.form.value);
         },
         error: () => {
           this.toggleBlockUI(false);
@@ -98,4 +105,12 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
         },
       });
   }
+  
 }
+export const passwordMatchingValidatior: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const password = control.get('newPassword');
+  const confirmPassword = control.get('confirmNewPassword');
+  return password?.value === confirmPassword?.value ? null : { notmatched: true };
+};

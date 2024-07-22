@@ -27,7 +27,7 @@
 <body>
     <h1>{{ model.message }}</h1>
     <p>Tên Khách Hàng: {{ model.ten }}</p>
-    <p>Địa Chỉ: {{ model.diachi }}</p>
+    <p>Địa Chỉ: {{ model.diachi }}, {{ model.fulldiachi}}</p>
     <p>Số Điện Thoại: {{ model.sdt }}</p>
     <p>Email: {{ model.diachiemail }}</p>
 
@@ -38,7 +38,7 @@
                 <th>Tên Sản Phẩm</th>
                 <th>Giá</th>
                 <th>Số Lượng</th>
-                <!-- Nếu cần thêm thông tin khác của sản phẩm, bạn có thể thêm vào đây -->
+                <th>Tổng Tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -47,10 +47,11 @@
                 <td>{{ chitiet.name }}</td>
                 <td>{{ chitiet.price }}</td>
                 <td>{{ chitiet.quantity }}</td>
-                <!-- Nếu cần thêm thông tin khác của sản phẩm, bạn có thể thêm vào đây -->
+                <td>{{ chitiet.price * chitiet.quantity}}</td>
             </tr>
             {{ end }}
         </tbody>
     </table>
+    <h2>Tổng Tiền Đơn Hàng: {{ model.tongtien }}</h2>
 </body>
 </html>
