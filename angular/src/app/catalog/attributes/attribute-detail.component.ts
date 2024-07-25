@@ -161,9 +161,7 @@ export class AttributeDetailComponent implements OnInit, OnDestroy {
       sortOrder: new FormControl(this.selectedEntity.sortOrder || null, Validators.required),
       visibility: new FormControl(this.selectedEntity.visibility || true),
       isActive: new FormControl(this.selectedEntity.isActive || true),
-      note: new FormControl(this.selectedEntity.note || null),
-      isRequired: new FormControl(this.selectedEntity.isRequired || true),
-      isUnique: new FormControl(this.selectedEntity.isUnique || false),
+      note: new FormControl(this.selectedEntity.note || null)
     });
   }
 

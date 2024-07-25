@@ -104,7 +104,9 @@ namespace SonEcommerce.Public.Products
             var totalCount = await AsyncExecuter.LongCountAsync(joinQuery);
             var data = await AsyncExecuter
                .ToListAsync(
-                  joinQuery.Skip((input.CurrentPage - 1) * input.PageSize)
+                  joinQuery
+                  .OrderByDescending(x => x.Product.CreationTime)
+                  .Skip((input.CurrentPage - 1) * input.PageSize)
                .Take(input.PageSize));
             var result = data.Select(x => new ProductInListDto
             {

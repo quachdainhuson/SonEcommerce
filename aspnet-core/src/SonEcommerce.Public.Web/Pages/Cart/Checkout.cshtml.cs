@@ -134,7 +134,8 @@ namespace SonEcommerce.Public.Web.Pages.Cart
 
             });
             CartItems = GetCartItems();
-            var address = await GetCityNameAsync(int.Parse(Order.UserWard));
+
+            string address = await GetCityNameAsync(Order.UserWard);
             if (order != null)
             {
                 if (User.Identity.IsAuthenticated)
@@ -195,7 +196,7 @@ namespace SonEcommerce.Public.Web.Pages.Cart
         }
 
 
-        public async Task<string> GetCityNameAsync(int wardId)
+        public async Task<string> GetCityNameAsync(string wardId)
         {
             return await GetLocationNameAsync($"https://esgoo.net/api-tinhthanh/5/{wardId}.htm");
 

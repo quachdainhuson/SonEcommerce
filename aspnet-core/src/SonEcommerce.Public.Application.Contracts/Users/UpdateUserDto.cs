@@ -14,7 +14,6 @@ namespace SonEcommerce.Public.Users
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại.")]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Số điện thoại phải là 10 số.")]
         public string PhoneNumber { get; set; }
         public string? UserAddress { get; set; }
         public string? UserCity { get; set; }

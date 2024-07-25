@@ -32,16 +32,30 @@ namespace SonEcommerce.Public.Web.Pages.Products
         public async Task OnGetAsync(string keyword, int page = 1)
         {
             Categories = await _productCategoriesAppService.GetListAllAsync();
-
-            var filterDto = new ProductListFilterDto
+            if (int.TryParse(Request.Query["page"], out int currentPage))
             {
-                CurrentPage = page,
-                MinPrice = MinPrice,
-                MaxPrice = MaxPrice,
-                Keyword = keyword
-            };
+                var filterDto = new ProductListFilterDto
+                {
+                    CurrentPage = currentPage,
+                    MinPrice = MinPrice,
+                    MaxPrice = MaxPrice,
+                    Keyword = keyword
+                };
 
-            ProductData = await _productsAppService.GetListFilterAsync(filterDto);
+                ProductData = await _productsAppService.GetListFilterAsync(filterDto);
+            }
+            else
+            {
+                var filterDto = new ProductListFilterDto
+                {
+                    CurrentPage = 1,
+                    MinPrice = MinPrice,
+                    MaxPrice = MaxPrice,
+                    Keyword = keyword
+                };
+
+                ProductData = await _productsAppService.GetListFilterAsync(filterDto);
+            }
         }
 
         public async Task OnPostAsync(string code, int page = 1)

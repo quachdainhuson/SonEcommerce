@@ -47,14 +47,15 @@
                             {
                                 @for (int i = 0; i < Model.CartItems.Count; i++)
                                 {
+                                    var urlCate = $"/products/{Model.CartItems[i].Product.CategorySlug}/{Model.CartItems[i].Product.Slug}.html";
                                     var fileContent = await _productsAppService.GetThumbnailImageAsync(Model.CartItems[i].Product.ThumbnailPicture);
                                     var base64Image = SonEcommerce.Helpers.ImageHelper.ShowBase64(Model.CartItems[i].Product.ThumbnailPicture, fileContent);
                                     <div class="item-wishlist">
                                         <div class="wishlist-product">
                                             <div class="product-wishlist">
-                                                <div class="product-image"><a href="shop-single-product.html"><img src="@base64Image" alt="@Model.CartItems[i].Product.ThumbnailPicture"></a></div>
+                                                <div class="product-image"><a href="@urlCate"><img src="@base64Image" alt="@Model.CartItems[i].Product.ThumbnailPicture"></a></div>
                                                 <div class="product-info">
-                                                    <a href="shop-single-product.html">
+                                                    <a href="@urlCate">
                                                         <h6 class="color-brand-3">@Model.CartItems[i].Product.Name</h6>
                                                         <input hidden asp-for="@Model.CartItems[i].Product.Id" class="form-control" />
 

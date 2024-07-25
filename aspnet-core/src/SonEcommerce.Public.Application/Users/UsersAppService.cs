@@ -128,15 +128,50 @@ namespace SonEcommerce.Public.Users
             //kiểm tra xem số điện thoại đã tồn tại chưa
             if (user.PhoneNumber != input.PhoneNumber)
             {
-                if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                if (input.PhoneNumber.StartsWith("+84") || input.PhoneNumber.StartsWith("0"))
                 {
-                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
-                }
-                else
-                {
-                    user.SetPhoneNumber(input.PhoneNumber, true);
+                    if (input.PhoneNumber.StartsWith("0")) {
+                        // kiểm tra xem số điện thoại có đúng 10 số không
+                        if (input.PhoneNumber.Length != 10)
+                        {
+                            throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                        }
+                    }
+                    else if (input.PhoneNumber.StartsWith("+84"))
+                    {
+                        // kiểm tra xem số điện thoại có đúng 12 số không
+                        if (input.PhoneNumber.Length == 12)
+                        {
+                            throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                        }
+                        else
+                        { 
+                            if (input.PhoneNumber.Substring(3).Length != 9)
+                            {
+                                throw new UserFriendlyException("Số điện thoại không hợp lệ!!!");
+                            }
 
+                        }
+                    }
+                    //kiểm tra xem số có kí tự chữ không
+                    if (input.PhoneNumber.Any(char.IsLetter))
+                    {
+                        throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                    }
+                    if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                    {
+                        throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                    }
+                    else
+                    {
+                        user.SetPhoneNumber(input.PhoneNumber, true);
+
+                    }
                 }
+                else { 
+                    throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                }
+                
             }
             if (user.Email != input.Email)
             {
@@ -347,7 +382,7 @@ namespace SonEcommerce.Public.Users
             {
                 if (input.NewPassword != input.ConfirmNewPassword)
                 {
-                    throw new UserFriendlyException("Mật khẩu mới không khớp");
+                    throw new UserFriendlyException("Mật khẩu mới và mật khẩu nhập lại không khớp");
                 }
                 await SetPasswordAsync(id, new SetPasswordDto { NewPassword = input.NewPassword });
             }
