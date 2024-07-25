@@ -2,33 +2,6 @@
     <p-panel #pnl [style]="{ 'margin-bottom': '10px' }">
       <p-header> Quản lý người dùng </p-header>
       <div class="grid">
-        <div class="col-4">
-          
-          <button
-            appPermission
-            appFunction="LEARNING_COURSE_CATEGORY"
-            appAction="DELETE"
-            pButton
-            type="button"
-            label="Xóa"
-            icon="fa fa-trash"
-            class="ml-1 p-button-danger"
-            *ngIf="selectedItems.length > 0"
-            (click)="deleteItems()"
-          ></button>
-          <button
-            appPermission
-            appFunction="LEARNING_COURSE_CATEGORY"
-            appAction="UPDATE"
-            pButton
-            type="button"
-            label="Sửa"
-            icon="fa fa-edit"
-            class="ml-1 p-button-help"
-            *ngIf="selectedItems.length == 1"
-            (click)="showEditModal()"
-          ></button>
-        </div>
         <div class="col-8">
           <div class="formgroup-inline">
             <div class="field">

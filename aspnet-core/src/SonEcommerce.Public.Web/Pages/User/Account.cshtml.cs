@@ -80,7 +80,7 @@ namespace SonEcommerce.Public.Web.Pages.User
                     var orders = await _ordersAppService.GetListOrderByUserIdAsync(Guid.Parse(userId));
                     Orders = orders;
                     await _usersAppService.UpdateAsync(Guid.Parse(userId), UpdateUser);
-
+                    TempData["Message"] = "Thông tin đã được cập nhật";
                 }
 
                 return RedirectToPage();
@@ -217,7 +217,7 @@ namespace SonEcommerce.Public.Web.Pages.User
             else
             {
                 // Nếu có lỗi, hiển thị thông báo lỗi (tùy chỉnh theo nhu cầu của bạn)
-                TempData["MessageError"] = "Không thể hủy đơn hàng này.";
+                TempData["MessageError"] = "Không thể hủy đơn hàng này. Nếu bạn muốn hủy đơn hàng, xin vui lòng gọi điện cho nhà bán hàng!!";
                 return RedirectToPage();
 
             }
@@ -238,9 +238,7 @@ namespace SonEcommerce.Public.Web.Pages.User
                 }
                 return RedirectToPage();
             } catch (Exception ex) {
-                ModelState.AddModelError("ChangePassword.NewPassword", ex.Message);
-                ModelState.AddModelError("ChangePassword.ConfirmPassword", ex.Message);
-                ModelState.AddModelError("ChangePassword.CurrentPassword", ex.Message);
+                TempData["MessageError"] = ex.Message;
                 return Page();
                 
             }
