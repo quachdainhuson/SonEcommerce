@@ -41,14 +41,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   validationMessages = {
     name: [{ type: 'required', message: 'Bạn phải nhập tên' }],
     surname: [{ type: 'required', message: 'Bạn phải nhập họ' }],
-    email: [{ type: 'required', message: 'Bạn phải nhập email' }],
+    email: [{ type: 'required', message: 'Bạn phải nhập email' }
+    , { type: 'email', message: 'Email không đúng định dạng' }
+    ],
     userName: [{ type: 'required', message: 'Bạn phải nhập tài khoản' }],
     phoneNumber: [{ type: 'required', message: 'Bạn phải nhập số điện thoại' }],
   };
 
   buildForm() {
     this.form = new FormGroup({
-      email: new FormControl(this.selectedEntity.email || null, Validators.required),
+      email: new FormControl(this.selectedEntity.email || null, Validators.compose([Validators.required, Validators.email])),
       phoneNumber: new FormControl(this.selectedEntity.phoneNumber || null, Validators.required),
       name: new FormControl(this.selectedEntity.name || null, Validators.required),
       userName: new FormControl(this.selectedEntity.userName || null, Validators.required),

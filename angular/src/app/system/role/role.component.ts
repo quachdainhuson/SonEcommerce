@@ -156,7 +156,6 @@ export class RoleComponent implements OnInit, OnDestroy {
 
   deleteItemsConfirm(ids: any[]) {
     this.toggleBlockUI(true);
-
     this.roleService.deleteMultiple(ids).subscribe({
       next: () => {
         this.notificationService.showSuccess(MessageConstants.DELETED_OK_MSG);

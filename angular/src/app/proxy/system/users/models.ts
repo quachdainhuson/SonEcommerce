@@ -23,8 +23,8 @@ export interface SetPasswordDto {
 export interface UpdateUserDto {
   name?: string;
   surname?: string;
-  email?: string;
-  phoneNumber?: string;
+  email: string;
+  phoneNumber: string;
 }
 
 export interface UserDto extends AuditedEntityDto<string> {

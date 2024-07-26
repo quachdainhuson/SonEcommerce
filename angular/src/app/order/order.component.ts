@@ -8,7 +8,14 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { NotificationService } from '../shared/services/notification.service';
 import { OrderDetailComponent } from './order-detail.component';
 import { OrderDto, OrderInListDto, OrdersService } from '@proxy';
-
+const OrderStatusDescriptions: { [key in OrderStatus]: string } = {
+  [OrderStatus.New]: 'Mới',
+  [OrderStatus.Confirmed]: 'Đã Xác Nhận',
+  [OrderStatus.Processing]: 'Đang Xử Lý',
+  [OrderStatus.Shipping]: 'Đang Giao Hàng',
+  [OrderStatus.Finished]: 'Đã Hoàn Thành',
+  [OrderStatus.Canceled]: 'Đã Hủy'
+};
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -97,9 +104,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     return PaymentMethod[value];
   }
 
-  getStatusTypeName(value: number){
-    return OrderStatus[value];
+  getStatusTypeName(value: number): string {
+    return OrderStatusDescriptions[value] || 'Không xác định';
   }
+  
 
   private toggleBlockUI(enabled: boolean) {
     if (enabled == true) {

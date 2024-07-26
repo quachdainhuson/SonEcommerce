@@ -32,6 +32,7 @@ namespace SonEcommerce.Admin.System.Users
         Task ChangePasswordAsync(Guid id, ChangePasswordDto input);
         //cập nhật thông tin cá nhân
         Task<UserDto> UpdateProfileAsync(Guid id, UpdateUserDto input);
+        Task<bool> CheckUserRoleHaveUserByRoleId (Guid roleId);
     }
 
 }

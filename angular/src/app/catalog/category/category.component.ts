@@ -75,7 +75,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
   showAddModal() {
     const ref = this.dialogService.open(CategoryDetailComponent, {
-      header: 'Thêm mới sản phẩm',
+      header: 'Thêm mới danh mục',
       width: '70%',
     });
     this.customDialogService.setDialogRef(ref);
@@ -98,7 +98,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       data: {
         id: id,
       },
-      header: 'Cập nhật sản phẩm',
+      header: 'Cập nhật danh mục',
       width: '70%',
     });
     this.customDialogService.setDialogRef(ref);

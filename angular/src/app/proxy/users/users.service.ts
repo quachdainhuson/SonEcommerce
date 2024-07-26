@@ -46,6 +46,14 @@ export class UsersService {
     { apiName: this.apiName,...config });
   
 
+  checkUserRoleHaveUserByRoleIdByRoleId = (roleId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, boolean>({
+      method: 'POST',
+      url: `/api/app/users/check-user-role-have-user-by-role-id/${roleId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   create = (input: CreateUserDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, UserDto>({
       method: 'POST',

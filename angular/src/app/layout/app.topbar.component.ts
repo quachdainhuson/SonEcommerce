@@ -28,11 +28,6 @@ export class AppTopBarComponent implements OnInit {
                 routerLink: ['/system/profile'],
               },
               {
-                label: 'Đổi mật khẩu',
-                icon: 'pi pi-key',
-                routerLink: ['/system/change-password'],
-              },
-              {
                 label: 'Đăng xuất',
                 icon: 'pi pi-sign-out',
                 command: event => {

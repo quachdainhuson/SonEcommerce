@@ -140,15 +140,52 @@ namespace SonEcommerce.Admin.Users
             //kiểm tra xem số điện thoại đã tồn tại chưa
             if (user.PhoneNumber != input.PhoneNumber)
             {
-                if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                if (input.PhoneNumber.StartsWith("+84") || input.PhoneNumber.StartsWith("0"))
                 {
-                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                    if (input.PhoneNumber.StartsWith("0"))
+                    {
+                        // kiểm tra xem số điện thoại có đúng 10 số không
+                        if (input.PhoneNumber.Length != 10)
+                        {
+                            throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                        }
+                    }
+                    else if (input.PhoneNumber.StartsWith("+84"))
+                    {
+                        // kiểm tra xem số điện thoại có đúng 12 số không
+                        if (input.PhoneNumber.Length == 12)
+                        {
+                            throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                        }
+                        else
+                        {
+                            if (input.PhoneNumber.Substring(3).Length != 9)
+                            {
+                                throw new UserFriendlyException("Số điện thoại không hợp lệ!!!");
+                            }
+
+                        }
+                    }
+                    //kiểm tra xem số có kí tự chữ không
+                    if (input.PhoneNumber.Any(char.IsLetter))
+                    {
+                        throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                    }
+                    if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                    {
+                        throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                    }
+                    else
+                    {
+                        user.SetPhoneNumber(input.PhoneNumber, true);
+
+                    }
                 }
                 else
                 {
-                    user.SetPhoneNumber(input.PhoneNumber, true);
-
+                    throw new UserFriendlyException("Số điện thoại không hợp lệ");
                 }
+
             }
             if (user.Email != input.Email)
             {
@@ -397,16 +434,55 @@ namespace SonEcommerce.Admin.Users
             user.Name = input.Name;
             user.Surname = input.Surname;
             var isUserPhoneNumberExisted = await CheckPhoneNumberExistAsync(input.PhoneNumber);
+            //kiểm tra xem số điện thoại đã tồn tại chưa
             if (user.PhoneNumber != input.PhoneNumber)
             {
-                if (isUserPhoneNumberExisted)
+                if (input.PhoneNumber.StartsWith("+84") || input.PhoneNumber.StartsWith("0"))
                 {
-                    throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                    if (input.PhoneNumber.StartsWith("0"))
+                    {
+                        // kiểm tra xem số điện thoại có đúng 10 số không
+                        if (input.PhoneNumber.Length != 10)
+                        {
+                            throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                        }
+                    }
+                    else if (input.PhoneNumber.StartsWith("+84"))
+                    {
+                        // kiểm tra xem số điện thoại có đúng 12 số không
+                        if (input.PhoneNumber.Length == 12)
+                        {
+                            throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                        }
+                        else
+                        {
+                            if (input.PhoneNumber.Substring(3).Length != 9)
+                            {
+                                throw new UserFriendlyException("Số điện thoại không hợp lệ!!!");
+                            }
+
+                        }
+                    }
+                    //kiểm tra xem số có kí tự chữ không
+                    if (input.PhoneNumber.Any(char.IsLetter))
+                    {
+                        throw new UserFriendlyException("Số điện thoại không hợp lệ");
+                    }
+                    if (await CheckPhoneNumberExistAsync(input.PhoneNumber))
+                    {
+                        throw new UserFriendlyException("Số điện thoại đã tồn tại");
+                    }
+                    else
+                    {
+                        user.SetPhoneNumber(input.PhoneNumber, true);
+
+                    }
                 }
                 else
                 {
-                    user.SetPhoneNumber(input.PhoneNumber, true);
+                    throw new UserFriendlyException("Số điện thoại không hợp lệ");
                 }
+
             }
             if (user.Email != input.Email)
             {
@@ -420,12 +496,6 @@ namespace SonEcommerce.Admin.Users
                     if (!setEmailResult.Succeeded)
                     {
                         throw new UserFriendlyException(string.Join(", ", setEmailResult.Errors.Select(e => e.Description)));
-                    }
-
-                    var setUserNameResult = await _identityUserManager.SetUserNameAsync(user, input.Email);
-                    if (!setUserNameResult.Succeeded)
-                    {
-                        throw new UserFriendlyException(string.Join(", ", setUserNameResult.Errors.Select(e => e.Description)));
                     }
                 }
             }
@@ -446,6 +516,16 @@ namespace SonEcommerce.Admin.Users
                 throw new UserFriendlyException(errors);
             }
             
+        }
+        public async Task<bool> CheckUserRoleHaveUserByRoleId (Guid roleId)
+        {
+            var query = await Repository.GetQueryableAsync();
+            var users = query.Where(x => x.Roles.Any(r => r.RoleId == roleId)).ToList();
+            if (users.Count > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
