@@ -19,7 +19,6 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   public btnDisabled = false;
   public userId: string;
   noSpecial: RegExp = /^[^<>*!_~]+$/;
-
   constructor(
     private userService: UsersService,
     private notificationService: NotificationService,
@@ -42,11 +41,20 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
       ]),
-      confirmPassword: new FormControl(null, Validators.required),
-    },
-    passwordMatchingValidatior
+      confirmNewPassword: new FormControl(null, [Validators.required, this.isMatching('newPassword')]),
+    }
   );
   }
+
+  isMatching(field: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (control.parent) {
+        return control.value === control.parent.get(field).value ? null : { isMatching: true };
+      }
+      return null;
+    };
+  }
+  
 
   ngOnInit() {
     this.primengConfig.zIndex = {
@@ -64,8 +72,12 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     newPassword: [
       { type: 'required', message: 'Bạn phải nhập mật khẩu mới' },
       { type: 'pattern', message: 'Mật khẩu ít nhất 8 ký tự, ít nhất 1 số, 1 ký tự đặc biệt, và một chữ hoa' },
+
     ],
-    confirmPassword: [{ type: 'required', message: 'Bạn phải xác nhận mật khẩu mới' }],
+    confirmNewPassword: [
+      { type: 'required', message: 'Bạn phải nhập mật khẩu xác nhận' },
+      { type: 'isMatching', message: 'Mật khẩu không khớp' }
+    ],
   };
 
   private toggleBlockUI(enabled: boolean) {
@@ -107,10 +119,3 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
   
 }
-export const passwordMatchingValidatior: ValidatorFn = (
-  control: AbstractControl
-): ValidationErrors | null => {
-  const password = control.get('newPassword');
-  const confirmPassword = control.get('confirmNewPassword');
-  return password?.value === confirmPassword?.value ? null : { notmatched: true };
-};

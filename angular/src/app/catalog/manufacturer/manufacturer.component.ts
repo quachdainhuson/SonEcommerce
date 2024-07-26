@@ -75,7 +75,7 @@ export class ManufacturerComponent implements OnInit, OnDestroy {
   }
   showAddModal() {
     const ref = this.dialogService.open(ManufacturerDetailComponent, {
-      header: 'Thêm mới sản phẩm',
+      header: 'Thêm mới nhà sản xuất',
       width: '70%',
     });
     this.customDialogService.setDialogRef(ref);
@@ -99,7 +99,7 @@ export class ManufacturerComponent implements OnInit, OnDestroy {
       data: {
         id: id,
       },
-      header: 'Cập nhật sản phẩm',
+      header: 'Cập nhật nhà sản xuất',
       width: '70%',
     });
     this.customDialogService.setDialogRef(ref);

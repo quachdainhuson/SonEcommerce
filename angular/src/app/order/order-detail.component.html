@@ -22,7 +22,7 @@
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">
-                                  <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Payment Status</p>
+                                  <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Tình trạng hóa đơn</p>
                                     <span class="badge bg-success-subtle fs-13" style="font-size: 15px;" [class]="getButtonTextClass(order.status)" id="payment-status">{{getStatusTypeName(order.status)}}</span>
                               </div>
                               <!--end col-->
@@ -42,7 +42,7 @@
                               </div>
                               <!--end col-->
                               <div class="col-lg-6 col-6">
-                                  <h6 class="text-muted text-uppercase fw-semibold mb-3">Total Amount</h6>
+                                  <h6 class="text-muted text-uppercase fw-semibold mb-3">Tổng hóa đơn</h6>
                                   <h3 class="fw-bold mb-2">${{order.total}}</h3>
                               </div>
                               <!--end col-->
@@ -132,7 +132,7 @@
       </div>
       <!--end col-->
   </div>
-    <ng-template pTemplate="footer">
+    <!-- <ng-template pTemplate="footer">
       <button
         type="submit"
         pButton
@@ -140,7 +140,7 @@
         iconPos="left"
         label="In hóa đơn"
       ></button>
-    </ng-template>
+    </ng-template> -->
     <!--Block UI-->
     <p-blockUI [blocked]="blockedPanel" [target]="pnl">
       <p-progressSpinner></p-progressSpinner>

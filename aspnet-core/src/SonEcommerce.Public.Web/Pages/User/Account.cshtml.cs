@@ -55,6 +55,7 @@ namespace SonEcommerce.Public.Web.Pages.User
 
         public async Task OnGetAsync()
         {
+
             if (User.Identity.IsAuthenticated)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -63,6 +64,7 @@ namespace SonEcommerce.Public.Web.Pages.User
                 Orders = orders;
 
             }
+            
 
 
         }

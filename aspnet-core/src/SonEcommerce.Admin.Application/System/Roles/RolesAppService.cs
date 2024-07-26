@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using SonEcommerce.Admin.Permissions;
 using SonEcommerce.Admin.Roles;
+using SonEcommerce.Admin.System.Users;
 using SonEcommerce.Roles;
 using System;
 using System.Collections.Generic;
@@ -35,12 +36,14 @@ namespace SonEcommerce.Admin.Roles
         protected IPermissionManager PermissionManager { get; }
         protected IPermissionDefinitionManager PermissionDefinitionManager { get; }
         protected ISimpleStateCheckerManager<PermissionDefinition> SimpleStateCheckerManager { get; }
-
+        private readonly IUsersAppService _usersAppService;
         public RolesAppService(IRepository<IdentityRole, Guid> repository,
             IPermissionManager permissionManager,
         IPermissionDefinitionManager permissionDefinitionManager,
         IOptions<PermissionManagementOptions> options,
-        ISimpleStateCheckerManager<PermissionDefinition> simpleStateCheckerManager)
+        ISimpleStateCheckerManager<PermissionDefinition> simpleStateCheckerManager,
+        IUsersAppService usersAppService
+        )
             : base(repository)
         {
             Options = options.Value;
@@ -53,11 +56,26 @@ namespace SonEcommerce.Admin.Roles
             CreatePolicyName = IdentityPermissions.Roles.Create;
             UpdatePolicyName = IdentityPermissions.Roles.Update;
             DeletePolicyName = IdentityPermissions.Roles.Delete;
+            _usersAppService = usersAppService;
         }
 
         [Authorize(IdentityPermissions.Roles.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
+            foreach (var id in ids)
+            {
+                //nếu id role là admin hoặc nhân viên không cho xóa
+                var role = await Repository.GetAsync(id);
+                if (role.Name == "Admin" || role.Name == "Nhân Viên")
+                {
+                    throw new UserFriendlyException("Không thể xóa role Admin hoặc Nhân Viên");
+                }
+                var checkroles = await _usersAppService.CheckUserRoleHaveUserByRoleId(id);
+                if (checkroles)
+                {
+                    throw new UserFriendlyException("Quyền này hiện đang có người, không thể xóa");
+                }
+            }
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }

@@ -98,7 +98,7 @@ export class AttributeComponent implements OnInit, OnDestroy {
       data: {
         id: id,
       },
-      header: 'Cập nhật sản phẩm',
+      header: 'Cập nhật thuộc tính',
       width: '70%',
     });
     this.customDialogService.setDialogRef(ref);

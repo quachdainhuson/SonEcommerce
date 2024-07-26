@@ -130,7 +130,7 @@ namespace SonEcommerce.Admin.Products
             if (input.ThumbnailPictureContent != null && input.ThumbnailPictureContent.Length > 0)
             {
                 await SaveThumbnailImageAsync(input.ThumbnailPictureName, input.ThumbnailPictureContent);
-                product.ThumbnailPicture = input.ThumbnailPictureName;
+                product.ThumbnailPicture = input.ThumbnailPictureName;  
 
             }
             product.SellPrice = input.sellPrice;

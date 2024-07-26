@@ -186,12 +186,6 @@ namespace SonEcommerce.Public.Users
                     {
                         throw new UserFriendlyException(string.Join(", ", setEmailResult.Errors.Select(e => e.Description)));
                     }
-
-                    var setUserNameResult = await _identityUserManager.SetUserNameAsync(user, input.Email);
-                    if (!setUserNameResult.Succeeded)
-                    {
-                        throw new UserFriendlyException(string.Join(", ", setUserNameResult.Errors.Select(e => e.Description)));
-                    }
                 }
             }
             user.Surname = input.Surname;

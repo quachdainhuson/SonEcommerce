@@ -8,7 +8,14 @@ import { NotificationService } from '../shared/services/notification.service';
 import { UtilityService } from '../shared/services/utility.service';
 import { OrderDto, OrderItemDto, OrdersService } from '@proxy';
 import { OrderStatus, PaymentMethod } from '@proxy/son-ecommerce/orders';
-
+const OrderStatusDescriptions: { [key in OrderStatus]: string } = {
+  [OrderStatus.New]: 'Mới',
+  [OrderStatus.Confirmed]: 'Đã Xác Nhận',
+  [OrderStatus.Processing]: 'Đang Xử Lý',
+  [OrderStatus.Shipping]: 'Đang Giao Hàng',
+  [OrderStatus.Finished]: 'Đã Hoàn Thành',
+  [OrderStatus.Canceled]: 'Đã Hủy'
+};
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
@@ -129,8 +136,8 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     return PaymentMethod[value];
   }
 
-  getStatusTypeName(value: number){
-    return OrderStatus[value];
+  getStatusTypeName(value: number): string {
+    return OrderStatusDescriptions[value] || 'Không xác định';
   }
 
 
